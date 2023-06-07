@@ -1,0 +1,24 @@
+.ImageCardBox {
+    margin-top: 6%;
+    width: 100%;
+    height: 70%;
+    align-items: center;
+
+    .ImageGroup {
+        width: 100%;
+        height: 90%;
+        margin-top: 3%;
+        margin-bottom: 3%;
+        display: flex;
+        align-items : center;
+        justify-content: space-around;
+        .ImageCard {
+            margin-top: 2%;
+            margin-bottom: 2%;
+            width: 20%;
+            height: 90%;
+            ;
+        }
+    }
+}
+

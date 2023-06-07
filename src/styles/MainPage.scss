@@ -1,0 +1,27 @@
+.ScreenBox{
+    width: 75%;
+    height: 100%;
+    margin: 0 auto;
+    border: 3px solid #F5F7FF;
+    
+    .Section {
+        display: flex;
+        background-color: #110042;
+
+        .Illustration{
+            width: 100%;
+            height: 70%;
+            background-color: #F5F7FF;
+            background-image: url("../assets/illustration.png");
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+        }
+        
+        .BasicBox{
+            width: 100%;
+            height: 10%;
+            background-color: #F5F7FF;
+        }
+    }
+}
+
