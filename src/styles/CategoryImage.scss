@@ -1,0 +1,94 @@
+.CategoryDetailBox{
+    display: flex;
+    width: 100%;
+    height: 35%;
+    margin-top: 1%;
+    justify-content: space-around;
+    
+    .TILImage {
+        display: inline-block;
+        background-image: url("../assets/TIL component badge.png");
+        width: 20%;
+        height: 90%;
+        border-radius: 2em;
+        margin-top: 1%;
+        margin-bottom: 1%;
+        // margin-left: 5%;
+        justify-content: space-around;
+        background-repeat: no-repeat;
+        
+    }
+
+    .ProjectImage{
+        display: inline-block;
+        background-image: url("../assets/project component badge.png");
+        width: 20%;
+        height: 90%;
+        border-radius: 2em;
+        margin-top: 1%;
+        margin-bottom: 1%;
+        // margin-left: 5%;
+        justify-content: space-around;
+        background-repeat: no-repeat;
+    }
+
+
+    .SeminarImage{
+        display: inline-block;
+        background-image: url("../assets/seminar component badge.png");
+        width: 20%;
+        height: 90%;
+        border-radius: 2em;
+        margin-top: 1%;
+        margin-bottom: 1%;
+        // margin-left: 5%;
+        justify-content: space-around;
+        background-repeat: no-repeat;
+    }
+
+    .StudyImage{
+        display: inline-block;
+        background-image: url("../assets/study component badge.png");
+        width: 20%;
+        height: 90%;
+        border-radius: 2em;
+        margin-top: 1%;
+        margin-bottom: 1%;
+        // margin-left: 5%;
+        justify-content: space-around;
+        background-repeat: no-repeat;
+    }
+
+    .TitleBox{
+        padding: 3%;
+        width: 90%;
+        height: 50%;
+        text-align: center;
+        font-size: 250%;
+        font-weight: bold;
+    }
+    .ContentBox{
+        padding-left: 5%;
+        padding-right: 3%;
+        display: flex;
+        width: 90%;
+        height: 25%;
+        font-weight: bold;
+        align-items: flex-end;
+        .DayBox{
+            display: flex;
+            width: 50%;
+            height: 20%;
+            text-align: left;
+            font-size: 120%;
+        }
+
+        .AuthorBox{
+            width: 50%;
+            height: 20%;
+            text-align: right;
+            font-size: 120%;
+        }
+    }
+
+}
