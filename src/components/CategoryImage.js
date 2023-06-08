@@ -14,7 +14,6 @@ const CategoryImage = ({category, info}) => {
                 </div>
             )}
         </div>
-            
     );
 }
 

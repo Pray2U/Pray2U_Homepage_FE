@@ -1,0 +1,40 @@
+.RankBox{
+    display: flex;
+    width: 80%;
+    height: 50%;
+    align-items: center;
+    border-radius: 1em;
+    justify-content: space-around;
+    
+    .RankOrder{
+        display: flex;
+        width: 10%;
+        height: 60%;
+        border-radius: 50%;
+        font-weight: bold;
+        font-size: 100%;
+        background-color: white;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .UserName{
+        width: 40%;
+        height: 60%;
+        color: white;
+        font-weight: bold;
+        font-size: 120%;
+        text-align: center;
+    }
+    
+    .Point{
+        display: flex;
+        width: 30%;
+        height: 50%;
+        font-weight: bold;
+        border-radius: 0.5em;
+        color: white;
+        align-items: center;
+        justify-content: center;
+    }
+}
