@@ -3,7 +3,7 @@ import '../styles/Categories.scss'
 
 import CategoryImage from './CategoryImage'
 
-const Caterogies = () => {
+const Caterogies = ({isLoggedIn}) => {
 
     const cate = [ 
         {
@@ -136,13 +136,22 @@ const Caterogies = () => {
         }
     ]
 
+    
+
     const [ til, setTil ] = useState([...TIL]);
     const [ project, setProject ] = useState([...PROJECT]);
     const [ seminar, setSeminar ] = useState([...SEMINAR]);
     const [ study, setStudy ] = useState([...STUDY]);
     const [ selectedCategory , setSelectedCategory ] = useState([...TIL]);
+    const [categories, setCategories] = useState(cate);
 
-    const [categories, setCategories] = useState(cate)
+    if(isLoggedIn){
+
+    }
+
+    else{
+
+    }
 
     const changeCategory = (id) =>{
         setCategories(
@@ -182,6 +191,14 @@ const Caterogies = () => {
                     ))}
                 </div>
             </div>
+                {categories.map(c => 
+                    (c.checked &&
+                        <CategoryImage 
+                            category={c.name}
+                            info={selectedCategory}
+                        />
+                    )
+                )}
                 {categories.map(c => 
                     (c.checked &&
                         <CategoryImage 
