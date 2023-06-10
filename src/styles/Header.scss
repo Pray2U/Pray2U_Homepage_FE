@@ -1,22 +1,22 @@
 .HeaderBox {
     display: flex;
-    width: 100%;
-    height: 10%;
+    width: 75vw;
+    height: 10vh;
     margin: 0 auto;
     background-color: #FFFFFF;
     align-items: center;
     
     .Logo {
-        width: 5%;
-        height: 80%;
+        width: 3.75vw;
+        height: 8vh;
         max-width: 100%;
         height: auto !important;
     }
 
     .LogoName {
         display: flex;
-        height: 100%;
-        width: 8%;
+        height: 10vh;
+        width: 9vh;
         align-items: center;
         justify-content: center;
         color: Blue;
@@ -24,7 +24,6 @@
         text-decoration: none;
         font-weight: bold;
         font-family: 'Century Schoolbook';
-        font-weight: bold;
         
         .RedColor {
             color: Red;
@@ -32,8 +31,8 @@
     }
 
     .SignIn {
-        width: 5%;
-        height: 100%;
+        width: 3.75vw;
+        height: 10vh;
         display: flex;
         margin-left: auto;
         margin-right: 1%;
@@ -55,8 +54,8 @@
     .MenuBox{
         display: flex;
         align-items: center;
-        width: 30%;
-        height: 100%;
+        width: 22.5vw;
+        height: 10vh;
         justify-content: space-around;
         margin-left: auto;  
 
@@ -64,25 +63,25 @@
             text-decoration: none;
             color: black;
             font-weight: bold;
-            font-size: 110%;
+            font-size: 1vw;
         }
         .Event{
             text-decoration: none;
             color: black;
             font-weight: bold;
-            font-size: 110%;
+            font-size: 1vw;
         }
         .TIL{
             text-decoration: none;
             color: black;
             font-weight: bold;
-            font-size: 110%;
+            font-size: 1vw;
         }
         .Shop{
             text-decoration: none;
             color: black;
             font-weight: bold;
-            font-size: 110%;
+            font-size: 1vw;
         }
         .Profile{
             display: flex;
@@ -90,7 +89,6 @@
             border: 3px solid black;
             align-items: center;
             justify-content: center;
-
         }
 
     }

@@ -194,6 +194,7 @@ const Caterogies = ({isLoggedIn}) => {
                 {categories.map(c => 
                     (c.checked &&
                         <CategoryImage 
+                            key={c.id}
                             category={c.name}
                             info={selectedCategory}
                         />
@@ -201,7 +202,8 @@ const Caterogies = ({isLoggedIn}) => {
                 )}
                 {categories.map(c => 
                     (c.checked &&
-                        <CategoryImage 
+                        <CategoryImage
+                            key={c.id}
                             category={c.name}
                             info={selectedCategory}
                         />

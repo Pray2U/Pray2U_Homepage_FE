@@ -18,9 +18,20 @@ const Mainpage = () => {
         profile_url: '/profile/HeaderProfile.png',
     }
 
-    const [ isLoggedIn, setIsLoggedIn ] = useState(true);
+    const pointDummyData = {
+        totalPoint : 25555, 
+        currentPoint: 2454,
+        weeklyScore: 2000
+    }
 
-    const [ userInfo, setUserInfo ] = useState();
+    const [ isLoggedIn, setIsLoggedIn ] = useState(true);
+    const [ myPointInfo, setMyPointInfo ] = useState(pointDummyData);
+    const [ userInfo, setUserInfo ] = useState(userDummyData);
+
+
+    const allowScroll = () => {
+        // window.scrollBy(0, window.innerHeight);
+    }
 
 
     const options = {
@@ -34,15 +45,18 @@ const Mainpage = () => {
                 <Section className="Section1">
                     <Header 
                         isLoggedIn={isLoggedIn} 
-                        profile_url={userDummyData.profile_url}
+                        profile_url={userInfo.profile_url}
                     />
-                    <div className="BasicBox"/>
                     <div className="Illustration"/>
+                    <div className="AllowBox">
+                        <button className="AllowButton" onClick={()=>allowScroll()}>
+                        </button>
+                    </div>
                 </Section>
                 <Section className="Section2">
                     {!isLoggedIn && <Carousels/> }
                     <Caterogies isLoggedIn={isLoggedIn}/>
-                    {isLoggedIn && <PointRank/> }
+                    {isLoggedIn && <PointRank myPoint={myPointInfo.currentPoint} weeklyScore={myPointInfo.weeklyScore} /> }
                 </Section>
                 <Section className="Section3">
                     <ImageCards/>
