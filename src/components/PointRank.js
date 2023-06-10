@@ -3,28 +3,28 @@ import Point from './Point';
 
 import '../styles/PointRank.scss';
 
-const PointRank = () => {
+const PointRank = ({myPoint, weeklyScore}) => {
 
     const rankDummyData = [
         {
             rank:1,
-            name:"최재훈",
-            point: 1000,
+            username:"최재훈",
+            weekPoint:7555,
         },
         {
             rank:2,
-            name:"이동복",
-            point: 900,
+            username:"이동복",
+            weekPoint:7555,
         },
         {
             rank:3,
-            name:"김민성",
-            point: 800,
+            username:"김민성",
+            weekPoint:7555,
         },
         {
             rank:4,
-            name:"최형순",
-            point: 700,
+            username:"최형순",
+            weekPoint:7555,
         },
     ]
 
@@ -39,10 +39,10 @@ const PointRank = () => {
                     <Point user={rankDummyData[1]}/>
                     <Point user={rankDummyData[2]}/>
                     <div className='MyPointBox'>
-                        My Point : {10000}
+                        My Point : {myPoint}
                     </div>
                     <div className='WeeklyScoreBox'>
-                        Weekly Score : {20000}
+                        Weekly Score : {weeklyScore}
                     </div>
                     <Point user={rankDummyData[3]}/>
             </div>

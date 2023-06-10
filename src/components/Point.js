@@ -29,7 +29,7 @@ const Point = ({user}) =>{
     return(
         orderColor.map(order=>
             order.id === user.rank && 
-                <div className="RankBox" style={{backgroundColor:order.color}}>
+                <div key={user.rank} className="RankBox" style={{backgroundColor:order.color}}>
                     {
                         user.rank !== 4 ? 
                         <div className="RankOrder" style={{color:order.color}}>
@@ -39,10 +39,10 @@ const Point = ({user}) =>{
                         <img src="/rank/skeleton icon.png" alt='img'/>
                     }
                     <div className="UserName">
-                        {user.name}
+                        {user.username}
                     </div>
                     <div className="Point" style={{background:order.secondColor}}>
-                        {user.point}
+                        {user.weekPoint}
                     </div>
                 </div>
         )

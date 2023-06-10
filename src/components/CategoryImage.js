@@ -5,7 +5,7 @@ const CategoryImage = ({category, info}) => {
     return(
         <div className='CategoryDetailBox'>
             {info.map(i =>
-                <div className={(category+ "Image")}>
+                <div key={i.title} className={(category+ "Image")}>
                     <p className='TitleBox'>{i.title}</p>
                     <div className='ContentBox'>
                         <p className='DayBox'>{i.day}</p>
