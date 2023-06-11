@@ -1,12 +1,12 @@
 import { Link } from 'react-router-dom';
 
-import '../styles/Error.scss';
+import '../styles/Error/Error.scss';
 
 const Error = () => {
 
     const errorData = {
         code: 404,
-        message: "Oops Error Page..! Something went Wrong!" 
+        message: "Oops Error Page..! Something went Wrong!"
     };
 
     return(
