@@ -52,7 +52,8 @@ const Caterogies = ({isLoggedIn}) => {
             title: "04/26 TIL",
             day: "04/24 05:43",
             author: "최형순4"
-        }
+        },
+        
     ]
 
     const PROJECT = [
@@ -175,7 +176,6 @@ const Caterogies = ({isLoggedIn}) => {
             default:
                 break;
         };
-        console.log(selectedCategory);
     }
 
     return(
@@ -191,24 +191,15 @@ const Caterogies = ({isLoggedIn}) => {
                     ))}
                 </div>
             </div>
-                {categories.map(c => 
-                    (c.checked &&
-                        <CategoryImage 
-                            key={c.id}
-                            category={c.name}
-                            info={selectedCategory}
-                        />
-                    )
-                )}
-                {categories.map(c => 
-                    (isLoggedIn && c.checked &&
-                        <CategoryImage
-                            key={c.id}
-                            category={c.name}
-                            info={selectedCategory}
-                        />
-                    )
-                )}
+            {categories.map(c => 
+                (c.checked &&
+                    <CategoryImage 
+                        key={c.id}
+                        category={c.name}
+                        info={selectedCategory}
+                    />
+                )
+            )}
         </>
     );
 }
