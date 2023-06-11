@@ -143,7 +143,7 @@ const Caterogies = ({isLoggedIn}) => {
     const [ seminar, setSeminar ] = useState([...SEMINAR]);
     const [ study, setStudy ] = useState([...STUDY]);
     const [ selectedCategory , setSelectedCategory ] = useState([...TIL]);
-    const [categories, setCategories] = useState(cate);
+    const [ categories, setCategories ] = useState(cate);
 
     if(isLoggedIn){
 
@@ -201,7 +201,7 @@ const Caterogies = ({isLoggedIn}) => {
                     )
                 )}
                 {categories.map(c => 
-                    (c.checked &&
+                    (isLoggedIn && c.checked &&
                         <CategoryImage
                             key={c.id}
                             category={c.name}
