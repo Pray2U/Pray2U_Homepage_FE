@@ -1,11 +1,31 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 import Carousel from 'react-bootstrap/Carousel';
 
 import '../styles/ImageCard.scss'
 
+
 const ImageCards = () => {
-    const [userCnt, setUserCnt] = useState(9);
+    
+    // 실제 데이터
+    // const [ allUserInfo, setAllUserInfo ] = useState(null);
+
+    // const read_AllUserInfo = async()=>{
+    //     try{
+    //         const url = 'api/user/info/all'
+    //         const response = await axios.get(url, {withCredentials:true});
+    //         setAllUserInfo(response.data.content);
+    //     }catch(e){
+    //         console.log(e);
+    //     }
+    // }
+
+    // useEffect(()=>{
+    //     read_AllUserInfo();
+    // },[allUserInfo,]);
+
+    
 
     return(
         <div className="ImageCardBox">

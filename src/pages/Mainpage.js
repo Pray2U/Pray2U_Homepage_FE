@@ -43,20 +43,17 @@ const Mainpage = () => {
         <div className="ScreenBox">
             <SectionsContainer {...options}>
                 <Section className="Section1">
-                    <Header 
-                        isLoggedIn={isLoggedIn} 
-                        profile_url={userInfo.profile_url}
-                    />
+                    <Header isLoggedIn={isLoggedIn}/>
                     <div className="Illustration"/>
-                    <div className="AllowBox">
-                        <button className="AllowButton" onClick={()=>allowScroll()}>
+                    <div className="AllowBox"/>
+                        {/* <button className="AllowButton" onClick={()=>allowScroll()}>
                         </button>
-                    </div>
+                    </div> */}
                 </Section>
                 <Section className="Section2">
                     {!isLoggedIn && <Carousels/> }
                     <Caterogies isLoggedIn={isLoggedIn}/>
-                    {isLoggedIn && <PointRank myPoint={myPointInfo.currentPoint} weeklyScore={myPointInfo.weeklyScore} /> }
+                    {isLoggedIn && <PointRank/> }
                 </Section>
                 <Section className="Section3">
                     <ImageCards/>
