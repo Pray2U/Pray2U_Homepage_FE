@@ -7,7 +7,7 @@ function App() {
     <div>
       <Router>
         <Routes>
-          <Route path='/error' element={<Error/>}/>
+          <Route path='/*' element={<Error/>}/>
         </Routes>
       </Router>
     </div>
