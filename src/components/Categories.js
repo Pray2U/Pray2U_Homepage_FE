@@ -1,159 +1,423 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import '../styles/Categories.scss'
 
 import CategoryImage from './CategoryImage'
 
+const cate = [ 
+    {
+        id: 1,
+        name:'TIL',
+        checked: true
+    }, 
+    {
+        id: 2,
+        name:'Project',
+        checked: false,
+    },
+    {
+        id: 3,
+        name:'Seminar',
+        checked: false
+    },
+    {
+        id: 4,
+        name:'Study',
+        checked: false
+    }
+]
+
+const TIL = [
+    {
+        id:1,
+        category: "TIL",
+        title: "04/23 TIL",
+        day: "04/24 05:43",
+        author: "최형순1"
+    },
+    {
+        id:2,
+        category: "TIL",
+        title: "04/24 TIL",
+        day: "04/24 05:43",
+        author: "최형순2"
+    },
+    {
+        id:3,
+        category: "TIL",
+        title: "04/25 TIL",
+        day: "04/24 05:43",
+        author: "최형순3"
+    },
+    {
+        id:4,
+        category: "TIL",
+        title: "04/26 TIL",
+        day: "04/24 05:43",
+        author: "최형순4"
+    },
+    
+]
+
+const LoggedInTIL = [
+    {
+        id:1,
+        category: "TIL",
+        title: "04/23 TIL",
+        day: "04/24 05:43",
+        author: "최형순1"
+    },
+    {
+        id:2,
+        category: "TIL",
+        title: "04/24 TIL",
+        day: "04/24 05:43",
+        author: "최형순2"
+    },
+    {
+        id:3,
+        category: "TIL",
+        title: "04/25 TIL",
+        day: "04/24 05:43",
+        author: "최형순3"
+    },
+    {
+        id:4,
+        category: "TIL",
+        title: "04/26 TIL",
+        day: "04/24 05:43",
+        author: "최형순4"
+    }, 
+    {
+        id:5,
+        category: "TIL",
+        title: "04/23 TIL",
+        day: "04/24 05:43",
+        author: "최형순1"
+    },
+    {
+        id:6,
+        category: "TIL",
+        title: "04/24 TIL",
+        day: "04/24 05:43",
+        author: "최형순2"
+    },
+    {
+        id:7,
+        category: "TIL",
+        title: "04/25 TIL",
+        day: "04/24 05:43",
+        author: "최형순3"
+    },
+    {
+        id:8,
+        category: "TIL",
+        title: "04/26 TIL",
+        day: "04/24 05:43",
+        author: "최형순4"
+    },
+]
+
+const PROJECT = [
+    {
+        id:1,
+        category: "TIL",
+        title: "04/23 Project",
+        day: "04/24 05:43",
+        author: "최형순1"
+    },
+    {
+        id:2,
+        category: "TIL",
+        title: "04/24 Project",
+        day: "04/24 05:43",
+        author: "최형순2"
+    },
+    {
+        id:3,
+        category: "TIL",
+        title: "04/25 Project",
+        day: "04/24 05:43",
+        author: "최형순3"
+    },
+    {
+        id:4,
+        category: "TIL",
+        title: "04/26 Project",
+        day: "04/24 05:43",
+        author: "최형순4"
+    }
+]
+
+const LoggedInPROJECT = [
+    {
+        id:1,
+        category: "TIL",
+        title: "04/23 Project",
+        day: "04/24 05:43",
+        author: "최형순1"
+    },
+    {
+        id:2,
+        category: "TIL",
+        title: "04/24 Project",
+        day: "04/24 05:43",
+        author: "최형순2"
+    },
+    {
+        id:3,
+        category: "TIL",
+        title: "04/25 Project",
+        day: "04/24 05:43",
+        author: "최형순3"
+    },
+    {
+        id:4,
+        category: "TIL",
+        title: "04/26 Project",
+        day: "04/24 05:43",
+        author: "최형순4"
+    },
+    {
+        id:5,
+        category: "TIL",
+        title: "04/23 Project",
+        day: "04/24 05:43",
+        author: "최형순1"
+    },
+    {
+        id:6,
+        category: "TIL",
+        title: "04/24 Project",
+        day: "04/24 05:43",
+        author: "최형순2"
+    },
+    {
+        id:7,
+        category: "TIL",
+        title: "04/25 Project",
+        day: "04/24 05:43",
+        author: "최형순3"
+    },
+    {
+        id:8,
+        category: "TIL",
+        title: "04/26 Project",
+        day: "04/24 05:43",
+        author: "최형순4"
+    }
+]
+
+const SEMINAR = [
+    {
+        id:1,
+        category: "TIL",
+        title: "04/23 Seminar",
+        day: "04/24 05:43",
+        author: "최형순1"
+    },
+    {
+        id:2,
+        category: "TIL",
+        title: "04/24 Seminar",
+        day: "04/24 05:43",
+        author: "최형순2"
+    },
+    {
+        id:3,
+        category: "TIL",
+        title: "04/25 Seminar",
+        day: "04/24 05:43",
+        author: "최형순3"
+    },
+    {
+        id:4,
+        category: "TIL",
+        title: "04/26 Seminar",
+        day: "04/24 05:43",
+        author: "최형순4"
+    }
+]
+
+const LoggedInSEMINAR = [
+    {
+        id:1,
+        category: "TIL",
+        title: "04/23 Seminar",
+        day: "04/24 05:43",
+        author: "최형순1"
+    },
+    {
+        id:2,
+        category: "TIL",
+        title: "04/24 Seminar",
+        day: "04/24 05:43",
+        author: "최형순2"
+    },
+    {
+        id:3,
+        category: "TIL",
+        title: "04/25 Seminar",
+        day: "04/24 05:43",
+        author: "최형순3"
+    },
+    {
+        id:4,
+        category: "TIL",
+        title: "04/26 Seminar",
+        day: "04/24 05:43",
+        author: "최형순4"
+    },  
+    {
+        id:5,
+        category: "TIL",
+        title: "04/23 Seminar",
+        day: "04/24 05:43",
+        author: "최형순1"
+    },
+    {
+        id:6,
+        category: "TIL",
+        title: "04/24 Seminar",
+        day: "04/24 05:43",
+        author: "최형순2"
+    },
+    {
+        id:7,
+        category: "TIL",
+        title: "04/25 Seminar",
+        day: "04/24 05:43",
+        author: "최형순3"
+    },
+    {
+        id:8,
+        category: "TIL",
+        title: "04/26 Seminar",
+        day: "04/24 05:43",
+        author: "최형순4"
+    }
+]
+
+const STUDY= [
+    {
+        id:1,
+        category: "TIL",
+        title: "04/23 study",
+        day: "04/24 05:43",
+        author: "최형순1"
+    },
+    {
+        id:2,
+        category: "TIL",
+        title: "04/24 study",
+        day: "04/24 05:43",
+        author: "최형순2"
+    },
+    {
+        id:3,
+        category: "TIL",
+        title: "04/25 study",
+        day: "04/24 05:43",
+        author: "최형순3"
+    },
+    {
+        id:4,
+        category: "TIL",
+        title: "04/26 study",
+        day: "04/24 05:43",
+        author: "최형순4"
+    }
+]
+
+const LoggedInSTUDY = [
+    {
+        id:1,
+        category: "TIL",
+        title: "04/23 study",
+        day: "04/24 05:43",
+        author: "최형순1"
+    },
+    {
+        id:2,
+        category: "TIL",
+        title: "04/24 study",
+        day: "04/24 05:43",
+        author: "최형순2"
+    },
+    {
+        id:3,
+        category: "TIL",
+        title: "04/25 study",
+        day: "04/24 05:43",
+        author: "최형순3"
+    },
+    {
+        id:4,
+        category: "TIL",
+        title: "04/26 study",
+        day: "04/24 05:43",
+        author: "최형순4"
+    },
+    {
+        id:5,
+        category: "TIL",
+        title: "04/23 study",
+        day: "04/24 05:43",
+        author: "최형순1"
+    },
+    {
+        id:6,
+        category: "TIL",
+        title: "04/24 study",
+        day: "04/24 05:43",
+        author: "최형순2"
+    },
+    {
+        id:7,
+        category: "TIL",
+        title: "04/25 study",
+        day: "04/24 05:43",
+        author: "최형순3"
+    },
+    {
+        id:8,
+        category: "TIL",
+        title: "04/26 study",
+        day: "04/24 05:43",
+        author: "최형순4"
+    }
+]
+
 const Caterogies = ({isLoggedIn}) => {
 
-    const cate = [ 
-        {
-            id: 1,
-            name:'TIL',
-            checked: true
-        }, 
-        {
-            id: 2,
-            name:'Project',
-            checked: false,
-        },
-        {
-            id: 3,
-            name:'Seminar',
-            checked: false
-        },
-        {
-            id: 4,
-            name:'Study',
-            checked: false
+    const [ categories, setCategories ] = useState([...cate]);
+    const [ selectedCategory , setSelectedCategory ] = useState(null);
+
+    const [ til, setTil ] = useState(null);
+    const [ project, setProject ] = useState(null);
+    const [ seminar, setSeminar ] = useState(null);
+    const [ study, setStudy ] = useState(null);
+
+    const setDatas = () => {
+        if(isLoggedIn) {
+            setTil([...LoggedInTIL]);
+            setProject([...LoggedInPROJECT]);
+            setSeminar([...LoggedInSEMINAR]);
+            setStudy([...LoggedInSTUDY]);
+            setSelectedCategory([...LoggedInTIL]);
         }
-    ]
-
-    const TIL = [
-        {
-            category: "TIL",
-            title: "04/23 TIL",
-            day: "04/24 05:43",
-            author: "최형순1"
-        },
-        {
-            category: "TIL",
-            title: "04/24 TIL",
-            day: "04/24 05:43",
-            author: "최형순2"
-        },
-        {
-            category: "TIL",
-            title: "04/25 TIL",
-            day: "04/24 05:43",
-            author: "최형순3"
-        },
-        {
-            category: "TIL",
-            title: "04/26 TIL",
-            day: "04/24 05:43",
-            author: "최형순4"
-        },
-        
-    ]
-
-    const PROJECT = [
-        {
-            category: "TIL",
-            title: "04/23 Project",
-            day: "04/24 05:43",
-            author: "최형순1"
-        },
-        {
-            category: "TIL",
-            title: "04/24 Project",
-            day: "04/24 05:43",
-            author: "최형순2"
-        },
-        {
-            category: "TIL",
-            title: "04/25 Project",
-            day: "04/24 05:43",
-            author: "최형순3"
-        },
-        {
-            category: "TIL",
-            title: "04/26 Project",
-            day: "04/24 05:43",
-            author: "최형순4"
+        else{
+            setTil([...TIL]);
+            setProject([...PROJECT]);
+            setSeminar([...SEMINAR]);
+            setStudy([...STUDY]);
+            setSelectedCategory([...TIL]);
         }
-    ]
+    };
 
-    const SEMINAR= [
-        {
-            category: "TIL",
-            title: "04/23 Seminar",
-            day: "04/24 05:43",
-            author: "최형순1"
-        },
-        {
-            category: "TIL",
-            title: "04/24 Seminar",
-            day: "04/24 05:43",
-            author: "최형순2"
-        },
-        {
-            category: "TIL",
-            title: "04/25 Seminar",
-            day: "04/24 05:43",
-            author: "최형순3"
-        },
-        {
-            category: "TIL",
-            title: "04/26 Seminar",
-            day: "04/24 05:43",
-            author: "최형순4"
-        }
-    ]
-
-    const STUDY= [
-        {
-            category: "TIL",
-            title: "04/23 study",
-            day: "04/24 05:43",
-            author: "최형순1"
-        },
-        {
-            category: "TIL",
-            title: "04/24 study",
-            day: "04/24 05:43",
-            author: "최형순2"
-        },
-        {
-            category: "TIL",
-            title: "04/25 study",
-            day: "04/24 05:43",
-            author: "최형순3"
-        },
-        {
-            category: "TIL",
-            title: "04/26 study",
-            day: "04/24 05:43",
-            author: "최형순4"
-        }
-    ]
-
+    useEffect(()=>{
+        setDatas();
+    },[]);
     
-
-    const [ til, setTil ] = useState([...TIL]);
-    const [ project, setProject ] = useState([...PROJECT]);
-    const [ seminar, setSeminar ] = useState([...SEMINAR]);
-    const [ study, setStudy ] = useState([...STUDY]);
-    const [ selectedCategory , setSelectedCategory ] = useState([...TIL]);
-    const [ categories, setCategories ] = useState(cate);
-
-    if(isLoggedIn){
-
-    }
-
-    else{
-
-    }
-
     const changeCategory = (id) =>{
         setCategories(
             categories.map(c =>
@@ -191,10 +455,11 @@ const Caterogies = ({isLoggedIn}) => {
                     ))}
                 </div>
             </div>
-            {categories.map(c => 
+            {selectedCategory && categories.map(c => 
                 (c.checked &&
                     <CategoryImage 
                         key={c.id}
+                        isLoggedIn={isLoggedIn}
                         category={c.name}
                         info={selectedCategory}
                     />
