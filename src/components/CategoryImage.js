@@ -1,11 +1,11 @@
 import '../styles/CategoryImage.scss'
 
-const CategoryImage = ({category, info}) => {
+const CategoryImage = ({isLoggedIn, category, info}) => {
     
     return(
-        <div className='CategoryDetailBox'>
+        <div className={ isLoggedIn ? 'CategoryDetailBoxGrid' :'CategoryDetailBox'}>
             {info.map(i =>
-                <div key={i.title} className={(category+ "Image")}>
+                <div key={i.id} className={(category+ "Image")}>
                     <p className='TitleBox'>{i.title}</p>
                     <div className='ContentBox'>
                         <p className='DayBox'>{i.day}</p>

@@ -1,18 +1,17 @@
-import  { React, useState } from "react";
+import  { React, useState} from "react";
 import { SectionsContainer, Section } from 'react-fullpage';
 
-import Caterogies from '../components/Categories';
-import Carousels from '../components/Carousels';
 import Header from "../components/Header";
-import Footer from "../components/Footer";
-import ImageCards from "../components/ImageCards";
+import Carousels from '../components/Carousels';
+import Caterogies from '../components/Categories';
 import PointRank from "../components/PointRank";
+import ImageCards from "../components/ImageCards";
+import Footer from "../components/Footer";
 
 import '../styles/MainPage.scss'
 
 const Mainpage = () => {
-    
-    const [ isLoggedIn, setIsLoggedIn ] = useState(false);
+    const [ isLoggedIn, setIsLoggedIn ] = useState(true);
 
 
     const options = {
