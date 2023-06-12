@@ -1,0 +1,31 @@
+.SignInContainer{
+    display: flex;
+    width: 75vw;
+    height: 100vh;
+    margin: 0 auto;
+
+    .LeftBox{
+        width: 50%;
+        height: 100%;
+        position:relative;
+        background-color: #F5F7FF;
+
+        .BottomColor{
+            width: 100%;
+            height: 20%;
+            position:absolute;
+            bottom:0px; 
+            background-color: #110042;
+        }
+    }
+    
+    .RightBox{
+        width: 50%;
+        height: 100%;
+        background-image: url("../../assets/right_half_area_illustration.png");
+        margin: auto;
+        justify-content: space-around;
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+    }
+}

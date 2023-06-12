@@ -1,4 +1,4 @@
-import '../styles/CategoryImage.scss'
+import '../styles/Main/CategoryImage.scss';
 
 const CategoryImage = ({isLoggedIn, category, info}) => {
     
