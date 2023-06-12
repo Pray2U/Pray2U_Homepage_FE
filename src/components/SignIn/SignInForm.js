@@ -65,6 +65,7 @@ const SignInForm = () =>{
 
     const handleInputProfile = (e) => {
         setProfile(e.target.files[0]);
+        console.log(e.target.files[0]);
         if(e.target.files[0]){
             setIsValidProfile(true);
         }
@@ -139,12 +140,22 @@ const SignInForm = () =>{
                     <Form.Control
                         className='Control'
                         required
-                        type="file"
                         placeholder="Profile"
+                        type='file'
+                        // value={profile?.name || ''}
                         isInvalid={!isValidProfile}
                         isValid={isValidProfile}
                         onChange={handleInputProfile}
                     />
+                    {/* <label className='Upload' htmlFor='input-file'>
+                        <img className='UploadImg'src='./upload.png' alt='img'/>
+                    </label>
+                    <input 
+                        type="file" 
+                        id="input-file" 
+                        style={{display:"none"}}
+                        onChange={handleInputProfile}
+                    /> */}
                 </Form.Group>
             </Row>
             <Button className="Button" type="submit">회원가입</Button>

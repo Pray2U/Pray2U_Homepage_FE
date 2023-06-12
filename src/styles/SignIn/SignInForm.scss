@@ -21,19 +21,21 @@
         .Label{
             display: flex;
             align-items: center;
-            // justify-content: center;
             width: 20%;
-            height: 110%;
+            height: 100%;
             font-weight: bold;
             font-size: 1vw;
         }
 
         .Star{
+            display: flex;
             color: red;
-            font-size: 120%;
+            font-size: 100%;
+            font-weight: bold;
             width: 5%;
             height: 100%;
             margin: auto;
+            justify-content: center;
         }
 
         .Control{
@@ -44,6 +46,17 @@
             height: 100%; 
         }
 
+        .Upload{
+            width: 10%;
+            height: 100%;
+            margin: auto;
+
+            .UploadImg{
+                float:right;
+                width: 70%;
+                height: 65%;
+            }
+        }
     }
 
 
