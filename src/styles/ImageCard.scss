@@ -1,0 +1,20 @@
+.ImageCardBox {
+    margin-top: 6%;
+    width: 100%;
+    height: 70%;
+    align-items: center;
+
+    .SwiperBox{
+        width: 100%;
+        height: 80%;
+        align-items: center;
+
+        .SwiperSlideBox{
+            display: flex;
+            align-items : center;
+            justify-content: center;
+            width: 30%;
+            height: 100%;
+        }
+    }
+}

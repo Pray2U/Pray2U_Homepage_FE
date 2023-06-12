@@ -1,5 +1,6 @@
-import Error from './pages/Error';
 
+import Mainpage from './pages/Mainpage'
+import Error from './pages/Error';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 function App() {
@@ -7,6 +8,7 @@ function App() {
     <div>
       <Router>
         <Routes>
+          <Route path='/' element={<Mainpage/>}/>
           <Route path='/*' element={<Error/>}/>
         </Routes>
       </Router>
