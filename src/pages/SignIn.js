@@ -6,6 +6,9 @@ const SignIn = () =>{
     return(
         <div className="SignInContainer">
             <div className="LeftBox">
+                <div className='LogoBox'>
+                    <img src='./logo.png' alt='img'/>
+                </div>
                 <SignInForm/>
                 <div className="BottomColor"/>
             </div>
