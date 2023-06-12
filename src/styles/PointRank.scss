@@ -1,0 +1,42 @@
+.ContainerBox{
+    display: flex;
+    width: 100%;
+    height: 20%;
+    background-color: #f5f7ff;
+    margin-top: 2%;
+
+    .Icon{
+        width: 20%;
+        height: 100%;
+        text-align: center;
+
+        .IconText{
+            color: #3700AB;
+            font-weight: bold;
+            font-size: 1.3vw;
+            text-align: center;
+        }
+    }
+
+    .RankListBox{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        width: 80%;
+        height: 100%;
+        justify-items: center;
+        align-items: center;
+        justify-content: space-around;
+
+        .MyPointBox{
+            font-weight: bold;
+            font-size: 1.3vw;
+            color: #909090;
+        }
+        .WeeklyScoreBox{
+            font-weight: bold;
+            font-size: 1.3vw;
+            color: #909090;
+        }
+    }
+}

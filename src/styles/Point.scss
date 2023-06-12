@@ -1,0 +1,41 @@
+.RankBox{
+    display: flex;
+    width: 15vw;
+    height: 5vh;
+    align-items: center;
+    border-radius: 1em;
+    justify-content: space-around;
+    
+    .RankOrder{
+        display: flex;
+        width: 1.5vw;
+        height: 3vh;
+        border-radius: 50%;
+        font-weight: bold;
+        font-size: 1vw;
+        background-color: white;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .UserName{
+        width: 6vw;
+        height: 3vh;
+        color: white;
+        font-weight: bold;
+        font-size: 1.1vw;
+        text-align: center;
+    }
+    
+    .Point{
+        display: flex;
+        width: 30%;
+        height: 50%;
+        font-weight: bold;
+        border-radius: 0.5em;
+        color: white;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.8vw;
+    }
+}
