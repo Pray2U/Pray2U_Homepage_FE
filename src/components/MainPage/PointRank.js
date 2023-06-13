@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import Point from './Point';
 
-import '../styles/PointRank.scss';
+import '../../styles/Main/PointRank.scss';
 import axios from 'axios';
 
 const PointRank = () => {
