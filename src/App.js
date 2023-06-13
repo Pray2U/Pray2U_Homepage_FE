@@ -1,4 +1,3 @@
-
 import Mainpage from './pages/Mainpage'
 import Error from './pages/Error';
 import SignIn from './pages/SignIn';
