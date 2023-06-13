@@ -34,8 +34,7 @@ const SignInForm = () =>{
         if(isValidName && isValidPhoneNum && isValidEmail && isValidProfile){
             console.log("complete");
             setIsValidAll(true);
-            // 데이터 POST
-            // signIn();
+            post_signIn();
         }
         else{
             setIsValidAll(false);
@@ -65,7 +64,6 @@ const SignInForm = () =>{
 
     const handleInputProfile = (e) => {
         setProfile(e.target.files[0]);
-        console.log(e.target.files[0]);
         if(e.target.files[0]){
             setIsValidProfile(true);
         }
@@ -74,7 +72,7 @@ const SignInForm = () =>{
         }
     };
 
-    const signIn = async () =>{
+    const post_signIn = async () =>{
         try{
             const userInfo = {
                 name: name,
@@ -82,11 +80,12 @@ const SignInForm = () =>{
                 email: email,
                 profileImgUrl: profile,
             };
-            const url = '/api/users/infoform';
-            const response = await axios.post(url,userInfo,{withCredentials:true});
-            if(response){
-                navigate('/');
-            }
+            console.log(userInfo);
+            // const url = '/api/users/infoform';
+            // const response = await axios.post(url,userInfo,{withCredentials:true});
+            // if(response){
+            //     navigate('/');
+            // }
         }catch(e){
             console.log(e);
         }
@@ -138,16 +137,16 @@ const SignInForm = () =>{
                     <Form.Label className='Label'>프 로 필</Form.Label>
                     <p className='Star'>*</p>
                     <Form.Control
-                        className='Control'
+                        className='ProfileBox'
                         required
                         placeholder="Profile"
-                        type='file'
-                        // value={profile?.name || ''}
+                        defaultValue={profile?.name || ''}
                         isInvalid={!isValidProfile}
                         isValid={isValidProfile}
                         onChange={handleInputProfile}
+                        readOnly
                     />
-                    {/* <label className='Upload' htmlFor='input-file'>
+                    <label className='Upload' htmlFor='input-file'>
                         <img className='UploadImg'src='./upload.png' alt='img'/>
                     </label>
                     <input 
@@ -155,7 +154,7 @@ const SignInForm = () =>{
                         id="input-file" 
                         style={{display:"none"}}
                         onChange={handleInputProfile}
-                    /> */}
+                    />
                 </Form.Group>
             </Row>
             <Button className="Button" type="submit">회원가입</Button>

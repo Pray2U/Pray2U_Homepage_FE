@@ -40,10 +40,15 @@
 
         .Control{
             display: flex;
-            flex-wrap: wrap;
-            flex-direction: column; /*수직 정렬*/
             width: 80%;
             height: 100%; 
+        }
+
+        .ProfileBox{
+            display: flex;
+            width: 70%;
+            height: 100%;
+            pointer-events: none;
         }
 
         .Upload{
