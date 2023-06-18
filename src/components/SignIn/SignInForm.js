@@ -96,7 +96,6 @@ const SignInForm = () =>{
             <Row className="mb-3">
                 <Form.Group className="Group" controlId="validationCustom01">
                     <Form.Label className='Label'>이&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;름</Form.Label>
-                    {/* <p className='Star'>*</p> */}
                     <Form.Control
                         className='Control'
                         required
@@ -109,7 +108,6 @@ const SignInForm = () =>{
                 </Form.Group>
                 <Form.Group className="Group" controlId="validationCustom02">
                     <Form.Label className='Label'>전화번호</Form.Label>
-                    {/* <p className='Star'>*</p> */}
                     <Form.Control
                         className='Control'
                         required
@@ -122,7 +120,6 @@ const SignInForm = () =>{
                 </Form.Group>
                 <Form.Group className="Group" controlId="validationCustomUsername">
                     <Form.Label className='Label'>이 메 일</Form.Label>
-                    {/* <p className='Star'>*</p> */}
                     <Form.Control
                         className='Control'
                         required
@@ -135,26 +132,16 @@ const SignInForm = () =>{
                 </Form.Group>
                 <Form.Group className="Group" controlId="validationCustomUsername">
                     <Form.Label className='Label'>프 로 필</Form.Label>
-                    {/* <p className='Star'>*</p> */}
                     <Form.Control
-                        className='ProfileBox'
+                        className='Control'
                         required
                         placeholder="Profile"
-                        // defaultValue={profile?.name || ''}
+                        type='file'
                         isInvalid={!isValidProfile}
                         type='file'
                         isValid={isValidProfile}
                         onChange={handleInputProfile}
                     />
-                    {/* <label className='Upload' htmlFor='input-file'>
-                        <img className='UploadImg'src='./upload.png' alt='img'/>
-                    </label>
-                    <input 
-                        type="file" 
-                        id="input-file" 
-                        style={{display:"none"}}
-                        onChange={handleInputProfile}
-                    /> */}
                 </Form.Group>
             </Row>
             <Button className="Button" type="submit">회원가입</Button>
