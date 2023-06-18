@@ -96,7 +96,7 @@ const SignInForm = () =>{
             <Row className="mb-3">
                 <Form.Group className="Group" controlId="validationCustom01">
                     <Form.Label className='Label'>이&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;름</Form.Label>
-                    <p className='Star'>*</p>
+                    {/* <p className='Star'>*</p> */}
                     <Form.Control
                         className='Control'
                         required
@@ -109,7 +109,7 @@ const SignInForm = () =>{
                 </Form.Group>
                 <Form.Group className="Group" controlId="validationCustom02">
                     <Form.Label className='Label'>전화번호</Form.Label>
-                    <p className='Star'>*</p>
+                    {/* <p className='Star'>*</p> */}
                     <Form.Control
                         className='Control'
                         required
@@ -122,7 +122,7 @@ const SignInForm = () =>{
                 </Form.Group>
                 <Form.Group className="Group" controlId="validationCustomUsername">
                     <Form.Label className='Label'>이 메 일</Form.Label>
-                    <p className='Star'>*</p>
+                    {/* <p className='Star'>*</p> */}
                     <Form.Control
                         className='Control'
                         required
@@ -135,18 +135,18 @@ const SignInForm = () =>{
                 </Form.Group>
                 <Form.Group className="Group" controlId="validationCustomUsername">
                     <Form.Label className='Label'>프 로 필</Form.Label>
-                    <p className='Star'>*</p>
+                    {/* <p className='Star'>*</p> */}
                     <Form.Control
                         className='ProfileBox'
                         required
                         placeholder="Profile"
-                        defaultValue={profile?.name || ''}
+                        // defaultValue={profile?.name || ''}
                         isInvalid={!isValidProfile}
+                        type='file'
                         isValid={isValidProfile}
                         onChange={handleInputProfile}
-                        readOnly
                     />
-                    <label className='Upload' htmlFor='input-file'>
+                    {/* <label className='Upload' htmlFor='input-file'>
                         <img className='UploadImg'src='./upload.png' alt='img'/>
                     </label>
                     <input 
@@ -154,7 +154,7 @@ const SignInForm = () =>{
                         id="input-file" 
                         style={{display:"none"}}
                         onChange={handleInputProfile}
-                    />
+                    /> */}
                 </Form.Group>
             </Row>
             <Button className="Button" type="submit">회원가입</Button>

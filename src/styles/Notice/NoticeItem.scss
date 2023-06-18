@@ -1,0 +1,33 @@
+.RowNoticeItemBox{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    text-align: center;
+    width: 100%;
+    height: 6.25%;
+    color: black;
+    font-weight: bold;
+    border-bottom: 1px solid black;
+    cursor: pointer;
+
+    .NoticeItemNum{
+        width: 10%;
+        height: 100%;
+    }
+    .NoticeItemTitle{
+        width: 50%;
+        height: 100%;
+        border-left: 1px solid white;
+    }
+    .NoticeItemCreated{
+        width: 25%;
+        height: 100%;
+        border-left: 1px solid white;
+        border-right: 1px solid white;
+    }
+    .NoticeItemWriter{
+        width: 15%;
+        height: 100%;
+    }
+}
