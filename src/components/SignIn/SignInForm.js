@@ -138,9 +138,9 @@ const SignInForm = () =>{
                         placeholder="Profile"
                         type='file'
                         isInvalid={!isValidProfile}
+                        type='file'
                         isValid={isValidProfile}
                         onChange={handleInputProfile}
-                        readOnly
                     />
                 </Form.Group>
             </Row>
