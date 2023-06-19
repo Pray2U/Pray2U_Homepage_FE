@@ -1,0 +1,53 @@
+.NoticeBox{
+    width: 100%;
+    height: 90%;
+
+    .TitleBox{
+        display: flex;
+        width: 100%;
+        height: 10%;
+        margin-top: 0;      
+        // 이거 안하면 상단에서 10% 크기만큼 떨어짐 왜 그런가?
+    }
+
+    .EN{
+        display: flex;
+        align-items: center;
+        width: 15%;
+        height: 100%;
+        font-size: 3vw;
+        color: black;
+    }
+
+    .KR{
+        display: flex;
+        align-items: end;
+        width: 10%;
+        height: 100%;
+        font-size: 1.5vw;
+        color: black;
+    }
+
+    .ButtonBox{
+        display: flex;
+        align-items: center;
+        width: 100%;
+        height: 7%;
+        padding-right: 1%;
+
+        .WriteBox{
+            width: 3%;
+            height: 70%;
+            cursor: pointer;    
+            margin-left: auto;
+        }
+    }
+
+    .PaginationBox{
+        display: flex;
+        width: 100%;
+        height: 5%;
+        margin-top: 2%;
+        justify-content: center;
+    }
+}
