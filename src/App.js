@@ -3,12 +3,11 @@ import Error from './pages/Error';
 import SignIn from './pages/SignIn';
 import Notice from './pages/Notice';
 import CreateNotice from './pages/CreateNotice';
-
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import ShowNotice from './pages/ShowNotice';
 import EditNotice from './pages/EditNotice';
+import TilPage from './pages/Tilpage';
 
-
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 function App() {
   return (
@@ -21,6 +20,7 @@ function App() {
           <Route path='/notice/create' element={<CreateNotice/>}/>
           <Route path='/notice/detail/:id' element={<ShowNotice/>}/>
           <Route path='/notice/edit/' element={<EditNotice/>}/>
+          <Route path='/til/' element={<TilPage/>}/>
           <Route path='/*' element={<Error/>}/>
         </Routes>
       </Router>
