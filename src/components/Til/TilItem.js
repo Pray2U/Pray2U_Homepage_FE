@@ -1,32 +1,109 @@
 import { AiTwotoneEdit, AiFillDelete } from "react-icons/ai";
+import { Viewer } from '@toast-ui/react-editor';
+import axios from "axios";
+
+import '@toast-ui/editor/dist/i18n/ko-kr';
+import '@toast-ui/editor/dist/toastui-editor.css';
 
 import '../../styles/Til/TilItem.scss';
+import { useState } from "react";
 
 
 const TilItem = () =>{
 
+    const [ isClosed, setIsClosed ] = useState(true);
+
+
      // 테스트 더미
-    const dummyMyInfo = {
-        userId : 1,
-        githubId: "gildong Hong",
-        username: "gildong",
+    const tilDummyData = {
         profileImgUrl: "/profile/HeaderProfile.png",
-        phoneNumber: "010-0000-0001",
-        Email: "gildong@gmail.com",
-        Role: "USER",
-        createDate: "2023-06-31",
-        modifiedDate: "2023-07-01"
-    };
+        title: "2023-06-14 TIL",
+        content: `안녕하시지?
+        안녕하시지?
+        안녕하시지?
+        안녕하시지?
+        안녕하시지?
+        안녕하시지?
+        안녕하시지?
+        안녕하시지?
+        안녕하시지?
+        안녕하시지?
+        안녕하시지?
+        안녕하시지?안녕하시지?
+        안녕하시지?
+        안녕하시지?
+        안녕하시지?
+        안녕하시지?
+        안녕하시지?
+        안녕하시지?
+        안녕하시지?
+        안녕하시지?
+        안녕하시지?
+        안녕하시지?안녕하시지?
+        안녕하시지?
+        안녕하시지?
+        안녕하시지?
+        안녕하시지?
+        안녕하시지?
+        안녕하시지?
+        안녕하시지?
+        안녕하시지?
+        안녕하시지?
+        안녕하시지?안녕하시지?
+        안녕하시지?
+        안녕하시지?
+        안녕하시지?
+        안녕하시지?
+        안녕하시지?
+        안녕하시지?
+        안녕하시지?
+        안녕하시지?
+        안녕하시지?
+        안녕하시지?안녕하시지?
+        안녕하시지?
+        안녕하시지?
+        안녕하시지?
+        안녕하시지?
+        안녕하시지?
+        안녕하시지?
+        안녕하시지?
+        안녕하시지?
+        안녕하시지?
+        안녕하시지?안녕하시지?안녕하시지?
+        안녕하시지?
+        안녕하시지?
+        안녕하시지?
+        안녕하시지?
+        안녕하시지?
+        안녕하시지?
+        안녕하시지?
+        안녕하시지?
+        안녕하시지?
+        안녕하시지?안녕하시지?안녕하시지?
+        안녕하시지?
+        안녕하시지?
+        안녕하시지?
+        안녕하시지?
+        안녕하시지?
+        안녕하시지?
+        안녕하시지?
+        안녕하시지?
+        안녕하시지?
+        안녕하시지?`
+    }
 
 
     const onDeleteTIL = (id) => {
         alert(id);
     }
 
+    const onChangeIsClosed = () =>{
+        setIsClosed(!isClosed);
+    }
     return(
-        <div className="TilItemBox">
+        <div className={isClosed ? "TilItemBox": "TilItemBox2"}>
             <div className="TilHeaderBox">
-                <img src={dummyMyInfo.profileImgUrl} alt="프로필" className='Profile'/>
+                <img src={tilDummyData.profileImgUrl} alt="프로필" className='Profile'/>
                 <p className="TilDetailTile">2023-06-12 TIL</p>
                 <div className="EditButton">
                     <AiTwotoneEdit/>
@@ -36,11 +113,18 @@ const TilItem = () =>{
                 </div>
             </div>
             <div className="TilContentBox">
-                내용
+                {/* <div className={isClosed ? 'ClosedContent' : "NotClosedContent"}>{tilDummyData.content}</div> */}
+                <Viewer
+                    className={isClosed ? "ClosedContent" : "NotClosedContent"}       
+                    initialValue={tilDummyData.content}
+                />
             </div>
-            <div className="TilMoreSeeBox">
-                더 보기
-            </div>
+            {
+                isClosed ? 
+                <div className="TilMoreSeeBox" onClick={()=>onChangeIsClosed()}>
+                    더 보기
+                </div> : <></>
+            }
         </div>
     );
 }
