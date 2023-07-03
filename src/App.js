@@ -6,6 +6,7 @@ import CreateNotice from './pages/CreateNotice';
 import ShowNotice from './pages/ShowNotice';
 import EditNotice from './pages/EditNotice';
 import TilPage from './pages/Tilpage';
+import CreateTil from './pages/CreateTil';
 
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
@@ -21,6 +22,8 @@ function App() {
           <Route path='/notice/detail/:id' element={<ShowNotice/>}/>
           <Route path='/notice/edit/' element={<EditNotice/>}/>
           <Route path='/til/' element={<TilPage/>}/>
+          <Route path='/til/create' element={<CreateTil/>}/>
+          <Route path='/til/edit/:id' element={<CreateTil/>}/>
           <Route path='/*' element={<Error/>}/>
         </Routes>
       </Router>

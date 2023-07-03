@@ -1,17 +1,21 @@
 import { AiTwotoneEdit, AiFillDelete } from "react-icons/ai";
 import { Viewer } from '@toast-ui/react-editor';
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 import axios from "axios";
 
 import '@toast-ui/editor/dist/i18n/ko-kr';
 import '@toast-ui/editor/dist/toastui-editor.css';
 
 import '../../styles/Til/TilItem.scss';
-import { useState } from "react";
 
 
-const TilItem = () =>{
+const TilItem = ({tilInfo}) =>{
+
+    const navigate = useNavigate();
 
     const [ isClosed, setIsClosed ] = useState(true);
+    const [ isOverContent, setIsOverContent ] = useState(true);
 
 
      // 테스트 더미
@@ -94,36 +98,44 @@ const TilItem = () =>{
 
 
     const onDeleteTIL = (id) => {
-        alert(id);
+        console.log(id);
+    }
+    
+    const onEditTIL = (id) => {
+        navigate(`/til/edit/${id}`);
     }
 
     const onChangeIsClosed = () =>{
         setIsClosed(!isClosed);
     }
+
     return(
         <div className={isClosed ? "TilItemBox": "TilItemBox2"}>
             <div className="TilHeaderBox">
-                <img src={tilDummyData.profileImgUrl} alt="프로필" className='Profile'/>
-                <p className="TilDetailTile">2023-06-12 TIL</p>
-                <div className="EditButton">
+                <img src={tilInfo?.profileImgUrl} alt="프로필" className='Profile'/>
+                <p className="TilDetailTile">{tilInfo?.titile}</p>
+                <div className="EditButton" onClick={()=>onEditTIL(tilInfo.tilId)}>
                     <AiTwotoneEdit/>
                 </div>
-                <div className="DeleteButton" onClick={()=>onDeleteTIL(1)}>
+                <div className="DeleteButton" onClick={()=>onDeleteTIL(tilInfo.tilId)}>
                     <AiFillDelete/>
                 </div>
             </div>
             <div className="TilContentBox">
                 {/* <div className={isClosed ? 'ClosedContent' : "NotClosedContent"}>{tilDummyData.content}</div> */}
                 <Viewer
-                    className={isClosed ? "ClosedContent" : "NotClosedContent"}       
-                    initialValue={tilDummyData.content}
+                    className={isClosed ? "ClosedContent" : "NotClosedContent"}
+                    // overflow="hidden"
+                    initialEditType="markdown"
+                    initialValue={tilInfo?.content}
                 />
             </div>
             {
-                isClosed ? 
+                isOverContent ? 
                 <div className="TilMoreSeeBox" onClick={()=>onChangeIsClosed()}>
-                    더 보기
-                </div> : <></>
+                    {isClosed ? "더보기" : "접기"}
+                </div> 
+                : <></>
             }
         </div>
     );
