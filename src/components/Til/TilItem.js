@@ -98,6 +98,7 @@ const TilItem = ({tilInfo}) =>{
 
 
     const onDeleteTIL = (id) => {
+        // 모달창 띄우기 확인 누를 시 데이터 통신
         console.log(id);
     }
     
@@ -125,9 +126,9 @@ const TilItem = ({tilInfo}) =>{
                 {/* <div className={isClosed ? 'ClosedContent' : "NotClosedContent"}>{tilDummyData.content}</div> */}
                 <Viewer
                     className={isClosed ? "ClosedContent" : "NotClosedContent"}
-                    // overflow="hidden"
+                    overflow="hidden"
                     initialEditType="markdown"
-                    initialValue={tilInfo?.content}
+                    initialValue={tilDummyData?.content}
                 />
             </div>
             {
