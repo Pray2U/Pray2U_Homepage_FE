@@ -1,0 +1,37 @@
+.TilSaveBox{
+    display: flex;
+    align-items: center;
+    width: 80%;
+    height: 5vh;
+    margin: auto;
+    background-color: #A195EF;
+    border-radius: 0.5em;
+
+}
+
+.TilSaveButton{
+    display: flex;
+    width: 5%;
+    height: 100%;
+    margin-left: auto;
+    margin-right: 1%;
+    background-color: #0066C3;
+    font-weight: bold;
+    color: white;    
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+    &.hover{
+        background-color: blue;
+    }
+}
+
+.TilEditBox{
+    width: 80%;
+    height: 62vh;
+    margin: auto;
+    margin-top: 3%;
+    background-color: white;
+    margin-bottom: 3%;
+}
