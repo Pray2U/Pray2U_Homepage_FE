@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 
 import Header from "../components/Header/Header";
 import TodoList from "../components/Event/TodoList";
+import EventEditor from "../components/Event/EventEditor";
 
 // import 'react-calendar/dist/Calendar.css';
 import '../styles/Event/Eventpage.scss';
@@ -28,7 +29,7 @@ const Eventpage = () => {
             "eventsId" : 1,
             "title": "Work Time",
             "date": "2023-07-20",
-            "time": "06:00",
+            "time": "06:00~08:00",
             "contents": "이벤트",
             "createDate": "2023-06-31",
             "modifiedDate": "2023-07-01"
@@ -37,7 +38,7 @@ const Eventpage = () => {
             "eventsId" : 2,
             "title": "Work Time",
             "date": "2023-07-22",
-            "time": "06:00",
+            "time": "06:00~08:00",
             "contents": "이벤트",
             "createDate": "2023-06-31",
             "modifiedDate": "2023-07-01"
@@ -46,7 +47,7 @@ const Eventpage = () => {
             "eventsId" : 3,
             "title": "Work Time",
             "date": "2023-07-22",
-            "time": "06:00",
+            "time": "06:00~08:00",
             "contents": "이벤트",
             "createDate": "2023-06-31",
             "modifiedDate": "2023-07-01"
@@ -55,7 +56,7 @@ const Eventpage = () => {
             "eventsId" : 4,
             "title": "Work Time",
             "date": "2023-07-22",
-            "time": "06:00",
+            "time": "06:00~08:00",
             "contents": "이벤트",
             "createDate": "2023-06-31",
             "modifiedDate": "2023-07-01"
@@ -64,7 +65,7 @@ const Eventpage = () => {
             "eventsId" : 5,
             "title": "Work Time",
             "date": "2023-07-22",
-            "time": "06:00",
+            "time": "06:00~08:00",
             "contents": "이벤트",
             "createDate": "2023-06-31",
             "modifiedDate": "2023-07-01"
@@ -73,7 +74,7 @@ const Eventpage = () => {
             "eventsId" : 12,
             "title": "Work Time",
             "date": "2023-07-22",
-            "time": "06:00",
+            "time": "06:00~08:00",
             "contents": "이벤트",
             "createDate": "2023-06-31",
             "modifiedDate": "2023-07-01"
@@ -84,6 +85,8 @@ const Eventpage = () => {
     const [ eventApiData, setEventApiData ] = useState(dummyData);
     const [ selectedDay, setSelectedDay ] = useState(new Date());
     const [ todos, setTodos ] = useState(null);
+    const [ isAddEventView, setIsAddEventView ] = useState(false);
+    const [ editEventData, setEditEventData ] = useState(null);
     
     const read_eventData = async() =>{
         try{
@@ -101,6 +104,9 @@ const Eventpage = () => {
         setSelectedDay(formatDate);
         setTodos(eventApiData.filter((event) => dayjs(event.date).isSame(selectedDay)));
         console.log(todos);
+        if(isAddEventView){
+            setIsAddEventView(false);
+        }
     }
 
     const onRemove = async(id) => {
@@ -111,24 +117,38 @@ const Eventpage = () => {
             // if(response.status === 200){
 
             // }
+            setTodos(todos.filter(event => event.eventsId !== id));
+            setEventApiData(eventApiData.filter(event => event.eventsId !== id))
+
         }catch(e){
             console.log(e);
         }
     }
 
     const onToggle = (id) =>{
-
+        setIsAddEventView(true);
+        console.log(id);
+        eventApiData.map(event => {
+            if (event.eventsId === id){
+                setEditEventData(event);
+            }
+        });
     }
 
     const addEvent = () =>{
+        setIsAddEventView(true);
+        setEditEventData(null);
+    }
 
+    const canselAddEvent = () => {
+        setIsAddEventView(false);
     }
 
     const addDot = ({ date }) => {
         // 해당 날짜(하루)에 추가할 컨텐츠의 배열
         const contents = [];
-    
-        // date(각 날짜)가  리스트의 날짜와 일치하면 해당 컨텐츠(이모티콘) 추가
+
+        // date(각 날짜)가  리스트의 날짜와 일치하면 해당 컨텐츠 추가
         if (eventApiData.find((day) => day.date === dayjs(date).format('YYYY-MM-DD'))){
             contents.push(
                 <>
@@ -157,11 +177,12 @@ const Eventpage = () => {
                 <div className="EventCalendarBox">
                     <Calendar
                         locale="en"
-                        className="Calender"
                         onChange={setSelectedDay}
                         next2Label={null}
                         prev2Label={null}
                         value={selectedDay}
+                        minDate={new Date(2023,1,1)}
+                        maxDate={new Date(2025,12,31)}
                         formatDay={(locale, date) => dayjs(date).format('D')}
                         calendarType='US'
                         tileContent={addDot}
@@ -173,8 +194,14 @@ const Eventpage = () => {
                         <p className="EventDetailDayOfWeek">{dayOfWeek[dayjs(selectedDay).day()]}</p>
                         <p className="EventDetailDay">{dayjs(selectedDay).format('D')}th</p>
                     </div>
-                    <TodoList todos={todos} onRemove={onRemove} onToggle={onToggle}/>
-                    <div className="AddEventButton" onClick={()=>addEvent()}> + Add a new Event</div>
+                    {
+                        !isAddEventView ?
+                            <>
+                                <TodoList todos={todos} onRemove={onRemove} onToggle={onToggle}/>
+                                <div className="AddEventButton" onClick={addEvent}> + Add a new Event</div>
+                            </>
+                        : <EventEditor canselAddEvent={canselAddEvent} isAddEventView={isAddEventView} eventInfo={editEventData}/>
+                    }
                 </div>
             </div>
         </div>

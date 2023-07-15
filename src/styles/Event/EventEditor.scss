@@ -1,0 +1,157 @@
+.EditorBox{
+    width: 100%;
+    height: 60%;
+    border-bottom: 1px solid #E2E2E2;
+    
+    .EditorTitle{
+        display: flex;
+        width: 90%;
+        height: 20%;
+        align-items: center;
+        // border-radius: 0.5em;
+        margin: auto;
+        .Title{
+            display: flex;
+            width: 10%;
+            height: 50%;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        .TitleInput{
+            width: 80%;
+            height: 50%;
+            margin-left: 2%;
+            padding-left: 2%;
+            border-radius: 0.5em;
+            box-shadow: 1px 1px 3px 1px #c0c2c7;
+            border: none;
+            &:focus{
+                outline: none;
+                border: 2px solid #9A58EE;
+            }
+        }
+    }
+    .EditorDate{
+        display: flex;
+        width: 90%;
+        height: 15%;
+        align-items: center;
+        margin: auto;
+        .DateTitle{
+            display: flex;
+            width: 10%;
+            height: 50%;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        .Icon{
+            width: 10%;
+            height: 70%;
+            cursor: pointer;
+        }
+        // .CalenderBox{
+        //     width: 70%;
+        //     height: 50%;
+            .Date{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 25%;
+                height: 60%;
+                font-weight: bold;
+                border-radius: 0.5em;
+                box-shadow: 1px 1px 3px 1px #c0c2c7;
+                margin-left: 2%;
+            }
+        // }
+        
+    }
+    .EditorTime{
+        display: flex;
+        width: 90%;
+        height: 20%;
+        align-items: center;
+        margin: auto;
+        .Time{
+            display: flex;
+            width: 10%;
+            height: 50%;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        .TimeSelector{
+            margin-left: 2%;
+            margin-right: 2%;
+            width: auto;
+            height: 50%;
+
+        }
+    }
+    .EditorContents{
+        width: 90%;
+        height: 30%;
+        align-items: center;
+        margin: auto;
+        .Contents{
+            width: 100%;
+            font-weight: bold;
+        }
+        .TextArea{
+            width: 100%;
+            height: 60%;
+            padding-left: 2%;
+            border-radius: 0.5em;
+            box-shadow: 1px 1px 3px 1px #c0c2c7;
+            border: none;
+            resize:none;
+            overflow: auto;
+            &:focus{
+                outline: none;
+                border: 2px solid #9A58EE;
+            }
+        }
+    }
+    .EditorButtonBox{
+        display: flex;
+        margin: auto;
+        width: 90%;
+        height: 10%;
+
+        .EditorCancelButton{
+            display: flex;
+            width: 13%;
+            height: 95%;
+            align-items: center;
+            justify-content: center;
+            margin-right: 3%;
+            margin-left: auto;
+            border-radius: 0.5em;
+            background-color: #F34F50;;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            &:hover{
+                background-color: #dc3a3a;;
+            }
+        }
+        .EditorSaveButton{
+            display: flex;
+            width: 13%;
+            height: 95%;
+            align-items: center;
+            justify-content: center;
+            border-radius: 0.5em;
+            background-color: #9A58EE;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            &:hover{
+                background-color: #9048ef;
+            }
+        }
+    }
+    
+}

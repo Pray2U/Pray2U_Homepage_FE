@@ -1,14 +1,13 @@
-.react-calendar {
-    width: 80%;
+.ModalCalender{
+    position: relative;
+    z-index: 99;
+    width: 70%;
     max-width: 100%;
     background: white;
-    // border: 1px solid #a0a096;
-    // border-radius: 0.5rem;
-    // z-index: 999;
+    border: 1px solid #a0a096;
+    border-radius: 0.5rem;
     font-family: Arial, Helvetica, sans-serif;
     line-height: 1.125em;
-    margin-top: 20%; // 이거 수정해야할 듯?
-    margin-bottom: 10%; // 이거 수정해야할 듯?
 }
 
 .react-calendar--doubleView {
