@@ -8,10 +8,10 @@ const TodoItem = ({todo, onRemove, onToggle}) =>{
                 <p className="TodoTitle">{todo.title}</p>
                 <p className="TodoTime">{todo.time}</p>
             </div>
-            <div className="TodoEditButton" onClick={()=>onToggle(todo.id)}>
+            <div className="TodoEditButton" onClick={()=>onToggle(todo.eventsId)}>
                 <AiTwotoneEdit/>
             </div>
-            <div className="TodoDeleteButton" onClick={()=>onRemove(todo.id)}>
+            <div className="TodoDeleteButton" onClick={()=>onRemove(todo.eventsId)}>
                 <AiFillDelete/>
             </div>
         </div>
