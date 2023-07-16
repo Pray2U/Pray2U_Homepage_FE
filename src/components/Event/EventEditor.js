@@ -7,8 +7,9 @@ import Form from 'react-bootstrap/Form';
 import { FcCalendar } from "react-icons/fc";
 
 import '../../styles/Event/EventEditor.scss';
+import axios from 'axios';
 
-const EventEditor = ({canselAddEvent, isAddEventView, eventInfo}) =>{
+const EventEditor = ({canselAddEvent, isAddEventView, eventInfo, saveEvent}) =>{
 
     const hourTime = Array(24).fill(0);
     const minuteTime = ['00','15', '30', '45'];
@@ -60,22 +61,42 @@ const EventEditor = ({canselAddEvent, isAddEventView, eventInfo}) =>{
         setIsCalendarOpen(false);
     }
 
-    const post_Event = () => {
-        let time = `${startHourTime}:${startMinuteTime} ~ ${endHourTime}:${endMinuteTime}`;
-        if(title && date && time && contents){
-            const data = {
-                title:title,
-                date:dayjs(date).format("YYYY-MM-DD"),
-                time:time,
-                contents:contents
-            };
-            console.log(data);
-            console.log(ss);
+    const post_Event = async(id) => {
+        try{
+            let time = `${startHourTime}:${startMinuteTime} ~ ${endHourTime}:${endMinuteTime}`;
+            console.log(title, date, time, contents);
+            if(title && date && time && contents){
+                const postData = {
+                    title:title,
+                    date:dayjs(date).format("YYYY-MM-DD"),
+                    time:time,
+                    contents:contents
+                };
+                let url;
+                if(id){
+                    url = ``        // 수정
+                    postData.eventsId = id;
+                    // 위의 데이터는 임시 삭제해도 됨
+                }else{
+                    url = ``        // 생성
+                    postData.eventsId = parseInt(startHourTime + startMinuteTime);
+                    // 위의 데이터는 임시 삭제해도 됨
+                }
+                // const response = await axios.post(url, postData);
+                // if (response.status == 201 && response.status == 200){
+                //     // 데이터 추가
+                //     saveEvent(response.data.contents);
+                // }
+                console.log(postData);
+                saveEvent(postData);
+                canselAddEvent();
+            }
+            else{
+                console.log("입력칸 채워줘");
+            }
+        }catch(e){
+            console.log(e);
         }
-        else{
-            console.log("입력칸 채워줘");
-        }
-        
     }
 
 
@@ -164,8 +185,8 @@ const EventEditor = ({canselAddEvent, isAddEventView, eventInfo}) =>{
                 />
             </div>
             <div className='EditorButtonBox'>
-                <div className='EditorCancelButton' onClick={canselAddEvent}>취소</div>
-                <div className='EditorSaveButton' onClick={post_Event}>저장</div>
+                <div className='EditorCancelButton' onClick={()=>canselAddEvent()}>취소</div>
+                <div className='EditorSaveButton' onClick={()=>post_Event(eventInfo?.eventsId)}>저장</div>
             </div>
         </div>
     );

@@ -102,7 +102,7 @@ const Eventpage = () => {
         const formatDate = dayjs(selectedDay).format('YYYY-MM-DD');
         console.log(formatDate);
         setSelectedDay(formatDate);
-        setTodos(eventApiData.filter((event) => dayjs(event.date).isSame(selectedDay)));
+        // setTodos(eventApiData.filter((event) => dayjs(event.date).isSame(selectedDay)));
         console.log(todos);
         if(isAddEventView){
             setIsAddEventView(false);
@@ -117,7 +117,7 @@ const Eventpage = () => {
             // if(response.status === 200){
 
             // }
-            setTodos(todos.filter(event => event.eventsId !== id));
+            // setTodos(todos.filter(event => event.eventsId !== id));
             setEventApiData(eventApiData.filter(event => event.eventsId !== id))
 
         }catch(e){
@@ -142,6 +142,17 @@ const Eventpage = () => {
 
     const canselAddEvent = () => {
         setIsAddEventView(false);
+    }
+
+    const saveEvent = (data) =>{
+        const isExist = eventApiData.some((event) => event.eventsId === data.eventsId);
+        if(isExist){
+            setEventApiData(eventApiData => 
+                eventApiData.map(event => event.eventsId === data.eventsId ? {...data}: event));
+        }
+        else{
+            setEventApiData(eventApiData => eventApiData.concat(data));
+        }   
     }
 
     const addDot = ({ date }) => {
@@ -197,10 +208,18 @@ const Eventpage = () => {
                     {
                         !isAddEventView ?
                             <>
-                                <TodoList todos={todos} onRemove={onRemove} onToggle={onToggle}/>
+                                <TodoList 
+                                    todos={eventApiData.filter((event) => dayjs(event.date).isSame(selectedDay))} 
+                                    onRemove={onRemove} 
+                                    onToggle={onToggle}/>
                                 <div className="AddEventButton" onClick={addEvent}> + Add a new Event</div>
                             </>
-                        : <EventEditor canselAddEvent={canselAddEvent} isAddEventView={isAddEventView} eventInfo={editEventData}/>
+                        : <EventEditor 
+                            canselAddEvent={canselAddEvent} 
+                            isAddEventView={isAddEventView} 
+                            eventInfo={editEventData} 
+                            saveEvent={saveEvent}
+                            />
                     }
                 </div>
             </div>
