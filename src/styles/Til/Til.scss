@@ -1,7 +1,7 @@
 .TilContainer{
     width: 75vw;
     height: auto;
-    overflow: auto;
+    overflow: hidden;
     margin: auto;
     background-color: #F5F7FF;
 
@@ -92,6 +92,6 @@
     .TilListBox{
         margin: auto;
         width: 80%;
-        height: auto;
+        padding-bottom: 3%;
     }
 }
