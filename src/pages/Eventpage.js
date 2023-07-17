@@ -7,7 +7,6 @@ import Header from "../components/Header/Header";
 import TodoList from "../components/Event/TodoList";
 import EventEditor from "../components/Event/EventEditor";
 
-// import 'react-calendar/dist/Calendar.css';
 import '../styles/Event/Eventpage.scss';
 import '../styles/Event/Calender.scss';
 
@@ -84,7 +83,6 @@ const Eventpage = () => {
     const [ isLoggedIn, setIsLoggedIn ] = useState(true);
     const [ eventApiData, setEventApiData ] = useState(dummyData);
     const [ selectedDay, setSelectedDay ] = useState(new Date());
-    const [ todos, setTodos ] = useState(null);
     const [ isAddEventView, setIsAddEventView ] = useState(false);
     const [ editEventData, setEditEventData ] = useState(null);
     
@@ -102,8 +100,6 @@ const Eventpage = () => {
         const formatDate = dayjs(selectedDay).format('YYYY-MM-DD');
         console.log(formatDate);
         setSelectedDay(formatDate);
-        // setTodos(eventApiData.filter((event) => dayjs(event.date).isSame(selectedDay)));
-        console.log(todos);
         if(isAddEventView){
             setIsAddEventView(false);
         }
@@ -118,7 +114,7 @@ const Eventpage = () => {
 
             // }
             // setTodos(todos.filter(event => event.eventsId !== id));
-            setEventApiData(eventApiData.filter(event => event.eventsId !== id))
+            setEventApiData(eventApiData => eventApiData.filter(event => event.eventsId !== id));
 
         }catch(e){
             console.log(e);
