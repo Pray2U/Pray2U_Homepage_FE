@@ -1,11 +1,11 @@
 import { AiTwotoneEdit, AiFillDelete } from "react-icons/ai";
 import { Viewer } from '@toast-ui/react-editor';
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 
 import '@toast-ui/editor/dist/i18n/ko-kr';
-import '@toast-ui/editor/dist/toastui-editor.css';
+import '@toast-ui/editor/dist/toastui-editor-viewer.css';
 
 import '../../styles/Til/TilItem.scss';
 
@@ -16,86 +16,6 @@ const TilItem = ({tilInfo}) =>{
 
     const [ isClosed, setIsClosed ] = useState(true);
     const [ isOverContent, setIsOverContent ] = useState(true);
-
-
-     // 테스트 더미
-    const tilDummyData = {
-        profileImgUrl: "/profile/HeaderProfile.png",
-        title: "2023-06-14 TIL",
-        content: `안녕하시지?
-        안녕하시지?
-        안녕하시지?
-        안녕하시지?
-        안녕하시지?
-        안녕하시지?
-        안녕하시지?
-        안녕하시지?
-        안녕하시지?
-        안녕하시지?
-        안녕하시지?
-        안녕하시지?안녕하시지?
-        안녕하시지?
-        안녕하시지?
-        안녕하시지?
-        안녕하시지?
-        안녕하시지?
-        안녕하시지?
-        안녕하시지?
-        안녕하시지?
-        안녕하시지?
-        안녕하시지?안녕하시지?
-        안녕하시지?
-        안녕하시지?
-        안녕하시지?
-        안녕하시지?
-        안녕하시지?
-        안녕하시지?
-        안녕하시지?
-        안녕하시지?
-        안녕하시지?
-        안녕하시지?안녕하시지?
-        안녕하시지?
-        안녕하시지?
-        안녕하시지?
-        안녕하시지?
-        안녕하시지?
-        안녕하시지?
-        안녕하시지?
-        안녕하시지?
-        안녕하시지?
-        안녕하시지?안녕하시지?
-        안녕하시지?
-        안녕하시지?
-        안녕하시지?
-        안녕하시지?
-        안녕하시지?
-        안녕하시지?
-        안녕하시지?
-        안녕하시지?
-        안녕하시지?
-        안녕하시지?안녕하시지?안녕하시지?
-        안녕하시지?
-        안녕하시지?
-        안녕하시지?
-        안녕하시지?
-        안녕하시지?
-        안녕하시지?
-        안녕하시지?
-        안녕하시지?
-        안녕하시지?
-        안녕하시지?안녕하시지?안녕하시지?
-        안녕하시지?
-        안녕하시지?
-        안녕하시지?
-        안녕하시지?
-        안녕하시지?
-        안녕하시지?
-        안녕하시지?
-        안녕하시지?
-        안녕하시지?
-        안녕하시지?`
-    }
-
 
     const onDeleteTIL = (id) => {
         // 모달창 띄우기 확인 누를 시 데이터 통신
@@ -110,11 +30,26 @@ const TilItem = ({tilInfo}) =>{
         setIsClosed(!isClosed);
     }
 
+    const checkOverContents = () =>{
+        const contentLine = tilInfo?.content.split('\n');
+        const length = tilInfo?.content.length;
+        if (contentLine >= 6 || length >= 300){
+            setIsOverContent(true);
+        }else{
+            setIsOverContent(false);
+        }
+    }
+
+    useEffect(()=>{
+        checkOverContents();
+    },[]);
+
+
     return(
         <div className={isClosed ? "TilItemBox": "TilItemBox2"}>
             <div className="TilHeaderBox">
                 <img src={tilInfo?.profileImgUrl} alt="프로필" className='Profile'/>
-                <p className="TilDetailTile">{tilInfo?.titile}</p>
+                <div className="TilDetailTile">{tilInfo?.title}</div>
                 <div className="EditButton" onClick={()=>onEditTIL(tilInfo.tilId)}>
                     <AiTwotoneEdit/>
                 </div>
@@ -122,13 +57,10 @@ const TilItem = ({tilInfo}) =>{
                     <AiFillDelete/>
                 </div>
             </div>
-            <div className="TilContentBox">
-                {/* <div className={isClosed ? 'ClosedContent' : "NotClosedContent"}>{tilDummyData.content}</div> */}
+            <div className={isClosed ? "TilContentBox" : "TilContentBox2"}>
                 <Viewer
-                    className={isClosed ? "ClosedContent" : "NotClosedContent"}
-                    overflow="hidden"
                     initialEditType="markdown"
-                    initialValue={tilDummyData?.content}
+                    initialValue={tilInfo?.content}
                 />
             </div>
             {
