@@ -14,11 +14,84 @@ const defaultOption = {
     rootMargin: '0px'
 };
 
+const dummyContent = `안녕하시지?
+    안녕하시지?
+    안녕하시지?
+    안녕하시지?
+    안녕하시지?
+    안녕하시지?
+    안녕하시지?
+    안녕하시지?
+    안녕하시지?
+    안녕하시지?
+    안녕하시지?
+    안녕하시지?안녕하시지?
+    안녕하시지?
+    안녕하시지?
+    안녕하시지?
+    안녕하시지?
+    안녕하시지?
+    안녕하시지?
+    안녕하시지?
+    안녕하시지?
+    안녕하시지?
+    안녕하시지?안녕하시지?
+    안녕하시지?
+    안녕하시지?
+    안녕하시지?
+    안녕하시지?
+    안녕하시지?
+    안녕하시지?
+    안녕하시지?
+    안녕하시지?
+    안녕하시지?
+    안녕하시지?안녕하시지?
+    안녕하시지?
+    안녕하시지?
+    안녕하시지?
+    안녕하시지?
+    안녕하시지?
+    안녕하시지?
+    안녕하시지?
+    안녕하시지?
+    안녕하시지?
+    안녕하시지?안녕하시지?
+    안녕하시지?
+    안녕하시지?
+    안녕하시지?
+    안녕하시지?
+    안녕하시지?
+    안녕하시지?
+    안녕하시지?
+    안녕하시지?
+    안녕하시지?
+    안녕하시지?안녕하시지?안녕하시지?
+    안녕하시지?
+    안녕하시지?
+    안녕하시지?
+    안녕하시지?
+    안녕하시지?
+    안녕하시지?
+    안녕하시지?
+    안녕하시지?
+    안녕하시지?
+    안녕하시지?안녕하시지?안녕하시지?
+    안녕하시지?
+    안녕하시지?
+    안녕하시지?
+    안녕하시지?
+    안녕하시지?
+    안녕하시지?
+    안녕하시지?
+    안녕하시지?
+    안녕하시지?
+    안녕하시지?`
+
 const tilDummyData = [
     {
         tilId: 1,
         title: "2023-06-14 TIL",
-        content: "안녕하시지?",
+        content: dummyContent,
         tag:[],
         createDate:"2023-06-14",
         modifiedDate:"2023-06-14",
@@ -27,7 +100,7 @@ const tilDummyData = [
     {
         tilId: 2,
         title: "2023-06-14 TIL",
-        content: "안녕하시지?",
+        content: dummyContent,
         tag:[],
         createDate:"2023-06-14",
         modifiedDate:"2023-06-14",
@@ -37,7 +110,7 @@ const tilDummyData = [
     {
         tilId: 3,
         title: "2023-06-14 TIL",
-        content: "안녕하시지?",
+        content: dummyContent,
         tag:[],
         createDate:"2023-06-14",
         modifiedDate:"2023-06-14",
@@ -46,7 +119,7 @@ const tilDummyData = [
     {
         tilId: 4,
         title: "2023-06-14 TIL",
-        content: "안녕하시지?",
+        content: dummyContent,
         tag:[],
         createDate:"2023-06-14",
         modifiedDate:"2023-06-14",
@@ -55,7 +128,7 @@ const tilDummyData = [
     {
         tilId: 5,
         title: "2023-06-14 TIL",
-        content: "안녕하시지?",
+        content: dummyContent,
         tag:[],
         createDate:"2023-06-14",
         modifiedDate:"2023-06-14",
@@ -64,7 +137,7 @@ const tilDummyData = [
     {
         tilId: 6,
         title: "2023-06-14 TIL",
-        content: "안녕하시지?",
+        content: dummyContent,
         tag:[],
         createDate:"2023-06-14",
         modifiedDate:"2023-06-14",
@@ -73,7 +146,7 @@ const tilDummyData = [
     {
         tilId: 7,
         title: "2023-06-14 TIL",
-        content: "안녕하시지?",
+        content: dummyContent,
         tag:[],
         createDate:"2023-06-14",
         modifiedDate:"2023-06-14",
@@ -82,7 +155,7 @@ const tilDummyData = [
     {
         tilId: 8,
         title: "2023-06-14 TIL",
-        content: "안녕하시지?",
+        content: dummyContent,
         tag:[],
         createDate:"2023-06-14",
         modifiedDate:"2023-06-14",
@@ -91,7 +164,7 @@ const tilDummyData = [
     {
         tilId: 9,
         title: "2023-06-14 TIL",
-        content: "안녕하시지?",
+        content: dummyContent,
         tag:[],
         createDate:"2023-06-14",
         modifiedDate:"2023-06-14",
@@ -237,8 +310,6 @@ const TilPage = () => {
         }
         return () => observer && observer.disconnect(); // 의존성에 포함된 값이 바뀔때 관찰을 중지한다.
     }, [target]);
-
-
 
     return(
         <div className="TilContainer">
