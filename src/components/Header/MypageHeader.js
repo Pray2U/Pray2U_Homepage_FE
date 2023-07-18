@@ -1,12 +1,9 @@
 import { useState, useEffect } from "react";
-import { useLocation, Link } from 'react-router-dom';
 
 import '../../styles/Header/MypageHeader.scss';
 import axios from "axios";
 
-const MypageHeader = () =>{
-
-    const location = useLocation();
+const MypageHeader = ({onChangeMenu, selectedMenu}) =>{
 
     const headers = [
         {
@@ -49,7 +46,6 @@ const MypageHeader = () =>{
         }
     ]
 
-    const [path, setPath] = useState(null);
     const [isAdmin, setIsAdmin] = useState(false);
 
     const read_userRole = async() =>{
@@ -67,24 +63,21 @@ const MypageHeader = () =>{
     }
 
     useEffect(() => {
-        const pathName = location.pathname.split('/');
-        setPath(pathName[pathName.length-1]);
-        console.log(pathName[pathName.length-1]);
         // read_userRole();
-    }, [ location ])
+    }, [])
 
     return(
         <div className="MyPageHeaderBox">
             {
                 isAdmin ? 
-                adminHeaders.map(menu =>
-                    menu.id === path ? 
-                    <Link to={`/mypage/${menu.id}`} key={menu.id} className="SelectedMenu">{menu?.title}</Link> :
-                    <Link to={`/mypage/${menu.id}`} key={menu.id} className="Menu">{menu?.title}</Link>):
-                headers.map(menu =>
-                    menu.id === path ? 
-                    <Link to={`/mypage/${menu.id}`} key={menu.id} className="SelectedMenu">{menu?.title}</Link> :
-                    <Link to={`/mypage/${menu.id}`} key={menu.id} className="Menu">{menu?.title}</Link>
+                adminHeaders.map((menu,idx) => 
+                    idx === selectedMenu ? 
+                    <div key={menu.id} className="SelectedMenu" onClick={()=>onChangeMenu(idx)}>{menu?.title}</div> :
+                    <div key={menu.id} className="Menu" onClick={()=>onChangeMenu(idx)}>{menu?.title}</div>):
+                headers.map((menu,idx) =>
+                    idx === selectedMenu ? 
+                    <div key={menu.id} className="SelectedMenu" onClick={()=>onChangeMenu(idx)}>{menu?.title}</div> :
+                    <div key={menu.id} className="Menu" onClick={()=>onChangeMenu(idx)}>{menu?.title}</div>
                 )
             }
         </div>
