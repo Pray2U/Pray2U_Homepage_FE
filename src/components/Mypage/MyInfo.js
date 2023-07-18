@@ -25,7 +25,6 @@ const MyInfo = () =>{
 
     return(
         <div className="MyInfoBox">
-            <MypageHeader/>
             <div className="MyInfo">
                 <div className="MyProfilBox">
                     <img src={myInfo?.profileImgUrl} className="ProfileImg" alt="Profile"/>
@@ -61,7 +60,7 @@ const MyInfo = () =>{
             </div>
             <div className="MyCommitBox">
                 <GitHubCalendar 
-                    username="hs980924"
+                    username={"hs980924"||myInfo?.githubId}
                     showWeekdayLabels 
                     colorScheme="light"/>
             </div>
