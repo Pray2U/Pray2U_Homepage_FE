@@ -1,0 +1,28 @@
+.MyPageTitleBox{
+    display: flex;
+    width: 80%;
+    height: 15%;
+    margin: auto;
+    font-weight: bold;
+    align-items: center;
+
+    .MyPageTitle{
+        display: flex;
+        align-items: end;
+        vertical-align: text-bottom;
+        height: 80%;
+        font-size: 3vw;
+        color: black;
+    }
+
+    .MyPageSubTitle{
+        display: flex;
+        align-items: end;
+        height: 80%;
+        font-size: 1.5vw;
+        margin-left: 2%;
+        margin-right: auto;
+        color: black;
+        vertical-align: bottom;
+    }
+}
