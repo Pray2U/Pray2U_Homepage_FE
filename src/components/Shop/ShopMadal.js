@@ -2,7 +2,7 @@
 import { useEffect } from 'react';
 import '../../styles/Shop/ShopModal.scss';
 
-const ShopModal = ({itemInfo ,closeModal, myPoint}) =>{
+const ShopModal = ({itemInfo ,closeModal, myPoint, post_BuyItem}) =>{
 
     // useEffect(()=>{
     // },[]);
@@ -36,7 +36,7 @@ const ShopModal = ({itemInfo ,closeModal, myPoint}) =>{
                 </div>
                 <div className='ShopButtonBox'>
                     <div className='ShopCancelButton' onClick={closeModal}>취소</div>
-                    <div className='ShopSaveButton' onClick={closeModal}>구매</div>
+                    <div className='ShopSaveButton' onClick={post_BuyItem}>구매</div>
                 </div>
             </div>
         </div>

@@ -86,21 +86,32 @@ const Shoppage  = () =>{
     ]
 
     const [isLoggedIn, setIsLoggedIn] = useState(true);
-    const [itemList, setItemList] = useState(null);
+    const [itemList, setItemList] = useState(dummyData);
     const [selectedItem, setSelectedItem] = useState(null);
     const [isOpenModal, setIsOpenModal] = useState(false);
-    const myPoint = 1000;
+    const [myPoint, setMyPoint] = useState(1000);
     
     const read_ItemList = async() =>{
         try{
-            // const url = ''
-            // const response = await axios.get(url);
-            // if(response.status === 200){
-            //     setItemList(response.data.content);
-            // }else{
-            //     // 모달창 띄우기
-            // }
-            setItemList(dummyData);
+            const url = ''
+            const response = await axios.get(url);
+            if(response.status === 200){
+                setItemList(response.data.content);
+            }else{
+                // 모달창 띄우기
+            }
+        }catch(e){
+            console.log(e);
+        }
+    }
+
+    const read_MyPoint = async() =>{
+        try{
+            const url = ``;
+            const response = await axios.get(url);
+            if(response.status === 200){
+                setMyPoint(response.data.currentPoint);
+            }
         }catch(e){
             console.log(e);
         }
@@ -113,14 +124,43 @@ const Shoppage  = () =>{
 
     const closeModal = () =>{
         setIsOpenModal(false);
+        setSelectedItem(null);
     }
 
     const openModal = () =>{
         setIsOpenModal(true);
     }
 
+    const isCheckBuy = () =>{
+        if(myPoint - selectedItem?.point >= 0){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    const post_BuyItem = async() =>{
+        try{
+            if(isCheckBuy()){
+                
+                // const data = {
+
+                // }
+                // const url = ``;
+                // const response = await axios.post(url,data);
+                // if(response.status === 200){
+                //     closeModal();
+                // }
+                closeModal(); //나중에 지우면 됨
+            }
+        }catch(e){
+
+        }
+    }
+
     useEffect(()=>{
-        read_ItemList();
+        // read_ItemList();
+        // read_MyPoint();
     },[]);
 
     return(
@@ -137,7 +177,12 @@ const Shoppage  = () =>{
                 }
             </div>
             {
-                isOpenModal ? <ShopModal itemInfo={selectedItem} myPoint={myPoint} closeModal={closeModal}/> : <></>
+                isOpenModal ? <ShopModal 
+                    itemInfo={selectedItem} 
+                    myPoint={myPoint} 
+                    closeModal={closeModal}
+                    post_BuyItem={post_BuyItem}
+                    /> : <></>
             }
         </div>
     );
