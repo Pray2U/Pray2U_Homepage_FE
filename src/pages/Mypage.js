@@ -31,7 +31,8 @@ const Mypage = () =>{
                     <div className="MyPageTitle">My Page</div>
                     <div className="MyPageSubTitle">Pray2U Member</div>
                 </div>
-                <div className={selectedMenu < 2 ? "MyPageContainer" : "MyPageOverFlowContainer"}>
+                {/* <div className={selectedMenu < 2 ? "MyPageContainer" : "MyPageOverFlowContainer"}> */}
+                <div className="MyPageContainer">
                     <MypageHeader onChangeMenu={onChangeMenu} selectedMenu={selectedMenu}/>
                     {
                     myPageComponent?.map((component,idx) =>

@@ -1,7 +1,7 @@
 .MyItemOrderBox{
     width: 90%;
-    min-height: 90%;
-    height: auto;
+    height: 90%;
+    // height: auto;
     margin: auto;
     .UsedItemButtons{
         display: flex;
@@ -35,8 +35,7 @@
 
     .ItemListBox{
         width: 100%;
-        min-height: 60vh;
-        height: auto;
+        height: 80%;
         margin: auto;
         display: grid;
 		grid-template-columns: repeat(3, 1fr);
@@ -45,5 +44,9 @@
         justify-items: stretch;
         row-gap: 3%;
         column-gap: 3%;
+        padding-top: 3%;
+        padding-bottom: 3%;
+        overflow:auto;
     }
+
 }
