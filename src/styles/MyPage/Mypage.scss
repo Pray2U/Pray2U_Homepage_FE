@@ -37,16 +37,22 @@
     margin: auto;
 }
 
-.MyPageOverFlowContainer{
-    width: 80%;
-    height: 80%;
-    height: auto;
-    overflow: hidden;
-    margin: auto;
-    background-color: white;
-    box-shadow: 1px 1px 3px 1px #dadce0; 
-    border-radius: 1em;
-    font-weight: bold;
-    align-items: center;
-    margin: auto;
-}
+// .MyPageOverFlowContainer{
+//     width: 80%;
+//     height: 80%;
+//     height: auto;
+//     overflow: hidden;
+//     margin: auto;
+//     background-color: white;
+//     box-shadow: 1px 1px 3px 1px #dadce0; 
+//     border-radius: 1em;
+//     font-weight: bold;
+//     align-items: center;
+//     margin: auto;
+//     overflow-y: scroll;
+//     -ms-overflow-style: none;
+// }
+
+// ::-webkit-scrollbar {
+//     display: none;
+// }

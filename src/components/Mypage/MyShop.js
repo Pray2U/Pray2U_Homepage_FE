@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 import '../../styles/MyPage/MyShop.scss';
-import ShopItem from "../Shop/ShopItem";
+import MyShopItem from "./MyShopItem";
 
 const MyShop = () =>{
 
@@ -132,7 +132,7 @@ const MyShop = () =>{
                     "imgUrl":"https://jpg.com/iceamericano.jpg"
                 },
             "targetUser": "",
-            "useStatus":"Pending approval",
+            "useStatus":"Already Approved",
             "createDate":"2023-06-31",
             "modifiedDate":"2023-06-31"
         },{
@@ -148,7 +148,7 @@ const MyShop = () =>{
                     "imgUrl":"https://jpg.com/iceamericano.jpg"
                 },
             "targetUser": "",
-            "useStatus":"Pending approval",
+            "useStatus":"Already Approved",
             "createDate":"2023-06-31",
             "modifiedDate":"2023-06-31"
         },
@@ -162,9 +162,10 @@ const MyShop = () =>{
     const onClickMenu = (idx) =>{
         setSelectedMenu(idx);
         if(idx){
-            setIsUsedItem(isUsedItem => 'Already Approved');
+            setIsUsedItem('Already Approved');
+            console.log(isUsedItem);
         }else{
-            setIsUsedItem(isUsedItem => 'Pending approval');
+            setIsUsedItem('Pending approval');
         }
     }
 
@@ -199,7 +200,10 @@ const MyShop = () =>{
             </div>
             <div className="ItemListBox">
                 {
-                    myOrderList?.map(order => <ShopItem key={order.orderId} item={order.item}/>)
+                    myOrderList?.map(order => 
+                        isUsedItem === order.useStatus ? 
+                        <MyShopItem key={order.orderId} item={order.item}/>:
+                        <></>)
                 }
             </div>
         </div>
