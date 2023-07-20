@@ -5,9 +5,9 @@ import MypageHeader from "../components/Header/MypageHeader";
 import MyAttend from "../components/Mypage/MyAttend";
 import MyInfo from "../components/Mypage/MyInfo";
 import MyTil from "../components/Mypage/MyTil";
+import MyShop from "../components/Mypage/MyShop";
 
 import '../styles/MyPage/Mypage.scss';
-import MyShop from "../components/Mypage/MyShop";
 
 const Mypage = () =>{
 
@@ -18,10 +18,26 @@ const Mypage = () =>{
     }
 
     const myPageComponent = [
-        <MyInfo/>,
-        <MyAttend/>,
-        <MyTil/>,
-        <MyShop/>
+        {
+            id:0,
+            contents: <MyInfo key="1"/>,
+        },
+        {
+            id:1,
+            contents: <MyAttend  key="4"/>,
+        },
+        {
+            id:2,
+            contents: <MyTil  key="3"/>,
+        },
+        {
+            id:3,
+            contents: <MyShop  key="2"/>
+        },
+        // <MyInfo/>,
+        // <MyAttend/>,
+        // <MyTil/>,
+        // <MyShop/>
     ]
 
     return(
@@ -35,8 +51,8 @@ const Mypage = () =>{
                 <div className="MyPageContainer">
                     <MypageHeader onChangeMenu={onChangeMenu} selectedMenu={selectedMenu}/>
                     {
-                    myPageComponent?.map((component,idx) =>
-                        idx === selectedMenu ? component : <></>
+                        myPageComponent?.map((component, idx) =>
+                            idx === selectedMenu && component.contents
                     )
                     }
                 </div>

@@ -1,10 +1,11 @@
-import { useState, useEffect } from "react";
 import axios from "axios";
+import { useState } from "react";
+import UserItem from "./UserItem";
 
-import '../../styles/MyPage/MyShop.scss';
-import MyShopItem from "./MyShopItem";
+import Pagination from 'react-bootstrap/Pagination';
+import '../../styles/Admin/UserItemList.scss';
 
-const MyShop = () =>{
+const UsedItemList = () =>{
 
     const dummyData = [
         {
@@ -154,60 +155,58 @@ const MyShop = () =>{
             "modifiedDate":"2023-06-31"
         },
     ]
-    const OrderMenu = [ '사용가능', '사용완료' ]
 
-    const [myOrderList, setMyOrderList] = useState(dummyData);
-    const [selectedMenu, setSelectedMenu] = useState(0);
-    const [isUsedItem, setIsUsedItem] = useState("Pending approval")
-
-    const onClickMenu = (idx) =>{
-        setSelectedMenu(idx);
-        if(idx){
-            setIsUsedItem('Already Approved');
-            console.log(isUsedItem);
-        }else{
-            setIsUsedItem('Pending approval');
-        }
-    }
-
-    const read_MyOrderItem = async() =>{
+    const [userItmeList, setUserItemList] = useState(dummyData||null);
+    
+    const read_UserItemList = async() => {
         try{
-            const url = '/api/orders/me';
+            const url = 'api/orders';
             const response = await axios.get(url);
             if(response.status.code === 200){
-                setMyOrderList(response.data.orderList);
+                setUserItemList(response.data.content);
             }
         }catch(e){
 
         }
-    };
+    }
 
-    useEffect(()=>{
-        // read_MyOrderItem();
-    },[]);
+    const post_UserItem = async(orderId) =>{
+        try{
+            // const url = `api/orders/${orderId}`;
+            // const data = {
+
+            // }
+            // const response = await axios.post(url);
+            // if(response.status.code === 200){
+            //     setUserItemList(userItmeList => userItmeList.map( userItem =>
+            //         userItem.orderId === response.data.orderId ? response.data : userItem
+            //     ));
+            // }
+            setUserItemList(userItmeList => userItmeList.map( userItem =>
+                userItem.orderId === orderId ? {...userItem, 
+                    useStatus:"Already Approved"} : userItem
+            )); // 이거 삭제
+
+        }catch(e){
+
+        }
+    }
 
     return(
-        <div className="MyItemOrderBox">
-            <div className="UsedItemButtons">
-                {
-                    OrderMenu.map((menu,idx) =>
-                        <div 
-                            className={selectedMenu === idx ? "SelectedOrderMenu" : "OrderMenu"}
-                            onClick={()=>onClickMenu(idx)}
-                            key={idx}>{menu}
-                        </div>
-                    )
-                }
+        <div className="UserItemListBox">
+            <div className="UserItemListTitle">
+                <div className="UserNameTitle">신청자</div>
+                <div className="CreatedTitle">신청날짜</div>
+                <div className="ContentTitle">내용</div>
+                <div className="StatusTitle">상태</div>
             </div>
-            <div className="ItemListBox">
-                {
-                    myOrderList?.map(order => 
-                        isUsedItem === order.useStatus &&
-                        <MyShopItem key={order.orderId} item={order.item}/>)
-                }
-            </div>
+            {
+                userItmeList?.map(userItem => 
+                    <UserItem key={userItem.orderId} userItem={userItem} post_UserItem={post_UserItem}/>
+                )
+            }
         </div>
     );
 }
 
-export default MyShop;
+export default UsedItemList;

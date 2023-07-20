@@ -1,0 +1,68 @@
+.UserItemBox{
+    display: flex;
+    align-items: center;
+    width: 90%;
+    height: 6%;
+    border-bottom: 1px solid gray;
+    margin: auto;
+    // margin-top: 0.5%;
+
+    .UserItemUserName{
+        display: flex;
+        width: 15%;
+        height: 90%;
+        align-items: center;
+        justify-content: center;
+        color: black;
+        font-weight: bold;
+    }
+    .UserItemCreated{
+        display: flex;
+        width: 20%;
+        height: 90%;
+        align-items: center;
+        justify-content: center;
+        color: black;
+        font-weight: bold;
+    }
+    .UserItemItemName{
+        display: flex;
+        width: 45%;
+        height: 90%;
+        align-items: center;
+        justify-content: center;
+        color: black;
+        font-weight: bold;
+    }
+    .UserItemStatus{
+        display: flex;
+        width: 15%;
+        height: 75%;
+        align-items: center;
+        justify-content: center;
+        margin: auto;
+        color: black;
+        font-weight: bold;
+        color: white;
+        background-color: #38CF03;
+        cursor: pointer;
+        border-radius: 0.5em;
+        &:hover{
+            background-color: #30ad03;
+        }
+    }
+    .UserItemUsedStatus{
+        display: flex;
+        width: 15%;
+        height: 75%;
+        align-items: center;
+        justify-content: center;
+        margin: auto;
+        color: black;
+        font-weight: bold;
+        color: white;
+        color: white;
+        background-color: #CBCBCB;
+        border-radius: 0.5em;
+    }
+}
