@@ -46,7 +46,7 @@ const MypageHeader = ({onChangeMenu, selectedMenu}) =>{
         }
     ]
 
-    const [isAdmin, setIsAdmin] = useState(false);
+    const [isAdmin, setIsAdmin] = useState(true);
 
     const read_userRole = async() =>{
         try{

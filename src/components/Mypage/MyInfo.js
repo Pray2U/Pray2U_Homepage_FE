@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import '../../styles/MyPage/MyInfo.scss';
 
@@ -22,6 +22,23 @@ const MyInfo = () =>{
 
     const [myInfo, setMyInfo] = useState(dummyMyInfo);
     const [myPoint, setMyPoint] = useState(null);
+    // const [githubCommitCalendar, setGithubCalendar]  = useState(null);
+
+    // const read_GithubCalendar = async() => {
+    //     const calendar = <GitHubCalendar 
+    //         username={"hs980924"||myInfo?.githubId}
+    //         showWeekdayLabels 
+    //         colorScheme="light"
+    //     />
+    //     setGithubCalendar(calendar);
+    // };
+
+    // useEffect(()=>{
+    //     read_GithubCalendar();
+    //     return () =>{
+    //         setGithubCalendar(null);
+    //     }
+    // },[]);
 
     return(
         <div className="MyInfoBox">
@@ -63,6 +80,7 @@ const MyInfo = () =>{
                     username={"hs980924"||myInfo?.githubId}
                     showWeekdayLabels 
                     colorScheme="light"/>
+                {/* {githubCommitCalendar} */}
             </div>
         </div>
     );
