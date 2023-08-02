@@ -1,8 +1,8 @@
 import axios from "axios";
 import { useState } from "react";
-import UserItem from "./UserItem";
-
 import Pagination from 'react-bootstrap/Pagination';
+
+import UserItem from "./UserItem";
 import '../../styles/Admin/UserItemList.scss';
 
 const UsedItemList = () =>{
@@ -157,10 +157,16 @@ const UsedItemList = () =>{
     ]
 
     const [userItmeList, setUserItemList] = useState(dummyData||null);
-    
+    const [selectedPage, setSelectedPage] = useState(1);
+    const size = 10;
+
+    const onChangePageNum = (num) => {
+        setSelectedPage(num);
+    }
+
     const read_UserItemList = async() => {
         try{
-            const url = 'api/orders';
+            const url = `/api/user/info/all?page=${selectedPage}&size=${size}`;
             const response = await axios.get(url);
             if(response.status.code === 200){
                 setUserItemList(response.data.content);
@@ -193,18 +199,41 @@ const UsedItemList = () =>{
     }
 
     return(
-        <div className="UserItemListBox">
-            <div className="UserItemListTitle">
-                <div className="UserNameTitle">신청자</div>
-                <div className="CreatedTitle">신청날짜</div>
-                <div className="ContentTitle">내용</div>
-                <div className="StatusTitle">상태</div>
+        <div className="UserItemListContainer">
+            <div className="ButtonBox"/>
+            <div className="UserItemListBox">
+                <div className="UserItemListTitle">
+                    <div className="UserNameTitle">신청자</div>
+                    <div className="CreatedTitle">신청날짜</div>
+                    <div className="ContentTitle">내용</div>
+                    <div className="StatusTitle">상태</div>
+                </div>
+                {
+                    userItmeList?.map(userItem => 
+                        <UserItem key={userItem.orderId} userItem={userItem} post_UserItem={post_UserItem}/>
+                    )
+                }
             </div>
-            {
-                userItmeList?.map(userItem => 
-                    <UserItem key={userItem.orderId} userItem={userItem} post_UserItem={post_UserItem}/>
-                )
-            }
+            <Pagination className='UserPaginationBox'>
+                    <Pagination.Prev/>
+                    {
+                        [1,2,3,4,5].map(pageNum =>
+                        selectedPage === pageNum ?
+                        <Pagination.Item 
+                            key={pageNum} 
+                            active={true}>
+                            {pageNum}
+                        </Pagination.Item> :
+                        <Pagination.Item 
+                            key={pageNum} 
+                            active={false}
+                            onClick={()=>onChangePageNum(pageNum)}>
+                            {pageNum}
+                        </Pagination.Item>
+                        )
+                    }
+                    <Pagination.Next/>
+                </Pagination>
         </div>
     );
 }

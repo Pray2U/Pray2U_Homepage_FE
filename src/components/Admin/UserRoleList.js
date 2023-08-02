@@ -1,14 +1,12 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { AiFillPlusSquare } from "react-icons/ai";
 import Pagination from 'react-bootstrap/Pagination';
 
-import UserInfo from "./UserInfo";
-import UserCreateModal from "./UserCreateModal";
+import UserRole from "./UserRole";
 
-import '../../styles/Admin/UserCreate.scss';
+import '../../styles/Admin/UserRoleList.scss';
 
-const UserCreate = () => {
+const UserRoleList = () => {
 
     const dummyData = [
         {
@@ -18,7 +16,7 @@ const UserCreate = () => {
 	        "profileImgUrl": "gildongImgCloud.com/gildongHong.jpg",
 	        "phoneNumber": "010-0000-0001",
 	        "Email": "gildong@gmail.com",
-	        "Role": "ADMIN",
+	        "Role": "Member",
 	        "createDate": "2023-06-30",
 			"modifiedDate": "2023-07-01"
 	    },
@@ -123,21 +121,30 @@ const UserCreate = () => {
 	    },
     ]
 
-    const [userList, setUserList] = useState(dummyData);
+    const [userRoleList, setUserRoleList] = useState(dummyData);
     const [selectedPage, setSelectedPage] = useState(1);
-    const [isOpenModal, setIsOpenModal] = useState(false);
     const size = 10;
-    
-    const openUserCreateModal = () =>{
-        setIsOpenModal(true);
-    }
-	
-    const closeUserCreateModal = () =>{
-        setIsOpenModal(false);
-    }
 
     const onChangePageNum = (num) => {
         setSelectedPage(num);
+    }
+
+    const post_UserRole = async(user) =>{
+        try{
+            // const url = `api/orders/${orderId}`;
+            // const data = {
+            //      userId: ??
+            //      Role: {user.Role === "Admin" ? "Member" : "Admin"}
+            // }
+            // const response = await axios.post(data,url);
+            // if(response.status.code === 200){
+            //     setUserRoleList(userRoleList => userRoleList.filter(userInfo =>
+            //         userInfo.userId === response.data.userId ? response.data : userInfo
+            //     ));
+            // }
+        }catch(e){
+
+        }
     }
 
     
@@ -146,7 +153,7 @@ const UserCreate = () => {
             const url = `/api/user/info/all?page=${selectedPage}&size=${size}`;
             const response = await axios.get(url);
             if(response.status.code === 200){
-                setUserList(response.data.content);
+                setUserRoleList(response.data.content);
             }
         }catch(e){
 
@@ -158,26 +165,22 @@ const UserCreate = () => {
     },[])
 
     return(
-        <div className="UserListContainer">
-            <div className="ButtonBox">
-                <AiFillPlusSquare className="CreateButton" onClick={()=>openUserCreateModal()}/>
-            </div>
-            <div className="UserListBox">
-                <div className="UserListTitle">
+        <div className="UserRoleListContainer">
+            <div className="ButtonBox"/>
+            <div className="UserRoleListBox">
+                <div className="UserRoleListTitle">
                     <div className="UserName">이름</div>
                     <div className="UserCreated">가입 날짜</div>
-                    <div className="UserEmail">E-mail</div>
-                    <div className="UserGithubId">Github ID</div>
+                    <div className="UserGithubId">Github Account</div>
+                    <div className="UserRole">직책</div>
+                    <div className="UserRoleEdit">직책 변경</div>
                 </div>
                 {
-                    userList?.map(user => 
-                        <UserInfo key={user.userId} userInfo={user}/>
+                    userRoleList?.map(user => 
+                        <UserRole key={user.userId} userInfo={user} post_UserRole={post_UserRole}/>
                     )
                 }
             </div>
-            {
-                isOpenModal && <UserCreateModal closeModal={closeUserCreateModal}/>
-            }
             <Pagination className='UserPaginationBox'>
                 <Pagination.Prev/>
                 {
@@ -202,4 +205,4 @@ const UserCreate = () => {
     );
 }
 
-export default UserCreate;
+export default UserRoleList;
