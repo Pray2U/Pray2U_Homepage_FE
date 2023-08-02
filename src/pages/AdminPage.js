@@ -2,6 +2,7 @@ import { useState } from "react";
 import Template from "../components/Template"
 import UsedItemList from "../components/Admin/UsedItemList";
 import UserCreate from "../components/Admin/UserCreate";
+import UserRoleList from "../components/Admin/UserRoleList";
 
 import '../styles/Admin/AdminPage.scss';
 
@@ -25,6 +26,10 @@ const AdminPage = () =>{
         {
             id: 0,
             contents:<UsedItemList/>
+        },
+        {
+            id:1,
+            contents: <UserRoleList/>
         },
         {
             id:2,
