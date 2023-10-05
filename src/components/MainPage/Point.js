@@ -1,5 +1,5 @@
 
-import '../styles/Point.scss';
+import '../styles/Main/Point.scss';
 
 const Point = ({user}) =>{
 
