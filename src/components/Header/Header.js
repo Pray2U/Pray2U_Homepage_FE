@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import axios from 'axios';
 
-import '../styles/Header.scss'
+import '../styles/Header/Header.scss'
 
 const Header = ({isLoggedIn}) => {
 
