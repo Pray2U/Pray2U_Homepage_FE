@@ -55,7 +55,7 @@ const Header = ({isLoggedIn}) => {
                     <Link to='/event' className='Event'>Event</Link>
                     <Link to='/til' className='TIL'>TIL</Link>
                     <Link to='/shop' className='Shop'>Shop</Link>
-                    <Link to='/mypage' className='Profile'>
+                    <Link to='/mypage/info' className='Profile'>
                         <img src={myInfo.profileImgUrl}/>
                     </Link>
                 </div>
