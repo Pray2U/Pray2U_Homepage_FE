@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react'
-import '../../styles/Main/Categories.scss'
+import { useEffect, useState } from 'react';
+import '../../styles/Main/Categories.scss';
 
-import CategoryImage from './CategoryImage'
+import CategoryImage from './CategoryImage';
 
 const cate = [ 
     {

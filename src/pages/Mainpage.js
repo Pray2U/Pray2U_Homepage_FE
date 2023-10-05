@@ -8,7 +8,7 @@ import PointRank from "../components/MainPage/PointRank";
 import ImageCards from "../components/MainPage/ImageCards";
 import Footer from "../components/MainPage/Footer";
 
-import '../styles/Main/MainPage.scss'
+import '../styles/Main/MainPage.scss';
 
 const Mainpage = () => {
     const [ isLoggedIn, setIsLoggedIn ] = useState(true);

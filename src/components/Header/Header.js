@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import axios from 'axios';
 
-import '../../styles/Header/Header.scss'
+import '../../styles/Header/Header.scss';
 
 const Header = ({isLoggedIn}) => {
 
@@ -51,11 +51,11 @@ const Header = ({isLoggedIn}) => {
                 <img className="Logo" alt='img' src="/Logo.png"></img>
                 <Link to ='/' className='LogoName'>PRAY<span className="RedColor">2</span>U</Link>
                 <div className='MenuBox'>
-                    <Link to='/notice' className='Notice'>Notice</Link>
+                    <Link to='/notice/list' className='Notice'>Notice</Link>
                     <Link to='/event' className='Event'>Event</Link>
                     <Link to='/til' className='TIL'>TIL</Link>
                     <Link to='/shop' className='Shop'>Shop</Link>
-                    <Link to='/mypage' className='Profile'>
+                    <Link to='/mypage/info' className='Profile'>
                         <img src={myInfo.profileImgUrl}/>
                     </Link>
                 </div>
