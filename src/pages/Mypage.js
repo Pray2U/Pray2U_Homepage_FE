@@ -10,7 +10,6 @@ import MyShop from "../components/Mypage/MyShop";
 import '../styles/MyPage/Mypage.scss';
 
 const Mypage = () =>{
-
     const [selectedMenu, setSelectedMenu] = useState(0);
 
     const onChangeMenu = (id) =>{
