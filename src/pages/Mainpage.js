@@ -11,7 +11,7 @@ import Footer from "../components/MainPage/Footer";
 import '../styles/Main/MainPage.scss';
 
 const Mainpage = () => {
-    const [ isLoggedIn, setIsLoggedIn ] = useState(true);
+    const [ isLoggedIn, setIsLoggedIn ] = useState(false);
 
 
     const options = {
