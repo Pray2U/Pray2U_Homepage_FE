@@ -9,8 +9,11 @@ import TilPage from './pages/Tilpage';
 import CreateTil from './pages/CreateTil';
 import Eventpage from './pages/Eventpage';
 import Shoppage from './pages/Shoppage';
+import Mypage from './pages/Mypage';
+import AdminPage from './pages/AdminPage';
 
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+
 
 function App() {
   return (
@@ -28,6 +31,8 @@ function App() {
           <Route path='/til/edit/:id' element={<CreateTil/>}/>
           <Route path='/event' element={<Eventpage/>}/>
           <Route path='/shop' element={<Shoppage />}/>
+          <Route path='/mypage/info' element={<Mypage/>}/>
+          <Route path='/admin' element={<AdminPage/>}/>
           <Route path='/*' element={<Error/>}/>
         </Routes>
       </Router>
