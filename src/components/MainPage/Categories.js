@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import '../styles/Main/Categories.scss'
+import '../../styles/Main/Categories.scss'
 
 import CategoryImage from './CategoryImage'
 

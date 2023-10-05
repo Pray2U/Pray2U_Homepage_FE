@@ -5,7 +5,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 import "swiper/swiper-bundle.min.css";
-import "../styles/Main/ImageCard.scss";
+import "../../styles/Main/ImageCard.scss";
 
 
 const ImageCards = () => {
