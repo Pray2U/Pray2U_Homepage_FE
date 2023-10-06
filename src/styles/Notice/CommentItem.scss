@@ -1,0 +1,17 @@
+.CommentItemBox{
+    display: flex;
+    width: 100%;
+    height: 25%;
+    margin: auto;
+    margin-top: 1%;
+    border-bottom: 0.1em solid black;
+
+    .UserProfile{
+        width: 10%;
+        height: 100%;
+    }
+    .UserComment{
+        width: 90%;
+        height: 100%;
+    }
+}

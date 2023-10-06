@@ -13,6 +13,8 @@ import '../styles/Main/MainPage.scss';
 const Mainpage = () => {
     const [ isLoggedIn, setIsLoggedIn ] = useState(false);
 
+    // 쿠키 유무 체크 후 자동 로그인(isLoggedIn true) 체크 해야됨
+
 
     const options = {
         delay:500, // the scroll animation speed

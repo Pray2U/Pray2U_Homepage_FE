@@ -64,24 +64,36 @@
             color: black;
             font-weight: bold;
             font-size: 1vw;
+            &:hover{
+                color:blue
+            }
         }
         .Event{
             text-decoration: none;
             color: black;
             font-weight: bold;
             font-size: 1vw;
+            &:hover{
+                color:blue
+            }
         }
         .TIL{
             text-decoration: none;
             color: black;
             font-weight: bold;
             font-size: 1vw;
+            &:hover{
+                color:blue
+            }
         }
         .Shop{
             text-decoration: none;
             color: black;
             font-weight: bold;
             font-size: 1vw;
+            &:hover{
+                color:blue
+            }
         }
         .Profile{
             display: flex;
