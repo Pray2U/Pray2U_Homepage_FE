@@ -45,17 +45,34 @@ const Header = ({isLoggedIn}) => {
     //     read_myInfo();
     // },[isLoggedIn,myInfo]);
 
+    const login_github = async() => {
+        try{
+            const url = `${process.env.REACT_APP_API_SERVER}/api/login/oauth2/code/github?redirect_uri=`;
+            const res = await axios.get(url, { withCredentials: true });
+            console.log(res);
+            if (res.status === 200){
+                let accessToken = res.headers['authorization'];
+                let refreshToken = res.headers['set-cookie'];
+                console.log(accessToken);
+                console.log(refreshToken);
+            }
+            
+        }catch(err){
+            console.log(err);
+        }
+    }
+
     if(isLoggedIn){
         return (
             <div className="HeaderBox">
                 <img className="Logo" alt='img' src="/Logo.png"></img>
                 <Link to ='/' className='LogoName'>PRAY<span className="RedColor">2</span>U</Link>
                 <div className='MenuBox'>
-                    <Link to='/notice' className='Notice'>Notice</Link>
+                    <Link to='/notice/list' className='Notice'>Notice</Link>
                     <Link to='/event' className='Event'>Event</Link>
                     <Link to='/til' className='TIL'>TIL</Link>
                     <Link to='/shop' className='Shop'>Shop</Link>
-                    <Link to='/mypage' className='Profile'>
+                    <Link to='/mypage/info' className='Profile'>
                         <img src={myInfo.profileImgUrl}/>
                     </Link>
                 </div>
@@ -67,7 +84,8 @@ const Header = ({isLoggedIn}) => {
         <div className="HeaderBox">
             <img className="Logo" alt='img' src="/Logo.png"></img>
             <Link to ='/' className='LogoName'>PRAY<span className="RedColor">2</span>U</Link>
-            <Link to='/signin' className='SignIn'>Sign-In</Link>
+            <div className='SignIn' onClick={()=>login_github()}>Sign-In</div>
+            {/* <Link to='/signin' >Sign-In</Link> */}
         </div>
     );
 }

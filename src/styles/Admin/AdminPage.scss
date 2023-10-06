@@ -1,0 +1,49 @@
+.AdminPageContainer{
+    display: flex;
+    width: 80%;
+    height: 80%;
+    background-color: white;
+    box-shadow: 1px 1px 3px 1px #dadce0;
+    border-radius: 1em;
+    font-weight: bold;
+    align-items: center;
+    margin: auto;
+
+    .AdminMenuBox{        
+        width: 15%;
+        height: 90%;
+        border-right: 3px solid #666666;
+        font-weight: bold;
+        padding-top: 2%;
+        
+    
+        .SelectedAdminMenu{
+            display: flex;
+            width: 100%;
+            height: 7%;
+            align-items: center;
+            justify-content: center;
+            margin: auto;
+            background-color: #D1E9FF;
+            cursor: pointer;
+            &:hover{
+                background-color: #bbdbf9;
+            }
+        }
+    
+        .AdminMenu{
+            display: flex;
+            width: 100%;
+            height: 7%;
+            align-items: center;
+            justify-content: center;
+            margin: auto;
+            background-color: #EDF6FF;
+            cursor: pointer;
+            &:hover{
+                background-color: #d9e8f8;
+            }
+        }
+    }
+    
+}

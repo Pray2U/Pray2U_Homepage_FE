@@ -1,0 +1,40 @@
+.UserInfoBox{
+    display: flex;
+    align-items: center;
+    width: 90%;
+    height: 8%;
+    border-bottom: 1px solid gray;
+    margin: auto;
+    color: black;
+    font-weight: bold;
+    // margin-top: 0.5%;
+
+    .UserInfoName{
+        display: flex;
+        width: 15%;
+        height: 90%;
+        align-items: center;
+        justify-content: center;
+    }
+    .UserInfoCreated{
+        display: flex;
+        width: 20%;
+        height: 90%;
+        align-items: center;
+        justify-content: center;
+    }
+    .UserInfoEmail{
+        display: flex;
+        width: 45%;
+        height: 90%;
+        align-items: center;
+        justify-content: center;
+    }
+    .UserInfoGithub{
+        display: flex;
+        width: 20%;
+        height: 75%;
+        align-items: center;
+        justify-content: center;
+    }
+}
