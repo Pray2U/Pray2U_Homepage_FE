@@ -1,13 +1,14 @@
 import '../styles/SignIn/SignIn.scss';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
+import { getCookie } from '../components/cookie';
 import SignInForm from '../components/SignIn/SignInForm';
 
 const SignIn = () =>{
     const navigate = useNavigate();
 
     useEffect(()=>{
-        let token = localStorage.getItem('accessToken');
+        let token = getCookie('accessToken');
         if(!token){
             navigate('/error');
         }
