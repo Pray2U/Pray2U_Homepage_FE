@@ -1,0 +1,48 @@
+.TodoItemBox{
+    display: flex;
+    width: 100%;
+    height: 25%;
+    border-bottom: 2px solid #E2E2E2;
+
+    .TodoContent{
+        width: 80%;
+        height: 100%;
+
+        .TodoTitle{
+            font-weight: bold;
+            margin-top: 5%;
+            margin-left: 3%;
+            color: black;
+        }
+        .TodoTime{
+            margin-bottom: 5%;
+            margin-left: 3%;
+            color: gray;
+        }
+    }
+    
+    .TodoEditButton{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 8%;
+        height: 40%;
+        background-color: #E2E2E2;
+        border-radius: 0.5em;
+        margin: auto;
+        margin-right: 1%;
+        cursor: pointer;
+    }
+        
+    .TodoDeleteButton{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 8%;
+        height: 40%;
+        background-color: #FFB7B7;
+        border-radius: 0.5em;
+        margin: auto;
+        cursor: pointer;
+    }
+}

@@ -1,0 +1,33 @@
+.NoticeButtonsBox{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 5%;
+    padding-right: 1%;
+    margin-bottom: 0.5%;
+
+    .WriteButton{
+        width: 3%;
+        height: 100%;
+        cursor: pointer;    
+        margin-left: auto;
+    }
+    .DeleteButton{
+        width: 3%;
+        height: 100%;
+        cursor: pointer;    
+        margin-left: 1%;
+    }
+    .EditButton{
+        width: 3%;
+        height: 100%;
+        cursor: pointer;    
+        margin-left: auto;
+    }
+    .SaveButton{
+        width: 3%;
+        height: 100%;
+        cursor: pointer;    
+        margin-left: auto;
+    }
+}
