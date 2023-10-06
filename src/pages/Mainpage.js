@@ -11,7 +11,9 @@ import Footer from "../components/MainPage/Footer";
 import '../styles/Main/MainPage.scss';
 
 const Mainpage = () => {
-    const [ isLoggedIn, setIsLoggedIn ] = useState(true);
+    const [ isLoggedIn, setIsLoggedIn ] = useState(false);
+
+    // 쿠키 유무 체크 후 자동 로그인(isLoggedIn true) 체크 해야됨
 
 
     const options = {
