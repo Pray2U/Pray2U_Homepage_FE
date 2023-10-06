@@ -1,0 +1,97 @@
+.TilContainer{
+    width: 75vw;
+    height: auto;
+    overflow: hidden;
+    margin: auto;
+    background-color: #F5F7FF;
+
+    .TilTitleBox{
+        display: flex;
+        width: 80%;
+        height: 10%;
+        margin: auto;
+        margin-top: 3%;
+        align-items: center;
+        justify-content: center;
+
+        .Title{
+            vertical-align: text-bottom;
+            width: 10%;
+            height: 100%;
+            font-size: 3vw;
+            font-weight: bold;
+            color: black;
+        }
+
+        .SubTitle{
+            vertical-align: text-bottom;
+            width: 20%;
+            height: 100%;
+            font-size: 1.5vw;
+            font-weight: bold;
+            margin-right: auto;
+            color: black;
+        }
+
+        .TilCreateButton{
+            width: 5%;
+            height: 100%;
+            color: #00C371;
+            margin-left: auto;
+            cursor: pointer;
+        }
+    }
+
+    .SearchBox{
+        display: flex;
+        align-items: center;
+        width: 80%;
+        height: 5vh;
+        margin: auto;
+        background-color: #A195EF;
+        border-radius: 0.5em;
+    }
+
+    .SearchBar{
+        display: flex;
+        width: 80%;
+        height: 90%;
+        align-items: center;
+        border-radius: 0.5em;
+
+        .FrontCircle{
+            width: 2%; 
+            height: 80%; 
+            border-radius: 150px 0 0 150px;
+            background-color: white;
+            margin-left: 3%;
+        }
+
+        .BackCircle{
+            width: 2%; 
+            height: 80%; 
+            border-radius: 0 150px 150px 0;
+            background-color: white;
+        }
+
+        .SearchIcon{
+            width: 3%;
+            height: 80%;
+            background-color: white;
+        }
+    
+        .SearchInput{
+            padding-left: 1%;
+            width: 45%;
+            height: 80%;
+            border: none;
+            outline: none;
+        }
+    }
+
+    .TilListBox{
+        margin: auto;
+        width: 80%;
+        padding-bottom: 3%;
+    }
+}
