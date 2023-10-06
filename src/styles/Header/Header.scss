@@ -1,7 +1,7 @@
 .HeaderBox {
     display: flex;
-    width: 75vw;
-    height: 10vh;
+    width: 100%;
+    height: 10%;
     margin: 0 auto;
     background-color: #FFFFFF;
     align-items: center;
@@ -64,24 +64,36 @@
             color: black;
             font-weight: bold;
             font-size: 1vw;
+            &:hover{
+                color:blue
+            }
         }
         .Event{
             text-decoration: none;
             color: black;
             font-weight: bold;
             font-size: 1vw;
+            &:hover{
+                color:blue
+            }
         }
         .TIL{
             text-decoration: none;
             color: black;
             font-weight: bold;
             font-size: 1vw;
+            &:hover{
+                color:blue
+            }
         }
         .Shop{
             text-decoration: none;
             color: black;
             font-weight: bold;
             font-size: 1vw;
+            &:hover{
+                color:blue
+            }
         }
         .Profile{
             display: flex;

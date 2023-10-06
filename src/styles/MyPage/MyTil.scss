@@ -1,0 +1,14 @@
+.MyTilListBox{
+    width: 85%;
+    height: 90%;
+    margin: auto;
+    padding-bottom: 3%;
+    overflow-y: scroll;    
+} 
+.MyTilListBox::-webkit-scrollbar {
+    display: none;
+}
+// .MyTilListBox {
+//     -ms-overflow-style: none; /* 인터넷 익스플로러 */
+//     scrollbar-width: none; /* 파이어폭스 */
+// }

@@ -140,7 +140,6 @@ const SignInForm = () =>{
                         isInvalid={!isValidProfile}
                         isValid={isValidProfile}
                         onChange={handleInputProfile}
-                        readOnly
                     />
                 </Form.Group>
             </Row>
