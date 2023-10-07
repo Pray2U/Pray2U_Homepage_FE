@@ -22,10 +22,10 @@ function App() {
         <Routes>
           <Route path='/' element={<Mainpage/>}/>
           <Route path='/signin' element={<SignIn/>}/>
-          <Route path='/notice/list' element={<Notice/>}/>
+          <Route path='/notice' element={<Notice/>}/>
           <Route path='/notice/create' element={<CreateNotice/>}/>
           <Route path='/notice/detail/:id' element={<ShowNotice/>}/>
-          <Route path='/notice/edit/' element={<EditNotice/>}/>
+          <Route path='/notice/edit/:id' element={<EditNotice/>}/>
           <Route path='/til/' element={<TilPage/>}/>
           <Route path='/til/create' element={<CreateTil/>}/>
           <Route path='/til/edit/:id' element={<CreateTil/>}/>

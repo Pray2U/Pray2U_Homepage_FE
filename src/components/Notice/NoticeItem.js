@@ -1,50 +1,48 @@
-import { useState, useEffect } from 'react';
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import dayjs from 'dayjs';
 
 import '../../styles/Notice/NoticeItem.scss';
 
-const NoticeItem = ({noticeItem}) =>{
+const NoticeItem = ({noticeItem, isClick}) =>{
 
     const navigate = useNavigate();
-    const location = useLocation();
-
-    const [ isClickTitle, setIsClickTitle ] = useState(true);
     
-
     const onClickItem = (id) => {
         navigate(`/notice/detail/${id}`);
     }
 
-    const isClickCheck = () => {
-        const path = location.pathname.split('/');
-        path[2] === 'list' ? setIsClickTitle(true) : setIsClickTitle(false);
+    if(isClick){
+        return(
+            <div className="RowNoticeItemBox">
+                <div className='NoticeItemNum'>
+                    {noticeItem?.postId}
+                </div>
+                <div className='DClickNoticeItemTitle'>
+                    {noticeItem?.title}
+                </div>
+                <div className='NoticeItemCreated'>
+                    {dayjs(noticeItem?.createDate).format('YYYY-MM-DD')}
+                </div>
+                <div className='NoticeItemWriter'>
+                    {noticeItem?.writerName}
+                </div>
+            </div>
+        )
     }
-
-    useEffect(()=>{
-        isClickCheck();
-        console.log(isClickTitle);
-    },[]);
 
     return(
         <div className="RowNoticeItemBox">
             <div className='NoticeItemNum'>
-                {noticeItem?.announcementsId}
+                {noticeItem?.postId}
             </div>
-            {
-                isClickTitle ? 
-                <div className='NoticeItemTitle' onClick={()=>onClickItem(noticeItem?.announcementsId)}>
-                    {noticeItem?.title}
-                </div> :
-                <div className='NoticeItemTitle'>
-                    {noticeItem?.title}
-                </div>
-
-            }
+            <div className='NoticeItemTitle' onClick={()=>onClickItem(noticeItem?.postId)}>
+                {noticeItem?.title}
+            </div>
             <div className='NoticeItemCreated'>
-                {noticeItem?.createDate}
+                {dayjs(noticeItem?.createDate).format('YYYY-MM-DD')}
             </div>
             <div className='NoticeItemWriter'>
-                {noticeItem?.writer}
+                {noticeItem?.writerName}
             </div>
         </div>
     );

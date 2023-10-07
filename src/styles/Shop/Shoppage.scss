@@ -24,7 +24,7 @@
 
         .SubTitle{
             display: flex;
-            align-items: end;
+            align-items: flex-end;
             height: 90%;
             font-size: 1.5vw;
             margin-left: 1%;
@@ -35,7 +35,7 @@
 
         .MyPoint{
             display: flex;
-            align-items: end;
+            align-items: flex-end;
             justify-content: center;
         }
     }
