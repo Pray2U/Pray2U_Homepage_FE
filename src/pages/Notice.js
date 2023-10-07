@@ -1,10 +1,10 @@
 import Header from "../components/Header/Header";
-import NoticeForm from "../components/Notice/NoticeForm";
 import NoticeList from "../components/Notice/NoticeList";
 
 import Pagination from 'react-bootstrap/Pagination';
 import { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import { AiFillPlusSquare } from "react-icons/ai";
 
 import '../styles/Notice/Notice.scss';
 import '../styles/Notice/NoticeButtons.scss';
@@ -13,6 +13,7 @@ import axios from 'axios';
 
 const Notice = () =>{
     const navigate = useNavigate();
+    const pageSize = 15;
     const noticeDummyData = [
         { 
             "announcementsId":1,
@@ -138,18 +139,17 @@ const Notice = () =>{
         }
     ]
     const [ isLoggedIn, setIsLoggedIn ] = useState(true);
-    const [ isAdmin, setIsAdmin ] = useState(false);
+    const [ isAdmin, setIsAdmin ] = useState(true);
     const [ isLodding, setIsLodding ] = useState(false);
-    const [ noticeList, setNoticeList ] = useState([...noticeDummyData]);
+    const [ noticeList, setNoticeList ] = useState(null);
     const [ selectedPage, setSelectedPage ] = useState(1);
     const [ pageSetCnt, setPageSetCnt ] = useState(0);
-    const [ pageNumList, setPageNumList ] = useState([
-        1, 2, 3, 4, 5
-    ]);
+    const [ pageNumList, setPageNumList ] = useState(null);
+    const [ totalPage, setTotalPage ] = useState(0);
 
     useEffect(()=>{
-        // read_NoticeList()
-    },[selectedPage,noticeList])
+        read_NoticeList();
+    },[selectedPage]);
 
 
     const pagePrevMoved = () => {
@@ -157,20 +157,16 @@ const Notice = () =>{
             setSelectedPage(selectedPage-1);
             if((selectedPage%5) == 1){
                 setPageSetCnt(parseInt(selectedPage/5)-1);
-                setPageNumList(pageNumList.map((pageNum,idx) =>
-                    5*(pageSetCnt-1)+(idx+1)    // pageSetCnt-1 한 이유는 pageSetCnt가 아직 업데이트가 안되기 때문
-                ));
             }
         }
     }
 
     const pageNextMoved = () => {
-        setSelectedPage(selectedPage+1);
-        if(!(selectedPage%5)){
-            setPageSetCnt(parseInt(selectedPage/5));
-            setPageNumList(pageNumList.map((pageNum,idx) =>
-                5*(pageSetCnt+1)+(idx+1)    // pageSetCnt-1 한 이유는 pageSetCnt가 아직 업데이트가 안되기 때문
-            ));
+        if(selectedPage < totalPage){
+            setSelectedPage(selectedPage+1);
+            if(!(selectedPage%5)){
+                setPageSetCnt(parseInt(selectedPage/5));
+            }
         }
     }
 
@@ -178,18 +174,14 @@ const Notice = () =>{
         if(pageSetCnt){
             setPageSetCnt(pageSetCnt-1);
             setSelectedPage(5*(pageSetCnt-1)+1);
-            setPageNumList(pageNumList.map((pageNum,idx) =>
-                5*(pageSetCnt-1)+(idx+1)
-            ));
         }    
     }
     
     const pageSetNextMoved = () => {
-        setPageSetCnt(pageSetCnt+1);
-        setSelectedPage(5*(pageSetCnt+1)+1);
-        setPageNumList(pageNumList.map((pageNum,idx) =>
-            5*(pageSetCnt+1)+(idx+1)
-        ));
+        if(pageSetCnt < parseInt(totalPage / 5)){
+            setPageSetCnt(pageSetCnt+1);
+            setSelectedPage(5*(pageSetCnt+1)+1);
+        }
     }
 
     const onChangePageNum = (num) => {
@@ -198,13 +190,24 @@ const Notice = () =>{
 
     const read_NoticeList = async() => {
         try{
-            const url = `api/announcement/all?page=${selectedPage}&size=${15}&sort=id,desc`
-            const response = await axios.get(url);
-            setNoticeList(response.data.content);
+            const url = `${process.env.REACT_APP_API_SERVER}/api/posts?pageNumber=${selectedPage-1}&pageSize=${pageSize}`
+            const response = await axios.get(url,{withCredentials:true});
+            setNoticeList([...response.data.data.content]);
+            let totalpage = response.data.data.totalPages;
+            // let totalpage = 12;
+            setTotalPage(totalpage);
+            create_NoticePageCnt(totalpage);
             setIsLodding(false);
         }catch(e){
             console.log(e);
         }
+    }
+
+    const create_NoticePageCnt = (totalPage) => {
+        let startNum = 5*(pageSetCnt)+1;
+        let endNum = parseInt(totalPage / 5) > pageSetCnt ? startNum+4 : totalPage;
+        const newPageNumList = [...Array(endNum - startNum+1).keys()].map((i) => i + startNum)
+        setPageNumList([...newPageNumList]);
     }
 
     const noticeWritePageMove = () =>{
@@ -222,10 +225,13 @@ const Notice = () =>{
             return(
                 <div className="NoticeContainer">
                     <Header isLoggedIn={isLoggedIn}/>
-                    <NoticeForm/>
+                    <div className="TitleBox">
+                        <div className="EN">Notice</div>
+                        <div className="KR">공지사항</div>
+                    </div>
                     <div className="NoticeButtonsBox">
-                        <Link to='/notice/create' className="WriteButton" >
-                            <div>쓰기</div>
+                        <Link to='/notice/create' className="WriteButton" hidden={isAdmin ? false : true}>
+                            <AiFillPlusSquare className="NoticeCreateButton"/>
                         </Link>
                     </div>
                     <NoticeList noticeList={noticeList}/>
@@ -233,7 +239,7 @@ const Notice = () =>{
                         <Pagination.First onClick={pageSetPreMoved}/>
                         <Pagination.Prev onClick={pagePrevMoved}/>
                         {
-                            pageNumList.map(pageNum =>
+                            pageNumList?.map(pageNum =>
                                 selectedPage === pageNum ?
                                 <Pagination.Item 
                                     key={pageNum} 

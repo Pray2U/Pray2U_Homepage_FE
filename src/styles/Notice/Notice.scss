@@ -1,8 +1,69 @@
 .NoticeContainer{
     width: 75vw;
     height: 100vh;
-    margin: 0 auto;
-
+    margin: auto;
+    background-color: #F5F7FF;
+    
+    .TitleBox{   
+        display: flex;
+        align-items: center;
+        width: 80%;
+        height: 10%;
+        margin: auto;
+        margin-top: 2%;
+        .EN{
+            align-items: center;
+            vertical-align: text-bottom;
+            width: 22%;
+            height: 100%;
+            font-size: 3.5vw;
+            font-weight: bold;
+            color: black;
+        }
+        .KR{
+            display: flex;
+            align-items: flex-end;
+            width: 10%;
+            height: 90%;
+            font-weight: bold;
+            font-size: 1.5vw;
+            color: black;
+        }
+    }
+    .NoticeButtonsBox{
+        display: flex;
+        align-items: center;
+        width: 80%;
+        height: 5%;
+        margin: auto;
+        .WriteButton{
+            width: 5%;
+            height: 100%;
+            color: #00C371;
+            margin-left: auto;
+            cursor: pointer;
+            .NoticeCreateButton{
+                width: 100%;
+                height: 100%;
+            }
+        }
+        .SaveButton{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: auto;
+            width: 5%;
+            height: 90%;
+            cursor: pointer;
+            font-weight: bold;
+            color: white;
+            background-color: #f0ba99;
+            border-radius: 0.5em;
+            &:hover{
+                background-color: #e0a986;
+            }
+        }
+    }
     .PaginationBox{
         display: flex;
         width: 100%;
