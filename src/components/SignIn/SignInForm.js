@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 
@@ -57,6 +57,8 @@ const SignInForm = () =>{
     };
 
     const handleInputEmail = (e) => {
+        // Unnecessary escape character: \. 경고를 비활성화하기 위해 아래 주석 코드 삽입
+        // eslint-disable-next-line
         const emailPatter = /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/;
         setEmail(e.target.value);
         setIsValidEmail(emailPatter.test(e.target.value));
@@ -75,17 +77,21 @@ const SignInForm = () =>{
     const post_signIn = async () =>{
         try{
             const userInfo = {
-                name: name,
-                phonenumber: phoneNum,
+                username: name,
+                phoneNumber: phoneNum,
                 email: email,
                 profileImgUrl: profile,
+                // profileImgUrl: JSON.stringify(profile),
             };
             console.log(userInfo);
-            // const url = '/api/users/infoform';
+            // 2023.10.06에 테스트 해본결과 400에러 뜨기 떄문에 잠시 주석 처리
+            // const url = `${process.env.REACT_APP_API_SERVER}/api/users/infoform`;
             // const response = await axios.post(url,userInfo,{withCredentials:true});
-            // if(response){
-            //     navigate('/');
-            // }
+            // console.log(response);
+            const response = true
+            if(response){
+                navigate('/');
+            }
         }catch(e){
             console.log(e);
         }

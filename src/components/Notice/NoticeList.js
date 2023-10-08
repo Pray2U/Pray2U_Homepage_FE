@@ -8,7 +8,7 @@ const NoticeList = ({noticeList}) => {
         <div className="NoticeListBox">
             <NoticeRowLine/>
             {
-                noticeList?.map(notice => <NoticeItem key={notice.announcementsId} noticeItem={notice}/>)
+                noticeList?.map(notice => <NoticeItem key={notice.postId} noticeItem={notice} isClick={false}/>)
             }
         </div>
     );

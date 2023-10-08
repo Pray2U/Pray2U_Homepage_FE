@@ -1,0 +1,59 @@
+.MyPageTitleBox{
+    display: flex;
+    width: 80%;
+    height: 15%;
+    margin: auto;
+    font-weight: bold;
+    align-items: center;
+
+    .MyPageTitle{
+        display: flex;
+        align-items: flex-end;
+        vertical-align: text-bottom;
+        height: 80%;
+        font-size: 3vw;
+        color: black;
+    }
+
+    .MyPageSubTitle{
+        display: flex;
+        align-items: flex-end;
+        height: 80%;
+        font-size: 1.5vw;
+        margin-left: 2%;
+        margin-right: auto;
+        color: black;
+        vertical-align: bottom;
+    }
+}
+.MyPageContainer{
+    width: 80%;
+    height: 80%;
+    background-color: white;
+    box-shadow: 1px 1px 3px 1px #dadce0;
+    border-radius: 1em;
+    font-weight: bold;
+    align-items: center;
+    margin: auto;
+    padding-bottom: 1%;
+}
+
+// .MyPageOverFlowContainer{
+//     width: 80%;
+//     height: 80%;
+//     height: auto;
+//     overflow: hidden;
+//     margin: auto;
+//     background-color: white;
+//     box-shadow: 1px 1px 3px 1px #dadce0; 
+//     border-radius: 1em;
+//     font-weight: bold;
+//     align-items: center;
+//     margin: auto;
+//     overflow-y: scroll;
+//     -ms-overflow-style: none;
+// }
+
+// ::-webkit-scrollbar {
+//     display: none;
+// }

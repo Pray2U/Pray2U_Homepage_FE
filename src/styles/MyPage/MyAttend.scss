@@ -1,0 +1,31 @@
+.MyAttendBox{
+    width: 80%;
+    height: 90%;
+    margin: auto;
+
+    .Calendar{
+        margin: auto;
+        margin-top: 2.5%;
+        .check{
+            margin-top: 6px;
+            color: #56A9E3;
+        }
+    }
+
+    .AttendButton{
+        display: flex;
+        width: 50%;
+        height: 10%;
+        margin: auto;
+        margin-top: 2.5%;
+        align-items: center;
+        justify-content: center;
+        background-color: black;
+        color: white;
+        border-radius: 1em;
+        cursor: pointer;
+        &:hover{
+            background-color: rgb(25, 24, 24);
+        }
+    }
+}

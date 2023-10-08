@@ -8,8 +8,12 @@ import EditNotice from './pages/EditNotice';
 import TilPage from './pages/Tilpage';
 import CreateTil from './pages/CreateTil';
 import Eventpage from './pages/Eventpage';
+import Shoppage from './pages/Shoppage';
+import Mypage from './pages/Mypage';
+import AdminPage from './pages/AdminPage';
 
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+
 
 function App() {
   return (
@@ -18,14 +22,17 @@ function App() {
         <Routes>
           <Route path='/' element={<Mainpage/>}/>
           <Route path='/signin' element={<SignIn/>}/>
-          <Route path='/notice/list' element={<Notice/>}/>
+          <Route path='/notice' element={<Notice/>}/>
           <Route path='/notice/create' element={<CreateNotice/>}/>
           <Route path='/notice/detail/:id' element={<ShowNotice/>}/>
-          <Route path='/notice/edit/' element={<EditNotice/>}/>
+          <Route path='/notice/edit/:id' element={<EditNotice/>}/>
           <Route path='/til/' element={<TilPage/>}/>
           <Route path='/til/create' element={<CreateTil/>}/>
           <Route path='/til/edit/:id' element={<CreateTil/>}/>
-          <Route path='event' element={<Eventpage/>}/>
+          <Route path='/event' element={<Eventpage/>}/>
+          <Route path='/shop' element={<Shoppage />}/>
+          <Route path='/mypage/info' element={<Mypage/>}/>
+          <Route path='/admin' element={<AdminPage/>}/>
           <Route path='/*' element={<Error/>}/>
         </Routes>
       </Router>
