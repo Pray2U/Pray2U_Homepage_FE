@@ -1,29 +1,38 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import CalendarModal from './CalendarModal';
 import dayjs from 'dayjs';
-
+import axios from 'axios';
 import Form from 'react-bootstrap/Form';
 import { FcCalendar } from "react-icons/fc";
 
 import '../../styles/Event/EventEditor.scss';
-import axios from 'axios';
 
 const EventEditor = ({canselAddEvent, isAddEventView, eventInfo, saveEvent}) =>{
 
     const hourTime = Array(24).fill(0);
     const minuteTime = ['00','15', '30', '45'];
     const regExp = /[:~]/g;
-    const ss = eventInfo ? eventInfo?.time.split(regExp) : ["00","00","00","00"];
+    const ss = eventInfo ? eventInfo?.eventStartDate.split(regExp) : ["00","00","00","00"];
 
     const [title, setTitle] = useState(eventInfo?.title);
-    const [date, setDate] = useState(eventInfo?.date);
-    const [startHourTime, setStartHourTime] = useState(ss[0]);
-    const [startMinuteTime, setStartMinuteTime] = useState(ss[1]);
-    const [endHourTime, setEndHourTime] = useState(ss[2]);
-    const [endMinuteTime, setEndMinuteTime] = useState(ss[3]);
+    const [startDate, setStartDate] = useState(eventInfo?.eventStartDate);
+    const [endDate, setEndDate] = useState(eventInfo?.eventEndDate);
+    const [startHourTime, setStartHourTime] = useState("00");
+    const [startMinuteTime, setStartMinuteTime] = useState("00");
+    const [endHourTime, setEndHourTime] = useState("00");
+    const [endMinuteTime, setEndMinuteTime] = useState("00");
     const [contents, setContents] = useState(eventInfo?.contents);
     const [isCalendarOpen, setIsCalendarOpen] = useState(false);
+
+    useEffect(()=>{
+        if(eventInfo){
+            setStartHourTime(dayjs(eventInfo?.eventStartDate).format('HH'));
+            setStartMinuteTime(dayjs(eventInfo?.eventStartDate).format('mm'));
+            setEndHourTime(dayjs(eventInfo?.eventEndDate).format('HH'));
+            setEndMinuteTime(dayjs(eventInfo?.eventEndDate).format('mm'));
+        }
+    },[]);
 
     const onChangeTitle = (e) =>{
         setTitle(e.target.value);
@@ -63,36 +72,35 @@ const EventEditor = ({canselAddEvent, isAddEventView, eventInfo, saveEvent}) =>{
 
     const post_Event = async(id) => {
         try{
-            let time = `${startHourTime}:${startMinuteTime} ~ ${endHourTime}:${endMinuteTime}`;
-            console.log(title, date, time, contents);
-            if(title && date && time && contents){
+            let start = dayjs(startDate).format('YYYY-MM-DD');
+            let eventStartDate = `${start}T${startHourTime}:${startMinuteTime}:00`;
+            let eventEndDate = `${start}T${endHourTime}:${endMinuteTime}:00`;
+            if(title && eventStartDate && eventEndDate && contents){
                 const postData = {
                     title:title,
-                    date:dayjs(date).format("YYYY-MM-DD"),
-                    time:time,
+                    eventStartDate: eventStartDate,
+                    eventEndDate: eventEndDate,
                     contents:contents
                 };
-                let url;
-                if(id){
-                    url = ``        // 수정
-                    postData.eventsId = id;
-                    // 위의 데이터는 임시 삭제해도 됨
+                let url = `${process.env.REACT_APP_API_SERVER}/api/events`;
+                if(id){        // 수정
+                    postData.eventId = id;
+                    const response = await axios.put(url, postData, {withCredentials:true});
+                    if (response.status == 200){
+                        saveEvent(response.data.data);
+                        canselAddEvent();
+                    }
                 }else{
-                    url = ``        // 생성
-                    postData.eventsId = parseInt(startHourTime + startMinuteTime);
-                    // 위의 데이터는 임시 삭제해도 됨
+                    const response = await axios.post(url, postData, {withCredentials:true});
+                    if(response.status == 200){
+                        saveEvent(response.data.data);
+                        canselAddEvent();
+                    }
                 }
-                // const response = await axios.post(url, postData);
-                // if (response.status == 201 && response.status == 200){
-                //     // 데이터 추가
-                //     saveEvent(response.data.contents);
-                // }
-                console.log(postData);
-                saveEvent(postData);
-                canselAddEvent();
             }
             else{
                 console.log("입력칸 채워줘");
+                //모달창 띄우기
             }
         }catch(e){
             console.log(e);
@@ -114,11 +122,13 @@ const EventEditor = ({canselAddEvent, isAddEventView, eventInfo, saveEvent}) =>{
                 <div className='DateTitle'>Date : </div>
                 <FcCalendar className='Icon' onClick={openCalendarModal}/>
                 {
-                    isCalendarOpen ?
-                        <CalendarModal setSelectedDay={setDate} closeCalendarModal={closeCalendarModal}/>
-                        : date ? 
-                        <div className='Date'>{dayjs(date).format("YYYY-MM-DD")}</div>
-                        : <></>
+                    startDate && !isCalendarOpen ? 
+                        <div className='Date'>{dayjs(startDate).format("YYYY-MM-DD")}</div>
+                        : isCalendarOpen ?
+                            <CalendarModal setSelectedDay={setStartDate} closeCalendarModal={closeCalendarModal}/>
+                        // : date ? 
+                        // <div className='Date'>{dayjs(date).format("YYYY-MM-DD")}</div>
+                            : <></>
                 }
             </div>
             <div className='EditorTime'>
@@ -130,7 +140,7 @@ const EventEditor = ({canselAddEvent, isAddEventView, eventInfo, saveEvent}) =>{
                     {
                         hourTime.map((_, idx) =>{
                             const value = idx < 10 ? `0${idx}` : idx.toString();
-                            return <option value={value}>{value}</option>
+                            return <option key={idx*10} value={value}>{value}</option>
                         })
                     }
                 </Form.Select>
@@ -141,7 +151,7 @@ const EventEditor = ({canselAddEvent, isAddEventView, eventInfo, saveEvent}) =>{
                     value={startMinuteTime}>
                     {
                         minuteTime.map(minute =>{
-                            return <option value={minute}>{minute}</option>
+                            return <option key={minute*10} value={minute}>{minute}</option>
                         })
                     }
                 </Form.Select>
@@ -154,7 +164,8 @@ const EventEditor = ({canselAddEvent, isAddEventView, eventInfo, saveEvent}) =>{
                         hourTime.map((_, idx) =>{
                             if (parseInt(startHourTime) <= idx){
                                 const value = idx < 10 ? `0${idx}` : idx.toString();
-                                return <option value={value}>{value}</option>
+                                return <option key={idx*100} value={value}>{value}</option>
+                                //idx*100 -> 시작 시간의 시간 리스트 끼리 key값을 다르게 나타내기 위해
                             }
                         })
                     }
@@ -168,9 +179,10 @@ const EventEditor = ({canselAddEvent, isAddEventView, eventInfo, saveEvent}) =>{
                         minuteTime.map(minute =>{
                             if(startHourTime === endHourTime){
                                 if (parseInt(startMinuteTime) <= parseInt(minute))
-                                    return <option value={minute}>{minute}</option>
+                                    return <option key={minute*100} value={minute}>{minute}</option>
                             }else{
-                                return <option value={minute}>{minute}</option>
+                                return <option key={minute*100} value={minute}>{minute}</option>
+                                //minute*100 -> 시작 시간의 분 리스트 끼리 key값을 다르게 나타내기 위해
                             }
                         })
                     }
@@ -186,7 +198,7 @@ const EventEditor = ({canselAddEvent, isAddEventView, eventInfo, saveEvent}) =>{
             </div>
             <div className='EditorButtonBox'>
                 <div className='EditorCancelButton' onClick={()=>canselAddEvent()}>취소</div>
-                <div className='EditorSaveButton' onClick={()=>post_Event(eventInfo?.eventsId)}>저장</div>
+                <div className='EditorSaveButton' onClick={()=>post_Event(eventInfo?.eventId)}>저장</div>
             </div>
         </div>
     );
