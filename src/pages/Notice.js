@@ -14,130 +14,7 @@ import axios from 'axios';
 const Notice = () =>{
     const navigate = useNavigate();
     const pageSize = 15;
-    const noticeDummyData = [
-        { 
-            "announcementsId":1,
-            "title": "공지",
-            "content": "오늘의 공지",
-            "fileUrl":"http:~",
-            "createDate": "2023-06-31",
-            "modifiedDate": "2023-07-01",
-        },
-        {
-            "announcementsId":2,
-            "title": "공지",
-            "content": "오늘의 공지",
-            "fileUrl":"http:~",
-            "createDate": "2023-06-31",
-            "modifiedDate": "2023-07-01"
-        },
-        {
-            "announcementsId":3,
-            "title": "공지",
-            "content": "오늘의 공지",
-            "fileUrl":"http:~",
-            "createDate": "2023-06-31",
-            "modifiedDate": "2023-07-01"
-        },
-        {
-            "announcementsId":4,
-            "title": "공지",
-            "content": "오늘의 공지",
-            "fileUrl":"http:~",
-            "createDate": "2023-06-31",
-            "modifiedDate": "2023-07-01"
-        },
-        
-        {
-            "announcementsId":5,
-            "title": "공지",
-            "content": "오늘의 공지",
-            "fileUrl":"http:~",
-            "createDate": "2023-06-31",
-            "modifiedDate": "2023-07-01"
-        },
-        {
-            "announcementsId":6,
-            "title": "공지",
-            "content": "오늘의 공지",
-            "fileUrl":"http:~",
-            "createDate": "2023-06-31",
-            "modifiedDate": "2023-07-01"
-        },
-        {
-            "announcementsId":7,
-            "title": "공지",
-            "content": "오늘의 공지",
-            "fileUrl":"http:~",
-            "createDate": "2023-06-31",
-            "modifiedDate": "2023-07-01"
-        },
-        
-        {
-            "announcementsId":8,
-            "title": "공지",
-            "content": "오늘의 공지",
-            "fileUrl":"http:~",
-            "createDate": "2023-06-31",
-            "modifiedDate": "2023-07-01"
-        },
-        {
-            "announcementsId":9,
-            "title": "공지",
-            "content": "오늘의 공지",
-            "fileUrl":"http:~",
-            "createDate": "2023-06-31",
-            "modifiedDate": "2023-07-01"
-        },
-        {
-            "announcementsId":10,
-            "title": "공지",
-            "content": "오늘의 공지",
-            "fileUrl":"http:~",
-            "createDate": "2023-06-31",
-            "modifiedDate": "2023-07-01"
-        },
-        {
-            "announcementsId":11,
-            "title": "공지",
-            "content": "오늘의 공지",
-            "fileUrl":"http:~",
-            "createDate": "2023-06-31",
-            "modifiedDate": "2023-07-01"
-        },
-        {
-            "announcementsId":12,
-            "title": "공지",
-            "content": "오늘의 공지",
-            "fileUrl":"http:~",
-            "createDate": "2023-06-31",
-            "modifiedDate": "2023-07-01"
-        },
-        {
-            "announcementsId":13,
-            "title": "공지",
-            "content": "오늘의 공지",
-            "fileUrl":"http:~",
-            "createDate": "2023-06-31",
-            "modifiedDate": "2023-07-01"
-        },
-        {
-            "announcementsId":14,
-            "title": "공지",
-            "content": "오늘의 공지",
-            "fileUrl":"http:~",
-            "createDate": "2023-06-31",
-            "modifiedDate": "2023-07-01"
-        },
-        {
-            "announcementsId":15,
-            "title": "공지",
-            "content": "오늘의 공지",
-            "fileUrl":"http:~",
-            "createDate": "2023-06-31",
-            "modifiedDate": "2023-07-01"
-        }
-    ]
+
     const [ isLoggedIn, setIsLoggedIn ] = useState(true);
     const [ isAdmin, setIsAdmin ] = useState(true);
     const [ isLodding, setIsLodding ] = useState(false);
@@ -194,7 +71,6 @@ const Notice = () =>{
             const response = await axios.get(url,{withCredentials:true});
             setNoticeList([...response.data.data.content]);
             let totalpage = response.data.data.totalPages;
-            // let totalpage = 12;
             setTotalPage(totalpage);
             create_NoticePageCnt(totalpage);
             setIsLodding(false);
@@ -210,8 +86,8 @@ const Notice = () =>{
         setPageNumList([...newPageNumList]);
     }
 
-    const noticeWritePageMove = () =>{
-
+    if(!isLoggedIn){
+        navigate('/error');
     }
     
     if(isLodding){
@@ -221,48 +97,43 @@ const Notice = () =>{
             </div>
         );
     }else{
-        if(isLoggedIn){
-            return(
-                <div className="NoticeContainer">
-                    <Header isLoggedIn={isLoggedIn}/>
-                    <div className="TitleBox">
-                        <div className="EN">Notice</div>
-                        <div className="KR">공지사항</div>
-                    </div>
-                    <div className="NoticeButtonsBox">
-                        <Link to='/notice/create' className="WriteButton" hidden={isAdmin ? false : true}>
-                            <AiFillPlusSquare className="NoticeCreateButton"/>
-                        </Link>
-                    </div>
-                    <NoticeList noticeList={noticeList}/>
-                    <Pagination className='PaginationBox'>
-                        <Pagination.First onClick={pageSetPreMoved}/>
-                        <Pagination.Prev onClick={pagePrevMoved}/>
-                        {
-                            pageNumList?.map(pageNum =>
-                                selectedPage === pageNum ?
-                                <Pagination.Item 
-                                    key={pageNum} 
-                                    active={true}>
-                                    {pageNum}
-                                </Pagination.Item> :
-                                <Pagination.Item 
-                                    key={pageNum} 
-                                    active={false} 
-                                    onClick={()=>onChangePageNum(pageNum)}>
-                                        {pageNum}
-                                </Pagination.Item>
-                            )
-                        }
-                        <Pagination.Next onClick={pageNextMoved}/>
-                        <Pagination.Last onClick={pageSetNextMoved}/>
-                    </Pagination>
+        return(
+            <div className="NoticeContainer">
+                <Header isLoggedIn={isLoggedIn}/>
+                <div className="TitleBox">
+                    <div className="EN">Notice</div>
+                    <div className="KR">공지사항</div>
                 </div>
-            );
-        }
-        else{
-            navigate('/');
-        }
+                <div className="NoticeButtonsBox">
+                    <Link to='/notice/create' className="WriteButton" hidden={isAdmin ? false : true}>
+                        <AiFillPlusSquare className="NoticeCreateButton"/>
+                    </Link>
+                </div>
+                <NoticeList noticeList={noticeList}/>
+                <Pagination className='PaginationBox'>
+                    <Pagination.First onClick={pageSetPreMoved}/>
+                    <Pagination.Prev onClick={pagePrevMoved}/>
+                    {
+                        pageNumList?.map(pageNum =>
+                            selectedPage === pageNum ?
+                            <Pagination.Item 
+                                key={pageNum} 
+                                active={true}>
+                                {pageNum}
+                            </Pagination.Item> :
+                            <Pagination.Item 
+                                key={pageNum} 
+                                active={false} 
+                                onClick={()=>onChangePageNum(pageNum)}>
+                                    {pageNum}
+                            </Pagination.Item>
+                        )
+                    }
+                    <Pagination.Next onClick={pageNextMoved}/>
+                    <Pagination.Last onClick={pageSetNextMoved}/>
+                </Pagination>
+            </div>
+        );
     }
 }
 
