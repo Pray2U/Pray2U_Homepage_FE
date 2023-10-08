@@ -24,8 +24,9 @@
         }
 
         .Month{
+            // eslint-disable-next-line 
             display: flex;
-            align-items: end;
+            align-items: flex-end;
             height: 80%;
             font-size: 1.5vw;
             font-weight: bold;
@@ -34,7 +35,7 @@
         }
         .Year{
             display: flex;
-            align-items: end;
+            align-items: flex-end;
             width: 20%;
             height: 80%;
             font-size: 1.5vw;
