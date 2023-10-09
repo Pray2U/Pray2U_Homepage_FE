@@ -7,7 +7,7 @@ const TodoList = ({todos, onRemove, onToggle}) => {
         <div className="TodoListBox">
             {
                 todos?.map(todo =>(
-                    <TodoItem todo={todo} key={todo.eventsId} onRemove={onRemove} onToggle={onToggle}/>
+                    <TodoItem todo={todo} key={todo.eventId} onRemove={onRemove} onToggle={onToggle}/>
                 ))
             }
         </div>

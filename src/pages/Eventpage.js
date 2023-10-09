@@ -1,8 +1,10 @@
 import axios from "axios";
 import Calendar from 'react-calendar';
 import dayjs from 'dayjs';
+import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
+import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';
 import { useState, useEffect } from "react";
-
+import { useNavigate } from "react-router-dom";
 import Header from "../components/Header/Header";
 import TodoList from "../components/Event/TodoList";
 import EventEditor from "../components/Event/EventEditor";
@@ -10,8 +12,12 @@ import EventEditor from "../components/Event/EventEditor";
 import '../styles/Event/Eventpage.scss';
 import '../styles/Event/Calender.scss';
 
-
 const Eventpage = () => {
+
+    dayjs.extend(isSameOrBefore);
+    dayjs.extend(isSameOrAfter);
+
+    const navigate = useNavigate();
 
     const dayOfWeek = {
         1:'Monday',
@@ -23,74 +29,24 @@ const Eventpage = () => {
         0:'Sunday',
     }
 
-    const dummyData = [
-        {
-            "eventsId" : 1,
-            "title": "Work Time",
-            "date": "2023-07-20",
-            "time": "06:00~08:00",
-            "contents": "이벤트",
-            "createDate": "2023-06-31",
-            "modifiedDate": "2023-07-01"
-        },
-        {
-            "eventsId" : 2,
-            "title": "Work Time",
-            "date": "2023-07-22",
-            "time": "06:00~08:00",
-            "contents": "이벤트",
-            "createDate": "2023-06-31",
-            "modifiedDate": "2023-07-01"
-        },
-        {
-            "eventsId" : 3,
-            "title": "Work Time",
-            "date": "2023-07-22",
-            "time": "06:00~08:00",
-            "contents": "이벤트",
-            "createDate": "2023-06-31",
-            "modifiedDate": "2023-07-01"
-        },
-        {
-            "eventsId" : 4,
-            "title": "Work Time",
-            "date": "2023-07-22",
-            "time": "06:00~08:00",
-            "contents": "이벤트",
-            "createDate": "2023-06-31",
-            "modifiedDate": "2023-07-01"
-        },
-        {
-            "eventsId" : 5,
-            "title": "Work Time",
-            "date": "2023-07-22",
-            "time": "06:00~08:00",
-            "contents": "이벤트",
-            "createDate": "2023-06-31",
-            "modifiedDate": "2023-07-01"
-        },
-        {
-            "eventsId" : 12,
-            "title": "Work Time",
-            "date": "2023-07-22",
-            "time": "06:00~08:00",
-            "contents": "이벤트",
-            "createDate": "2023-06-31",
-            "modifiedDate": "2023-07-01"
-        }
-    ]
-
     const [ isLoggedIn, setIsLoggedIn ] = useState(true);
-    const [ eventApiData, setEventApiData ] = useState(dummyData);
+    const [ eventApiData, setEventApiData ] = useState(null);
     const [ selectedDay, setSelectedDay ] = useState(new Date());
     const [ isAddEventView, setIsAddEventView ] = useState(false);
     const [ editEventData, setEditEventData ] = useState(null);
+    const [ selectedYear, setSelectedYear ] = useState(dayjs(new Date()).format('YYYY'));
+    const [ selectedMonth, setSelectedMonth ] = useState(dayjs(new Date()).format('MM'));
     
     const read_eventData = async() =>{
         try{
-            const url = `url`;
-            const response = await axios.get(url);
-            setEventApiData(response.data.content);
+            // let year = dayjs(selectedDay).format('YYYY');
+            // let month = dayjs(selectedDay).format('M');
+            const url = `${process.env.REACT_APP_API_SERVER}/api/events/${selectedYear}/${selectedMonth}`;
+            const response = await axios.get(url,{withCredentials:true});
+            if(response.status == 200){
+                console.log(response.data.data);
+                setEventApiData(response.data.data);
+            }
         }catch(e){
             console.log(e);
         }
@@ -98,7 +54,7 @@ const Eventpage = () => {
 
     const onClickDay = () => {
         const formatDate = dayjs(selectedDay).format('YYYY-MM-DD');
-        console.log(formatDate);
+        // console.log(formatDate);
         setSelectedDay(formatDate);
         if(isAddEventView){
             setIsAddEventView(false);
@@ -107,28 +63,27 @@ const Eventpage = () => {
 
     const onRemove = async(id) => {
         try{
-            //모달창 띄우고
-            // const url = `${id}`;
-            // const response = await axios.post(url);
-            // if(response.status === 200){
-
-            // }
-            // setTodos(todos.filter(event => event.eventsId !== id));
-            setEventApiData(eventApiData => eventApiData.filter(event => event.eventsId !== id));
-
+            // 모달창 띄우고
+            const url = `${process.env.REACT_APP_API_SERVER}/api/events/${id}`;
+            const response = await axios.delete(url,{withCredentials:true});
+            if(response.status === 200){
+                // setTodos(todos.filter(event => event.eventId !== id));
+                setEventApiData(eventApiData => eventApiData.filter(event => event.eventId !== id));
+            }else{
+                // 에러 모달창 띄위기
+            }
         }catch(e){
             console.log(e);
         }
     }
 
     const onToggle = (id) =>{
-        setIsAddEventView(true);
-        console.log(id);
         eventApiData.map(event => {
-            if (event.eventsId === id){
+            if (event.eventId == id){
                 setEditEventData(event);
             }
         });
+        setIsAddEventView(true);
     }
 
     const addEvent = () =>{
@@ -141,36 +96,62 @@ const Eventpage = () => {
     }
 
     const saveEvent = (data) =>{
-        const isExist = eventApiData.some((event) => event.eventsId === data.eventsId);
+        const isExist = eventApiData.some((event) => event.eventId === data.eventId);
         if(isExist){
             setEventApiData(eventApiData => 
-                eventApiData.map(event => event.eventsId === data.eventsId ? {...data}: event));
+                eventApiData.map(event => event.eventId === data.eventId ? {...data}: event));
         }
         else{
             setEventApiData(eventApiData => eventApiData.concat(data));
         }   
     }
+    
+    const onChangeYearMonth = (props) => {
+        if(props.action !== 'drillUp'){
+            setSelectedYear(dayjs(props.activeStartDate).format('YYYY'));
+            setSelectedMonth(dayjs(props.activeStartDate).format('MM'));
+        }
+    }
 
     const addDot = ({ date }) => {
         // 해당 날짜(하루)에 추가할 컨텐츠의 배열
         const contents = [];
-
         // date(각 날짜)가  리스트의 날짜와 일치하면 해당 컨텐츠 추가
-        if (eventApiData.find((day) => day.date === dayjs(date).format('YYYY-MM-DD'))){
-            contents.push(
-                <>
-                    <div className="dot"/>
-                </>
-            );
+        let key;
+        date = dayjs(date).format('YYYY-MM-DD');
+        for(let i=0; i < eventApiData.length; i++){
+            let sd = dayjs(eventApiData[i].eventStartDate).format('YYYY-MM-DD');
+            let ed = dayjs(eventApiData[i].eventEndDate).format('YYYY-MM-DD');
+            if(dayjs(date).isSameOrAfter(sd) && dayjs(date).isSameOrBefore(ed)){
+                contents.push(
+                    <>
+                        <div className="dot"/>
+                    </>
+                );
+                key = eventApiData[i].eventId;
+                break;
+            }
         }
-        return <div>{contents}</div>; // 각 날짜마다 해당 요소가 들어감
+        
+        return <div key={key}>{contents}</div>; // 각 날짜마다 해당 요소가 들어감
     };
 
     useEffect(()=>{
-        // read_eventData();
-        onClickDay();
-    },[selectedDay])
+        read_eventData();
+        // onClickDay();
+    },[selectedYear, selectedMonth]);
 
+    if(!isLoggedIn){
+        navigate('error');
+    }
+
+    if(!eventApiData){
+        return(
+            <div>
+                로딩 중
+            </div>
+        )
+    }
 
     return(
         <div className="EventContainer">
@@ -191,6 +172,7 @@ const Eventpage = () => {
                         minDate={new Date(2023,1,1)}
                         maxDate={new Date(2025,12,31)}
                         formatDay={(locale, date) => dayjs(date).format('D')}
+                        onActiveStartDateChange={(action) =>  onChangeYearMonth(action)}
                         calendarType='US'
                         tileContent={addDot}
                     />
@@ -205,12 +187,12 @@ const Eventpage = () => {
                         !isAddEventView ?
                             <>
                                 <TodoList 
-                                    todos={eventApiData.filter((event) => dayjs(event.date).isSame(selectedDay))} 
+                                    todos={eventApiData.filter((event) => dayjs(dayjs(event.eventStartDate).format('YYYY-MM-DD')).isSame(selectedDay))} 
                                     onRemove={onRemove} 
                                     onToggle={onToggle}/>
                                 <div className="AddEventButton" onClick={addEvent}> + Add a new Event</div>
                             </>
-                        : <EventEditor 
+                        :  <EventEditor 
                             canselAddEvent={canselAddEvent} 
                             isAddEventView={isAddEventView} 
                             eventInfo={editEventData} 
