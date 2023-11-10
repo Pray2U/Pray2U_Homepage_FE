@@ -5,13 +5,13 @@ import { AiOutlineDownload } from "react-icons/ai";
 import parse from 'html-react-parser';
 import axios from "axios";
 
-import CommentForm from "../components/Comment/CommentForm";
-import SideMenu from "../components/SideMenu";
+import CommentForm from "../../components/Comment/CommentForm";
+import SideMenu from "../../components/SideMenu";
 
-import { getCookie, isCheckAdmin } from "../util/auth";
-import { noticeTime } from "../util/time";
+import { getCookie, isCheckAdmin } from "../../util/auth";
+import { noticeTime } from "../../util/time";
 
-import '../styles/Notice/NoticeDetail.scss';
+import '../../styles/Notice/NoticeDetail.scss';
 
 
 const NoticeDetail = () =>{

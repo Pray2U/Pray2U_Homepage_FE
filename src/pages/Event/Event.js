@@ -7,14 +7,14 @@ import dayjs from 'dayjs';
 import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
 import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';
 
-import Title from "../components/Title/Title";
-import TodoList from "../components/Event/TodoList";
-import EventEditor from "../components/Event/EventEditor";
-import Footer from "../components/Footer";
+import Title from "../../components/Title/Title";
+import TodoList from "../../components/Event/TodoList";
+import EventEditor from "../../components/Event/EventEditor";
+import Footer from "../../components/Footer";
 
-import '../styles/Event/Event.scss';
-import '../styles/Event/Calendar.scss';
-import { getCookie } from "../util/auth";
+import '../../styles/Event/Event.scss';
+import '../../styles/Event/Calendar.scss';
+import { getCookie } from "../../util/auth";
 
 dayjs.extend(isSameOrBefore);
 dayjs.extend(isSameOrAfter);

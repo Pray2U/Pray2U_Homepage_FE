@@ -1,14 +1,14 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { getCookie } from "../util/auth";
+import { getCookie } from "../../util/auth";
 
-import MyShopItem from "../components/Shop/MyShopItem";
-import MypageHeader from "../components/Header/MypageHeader";
-import Title from "../components/Title/Title";
-import Footer from "../components/Footer";
+import MyShopItem from "../../components/Shop/MyShopItem";
+import MypageHeader from "../../components/Header/MypageHeader";
+import Title from "../../components/Title/Title";
+import Footer from "../../components/Footer";
 
-import '../styles/MyPage/MyShop.scss';
+import '../../styles/MyPage/MyShop.scss';
 
 const MyShop = () =>{  
 

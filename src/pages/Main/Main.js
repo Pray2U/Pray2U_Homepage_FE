@@ -1,13 +1,13 @@
 import  { React, useEffect, useState} from "react";
 
-import FullPageScroll from "../components/FullPage/FullPageScroll";
-import Carousels from "../components/Main/Carousels";
-import Caterogies from "../components/Main/Categories";
-import PointRank from "../components/Main/PointRank";
-import ImageCards from "../components/Main/ImageCards";
+import FullPageScroll from "../../components/FullPage/FullPageScroll";
+import Carousels from "../../components/Main/Carousels";
+import Caterogies from "../../components/Main/Categories";
+import PointRank from "../../components/Main/PointRank";
+import ImageCards from "../../components/Main/ImageCards";
 
-import '../styles/Main/Main.scss';
-import { checkLogin } from "../util/auth";
+import '../../styles/Main/Main.scss';
+import { checkLogin } from "../../util/auth";
 
 const Main = () => {
 

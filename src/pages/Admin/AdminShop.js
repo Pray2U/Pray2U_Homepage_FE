@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { getCookie, isCheckAdmin } from "../util/auth";
+import { getCookie, isCheckAdmin } from "../../util/auth";
 import axios from "axios";
 
-import AdminSideMenu from "../components/Admin/AdminSideMenu";
-import Footer from "../components/Footer";
-import Title from "../components/Title/Title";
-import AdminItem from "../components/Admin/AdminItem";
-import Paging from "../components/Paging";
+import AdminSideMenu from "../../components/Admin/AdminSideMenu";
+import Footer from "../../components/Footer";
+import Title from "../../components/Title/Title";
+import AdminItem from "../../components/Admin/AdminItem";
+import Paging from "../../components/Paging";
 
-import '../styles/Admin/AdminShop.scss';
+import '../../styles/Admin/AdminShop.scss';
 
 
 const AdminShop = () => {

@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { getCookie } from '../util/auth';
+import { getCookie } from '../../util/auth';
 import axios from 'axios';
 
-import MypageHeader from '../components/Header/MypageHeader';
-import TilItem from '../components/Til/TilItem';
-import Title from "../components/Title/Title";
+import MypageHeader from '../../components/Header/MypageHeader';
+import TilItem from '../../components/Til/TilItem';
+import Title from "../../components/Title/Title";
 
-import '../styles/MyPage/MyTIL.scss';
+import '../../styles/MyPage/MyTIL.scss';
 
 const defaultOption = {
     root: null,

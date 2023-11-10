@@ -2,14 +2,14 @@ import { useEffect, useState } from 'react';
 import { AiOutlineSearch } from "react-icons/ai";
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { getCookie } from "../util/auth";
+import { getCookie } from "../../util/auth";
 
-import Title from '../components/Title/Title';
-import CreateButton from '../components/CreateButton';
-import TilItem from '../components/Til/TilItem';
+import Title from '../../components/Title/Title';
+import CreateButton from '../../components/CreateButton';
+import TilItem from '../../components/Til/TilItem';
 // import Reconfirm from '../components/Reconfirm';
 
-import '../styles/Til/Til.scss';
+import '../../styles/Til/Til.scss';
 
 
 const defaultOption = {

@@ -2,14 +2,14 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import GitHubCalendar from 'react-github-calendar';
 import axios from "axios";
-import { getCookie, removeCookie } from "../util/auth";
+import { getCookie, removeCookie } from "../../util/auth";
 
-import MypageHeader from "../components/Header/MypageHeader";
-import Title from "../components/Title/Title";
-import Footer from "../components/Footer";
-import Reconfirm from "../components/Reconfirm";
+import MypageHeader from "../../components/Header/MypageHeader";
+import Title from "../../components/Title/Title";
+import Footer from "../../components/Footer";
+import Reconfirm from "../../components/Reconfirm";
 
-import '../styles/MyPage/MyProfile.scss';
+import '../../styles/MyPage/MyProfile.scss';
 
 const MyProfile = () => {
     

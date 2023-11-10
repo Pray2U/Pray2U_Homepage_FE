@@ -3,13 +3,13 @@ import { useNavigate } from 'react-router-dom';
 import { MdOutlineCancel } from 'react-icons/md';
 import axios from 'axios';
 
-import Footer from "../components/Footer";
-import RegistButton from '../components/RegistButton';
-import Title from "../components/Title/Title";
+import Footer from "../../components/Footer";
+import RegistButton from '../../components/RegistButton';
+import Title from "../../components/Title/Title";
 
-import '../styles/Admin/AdminShopCreate.scss';
-import { getCookie, isCheckAdmin } from '../util/auth';
-import { uploadFile } from '../util/s3Upload';
+import '../../styles/Admin/AdminShopCreate.scss';
+import { getCookie, isCheckAdmin } from '../../util/auth';
+import { uploadFile } from '../../util/s3Upload';
 
 
 const AdminShopCreate = () => {

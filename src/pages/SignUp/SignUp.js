@@ -1,11 +1,11 @@
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
-import SignUpForm from '../components/SignUp/SignUpForm';
-import Footer from '../components/Footer';
+import SignUpForm from '../../components/SignUp/SignUpForm';
+import Footer from '../../components/Footer';
 
-import '../styles/SignUp/SignUp.scss';
-import { getCookie, tokenDecode } from '../util/auth';
+import '../../styles/SignUp/SignUp.scss';
+import { getCookie, tokenDecode } from '../../util/auth';
 
 const SignUp = () =>{
     

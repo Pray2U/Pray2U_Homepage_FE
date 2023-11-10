@@ -2,14 +2,14 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-import { getCookie } from '../util/auth';
+import { getCookie } from '../../util/auth';
 
-import TextEditor from '../components/TextEditor';
-import RegistButton from '../components/RegistButton';
-import Footer from '../components/Footer';
-import Title from '../components/Title/Title';
+import TextEditor from '../../components/TextEditor';
+import RegistButton from '../../components/RegistButton';
+import Footer from '../../components/Footer';
+import Title from '../../components/Title/Title';
 
-import '../styles/Til/TilCreate.scss';
+import '../../styles/Til/TilCreate.scss';
 
 const TilCreate = () =>{
 

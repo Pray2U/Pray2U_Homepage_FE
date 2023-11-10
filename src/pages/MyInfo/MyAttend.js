@@ -1,16 +1,16 @@
 import { useState, useEffect } from "react";
 import { BsFillCheckCircleFill } from "react-icons/bs";
-import { getCookie } from "../util/auth";
+import { getCookie } from "../../util/auth";
 import { useNavigate } from "react-router-dom";
 import Calendar from 'react-calendar';
 import dayjs from 'dayjs';
 import axios from "axios";
 
-import MypageHeader from "../components/Header/MypageHeader";
-import Title from "../components/Title/Title";
-import Footer from "../components/Footer";
+import MypageHeader from "../../components/Header/MypageHeader";
+import Title from "../../components/Title/Title";
+import Footer from "../../components/Footer";
 
-import '../styles/MyPage/MyAttend.scss';
+import '../../styles/MyPage/MyAttend.scss';
 
 const MyAttend = () => {
 

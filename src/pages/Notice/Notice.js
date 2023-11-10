@@ -1,16 +1,16 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-import NoticeItem from "../components/Notice/NoticeItem";
-import CreateButton from "../components/CreateButton";
-import Title from "../components/Title/Title";
-import Paging from "../components/Paging";
+import NoticeItem from "../../components/Notice/NoticeItem";
+import CreateButton from "../../components/CreateButton";
+import Title from "../../components/Title/Title";
+import Paging from "../../components/Paging";
 
 import axios from 'axios';
-import { getCookie, isCheckAdmin } from "../util/auth";
+import { getCookie, isCheckAdmin } from "../../util/auth";
 
-import '../styles/Notice/Notice.scss';
-import Footer from "../components/Footer";
+import '../../styles/Notice/Notice.scss';
+import Footer from "../../components/Footer";
 
 const Notice = () =>{
     

@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
-import Title from '../components/Title/Title';
-import ShopItem from '../components/Shop/ShopItem';
-import ShopModal from '../components/Shop/ShopModal';
-import Footer from '../components/Footer';
+import Title from '../../components/Title/Title';
+import ShopItem from '../../components/Shop/ShopItem';
+import ShopModal from '../../components/Shop/ShopModal';
+import Footer from '../../components/Footer';
 
-import '../styles/Shop/Shop.scss';
-import { getCookie } from '../util/auth';
+import '../../styles/Shop/Shop.scss';
+import { getCookie } from '../../util/auth';
 import { useNavigate } from 'react-router-dom';
 
 

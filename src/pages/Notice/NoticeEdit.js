@@ -2,15 +2,15 @@ import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { MdOutlineCancel } from 'react-icons/md';
 
-import TextEditor from '../components/TextEditor';
-import RegistButton from '../components/RegistButton';
-import Title from '../components/Title/Title';
-import Footer from '../components/Footer';
-import { getCookie } from '../util/auth';
+import TextEditor from '../../components/TextEditor';
+import RegistButton from '../../components/RegistButton';
+import Title from '../../components/Title/Title';
+import Footer from '../../components/Footer';
+import { getCookie } from '../../util/auth';
 
 import axios from "axios";
 
-import '../styles/Notice/NoticeCreate.scss';
+import '../../styles/Notice/NoticeCreate.scss';
 
 const NoticeCreate = () =>{
 

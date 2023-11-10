@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import TextEditor from '../components/TextEditor';
-import RegistButton from '../components/RegistButton';
+import TextEditor from '../../components/TextEditor';
+import RegistButton from '../../components/RegistButton';
 
-import { getCookie } from '../util/auth';
+import { getCookie } from '../../util/auth';
 import axios from 'axios';
 
-import '../styles/Til/TilCreate.scss';
+import '../../styles/Til/TilCreate.scss';
 
 const TilEdit = () =>{
 

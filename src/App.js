@@ -1,27 +1,27 @@
 import Header from './components/Header/Header';
-import Main from './pages/Main';
-import Notice from './pages/Notice';
-import NoticeCreate from './pages/NoticeCreate';
-import NoticeDetail from './pages/NoticeDetail';
-import NoticeEdit from './pages/NoticeEdit';
-import Til from './pages/Til';
-import TilCreate from './pages/TilCreate';
-import TilEdit from './pages/TilEdit';
-import Shop from './pages/Shop';
-import Event from './pages/Event';
-import Error from './pages/Error';
-import MyAttend from './pages/MyAttend';
-import MyTil from './pages/MyTil';
-import MyShop from './pages/MyShop';
-import MyProfile from './pages/MyProfile';
-import AdminUser from './pages/AdminUser';
-import AdminShop from './pages/AdminShop';
-import AdminOrder from './pages/AdminOrder';
-import SignUp from './pages/SignUp';
+import Main from './pages/Main/Main';
+import Notice from './pages/Notice/Notice';
+import NoticeCreate from './pages/Notice/NoticeCreate';
+import NoticeDetail from './pages/Notice/NoticeDetail';
+import NoticeEdit from './pages/Notice/NoticeEdit';
+import Til from './pages/TIL/Til';
+import TilCreate from './pages/TIL/TilCreate';
+import TilEdit from './pages/TIL/TilEdit';
+import Shop from './pages/Shop/Shop';
+import Event from './pages/Event/Event';
+import Error from './pages/Error/Error';
+import MyAttend from './pages/MyInfo/MyAttend';
+import MyTil from './pages/MyInfo/MyTil';
+import MyShop from './pages/MyInfo/MyShop';
+import MyProfile from './pages/MyInfo/MyProfile';
+import AdminUser from './pages/Admin/AdminUser';
+import AdminShop from './pages/Admin/AdminShop';
+import AdminOrder from './pages/Admin/AdminOrder';
+import AdminShopCreate from './pages/Admin/AdminShopCreate';
+import SignUp from './pages/SignUp/SignUp';
 
 import { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import AdminShopCreate from './pages/AdminShopCreate';
 import { checkLogin } from './util/auth';
 
 function App() {
