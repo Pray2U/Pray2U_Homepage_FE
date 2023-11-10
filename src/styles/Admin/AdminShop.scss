@@ -1,0 +1,70 @@
+.AdminShopContainer{
+    width: 1280px;
+    height: auto;
+    margin: auto;
+    margin-bottom: 2rem;
+
+    .AdminShopListBox{
+        display: flex;
+        width: 100%;
+        padding-top: 3rem;
+
+        .AdminShopList{
+            width: 80%;
+
+            .AdminShopRegistButton{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 6rem;
+                height: 2.5rem;
+                color: white;
+                font-weight: bold;
+                background-color: #0090F9;
+                border-radius: 0.5rem;
+                margin-left: auto;
+                margin-bottom: 2rem;
+                cursor: pointer;
+                &:hover{
+                    background-color: #0B7FD3;
+                }
+            }
+            .AdminShopListHeader{
+                display: flex;
+                align-items: center;
+                width: 100%;
+                height: 3rem;
+                background-color: #E5E7EB;;
+                font-weight: bold;
+                color: rgb(58, 57, 57);
+
+                .AdminShopListName{
+                    width: 20%;
+                    padding-left: 1rem;
+                    margin-right: 2%;
+                }
+                .AdminShopListPrice{
+                    width: 15%;
+                    border-left: 0.1rem solid rgb(179, 176, 176);
+                    padding-left: 0.5rem;
+                }
+                .AdminUserListCreate{
+                    width: 20%;
+                    border-left: 0.1rem solid rgb(179, 176, 176);
+                    padding-left: 0.5rem;
+                }
+                .AdminUserListModify{
+                    width: 20%;
+                    border-left: 0.1rem solid rgb(179, 176, 176);
+                    padding-left: 0.5rem;
+                }
+                .AdminUserListSetting{
+                    margin-left: auto;
+                    margin-right: 1rem;
+                }
+            }
+        }
+
+        
+    }
+}

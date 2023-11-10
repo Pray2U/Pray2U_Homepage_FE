@@ -1,93 +1,183 @@
-import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Link, useLocation, useSearchParams, useNavigate } from 'react-router-dom';
+import { AiOutlineSearch } from "react-icons/ai";
+import { setCookie, removeCookie, checkLogin, getCookie, tokenDecode } from '../../util/auth';
 
+import LoginModal from '../Modal/LoginModal';
+import Dropdown from './Dropdown';
+
+import '../../styles/Header/Header.scss'
 import axios from 'axios';
 
-import '../../styles/Header/Header.scss';
+const Header = () => {
 
-const Header = ({isLoggedIn}) => {
+    const navigate = useNavigate();
+    const location = useLocation();
+    const path = location.pathname.split('/')[1];
 
-    // 테스트 더미
-    const dummyMyInfo = {
-        userId : 1,
-        githubId: "gildong Hong",
-        username: "gildong",
-        profileImgUrl: "/profile/HeaderProfile.png",
-        phoneNumber: "010-0000-0001",
-        Email: "gildong@gmail.com",
-        Role: "USER",
-        createDate: "2023-06-31",
-        modifiedDate: "2023-07-01"
-    };
+    const [ isLoggedIn, setIsLoggedIn ] = useState(false);
+    const [ searchParams, setSearchParams] = useSearchParams();
+    const [ searchContent, setSearchContent ] = useState(null);
+    const [ isLoginModal, setIsLoginModal ] = useState(false);
+    const [ myInfo, setMyInfo ] = useState(null);
+    const [ view, setView ] = useState(false);
 
-    // const [ isLoggedIn, setIsLoggedIn ] = useState(false);
-    const [ myInfo, setMyInfo ] = useState(dummyMyInfo);
+    const menus = [
+        {
+            id: 0,
+            title: "공지사항",
+            link: 'notice',
+        },
+        {
+            id: 1,
+            title: "이벤트",
+            link: 'event',
+        },
+        {
+            id: 2,
+            title: "TIL",
+            link: 'til',
+        },
+        {
+            id: 3,
+            title: "Shop",
+            link: 'shop',
+        }
+    ]
 
-    const checkIsLoggenIn = () => {
-        // 쿠키가 있는지 확인하는 방법?
-        // 서버에 요청을 해야하나?
-        // 결정을 해야할듯
-    };
+    const onChageSearch = (e) => {
+        setSearchContent(e.target.value);
+    }
 
-    // 실제 사용할 데이터
-    // const read_myInfo = async() =>{
-    //     try{
-    //         const url = "";
-    //         const response = await axios.get(url, {withCredentials:true});
-    //         setMyInfo(response.data);
-    //     }catch(e){
-    //         console.log(e);
-    //     }
-    // };
+    const search = () => {
+        if(searchContent){
+            alert('아직 기능이 구현되지 않았습니다.');
+            setSearchContent(null);
+            // navigate(`/search?query=${searchContent}`);
+        }
+    }
+    
+    const handleKeyDown = (e) =>{
+        if(e.key === 'Enter' && searchContent){
+            alert('아직 기능이 구현되지 않았습니다.');
+            setSearchContent(null);
+            // navigate(`/search?query=${searchContent}`);
+        }
+    }
+    
+    const onHandleLoginModal = () =>{
+        setIsLoginModal(true);
+    }
+    
+    const onCancelLoginModal = () =>{
+        setIsLoginModal(false);
+    }
 
-    // useEffect(()=>{
-    //     checkIsLoggenIn();
-    //     read_myInfo();
-    // },[isLoggedIn,myInfo]);
+    const onHandleLogout = () => {
+        removeCookie('accessToken');
+        setView(false);
+        setIsLoggedIn(false);
+        window.location.replace('/');
+    }
 
-    const login_github = async() => {
-        try{
-            const url = `${process.env.REACT_APP_API_SERVER}/api/login/oauth2/code/github?redirect_uri=`;
-            const res = await axios.get(url, { withCredentials: true });
-            console.log(res);
-            if (res.status === 200){
-                let accessToken = res.headers['authorization'];
-                let refreshToken = res.headers['set-cookie'];
-                console.log(accessToken);
-                console.log(refreshToken);
+    const save_token = () => {
+        const accessToken = searchParams.get('accessToken');
+        if(accessToken){
+            let payload = tokenDecode(accessToken);
+            console.log(payload);
+            const options = {
+                expires: new Date(payload?.exp*1000),
             }
-            
-        }catch(err){
-            console.log(err);
+            setCookie('accessToken',accessToken,options);
+            if(payload?.role === 'ROLE_GUEST'){
+                navigate('/signup');
+            }
         }
     }
 
-    if(isLoggedIn){
-        return (
-            <div className="HeaderBox">
-                <img className="Logo" alt='img' src="/Logo.png"></img>
-                <Link to ='/' className='LogoName'>PRAY<span className="RedColor">2</span>U</Link>
-                <div className='MenuBox'>
-                    <Link to='/notice' className='Notice'>Notice</Link>
-                    <Link to='/event' className='Event'>Event</Link>
-                    <Link to='/til' className='TIL'>TIL</Link>
-                    <Link to='/shop' className='Shop'>Shop</Link>
-                    <Link to='/mypage/info' className='Profile'>
-                        <img src={myInfo.profileImgUrl}/>
-                    </Link>
-                </div>
-            </div>
-        );
+    const read_myInfomation = async() =>{
+        try{
+            const url = `${process.env.REACT_APP_API_SERVER}/api/users/me`;
+            const response = await axios.get(url,{
+                headers:{
+                    Authorization: `Bearer ${getCookie('accessToken')}`
+                },
+                withCredentials:true
+            });
+            if(response.status === 200){
+                setMyInfo(response.data.data);
+            }else{
+                alert('내 정보를 가져오는데 실패했습니다.');
+                navigate('/');
+            }
+        }catch(e){
+            alert(e.response.data.message);
+            navigate('/');
+        }
     }
 
-    return (
-        <div className="HeaderBox">
-            <img className="Logo" alt='img' src="/Logo.png"></img>
-            <Link to ='/' className='LogoName'>PRAY<span className="RedColor">2</span>U</Link>
-            <div className='SignIn' onClick={()=>login_github()}>Sign-In</div>
-            {/* <Link to='/signin' >Sign-In</Link> */}
+    useEffect(()=>{
+        save_token();
+        setIsLoggedIn(checkLogin('accessToken'));
+        if(getCookie('accessToken')){
+            read_myInfomation();
+        }
+    },[]);
+
+
+    return(
+        <div className='HeaderContainer'>
+            <div className='HeaderBox'>
+                <Link to='/' className='LogoLink'>
+                    <img className='LogoImage' alt='Logo_Image' src='img/logo_title.png'/>
+                </Link>
+                <div className='MenuBox'>
+                    {
+                        menus.map((menu) =>
+                            <Link to={menu.link} 
+                                key={menu.id} 
+                                className={ menu.link === path ? "SelectedMenu" : "Menu"}
+                                >{menu.title}</Link>
+                        )
+                    }
+                </div>
+                <div className='SearchBarBox'>
+                    <AiOutlineSearch className="SearchIcon" onClick={()=>search()}/>
+                    <input className='SearchInput' 
+                        placeholder="검색"
+                        value={searchContent || ""}
+                        onChange={onChageSearch}
+                        onKeyDown={handleKeyDown}
+                        />
+                </div>
+                {
+                    isLoggedIn ? 
+                    <div className='ButtonBox'>
+                        <div className='MyProfileBox'>
+                            <img src={myInfo?.profileImgUrl}
+                                className='MyProfile'
+                                onClick={()=>setView(!view)}
+                                alt='프로필'
+                            />
+                            {
+                                view && <Dropdown onHandleLogout={onHandleLogout} onSetView={setView}/>
+                            }
+                        </div>
+                    </div>
+                    :
+                    <div className='ButtonBox'>
+                        <div className='LoginButton' onClick={()=>onHandleLoginModal()}>로그인</div>
+                        {/* <Link to='/signup' className='SignUpButton'>회원가입</Link> */}
+                    </div>
+                }
+            </div>
+            {
+                isLoginModal ? <LoginModal onCancel={onCancelLoginModal}/> : <></>
+            }
         </div>
-    );
+    )
+
+    
 }
 
 export default Header;

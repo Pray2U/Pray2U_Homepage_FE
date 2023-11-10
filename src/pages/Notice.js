@@ -1,140 +1,84 @@
-import Header from "../components/Header/Header";
-import NoticeList from "../components/Notice/NoticeList";
-
-import Pagination from 'react-bootstrap/Pagination';
 import { useState, useEffect } from "react";
-import { useNavigate, Link } from "react-router-dom";
-import { AiFillPlusSquare } from "react-icons/ai";
+import { useNavigate } from "react-router-dom";
 
-import '../styles/Notice/Notice.scss';
-import '../styles/Notice/NoticeButtons.scss';
+import NoticeItem from "../components/Notice/NoticeItem";
+import CreateButton from "../components/CreateButton";
+import Title from "../components/Title/Title";
+import Paging from "../components/Paging";
 
 import axios from 'axios';
+import { getCookie, isCheckAdmin } from "../util/auth";
+
+import '../styles/Notice/Notice.scss';
+import Footer from "../components/Footer";
 
 const Notice = () =>{
-    const navigate = useNavigate();
-    const pageSize = 15;
-
-    const [ isLoggedIn, setIsLoggedIn ] = useState(true);
-    const [ isAdmin, setIsAdmin ] = useState(true);
-    const [ isLodding, setIsLodding ] = useState(false);
-    const [ noticeList, setNoticeList ] = useState(null);
-    const [ selectedPage, setSelectedPage ] = useState(1);
-    const [ pageSetCnt, setPageSetCnt ] = useState(0);
-    const [ pageNumList, setPageNumList ] = useState(null);
-    const [ totalPage, setTotalPage ] = useState(0);
-
-    useEffect(()=>{
-        read_NoticeList();
-    },[selectedPage]);
-
-
-    const pagePrevMoved = () => {
-        if (selectedPage > 1){
-            setSelectedPage(selectedPage-1);
-            if((selectedPage%5) == 1){
-                setPageSetCnt(parseInt(selectedPage/5)-1);
-            }
-        }
-    }
-
-    const pageNextMoved = () => {
-        if(selectedPage < totalPage){
-            setSelectedPage(selectedPage+1);
-            if(!(selectedPage%5)){
-                setPageSetCnt(parseInt(selectedPage/5));
-            }
-        }
-    }
-
-    const pageSetPreMoved = () => {
-        if(pageSetCnt){
-            setPageSetCnt(pageSetCnt-1);
-            setSelectedPage(5*(pageSetCnt-1)+1);
-        }    
-    }
     
-    const pageSetNextMoved = () => {
-        if(pageSetCnt < parseInt(totalPage / 5)){
-            setPageSetCnt(pageSetCnt+1);
-            setSelectedPage(5*(pageSetCnt+1)+1);
-        }
-    }
-
-    const onChangePageNum = (num) => {
-        setSelectedPage(num);
-    }
+    const navigate = useNavigate();
+    const pageSize = 10;
+    
+    const [ selectedPage, setSelectedPage ] = useState(1);
+    const [ totalItemCnt, setTotalItemCnt ] = useState(null);
+    const [ noticeList, setNoticeList ] = useState([]);
+    const [ isAdmin, setIsAdmin ] = useState(false);
 
     const read_NoticeList = async() => {
         try{
-            const url = `${process.env.REACT_APP_API_SERVER}/api/posts?pageNumber=${selectedPage-1}&pageSize=${pageSize}`
-            const response = await axios.get(url,{withCredentials:true});
-            setNoticeList([...response.data.data.content]);
-            let totalpage = response.data.data.totalPages;
-            setTotalPage(totalpage);
-            create_NoticePageCnt(totalpage);
-            setIsLodding(false);
+            const url = `${process.env.REACT_APP_API_SERVER}/api/posts?pageNumber=${selectedPage-1}&pageSize=${pageSize}&sort=id,desc`
+            const response = await axios.get(url,
+                {
+                    headers:{
+                        Authorization: `Bearer ${getCookie('accessToken')}`
+                    },
+                    withCredentials:true
+                });
+            if(response.status === 200){
+                setNoticeList([...response.data.data.content]);
+                setTotalItemCnt(response.data.data.totalElements);
+            }else{
+                alert(response.data.message);
+            }
+            // setIsLodding(false);
         }catch(e){
-            console.log(e);
+            alert(e.response.data.message);
+            navigate('/error');
         }
     }
 
-    const create_NoticePageCnt = (totalPage) => {
-        let startNum = 5*(pageSetCnt)+1;
-        let endNum = parseInt(totalPage / 5) > pageSetCnt ? startNum+4 : totalPage;
-        const newPageNumList = [...Array(endNum - startNum+1).keys()].map((i) => i + startNum)
-        setPageNumList([...newPageNumList]);
-    }
+    // const create_NoticePageCnt = (totalPage) => {
+    //     let startNum = 5*(pageSetCnt)+1;
+    //     let endNum = parseInt(totalPage / 5) > pageSetCnt ? startNum+4 : totalPage;
+    //     const newPageNumList = [...Array(endNum - startNum+1).keys()].map((i) => i + startNum)
+    //     setPageNumList([...newPageNumList]);
+    // }
 
-    if(!isLoggedIn){
-        navigate('/error');
-    }
-    
-    if(isLodding){
-        return(
-            <div>
-                데이터 가져오는중...
-            </div>
-        );
-    }else{
-        return(
+    useEffect(()=>{
+        read_NoticeList();
+        setIsAdmin(isCheckAdmin());
+    },[selectedPage]);
+
+    return(
+        <>
             <div className="NoticeContainer">
-                <Header isLoggedIn={isLoggedIn}/>
-                <div className="TitleBox">
-                    <div className="EN">Notice</div>
-                    <div className="KR">공지사항</div>
-                </div>
-                <div className="NoticeButtonsBox">
-                    <Link to='/notice/create' className="WriteButton" hidden={isAdmin ? false : true}>
-                        <AiFillPlusSquare className="NoticeCreateButton"/>
-                    </Link>
-                </div>
-                <NoticeList noticeList={noticeList}/>
-                <Pagination className='PaginationBox'>
-                    <Pagination.First onClick={pageSetPreMoved}/>
-                    <Pagination.Prev onClick={pagePrevMoved}/>
+                <div className="NoticeListBox">
+                    <Title title='공지사항'/>
+                    <CreateButton link={ isAdmin ? '/notice/create' : null}/>
                     {
-                        pageNumList?.map(pageNum =>
-                            selectedPage === pageNum ?
-                            <Pagination.Item 
-                                key={pageNum} 
-                                active={true}>
-                                {pageNum}
-                            </Pagination.Item> :
-                            <Pagination.Item 
-                                key={pageNum} 
-                                active={false} 
-                                onClick={()=>onChangePageNum(pageNum)}>
-                                    {pageNum}
-                            </Pagination.Item>
+                        noticeList?.map(notice => 
+                            <NoticeItem key={notice.postId} noticeItem={notice}/>
                         )
-                    }
-                    <Pagination.Next onClick={pageNextMoved}/>
-                    <Pagination.Last onClick={pageSetNextMoved}/>
-                </Pagination>
+                    } 
+                    <Paging
+                        pageNum={selectedPage}
+                        countPerPage={pageSize}
+                        totalItems={totalItemCnt ? totalItemCnt : 0}
+                        handlePage={setSelectedPage}
+                />
+                </div>
             </div>
-        );
-    }
+            <Footer/>
+        </>
+    );
 }
 
 export default Notice;

@@ -1,0 +1,83 @@
+* {
+    font-family: 'Raleway', sans-serif;
+}
+.CommentItemBox{
+    width: 100%;
+    margin: auto;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 0.1rem solid #D2D4D9;
+    
+    .CommentItemHeader{
+        position: relative;
+        display: flex;
+        align-items: center;
+        width: 100%;
+        height: 2.5rem;
+        .CommentItemProfile{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.65rem;
+            color: white;
+            width: 1.5rem;
+            height: 1.5rem;
+            border-radius: 50%;
+            background-color: #0090F9;
+        }
+        .CommentItemWriter{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 0.5rem;
+            font-weight: bold;
+        }
+        .CommentDots{
+            width: 1.5rem;
+            height: 1.5rem;
+            margin-left: auto;
+            cursor: pointer;
+        }
+    }
+    .CommentDropMenuBox{
+        display: flex;
+        align-items: center;
+        width: 5.5rem;
+        height: 3rem;
+        position: absolute;
+        top: 100%;
+        left: 97.5%;
+        margin: auto;
+        padding: 0;
+        box-sizing: border-box;
+        border: 0.15rem solid #e5e7eb;
+        border-radius: 0.725rem;
+        background-color: white;
+        .CommentDropMenu{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            color:black;
+            text-decoration: none;
+            cursor: pointer;
+            font-weight: bold;
+            &:hover{
+                color:#0090F9;
+            }
+        }
+    }
+
+    .CommentItemContents{
+        width: 100%;
+        height: auto;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        font-size: 1rem;
+    }
+
+    .CommentTime{
+        color: #a9a9ac;
+        font-size: 0.9rem;
+    }
+}

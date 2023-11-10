@@ -71,19 +71,21 @@
     background-size: 100% 100%;
 }
 
-.TitleBox{
-    margin-top: 5%;
+.CategoryTitleBox{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
     width: 100%;
-    height: 50%;
-    text-align: center;
+    height: 30%;
     font-weight: bold;
-    font-size: 200%;
+    font-size: 1.8rem;
 }
 
 .ContentBox{
     display: flex;
     width: 100%;
-    height: 35%;
+    height: 70%;
     font-weight: bold;
     align-items: flex-end;
 

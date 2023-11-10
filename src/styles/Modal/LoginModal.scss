@@ -1,0 +1,62 @@
+.LoginContainer{
+    display: flex;
+    align-items: center;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    z-index: 99;
+    background-color: rgba(0, 0, 0, 0.6);
+    
+    .LoginModalBox{
+        // position: relative;
+        width: 25%;
+        height: 25%;
+        background-color: white;
+        border-radius: 1rem;
+        margin: auto;
+        z-index: 999;
+        .LoginModalHeader{
+            margin-left: auto;
+            margin-top: 0.5rem;
+            width: 10%;
+            height: 15%;
+            .LoginModalCancel{
+                width: 2rem;
+                height: 2rem;
+                cursor: pointer;
+            }
+    
+        }
+        .LoginModalTitle{
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            height: 40%;
+            font-size: 2.5rem;
+            font-weight: bold;
+        }
+        .LoginModalButton{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: auto;
+            width: 65%;
+            height: 25%;
+            background-color: black;
+            color: white;
+            border-radius: 1rem;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            .LoginGithubIcon{
+                width: 2rem;
+                height: 2rem;
+                margin-left: auto;
+                margin-right: 0.5rem;
+            }
+            .LoginModalContent{
+                margin-right: auto;
+            }
+        }
+    }
+}

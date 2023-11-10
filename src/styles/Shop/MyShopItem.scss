@@ -1,0 +1,33 @@
+.MyShopItemBox{
+    width: 80%;
+    height: 90%;
+    box-shadow: 1px 1px 3px 1px #dadce0;
+    border-radius: 1em;
+    font-weight: bold;
+    margin: auto;
+    padding-bottom: 1.5rem;
+
+    .MyItemTitle{
+        width: 8rem;
+        height: 8rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: auto;
+    }
+    .MyItemName{
+        width: 80%;
+        height: 15%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: auto;
+    }
+    .MyItemPoint{
+        width: 80%;
+        height: 10%;
+        display: flex;
+        justify-content: center;
+        align-items: center;margin: auto;
+    }
+}

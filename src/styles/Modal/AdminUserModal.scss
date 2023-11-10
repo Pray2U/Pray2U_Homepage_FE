@@ -1,0 +1,40 @@
+.AdminUserModalBox{
+    width: 6rem;
+    margin-left: auto;
+    position: relative;
+    left: 0.5rem;
+    box-sizing: border-box;
+    border: 0.15rem solid #e5e7eb;
+    border-radius: 0.725rem;
+    background-color: white;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    font-weight: bold;
+    
+    .AdminUserModalEditButton{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 20%;
+        color:black;
+        text-decoration: none;
+        cursor: pointer;
+        &:hover{
+            color:#0090F9;
+        }
+    }
+    .AdminUserModalDeleteButton{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 20%;
+        color:black;
+        text-decoration: none;
+        cursor: pointer;
+        &:hover{
+            color:red;
+        }
+    }
+}

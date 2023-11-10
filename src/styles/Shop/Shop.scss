@@ -1,0 +1,33 @@
+.ShopContainer{
+    width: 1080px;
+    height: auto;
+    margin: auto;
+    margin-bottom: 3rem;
+
+    .MyPoint{
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        width: 100%;
+        margin: auto;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+        font-weight: bold;
+        font-size: 1.5rem;
+    }
+
+    .ShopItemList{
+        display: grid;
+        width: 100%;
+        align-items: stretch;
+        justify-items: stretch;
+        height: auto;
+        margin: auto;
+        border-radius: 0.5rem;
+        background-color: white;
+        box-shadow: 1px 1px 3px 1px #c7c9cb;
+		grid-template-columns: repeat(3, 1fr);
+        justify-content: space-around;
+        // row-gap: 3%;
+    }
+}

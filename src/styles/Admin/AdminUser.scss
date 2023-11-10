@@ -1,0 +1,16 @@
+.AdminUserContainer{
+    width: 1280px;
+    height: auto;
+    margin: auto;
+    margin-bottom: 2rem;
+
+    .AdminUserListBox{
+        display: flex;
+        width: 100%;
+        padding-top: 3rem;
+
+        .AdminUserList{
+            width: 80%;
+        }
+    }
+}

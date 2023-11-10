@@ -1,31 +1,60 @@
-.MyAttendBox{
-    width: 80%;
-    height: 90%;
+.MyAttendContainer{
+    width: 1080px;
+    height: auto;
     margin: auto;
 
-    .Calendar{
+    .MyAttendBox{
+        width: 100%;
+        height: 35rem;
         margin: auto;
-        margin-top: 2.5%;
-        .check{
-            margin-top: 6px;
-            color: #56A9E3;
+        margin-top: 3rem;
+        margin-bottom: 3rem;
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+        border-radius: 0.5rem;
+        border: 0.1rem solid #dadce0;
+        box-shadow: 1px 1px 3px 1px #dadce0;
+
+        .Calendar{
+            margin: auto;
+            margin-top: 2.5%;
+            .check{
+                margin-top: 6px;
+                color: #56A9E3;
+            }
+        }
+    
+        .AttendButton{
+            display: flex;
+            width: 35%;
+            height: 3rem;
+            margin: auto;
+            margin-top: 2.5%;
+            margin-bottom: 2.5%;
+            align-items: center;
+            justify-content: center;
+            background-color: #0090F9;
+            border-radius: 1rem;
+            color: white;
+            cursor: pointer;
+            &:hover{
+                background-color: #0B7FD3;
+            }
+            
+        }
+        .CheckedAttendButton{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 35%;
+            height: 3rem;
+            margin: auto;
+            margin-top: 2.5%;
+            background-color: rgb(91, 88, 88);
+            color: white;
+            border-radius: 1rem;
         }
     }
 
-    .AttendButton{
-        display: flex;
-        width: 50%;
-        height: 10%;
-        margin: auto;
-        margin-top: 2.5%;
-        align-items: center;
-        justify-content: center;
-        background-color: black;
-        color: white;
-        border-radius: 1em;
-        cursor: pointer;
-        &:hover{
-            background-color: rgb(25, 24, 24);
-        }
-    }
+    
 }

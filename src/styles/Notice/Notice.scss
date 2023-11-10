@@ -1,74 +1,52 @@
+* {
+    font-family: 'Raleway', sans-serif;
+}
 .NoticeContainer{
-    width: 75vw;
-    height: 100vh;
+    width: 1080px;
+    height: auto;
     margin: auto;
-    background-color: #F5F7FF;
     
-    .TitleBox{   
+    .NoticeTitleBox{
         display: flex;
         align-items: center;
-        width: 80%;
-        height: 10%;
+        width: 100%;
+        height: 10vh;
         margin: auto;
         margin-top: 2%;
-        .EN{
-            align-items: center;
-            vertical-align: text-bottom;
-            width: 22%;
-            height: 100%;
-            font-size: 3.5vw;
-            font-weight: bold;
-            color: black;
-        }
-        .KR{
+        border-radius: 1rem;
+        background-color: #0090F9;
+        // background-color: #9A58EE;
+        color: white;
+        font-weight: 500;
+        font-size: 1.75rem;
+        .NoticeTitle{
+            padding-left: 3%;
+            padding-right: 3%;
             display: flex;
-            align-items: flex-end;
-            width: 10%;
-            height: 90%;
-            font-weight: bold;
-            font-size: 1.5vw;
-            color: black;
+            align-items: center;
+            width: 100%;
+            height: 60%;
+        }
+
+        .NoticeSubcontents{
+            display: flex;
+            align-items: center;
+            width: 100%;
+            height: 40%;
         }
     }
-    .NoticeButtonsBox{
-        display: flex;
-        align-items: center;
-        width: 80%;
-        height: 5%;
+    .NoticeListBox{
+        width: 100%;
         margin: auto;
-        .WriteButton{
-            width: 5%;
-            height: 100%;
-            color: #00C371;
-            margin-left: auto;
-            cursor: pointer;
-            .NoticeCreateButton{
-                width: 100%;
-                height: 100%;
-            }
-        }
-        .SaveButton{
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-left: auto;
-            width: 5%;
-            height: 90%;
-            cursor: pointer;
-            font-weight: bold;
-            color: white;
-            background-color: #f0ba99;
-            border-radius: 0.5em;
-            &:hover{
-                background-color: #e0a986;
-            }
-        }
+        margin-top: 1%;
     }
     .PaginationBox{
         display: flex;
-        width: 100%;
-        height: 5%;
-        margin-top: 2%;
         justify-content: center;
+        align-items: center;
+        margin: auto;
+        width: 80%;
+        height: 6rem;
+        border-top: 0.1rem solid #D2D4D9;
     }
 }

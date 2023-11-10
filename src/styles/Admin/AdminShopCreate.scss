@@ -1,0 +1,120 @@
+.AdminShopCreateContainer{
+    width: 1080px;
+    height: auto;
+    margin: auto;
+    margin-bottom: 2rem;
+
+    
+    .p{
+        margin-bottom: 1%;
+    }
+    
+    .AdminShopCreateBox{
+        width: 100%;
+        margin: auto;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        font-weight: bold;
+
+        .AdminShopCreateItemName{
+            width: 100%;
+            height: 2.25rem;
+            border: solid 0.15rem;
+            border-radius: 0.375rem;
+            border-color: hsla(220,9%,46%,.3);
+            padding-left: 1%;
+            font-size: 1rem;
+            margin-bottom: 1%;
+            &:focus{
+                border-color: #0090F9;
+                outline: none;
+            }
+        }
+        .AdminShopCreateItemPoint{
+            width: 100%;
+            height: 2.25rem;
+            border: solid 0.15rem;
+            border-radius: 0.375rem;
+            border-color: hsla(220,9%,46%,.3);
+            padding-left: 1%;
+            font-size: 1rem;
+            margin-bottom: 1%;
+            &:focus{
+                border-color: #0090F9;
+                outline: none;
+            }
+        }
+        .AdminShopCreateItemDescription{
+            width: 100%;
+            height: 7rem;
+            border: solid 0.15rem;
+            border-radius: 0.375rem;
+            border-color: hsla(220,9%,46%,.3);
+            padding-left: 1%;
+            font-size: 1rem;
+            margin-bottom: 1%;
+            resize: none;
+            &:focus{
+                border-color: #0090F9;
+                outline: none;
+            }
+        }
+    }
+
+    .FileUploadBox{
+        margin-bottom: 1rem;
+        width: 100%;
+        height: auto;
+        .FileUpload{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.25rem;
+            width: 7rem;
+            height: 2.5rem;
+            border-radius: 0.375rem;
+            background-color: #0090F9;
+            color: white;
+            cursor: pointer;
+            &:hover{
+                background-color: #0B7FD3;
+            }
+        }
+        .FileItemBox{
+            display: flex;
+            align-items: center;
+            width: 100%;
+            height: 3rem;
+            margin-top: 0.5rem;
+            .FileItem{
+                display: flex;
+                align-items: center;
+                border: 0.1rem solid rgb(120, 117, 117);
+                border-radius: 5rem;
+                margin-right: 1rem;
+                height: 80%;
+
+                .FileName{
+                    display: flex;
+                    align-items: center;
+                    white-space: nowrap;
+                    padding-left: 1rem;
+                    font-size: 1rem;
+                    height: 80%;
+                }
+
+                .FileDelete{
+                    display: flex;
+                    align-items: center;
+                    width: 1.5rem;
+                    height: 1.5rem;
+                    margin-left: 1rem;
+                    margin-right: 0.5rem;
+                    cursor: pointer;
+                    color: gray;
+                }
+            }
+        }
+    }
+
+}

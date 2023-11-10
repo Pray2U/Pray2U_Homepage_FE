@@ -1,108 +1,147 @@
-.HeaderBox {
+.HeaderContainer{
     display: flex;
-    width: 100%;
-    height: 10%;
-    margin: 0 auto;
-    background-color: #FFFFFF;
-    align-items: center;
+    height: 7.5vh;
+    border-bottom: 1.75px solid #a5a7aa;
     
-    .Logo {
-        width: 3.75vw;
-        height: 8vh;
-        max-width: 100%;
-        height: auto !important;
-    }
-
-    .LogoName {
+    .HeaderBox{
         display: flex;
-        height: 10vh;
-        width: 9vh;
-        align-items: center;
-        justify-content: center;
-        color: Blue;
-        cursor: pointer;
-        text-decoration: none;
-        font-weight: bold;
-        font-family: 'Century Schoolbook';
-        
-        .RedColor {
-            color: Red;
-        }
-    }
-
-    .SignIn {
-        width: 3.75vw;
-        height: 10vh;
-        display: flex;
-        margin-left: auto;
-        margin-right: 1%;
-        align-items: center;
-        border-radius: 2em;
-        color: black;
-        cursor: pointer;
-        text-decoration: none;
-        font-family: "Century Gothic";
-        font-weight: bold;
-        font-size: 120%;
-
-        &:hover{
-            color:blue
-        }
-        
-    }
-
-    .MenuBox{
-        display: flex;
-        align-items: center;
-        width: 22.5vw;
-        height: 10vh;
-        justify-content: space-around;
-        margin-left: auto;  
-
-        .Notice{
-            text-decoration: none;
-            color: black;
-            font-weight: bold;
-            font-size: 1vw;
-            &:hover{
-                color:blue
+        margin: auto;
+        width: 1280px;
+        height: 80%;
+        .LogoLink{
+            width: 10rem;
+            height: 100%;
+            .LogoImage{
+                width: 100%;
+                height: 100%;
             }
         }
-        .Event{
-            text-decoration: none;
-            color: black;
-            font-weight: bold;
-            font-size: 1vw;
-            &:hover{
-                color:blue
-            }
-        }
-        .TIL{
-            text-decoration: none;
-            color: black;
-            font-weight: bold;
-            font-size: 1vw;
-            &:hover{
-                color:blue
-            }
-        }
-        .Shop{
-            text-decoration: none;
-            color: black;
-            font-weight: bold;
-            font-size: 1vw;
-            &:hover{
-                color:blue
-            }
-        }
-        .Profile{
+
+        .MenuBox{
             display: flex;
-            border-radius: 50%;
-            border: 3px solid black;
             align-items: center;
-            justify-content: center;
+            justify-content: space-around;
+            width: 30%;
+            height: 100%;
+            margin-left: 4rem;
+            margin-right: 4rem;
+            font-weight: 600;
+            font-size: 1rem;
+
+            .SelectedMenu{
+                // display: flex;
+                // align-items: center;
+                // justify-content: center;
+                // width: 5rem;
+                // height: 100%;
+                // margin-left: 2%;
+                text-decoration: none;
+                color: #0090F9;
+                cursor: pointer;
+            }
+            .Menu{
+                // display: flex;
+                // align-items: center;
+                // justify-content: center;
+                // width: 5rem;
+                // height: 100%;
+                // margin-left: 2%;
+                text-decoration: none;
+                color: black;
+                cursor: pointer;
+                &:hover{
+                    color:#0090F9;
+                }
+            }
+        }
+
+        .SearchBarBox{
+            display: flex;
+            margin: auto;
+            margin-left: auto;
+            border-radius: 1em;
+            border: 2px solid #575756;
+            width: 20%;
+            height: 60%;
+
+            .SearchIcon{
+                margin: auto;
+                width: 7%;
+                height: 80%;
+            }
+            .SearchInput{
+                margin: auto;
+                width: 80%;
+                height: 80%;
+                border: none;
+                outline: none;
+                &:focus{
+                    outline: none;
+                }
+            }
+        }
+        
+        .ButtonBox{
+            display: flex;
+            align-items: center;
+            // justify-content: center;
+            // width: 30%;
+            height: 90%;
+            margin-left: auto;
+            color:black;
+            font-weight: bold;
+            font-size: 1.12rem;
+            
+            .LoginButton{
+                display: flex;
+                justify-content: center;
+                // width: 30%;
+                margin-left: 2rem;
+                color:black;
+                text-decoration: none;
+                cursor: pointer;
+                &:hover{
+                    color:#0090F9;
+                }
+            }
+            .SignUpButton{
+                display: flex;
+                justify-content: center;
+                // width: 30%;
+                margin-left: 2rem;
+                color:black;
+                text-decoration: none;
+                &:hover{
+                    color:#0090F9;
+                }
+            }
+            .MyProfileBox{
+                display: block;
+                width: 3rem;
+                height: 3rem;
+                position: relative;
+                box-sizing: border-box;
+                border: 0 solid #e5e7eb;
+                margin-left: auto;
+                .MyProfile{
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 100%;
+                    height: 100%;
+                    background-color: #C2185B;
+                    color: white; 
+                    font-size: 90%;
+                    font-weight: 400;
+                    border-radius: 50%;
+                    cursor: pointer;
+                    text-decoration: none;
+                    margin-left: 2%;
+                    margin-right: 1%;
+                }
+            }
+            
         }
 
     }
 }
-

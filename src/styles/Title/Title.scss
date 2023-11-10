@@ -1,0 +1,28 @@
+.TitleBox{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 10vh;
+    margin: auto;
+    margin-top: 2%;
+    border-radius: 1rem;
+    background-color: #0090F9;
+    color: white;
+    font-weight: 500;
+    font-size: 2rem;
+    
+    .Title{
+        display: flex;
+        align-items: center;
+        height: 50%;
+        padding-left: 3%;
+    }
+    .SubTitle{
+        display: flex;
+        align-items: center;
+        height: 40%;
+        padding-left: 3%;
+        padding-right: 3%;
+        font-size: 1.25rem;
+    }
+}

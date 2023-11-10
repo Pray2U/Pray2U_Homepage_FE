@@ -1,97 +1,69 @@
 .TilContainer{
-    width: 75vw;
+    width: 1080px;
     height: auto;
-    overflow: hidden;
     margin: auto;
-    background-color: #F5F7FF;
-
+    
     .TilTitleBox{
         display: flex;
-        width: 80%;
-        height: 10%;
-        margin: auto;
-        margin-top: 3%;
         align-items: center;
-        justify-content: center;
-
-        .Title{
-            vertical-align: text-bottom;
-            width: 10%;
-            height: 100%;
-            font-size: 3vw;
-            font-weight: bold;
-            color: black;
+        width: 100%;
+        height: 10vh;
+        margin: auto;
+        margin-top: 2%;
+        border-radius: 1rem;
+        background-color: #0090F9;
+        color: white;
+        font-weight: 500;
+        font-size: 2rem;
+        .TilTitle{
+            display: flex;
+            align-items: center;
+            height: 50%;
+            padding-left: 3%;
         }
-
-        .SubTitle{
-            vertical-align: text-bottom;
-            width: 20%;
-            height: 100%;
-            font-size: 1.5vw;
-            font-weight: bold;
-            margin-right: auto;
-            color: black;
-        }
-
-        .TilCreateButton{
-            width: 5%;
-            height: 100%;
-            color: #00C371;
-            margin-left: auto;
-            cursor: pointer;
+        .TilSubTitle{
+            display: flex;
+            align-items: center;
+            height: 40%;
+            padding-left: 3%;
+            padding-right: 3%;
+            font-size: 1.25rem;
         }
     }
 
     .SearchBox{
         display: flex;
         align-items: center;
-        width: 80%;
+        width: 100%;
         height: 5vh;
         margin: auto;
-        background-color: #A195EF;
+        margin-top: 1rem;
+        background-color: #0090F9;
         border-radius: 0.5em;
     }
 
     .SearchBar{
         display: flex;
-        width: 80%;
-        height: 90%;
         align-items: center;
-        border-radius: 0.5em;
-
-        .FrontCircle{
-            width: 2%; 
-            height: 80%; 
-            border-radius: 150px 0 0 150px;
-            background-color: white;
-            margin-left: 3%;
-        }
-
-        .BackCircle{
-            width: 2%; 
-            height: 80%; 
-            border-radius: 0 150px 150px 0;
-            background-color: white;
-        }
+        width: 30%;
+        height: 80%;
+        border-radius: 4em;
+        margin-left: 3rem;
+        background-color: white;
 
         .SearchIcon{
-            width: 3%;
+            margin-left: 1rem;
+            width: 7%;
             height: 80%;
             background-color: white;
         }
     
         .SearchInput{
-            padding-left: 1%;
-            width: 45%;
-            height: 80%;
+            padding-left: 2%;
+            width: 80%;
+            height: 90%;
             border: none;
             outline: none;
         }
-    }
-
-    .TilListBox{
-        margin: auto;
-        width: 80%;
-        padding-bottom: 3%;
     }
 }

@@ -42,8 +42,8 @@
                 font-weight: bold;
 
                 .ItemImage{
-                    width: 80%;
-                    height: 65%;
+                    width: 8rem;
+                    height: 8rem;
                     display: flex;
                     justify-content: center;
                     align-items: center;
@@ -92,7 +92,8 @@
                         width: 90%;
                         height: 70%;
                         margin-left: 2%;
-                        padding-top: 1%;
+                        padding-top: 1rem;
+                        padding-left: 2rem;
                         font-size: 1vw;
                     }
                 }
@@ -159,12 +160,14 @@
                 margin-right: 3%;
                 margin-left: auto;
                 border-radius: 0.5em;
-                background-color: #F34F50;;
-                color: white;
+                // background-color: #F34F50;
+                // color: white;
+                color: black;
+                border: 1px solid #c7c9ce;
                 font-weight: bold;
                 cursor: pointer;
                 &:hover{
-                    background-color: #dc3a3a;;
+                    background-color: #f1f3f6;
                 }
             }
             .ShopSaveButton{
@@ -174,12 +177,13 @@
                 align-items: center;
                 justify-content: center;
                 border-radius: 0.5em;
-                background-color: #9A58EE;
+                border: 1px solid #0090F9;
+                background-color: #0090F9;
                 color: white;
                 font-weight: bold;
                 cursor: pointer;
                 &:hover{
-                    background-color: #9048ef;
+                    background-color: #0B7FD3;
                 }
             }
         }

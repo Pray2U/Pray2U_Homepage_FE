@@ -1,0 +1,61 @@
+.AdminSideMenuContainer{
+    width: 15%;
+    height: 100%;
+    margin-right: 5%;
+
+    .AdminSideMenuTitle{
+        margin: auto;
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    .AdminSideMenuIcon{
+        display: flex;
+        align-items: center;
+        width: 1.5rem;
+        height: 1.5rem;
+    }
+
+    .SideMenuTitle{
+        padding-left: 1rem;
+        font-weight: 600;
+    }
+
+    .SelectedSideMenu{
+        display: flex;
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+        margin-top: 0.5rem;
+        border-radius: 0.5rem;
+        background-color: #E5E7EB;
+        text-decoration: none;
+        color: black;
+        cursor: pointer;
+        color:#0090F9;
+        &:hover{
+            text-decoration: underline;
+        }
+    }
+
+    .SideMenu{
+        display: flex;
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+        margin-top: 0.5rem;
+        border-radius: 0.5rem;
+        text-decoration: none;
+        cursor: pointer;
+        color: gray;
+        &:hover{
+            text-decoration: underline;
+            background-color: #E5E7EB;
+            color: black;
+        }
+    }
+}

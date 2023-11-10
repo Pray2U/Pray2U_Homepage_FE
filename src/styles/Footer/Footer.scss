@@ -1,0 +1,53 @@
+*{
+    font-family : 'gulim', 'gothic';
+}
+.FooterContaier{
+    display: flex;
+    border-top: 1.75px solid #a5a7aa;
+
+    .FooterBox{
+        display: flex;
+        width: 1280px;
+        height: 100%;
+        margin: auto;
+        bottom : 0;
+        .FooterTitleBox{
+            width: 15%;
+            height: 100%;
+            margin: auto;
+            .FooterLogo{
+                display: flex;
+                width: 100%;
+                height: 30%;
+            }
+            .GithubLink{
+                width: 15%;
+                height: 90%;
+                text-decoration: none;
+                margin-left: auto;
+                color: black; 
+                .FooterGithubLogo{
+                    display: flex;
+                    margin: auto;
+                    width: 20%;
+                    height: 20%;
+                    cursor: pointer;
+                    &:hover{
+                        color: #0090F9;
+                    }
+                }
+            }
+            
+        }
+    
+        .FooterContent {
+            padding-top: 1%;
+            padding-left: 1%;
+            padding-right: 1%;
+            color: black;
+            font-weight: 600;
+            width: 85%;
+            height: 100%;
+        }
+    }
+}

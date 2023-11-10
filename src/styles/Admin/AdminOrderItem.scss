@@ -1,0 +1,53 @@
+.AdminOrderItemContainer{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    border-top: 0.1rem solid #D2D4D9;
+    font-size: 1.12rem;
+    font-weight: bold;
+
+    .AdminOrderItemUserName{
+        width: 20%;
+        padding-left: 1rem;
+        margin-right: 2%;
+    }
+    .AdminOrderItemCreate{
+        width: 25%;
+        padding-left: 0.5rem;
+
+    }
+    .AdminOrderItemName{
+        width: 25%;
+        padding-left: 0.5rem;
+    }
+    .AdminOrderItemStatusBox{
+        width: 30%;
+        padding-left: 0.5rem;
+        color: white;
+    }
+    .AdminOrderItemStatus{
+        display: flex;
+        justify-content: center;
+        margin: auto;
+        width: 50%;
+        padding-left: 0.5rem;
+        background-color: green;
+        border-radius: 0.5rem;
+        cursor: pointer;
+        &:hover{
+            background-color: red;
+        }
+    }
+    .AdminOrderItemUsedStatus{
+        display: flex;
+        justify-content: center;
+        margin: auto;
+        width: 50%;
+        padding-left: 0.5rem;
+        background-color: gray;
+        border-radius: 0.5rem;
+        color: white;
+    }
+}

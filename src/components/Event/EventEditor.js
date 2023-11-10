@@ -4,6 +4,7 @@ import CalendarModal from './CalendarModal';
 import dayjs from 'dayjs';
 import axios from 'axios';
 import Form from 'react-bootstrap/Form';
+import { getCookie } from '../../util/auth';
 import { FcCalendar } from "react-icons/fc";
 
 import '../../styles/Event/EventEditor.scss';
@@ -85,14 +86,26 @@ const EventEditor = ({canselAddEvent, isAddEventView, eventInfo, saveEvent}) =>{
                 let url = `${process.env.REACT_APP_API_SERVER}/api/events`;
                 if(id){        // 수정
                     postData.eventId = id;
-                    const response = await axios.put(url, postData, {withCredentials:true});
-                    if (response.status == 200){
+                    const response = await axios.put(url, postData, {
+                        headers:{ 
+                            Authorization: `Bearer ${getCookie('accessToken')}`,
+                        },
+                        withCredentials:true
+                    });
+                    if (response.status === 200){
+                        alert('이벤트가 등록되었습니다.');
                         saveEvent(response.data.data);
                         canselAddEvent();
                     }
                 }else{
-                    const response = await axios.post(url, postData, {withCredentials:true});
-                    if(response.status == 200){
+                    const response = await axios.post(url, postData, {
+                        headers:{ 
+                            Authorization: `Bearer ${getCookie('accessToken')}`,
+                        },
+                        withCredentials:true
+                    });
+                    if(response.status === 200){
+                        alert('이벤트가 등록되었습니다.');
                         saveEvent(response.data.data);
                         canselAddEvent();
                     }

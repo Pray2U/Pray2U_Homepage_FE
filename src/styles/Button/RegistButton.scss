@@ -1,0 +1,38 @@
+.RegistButtons{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 3rem;
+    
+    .RegistCancel{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 5rem;
+        height: 70%;
+        margin-left: auto;
+        border-radius: 0.5rem;
+        border: 1px solid #c7c9ce;
+        cursor: pointer;
+        &:hover{
+            background-color: #f1f3f6;
+        }
+    }
+
+    .RegistSave{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 5rem;
+        height: 70%;
+        margin-left: 1rem;
+        border-radius: 0.5rem;
+        border: 1px solid #0090F9;
+        color: white;
+        background-color: #0090F9;
+        cursor: pointer;
+        &:hover{
+            background-color: #0B7FD3;
+        }
+    }
+}

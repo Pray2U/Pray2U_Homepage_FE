@@ -1,0 +1,68 @@
+.ReconfirmContainer{
+    display: flex;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 99;
+    background-color: rgba(0, 0, 0, 0.6);
+    .ReconfirmModal{
+        width: 30%;
+        height: 20%;
+        background-color: white;
+        border-radius: 1em;
+        margin: auto;
+
+        .ReconfirmMessage{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 0;
+            width: 100%;
+            height: 65%;
+        }
+
+        .ReconfirmButtons{
+            display: flex;
+            align-items: center;
+            height: 30%;
+            .CancelButton{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 30%;
+                height: 80%;
+                margin-left: auto;
+                margin-right: 1.5rem;
+                border: 0.1rem solid #D2D4D9;
+                border-radius: 1em;
+                cursor: pointer;
+                &:hover{
+                    background-color: #D2D4D9;
+                }
+            }
+            .ConfirmButton{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 30%;
+                height: 80%;
+                margin-right: auto;
+                border: 0.1rem solid #0090F9;    
+                border-radius: 1em;
+                background-color: #0090F9;
+                color: white;
+                cursor: pointer;
+                &:hover{
+                    background-color: #0B7FD3;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,116 @@
+.ApprovalModalContainer{
+    display: flex;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 99;
+    background-color: rgba(0, 0, 0, 0.6);
+    align-items: center;
+
+    .ApprovalModalBox{
+        width: 30%;
+        height: 30%;
+        background-color: white;
+        border-radius: 1em;
+        margin: auto;
+        padding-top: 2%;
+        padding-bottom: 2%;
+
+        .NameBox{
+            display: flex;
+            align-items: center;
+            width: 70%;
+            height: 35%;
+            font-weight: bold;
+            font-size: 1vw;
+            margin: auto;
+            .NameTitle{
+                display: flex;
+                width: 25%;
+                height: 90%;
+                align-items: center;
+                justify-content: center;
+            }
+            .NameInput{
+                display: flex;
+                width: 75%;
+                height: 45%;
+                align-items: center;
+                justify-content: center;
+                padding-left: 1%;
+            }
+
+        }
+        .GithubBox{
+            display: flex;
+            align-items: center;
+            width: 70%;
+            height: 35%;
+            font-weight: bold;
+            font-size: 1vw;
+            margin: auto;
+            .GithubTitle{
+                display: flex;
+                width: 25%;
+                height: 90%;
+                align-items: center;
+                justify-content: center;
+            }
+            .GithubInput{
+                display: flex;
+                width: 75%;
+                height: 45%;
+                align-items: center;
+                justify-content: center;
+                padding-left: 1%;
+            }
+        }
+
+        .ApprovalButtonBox{
+            display: flex;
+            width: 90%;
+            height: 30%;
+            margin: auto;
+            align-items: center;
+            
+            .ApprovalCancelButton{
+                display: flex;
+                width: 15%;
+                height: 60%;
+                align-items: center;
+                justify-content: center;
+                margin-right: 3%;
+                margin-left: auto;
+                border-radius: 0.5em;
+                background-color: #F34F50;;
+                color: white;
+                font-weight: bold;
+                cursor: pointer;
+                &:hover{
+                    background-color: #dc3a3a;;
+                }
+            }
+            .ApprovalSaveButton{
+                display: flex;
+                width: 15%;
+                height: 60%;
+                align-items: center;
+                justify-content: center;
+                margin-right: auto;
+                border-radius: 0.5em;
+                background-color: #0090F9;
+                color: white;
+                font-weight: bold;
+                cursor: pointer;
+                &:hover{
+                    background-color: #0B7FD3;
+                }
+            }
+        }
+    }
+
+}

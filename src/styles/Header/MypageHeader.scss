@@ -1,13 +1,14 @@
 .MyPageHeaderBox{
     display: flex;
-    width: 50vw;
-    height: 8vh;
-    // width: 90%;
-    // height: 10%;
     align-items: center;
     justify-content: space-around;
     margin: auto;
+    margin-top: 1rem;
+    width: 100%;
+    height: 3.5rem;
     border-bottom: 0.15em solid #BABABA;
+    border-top: 0.15em solid #BABABA;
+    font-weight: bold;
     
     .SelectedMenu{
         display: flex;
@@ -16,10 +17,11 @@
         justify-content: center;
         align-items: center;
         font-size: 1.125vw;
-        color: #22b8cf;
+        color: #0090F9;
         cursor: pointer;
+        text-decoration: none;
         &:hover{
-            color:#3bc9bd;
+            color:#0090F9;
         }
     }
     .Menu{
@@ -29,13 +31,12 @@
         justify-content: center;
         align-items: center;
         font-size: 1.125vw;
-        text-decoration-line: none;
+        text-decoration: none;
         color: inherit;
         cursor: pointer;
         &:hover{
-            color:#495057
+            color:#0090F9;
         }
     }
-    
 
 }

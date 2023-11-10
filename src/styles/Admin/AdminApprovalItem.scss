@@ -1,0 +1,45 @@
+.AdminApprovalItemContainer{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    border-top: 0.1rem solid #D2D4D9;
+
+    .AdminApprovalItemName{
+        margin-right: 2%;
+        width: 30%;
+        padding-left: 1rem;
+
+        .AdminApprovalItemUserName{
+            font-size: 1.2rem;
+            height: 60%;
+            margin-bottom: 0.5rem;
+            color:#0090F9;
+            font-weight: bold;
+        }
+        .AdminApprovalItemGithubName{
+            height: 40%;
+            margin: 0%;
+        }
+    }
+    .AdminApprovalItemCreateDate{
+        width: 30%;
+        font-size: 1.2rem;
+        padding-left: 0.5rem;
+    }
+    .ApprovedStatus{
+        width: 30%;
+        font-size: 1.1rem;
+        padding-left: 0.5rem;
+        font-weight: bold;
+        color: green;
+    }
+    .NotApprovedStatu{
+        width: 30%;
+        font-size: 1.1rem;
+        padding-left: 0.5rem;
+        font-weight: bold;
+        color: red;
+    }
+}

@@ -1,0 +1,57 @@
+.AdminUserItemContainer{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    border-top: 0.1rem solid #D2D4D9;
+
+    .UserProfile{
+        width: 3rem;
+        height: 3rem;
+        border-radius: 50%;
+        border: 0.1rem solid #a3a4a6;
+    }
+    .AdminUserItemName{
+        margin-left: 0.75rem;
+        margin-right: 2%;
+        width: 20%;
+        padding-left: 0.5rem;
+
+        .AdminUserItemUserName{
+            font-size: 1.2rem;
+            height: 60%;
+            margin-bottom: 0.5rem;
+            color:#0090F9;
+        }
+        .AdminUserItemGithubName{
+            height: 40%;
+            margin: 0%;
+        }
+    }
+    .UserCreateDate{
+        width: 15%;
+        font-size: 1.1rem;
+        padding-left: 0.5rem;
+    }
+    .UserEmail{
+        width: 25%;
+        font-size: 1.1rem;
+        padding-left: 0.5rem;
+    }
+    .UserRole{
+        width: 15%;
+        font-size: 1.1rem;
+        padding-left: 0.5rem;
+    }
+    .UserSetting{
+        margin-left: auto;
+        margin-right: 1rem;
+        width: 1.5rem;
+        height: 1.5rem;
+        cursor: pointer;
+        &:hover{
+            color: #0090F9;
+        }
+    }
+}

@@ -1,50 +1,78 @@
-.RowNoticeItemBox{
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.NoticeItemContainer{
     width: 100%;
-    height: 6.25%;
+    height: 14vh;
+    // 추후에 변경(width, height)
+    margin: auto;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    border-top: 0.1rem solid #D2D4D9;
+    text-decoration: none;
     color: black;
-    font-weight: bold;
-    border-bottom: 1px solid black;
-
-    .NoticeItemNum{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 10%;
-        height: 100%;
+    cursor: pointer;
+    &:hover{
+        background-color: #eff1f4;
     }
-    .NoticeItemTitle{
+    .WriterBox{
         display: flex;
         align-items: center;
-        justify-content: center;
-        width: 50%;
-        height: 100%;
-        cursor: pointer;
-        &:hover{
-            color: #a0a3a8;
+        width: 100%;
+        height: 30%;
+        .Profile{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 2rem;
+            height: 2rem;
+            background-color: #C2185B;
+            color: white; 
+            font-size: 60%;
+            font-weight: 500;
+            border-radius: 50%;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .Writer{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 0.4rem;
+            height: 100%;
+            font-weight: bold;
         }
     }
-    .DClickNoticeItemTitle{
+    
+    .Title{
         display: flex;
         align-items: center;
-        justify-content: center;
-        width: 50%;
-        height: 100%;
+        width: 100%;
+        height: 50%;
+        font-weight: bold;
+        font-size: large;
     }
-    .NoticeItemCreated{
+    .DetailBox{
         display: flex;
         align-items: center;
-        justify-content: center;
-        width: 25%;
-        height: 100%;
-    }
-    .NoticeItemWriter{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 15%;
-        height: 100%;
+        width: 100%;
+        height: 20%;
+        font-weight: 500;
+        margin-left: auto;
+        color: #374151;
+        .EyeIcon{
+            margin-left: auto;
+        }
+        .WatchCnt{
+            margin-left: 1%;
+            margin-right: 2%;
+        }
+        .Comment{
+            margin-left: 1%;
+            margin-right: 2%;
+        }
+        .Time{
+            display: flex;
+            justify-content: center;
+            margin-left: auto;
+            margin-right: 0.5rem;
+        }
     }
 }

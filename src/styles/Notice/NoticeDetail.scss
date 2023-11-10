@@ -1,0 +1,139 @@
+* {
+    font-family: 'Raleway', sans-serif;
+}
+.NoticeDetailContainer{
+    width: 1080px;
+    height: auto;
+    margin: auto;
+
+    .NoticeDetailHeader{
+        width: 100%;
+        margin: auto;
+        height: auto;
+        margin-top: 3%;
+        border-bottom: 0.1rem solid #D2D4D9;
+        font-weight: 600;
+
+        .NoticeCategory{
+            margin: 0%;
+            font-size: large;
+            color: #757575;
+        }
+
+        .NoticeHeaderBox{
+            display: flex;
+            align-items: center;
+            height: 6rem;
+
+            .NoticeHeaderTitle{   
+                display: flex;
+                align-items: center;
+                width: 95%;
+                height: 100%;
+                margin: 0%;
+            }
+
+        }
+
+        .NoticeDetailInfo{
+            display: flex;
+            align-items: center;
+            width: 100%;
+            height: 3rem;
+            padding-bottom: 0.5rem;
+
+            .NoticeDetailProfile{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 1.75rem;
+                height: 1.75rem;
+                border-radius: 50%;
+                background-color: #0090F9;
+                font-size: 5%;
+                color: white;
+                margin-right: 1%;
+            }
+
+            .NoticeDetailWriter{
+                display: flex;
+                align-items: center;
+                color: #424242;
+                font-size: large;
+            }
+
+            .NoticeEyeIcon{
+                margin-top: auto;
+                margin-bottom: auto;
+                margin-left: auto;
+                width: 2%;
+                height: 90%;
+            }
+
+            .NoticeWatchCnt{
+                display: flex;
+                align-items: center;
+                margin-left: 0.5%;
+                margin-right: 2%;
+                font-size: 1.125rem;
+            }
+            
+            .NoticeTime{
+                display: flex;
+                align-items: center;
+                margin-left: auto;
+                font-size: 1.125rem;
+            }
+        }
+    }
+    .NoticeContents{
+        width: 100%;
+        margin: auto;
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+        height: auto;
+        border-bottom: 0.1rem solid #D2D4D9;
+    }
+    .NoticeFileBox{
+        display: flex;
+        width: 100%;
+        height: 3rem;
+        margin: auto;
+        margin-top: 2rem;
+        .NoticeFileItem{
+            display: flex;
+            align-items: center;
+            border: 0.1rem solid rgb(120, 117, 117);
+            border-radius: 5rem;
+            margin-right: 1rem;
+            height: 80%;
+
+            .NoticeFileName{
+                display: flex;
+                align-items: center;
+                white-space: nowrap;
+                padding-left: 1rem;
+                font-size: 1.15rem;
+                height: 80%;
+            }
+
+            .FileDownload{
+                display: flex;
+                align-items: center;
+                width: 1.5rem;
+                height: 1.5rem;
+                margin-left: 0.75rem;
+                margin-right: 0.5rem;
+                cursor: pointer;
+                color: gray;
+            }
+            .FileDownloadIcon{
+                width: 100%;
+                height: 100%;
+                &:hover{
+                    color: #0090F9;
+                }
+            }
+        }
+    }
+}
