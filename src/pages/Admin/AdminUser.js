@@ -10,34 +10,32 @@ import Footer from "../../components/Footer";
 
 // import ApprovalModal from "../components/Modal/ApprovalModal";
 
-import '../../styles/Admin/AdminUser.scss';
+import "../../styles/Admin/AdminUser.scss";
 const AdminUser = () => {
+  const navigate = useNavigate();
 
-    const navigate = useNavigate();
+  useEffect(() => {
+    const isAdmin = isCheckAdmin();
+    if (!isAdmin) {
+      navigate("/error");
+    }
+  }, []);
 
-    useEffect(()=>{
-        const isAdmin = isCheckAdmin();
-        if(!isAdmin){
-            navigate('/error');
-        }
-    },[]);
-
-    return(
-        <>
-            <div className="AdminUserContainer">
-                <Title title={"유저 관리"}/>
-                <div className="AdminUserListBox">
-                    <AdminSideMenu/>
-                    <div className="AdminUserList">
-                        <AdminUserList/>
-                        <AdminApprovalList/>
-                    </div>
-                </div>
-            </div>
-            <Footer/>
-        </>
-    )
+  return (
+    <>
+      <div className="w-[1280px] h-auto m-auto mb-[2rem]">
+        <Title title={"유저 관리"} />
+        <div className="flex w-full pt-[3rem]">
+          <AdminSideMenu />
+          <div className="w-[80%]">
+            <AdminUserList />
+            <AdminApprovalList />
+          </div>
+        </div>
+      </div>
+      <Footer />
+    </>
+  );
 };
-
 
 export default AdminUser;
