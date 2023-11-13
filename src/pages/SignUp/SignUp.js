@@ -18,11 +18,16 @@ const SignUp = () =>{
             if(payload.role === 'ROLE_GUEST'){
                 setIsGuest(true);
             }
+            else{
+                navigate('/error');
+            }
         }
     },[]);
 
     if(!isGuest){
-        navigate('/error');
+        return(
+            <></>
+        )
     }
     return(
         <>
