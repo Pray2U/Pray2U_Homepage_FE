@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link, useLocation, useSearchParams, useNavigate } from 'react-router-dom';
 import { AiOutlineSearch } from "react-icons/ai";
-import { setCookie, removeCookie, checkLogin, getCookie, tokenDecode } from '../../util/auth';
+import { setCookie, removeCookie, checkLogin, getCookie, tokenDecode, isCheckGuest} from '../../util/auth';
 
 import LoginModal from '../Modal/LoginModal';
 import Dropdown from './Dropdown';
@@ -119,7 +119,7 @@ const Header = () => {
     useEffect(()=>{
         save_token();
         setIsLoggedIn(checkLogin('accessToken'));
-        if(getCookie('accessToken')){
+        if(checkLogin('accessToken') && !isCheckGuest()){
             read_myInfomation();
         }
     },[]);
