@@ -7,7 +7,7 @@ import MypageHeader from "../../components/Header/MypageHeader";
 import TilItem from "../../components/Til/TilItem";
 import Title from "../../components/Title/Title";
 
-import "../../styles/MyPage/MyTil.scss";
+import "../../styles/MyPage/MyTIL.scss";
 
 const defaultOption = {
   root: null,
