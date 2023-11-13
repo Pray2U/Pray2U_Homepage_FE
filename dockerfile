@@ -1,5 +1,5 @@
 FROM node:18.12.1
-WORKDIR /react/ui-practice
+WORKDIR /pray2u_fe
 COPY package.json .
 RUN npm install
 COPY . ./

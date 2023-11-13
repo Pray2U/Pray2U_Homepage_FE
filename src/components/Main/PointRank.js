@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
+import axios from 'axios';
+import { getCookie } from '../../util/auth';
 import Point from './Point';
 
 import '../../styles/Main/PointRank.scss';
-import axios from 'axios';
 
 const PointRank = () => {
 
@@ -41,8 +42,13 @@ const PointRank = () => {
 
     const read_usersRank = async() => {
         try{
-            const url = "api/rank";
-            const response = await axios.get(url, {withCredentials:true});
+            const url = `${process.env.REACT_APP_API_SERVER}/api/rank`;
+            const response = await axios.get(url, {
+                headers:{
+                    Authorization: `Bearer ${getCookie('accessToken')}`
+                },
+                withCredentials:true
+            });
             setUsersRank(response.data.rankList)
         }catch(e){
             console.log(e);
@@ -51,29 +57,47 @@ const PointRank = () => {
 
     const read_myCurrentPoint = async() => {
         try{
-            const url = "api/rank/point/me";
-            const response = await axios.get(url, {withCredentials:true});
-            setMyCurrentPoint(response.data.weekPoint)
+            const url = `${process.env.REACT_APP_API_SERVER}/api/points/me`;
+            const response = await axios.get(url,{
+                headers:{
+                    Authorization: `Bearer ${getCookie('accessToken')}`
+                },
+                withCredentials:true
+            });
+            if(response.status === 200){
+                setMyCurrentPoint(response.data.data);
+            }else{
+                alert('내 포인트를 가져오는데 실패했습니다.');
+            }
         }catch(e){
-            console.log(e);
+            alert(e.response.data.message);
         }
     }
 
     const read_myLastWeekPoint = async() => {
         try{
-            const url = "api/rank/laskweek/me";
-            const response = await axios.get(url, {withCredentials:true});
-            setMyLastWeekPoint(response.data.weekPoint)
+            const url = `${process.env.REACT_APP_API_SERVER}/api/ranks/lastweek/me`;
+            const response = await axios.get(url,{
+                headers:{
+                    Authorization: `Bearer ${getCookie('accessToken')}`
+                },
+                withCredentials:true
+            });
+            if(response.status === 200){
+                setMyLastWeekPoint(response.data.weekPoint)
+            }else{
+                alert('내 포인트를 가져오는데 실패했습니다.');
+            }
         }catch(e){
-            console.log(e);
+            alert(e.message);
         }
     }
 
-    // useEffect(()=>{
-    //     read_usersRank();
-    //     read_myPoint();
-    //     read_myLastWeekPoint();
-    // },[userRank, myCurrentPoint, myLastWeekPoint]);
+    useEffect(()=>{
+        // read_usersRank();
+        // read_myCurrentPoint();
+        // read_myLastWeekPoint();
+    },[]);
 
     return(
         <div className="ContainerBox">
@@ -81,7 +105,9 @@ const PointRank = () => {
                 <img src='./img/Leader Board Icon.png' alt='Img'/>
                 <p className='IconText'>LEADER BOARD</p>
             </div>
-            <div className='RankListBox'>
+            {
+                usersRank ?  
+                <div className='RankListBox'>
                     <Point user={usersRank[0]}/>
                     <Point user={usersRank[1]}/>
                     <Point user={usersRank[2]}/>
@@ -92,7 +118,8 @@ const PointRank = () => {
                         Weekly Score : {myLastWeekPoint}
                     </div>
                     <Point user={usersRank[3]}/>
-            </div>
+                </div> : <></>
+            }
         </div>
     );
 }
