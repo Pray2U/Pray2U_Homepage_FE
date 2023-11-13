@@ -49,6 +49,8 @@ const NoticeCreate = () =>{
     const onHandleDeleteFile = (file) => {
         setFileNameList(fileNameList.filter((fileName, index) => fileName !== file));
         setFileList(fileList.filter((fileName, index) => fileName.name !== file));
+        // 인덱스 값으로 진행하였다가 fileNameList와 fileList에서 같은 데이터의 인덱스 값이 달라
+        // 지워지지 않는 데이터가 존재하여 filename으로 필터를 진행 해당 부분은 좀 더 수정할 필요가 있어보임
     };
 
     const onHandleCancel = () => {
