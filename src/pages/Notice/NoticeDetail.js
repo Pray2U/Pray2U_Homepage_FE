@@ -38,7 +38,11 @@ const NoticeDetail = () =>{
             });
             if(response.status === 200){
                 setNoticeInfo(response.data.data);
-                setFileList(response.data.data.fileUrl?.split(','));
+                if(response.data.data.fileUrl){
+                    setFileList(response.data.data.fileUrl?.split(','));
+                }else{
+                    setFileList([]);
+                }
             }else{
                 alert('데이터 통신에 실패하였습니다.');
                 navigate('/error');

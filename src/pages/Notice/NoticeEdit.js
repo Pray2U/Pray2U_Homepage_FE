@@ -11,6 +11,7 @@ import { getCookie } from '../../util/auth';
 import axios from "axios";
 
 import '../../styles/Notice/NoticeCreate.scss';
+import { uploadFileList } from '../../util/s3Upload';
 
 const NoticeCreate = () =>{
 
@@ -22,6 +23,7 @@ const NoticeCreate = () =>{
     const [ title, setTitle ] = useState(null);
     const [ content, setContent ] = useState(null);
     const [ fileNameList, setFileNameList ] = useState([]);
+    const [ fileList, setFileList ] = useState([]);
 
     const onHandleTitle = (e) => {
         setTitle(e.target.value);
@@ -29,6 +31,7 @@ const NoticeCreate = () =>{
 
     const onHandleAddFile = (e) => {
         const fileLists = e.target.files;
+
         let fileNameLists = [...fileNameList];
 
         for(let i=0; i < fileLists.length; i++){
@@ -40,10 +43,12 @@ const NoticeCreate = () =>{
         }
 
         setFileNameList(fileNameLists);
+        setFileList(fileList => fileList.concat([...fileLists]));
     }
 
-    const onHandleDeleteFile = (id) => {
-        setFileNameList(fileNameList.filter((_, index) => index !== id));
+    const onHandleDeleteFile = (file) => {
+        setFileNameList(fileNameList.filter((fileName, index) => fileName !== file));
+        setFileList(fileList.filter((fileName, index) => fileName.name !== file));
     };
 
     const onHandleCancel = () => {
@@ -53,13 +58,19 @@ const NoticeCreate = () =>{
     const put_noticeInfo = async() => {
         if (title && content){
             try{
+                let fileUrl = null;
+                if(fileNameList.length){
+                    fileUrl = fileNameList.filter((file) => file.includes('https')).join(",");
+                }
+                if(fileList.length){
+                    fileUrl = fileUrl ? fileUrl + "," + await uploadFileList(fileList) : await uploadFileList(fileList)
+                }
                 const postData = {
                     title:title,
                     content:content,
-                    fileUrl: 'test.com',
+                    fileUrl: fileUrl ? fileUrl : "",
                 }
                 const url = `${process.env.REACT_APP_API_SERVER}/api/admin/posts/${postId}`;
-                console.log(url);
                 const response = await axios.put(url,postData,{
                     headers: {
                         Authorization: `Bearer ${getCookie('accessToken')}`
@@ -95,7 +106,12 @@ const NoticeCreate = () =>{
             if(response.status === 200){
                 setContent(response.data.data.content);
                 setTitle(response.data.data.title);
-                // setFileNameList()
+                if(response.data.data.fileUrl){
+                    setFileNameList(response.data.data.fileUrl?.split(','))
+                }else{
+                    setFileNameList([]);
+                }
+                
             }else{
                 alert('데이터 통신에 실패하였습니다.');
                 navigate('/notice');
@@ -143,8 +159,8 @@ const NoticeCreate = () =>{
                     {
                         fileNameList?.map((file, idx) => (
                             <div key={idx} className='FileItem'>
-                                <div className='FileName'>{file}</div>
-                                <MdOutlineCancel className='FileDelete' onClick={() => onHandleDeleteFile(idx)}/>
+                                <div className='FileName'>{decodeURI(file.split('_')[1]) !== "undefined" ? decodeURI(file.split('_')[1]) : decodeURI(file)}</div>
+                                <MdOutlineCancel className='FileDelete' onClick={() => onHandleDeleteFile(file)}/>
                             </div>
                         ))
                     }
