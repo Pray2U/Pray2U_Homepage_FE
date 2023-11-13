@@ -29,10 +29,22 @@ export const tokenDecode = (token) => {
 }
 
 export const isCheckAdmin = () => {
-    let token = getCookie('accessToken')
+    let token = getCookie('accessToken');
     if(token){
         const payload = jwtDecode(token);
         if(payload.role === 'ROLE_ADMIN'){
+            return true;
+        }
+        return false;
+    }
+    return false;
+}
+
+export const isCheckGuest = () => {
+    let token = getCookie('accessToken');
+    if(token){
+        const payload = jwtDecode(token);
+        if(payload.role === 'ROLE_GUEST'){
             return true;
         }
         return false;
