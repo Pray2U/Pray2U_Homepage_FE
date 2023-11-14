@@ -59,8 +59,8 @@ const AdminApprovalList = () => {
             });
             if(response.status === 200){
                 setIsApprovalModal(false);
-                let newMember = response.data.data;
-                setMemberInfoList(memberInfoList => newMember.concat(memberInfoList));
+                let newMember = [{...response.data.data}];
+                setMemberInfoList(memberInfoList => newMember.concat(memberInfoList ));
                 alert('유저 승인이 추가 되었습니다.');
             }else{
                 setIsApprovalModal(false);

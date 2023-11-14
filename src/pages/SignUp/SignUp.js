@@ -1,4 +1,4 @@
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
 import SignUpForm from '../../components/SignUp/SignUpForm';
@@ -34,12 +34,12 @@ const SignUp = () =>{
             <div className="SignInContainer">
                 <div className="LeftBox">
                     <div className='LogoBox'>
-                        <img src='./img/logo.png' alt='img'/>
+                        <img src='./img/logo.png' alt='imgLogo'/>
                     </div>
                     <SignUpForm/>
                     <div className="BottomColor"/>
                 </div>
-                <img src='./img/signup_illustration.png' className='RightBox'/>
+                <img src='./img/signup_illustration.png' className='RightBox' alt="illustration"/>
             </div>
             <Footer/>
         </>

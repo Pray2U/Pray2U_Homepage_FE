@@ -84,7 +84,6 @@ const Header = () => {
         const accessToken = searchParams.get('accessToken');
         if(accessToken){
             let payload = tokenDecode(accessToken);
-            console.log(payload);
             const options = {
                 expires: new Date(payload?.exp*1000),
             }

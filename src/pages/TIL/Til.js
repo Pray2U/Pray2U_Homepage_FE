@@ -37,17 +37,17 @@ const Til = () => {
 
     const searchClick = () => {
         if(search){
-            alert('아직 기능이 구현되지 않았습니다.');
-            setSearch(null);
-            // navigate(`/search?query=${searchContent}`);
+            setPageNumber(0);
+            setApiTilDataList([]);
+            read_tilSearchAPi();
         }
     }
     
     const handleKeyDown = (e) =>{
         if(e.key === 'Enter' && search){
-            alert('아직 기능이 구현되지 않았습니다.');
-            setSearch(null);
-            // navigate(`/search?query=${searchContent}`);
+            setPageNumber(0);
+            setApiTilDataList([]);
+            read_tilSearchAPi();
         }
     }
     
@@ -76,6 +76,33 @@ const Til = () => {
             navigate('/error');
         }
     }
+
+    const read_tilSearchAPi = async() => {
+        try{
+            const url = `${process.env.REACT_APP_API_SERVER}/api/tils?keyword=${search}&${pageNumber}&size=${pageSize}&sort=id,desc`;
+            const response = await axios.get(url,{
+                headers: {
+                    Authorization: `Bearer ${getCookie('accessToken')}`
+                }
+                ,withCredentials:true
+            });
+            if (response.status === 200){
+                setApiTilDataList(apiTilDataList => apiTilDataList.concat(response.data.data.content));
+                setPageNumber((pageNumber)=>pageNumber+1);
+                setIsLoaded(false);
+                setTotalPageNum(response.data.totalPages);
+                console.log(response);
+            }else{
+                // 모달창 데이터 전송 오류
+                alert('TIL 데이터를 불러오는데 실패했습니다.');
+                navigate('/error');
+            }
+        }catch(e){
+            alert(e.response.data.message);
+            navigate('/error');
+        }
+    }
+
 
     const read_myInfo = async() => {
         try{
@@ -124,7 +151,11 @@ const Til = () => {
     const onIntersect = async ([ entry ], observer) => {
         if (entry.isIntersecting && !isLoaded) {
             observer.unobserve(entry.target);
-            await read_tilDataAPi();
+            if(search){
+                await read_tilSearchAPi();
+            }else{
+                await read_tilDataAPi();
+            }
             observer.observe(entry.target);
         }
     };
@@ -132,8 +163,10 @@ const Til = () => {
     useEffect(()=>{
         if(!search){
             read_tilDataAPi();
-            read_myInfo();
+        }else{
+            read_tilSearchAPi();
         }
+        read_myInfo();
     },[]);
 
     useEffect(() => {

@@ -91,16 +91,14 @@ const SignUpForm = () =>{
                 withCredentials:true
             });
             if(response.status === 200){
-                console.log(response);
-                removeCookie('accessToken');
                 alert('회원 정보가 등록되었습니다.');
-                navigate('/');
+                removeCookie('accessToken');
+                window.location.replace('/');
             }else{
                 alert('데이터 형식이 올바르지 않습니다.');
             }
         }catch(e){
             alert(e.response.data.message);
-            console.log(e.response);
         }
     }
 

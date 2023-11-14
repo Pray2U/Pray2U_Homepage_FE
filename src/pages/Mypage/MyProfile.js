@@ -52,9 +52,9 @@ const MyProfile = () => {
                 withCredentials:true
             });
             if(response.status === 200){
-                alert('회원 탈퇴가 되셨습니다.');
+                alert('회원 탈퇴 성공');
                 removeCookie('accessToken');
-                navigate('/');
+                window.location.replace('/');
             }else{
                 alert('세션이 만료되었습니다.');
             }
