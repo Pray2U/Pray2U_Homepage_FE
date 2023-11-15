@@ -1,31 +1,46 @@
-import { useState } from 'react';
-import { AiOutlineUnorderedList } from 'react-icons/ai';
-import { timeTrans } from '../../util/time';
+import { useState } from "react";
+import { AiOutlineUnorderedList } from "react-icons/ai";
+import { timeTrans } from "../../util/time";
 
-import AdminItemModal from '../Modal/AdminItemModal';
+import AdminItemModal from "../Modal/AdminItemModal";
 
-import '../../styles/Admin/AdminItem.scss';
-import dayjs from 'dayjs';
+import "../../styles/Admin/AdminItem.scss";
+import dayjs from "dayjs";
 
-const AdminItem = ({itemInfo, onToggle, onRemove}) => {
+const AdminItem = ({ itemInfo, onToggle, onRemove }) => {
+  const [isModalView, setIsModalView] = useState(false);
 
-    const [ isModalView, setIsModalView ] = useState(false);
-
-    return(
-        <div className="AdminItemContainer">
-            <div className='AdminItemImgName'>
-                <img src={itemInfo?.imgUrl} className='AdminItemImg' alt='상품 이미지'/>
-                <div className='AdminItemName'>{itemInfo?.itemName}</div>
-            </div>
-            <div className='AdminItemPrice'>{itemInfo?.point}</div>
-            <div className='AdminItemCreate'>{dayjs(itemInfo?.createdDate).format('YYYY-MM-DD')}</div>
-            <div className='AdminItemModify'>{dayjs(itemInfo?.modifiedDate).format('YYYY-MM-DD')}</div>
-            {
-                isModalView ? <AdminItemModal onToggle={onToggle} onRemove={()=>onRemove(itemInfo?.itemId)}/> : <></>
-            }
-            <AiOutlineUnorderedList className="AdminItemSetting" onClick={()=>setIsModalView(!isModalView)}/>
-        </div>
-    );
-}
+  return (
+    <div className="flex items-center w-full h-[7rem] py-[0.5rem] border-t-[0.1rem] border-t-solid border-t-[#D2D4D9] text-[1.15rem] font-bold">
+      <div className="flex items-center w-[20%] mr-[2%]">
+        <img
+          src={itemInfo?.imgUrl}
+          className="w-[4rem] h-[4rem] ml-[0.5rem]"
+          alt="상품 이미지"
+        />
+        <div className="pl-[1rem]">{itemInfo?.itemName}</div>
+      </div>
+      <div className="w-[15%] pl-[0.5rem]">{itemInfo?.point}</div>
+      <div className="w-[20%] pl-[0.5rem]">
+        {dayjs(itemInfo?.createdDate).format("YYYY-MM-DD")}
+      </div>
+      <div className="w-[20%] pl-[0.5rem]">
+        {dayjs(itemInfo?.modifiedDate).format("YYYY-MM-DD")}
+      </div>
+      {isModalView ? (
+        <AdminItemModal
+          onToggle={onToggle}
+          onRemove={() => onRemove(itemInfo?.itemId)}
+        />
+      ) : (
+        <></>
+      )}
+      <AiOutlineUnorderedList
+        className="ml-auto mr-[1rem] w-[1.5rem] h-[1.5rem] cursor-pointer hover:text-[#0090F9]"
+        onClick={() => setIsModalView(!isModalView)}
+      />
+    </div>
+  );
+};
 
 export default AdminItem;
