@@ -135,12 +135,12 @@ const MyAttend = () => {
             tileContent={addDot}
           />
           {checkedToday ? (
-            <div className="flex items-center justify-center w-[35%] h-[3rem] m-auto mt-[2.5%] bg-[rgb(91,88,88)] text-white rounded-[1rem]">
+            <div className="flex items-center justify-center w-[35%] h-[3rem] m-auto mt-4 bg-[rgb(91,88,88)] text-white rounded-[1rem]">
               출석 완료
             </div>
           ) : (
             <div
-              className="flex w-[35%] h-[3rem] m-auto mt-[2.5%] mb-[2.5%] items-center justify-center bg-[#0090F9] rounded-[1rem] text-white cursor-pointer hover:bg-[#0B7FD3]"
+              className="flex w-[35%] h-[3rem] m-auto mt-4 mb-[2.5%] items-center justify-center bg-[#0090F9] rounded-[1rem] text-white cursor-pointer hover:bg-[#0B7FD3]"
               onClick={() => post_MyAttendDay()}
             >
               출석하기

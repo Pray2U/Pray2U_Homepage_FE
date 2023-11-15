@@ -73,7 +73,7 @@ const MyShop = () => {
               </div>
             ))}
           </div>
-          <div className="gird w-full h-auto m-auto mt-[1rem] mb-[2rem] grid-cols-3 justify-around items-stretch justify-items-stretch gap-[2rem]">
+          <div className="grid w-full h-auto m-auto mt-1 mb-2 grid-cols-3 justify-around items-stretch justify-items-stretch gap-2">
             {myOrderList?.map(
               (order) =>
                 isUsedItem === order?.useStatus && (

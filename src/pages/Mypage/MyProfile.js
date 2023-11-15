@@ -158,7 +158,7 @@ const MyProfile = () => {
       <div className="w-[1080px] h-auto m-auto">
         <Title title={"Mypage"} />
         <MypageHeader />
-        <div className="w-full h-[90%] font-bold m-auto mt-[2rem] mb-[2rem]">
+        <div className="w-full h-[90%] font-bold m-auto my-2">
           <div className="flex w-full h-[25rem] m-auto">
             <div className="w-[30%] h-[80%] m-auto">
               <img
