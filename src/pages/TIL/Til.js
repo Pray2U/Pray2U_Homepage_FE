@@ -197,7 +197,7 @@ const Til = () => {
           />
         </div>
       </div>
-      <div className="flex items-center w-full h-[10vh] m-auto mt-[2%] rounded-[1rem] bg-[#0090F9] text-white font-bold text-[2rem]">
+      <div className="flex flex-col items-center w-full h-[10vh] m-auto mt-2 rounded-[1rem] text-white font-bold text-[2rem]">
         {apiTilDataList?.map((til) => (
           <TilItem
             key={til.tilId}
