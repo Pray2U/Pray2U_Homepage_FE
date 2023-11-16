@@ -184,7 +184,7 @@ const Til = () => {
     <div className="w-[1080px] h-auto m-auto">
       <Title title="TIL" subTitle="Today I Learned" />
       <CreateButton link={"/til/create"} />
-      <div className="flex items-center w-full h-[5vh] m-auto mt-[1rem] bg-[#0090F9] rounded-[0.5em]">
+      <div className="flex items-center w-[700px] h-[5vh] m-auto mt-[1rem] bg-[#0090F9] rounded-[0.5em]">
         <div className="flex items-center w-[30%] h-[80%] rounded-[4em] ml-[3rem] bg-white">
           <AiOutlineSearch
             className="ml-[1rem] w-[7%] h-[80%] bg-white"
@@ -197,7 +197,7 @@ const Til = () => {
           />
         </div>
       </div>
-      <div className="flex items-center w-full h-[10vh] m-auto mt-[2%] rounded-[1rem] bg-[#0090F9] text-white font-bold text-[2rem]">
+      <div className="flex flex-col items-center w-full h-[10vh] m-auto mt-[2%] rounded-[1rem] bg-[#0090F9] text-white font-bold text-[2rem]">
         {apiTilDataList?.map((til) => (
           <TilItem
             key={til.tilId}
