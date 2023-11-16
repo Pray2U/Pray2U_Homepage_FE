@@ -20,11 +20,11 @@ const NoticeItem = ({ noticeItem }) => {
           src={noticeItem?.user?.writerProfileImg}
           className="flex items-center justify-center w-[2rem] h-[2rem] bg-[#C2185B] text-white text-[60%] font-bold rounded-[50%] cursor-pointer no-underline"
         />
-        <div className="flex items-center justify-center ml-[0.4rem] h-full font-bold">
+        <div className="flex items-center justify-center ml-[0.4rem] h-full font-bold text-[25px]">
           {noticeItem?.user?.writerName}
         </div>
       </div>
-      <div className="flex items-center w-full h-[50%] font-bold text-lg">
+      <div className="flex items-center w-full h-[50%] font-bold text-sm">
         {noticeItem?.title}
       </div>
       <div className="flex items-center w-full h-[20%] font-bold ml-auto text-[#374151]">
@@ -32,7 +32,7 @@ const NoticeItem = ({ noticeItem }) => {
                 <div className='WatchCnt'>{noticeItem?.watchCnt}</div>
                 <AiOutlineComment/>
                 <div className="Comment">{noticeItem?.commentCnt}</div> */}
-        <div className="flex justify-center ml-auto mr-[0.5rem]">
+        <div className="flex justify-center ml-auto mr-[0.5rem] text-sm">
           {noticeTime(noticeItem?.createDate)}
         </div>
       </div>

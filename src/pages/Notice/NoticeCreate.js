@@ -96,13 +96,13 @@ const NoticeCreate = () => {
 
   return (
     <>
-      <div className="w-[1080px] h-auto m-auto mt-[2%] mb-[1%]">
+      <div className="w-[1080px] h-auto m-auto mt-2 mb-1">
         <Title title={"공지사항 작성"} />
-        <div className="mt-[2rem]">
-          <p className="mb-[1%]">제목</p>
+        <div className="mt-4">
+          <p className="mb-2">제목</p>
           <input
             placeholder="제목을 입력해주세요."
-            className="NoticeCreateTitle"
+            className="w-full h-[2.25rem] border-solid border-[0.15rem] bordoer-[hsla(220,9%,46%,.3)] pl-1 text-[1rem] mb-1 focus:border-[#0090F9] focus:outline-none"
             onChange={onHandleTitle}
           />
         </div>
