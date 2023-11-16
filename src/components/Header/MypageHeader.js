@@ -27,7 +27,7 @@ const MypageHeader = () => {
   ];
 
   return (
-    <div className="flex items-center justify-center m-auto mt-2 w-full h-[3.5rem] border-b-[0.15em] border-b-solid border-b-[#BABABA] border-t-[0.15em] border-t-solid border-t-[#BABABA] font-bold">
+    <div className="flex items-center justify-around m-auto my-4 w-full h-[3.5rem] border-b-[0.15em] border-b-solid border-b-[#BABABA] border-t-[0.15em] border-t-solid border-t-[#BABABA] font-bold">
       {userHeaders.map((menu) => (
         <Link
           to={`/mypage/${menu?.link}`}

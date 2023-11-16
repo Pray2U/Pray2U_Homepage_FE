@@ -115,13 +115,13 @@ const MyAttend = () => {
 
   return (
     <>
-      <div className="w-full h-auto m-auto">
+      <div className="w-[1080px] h-auto m-auto">
         <Title title={"Mypage"} />
         <MypageHeader />
-        <div className="w-full h-[35rem] m-auto mt-[3rem] mb-[3rem] pt-[2rem] pb-[2rem] rounded-[0.5rem] border-[0.1rem] border-solid border-[#dadce0] shadow-sm shadow-[#dadce0]">
+        <div className="w-full h-[35rem] m-auto my-4 py-8 rounded-[0.5rem] border-[0.1rem] border-solid border-[#dadce0] shadow-[1px_1px_3px_1px_#dadce0]">
           <Calendar
             locale="en"
-            className="m-auto mt-[2.5%] checked:mt-[6px] text-[#56A9E3]"
+            className="m-auto mt-[2.5%] checked:mt-[6px] checked:bg-red"
             onChange={(value, event) => onChangeSelectedMonth(value)}
             nextLabel={null}
             next2Label={null}

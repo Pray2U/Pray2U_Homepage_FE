@@ -58,7 +58,7 @@ const MyShop = () => {
         <Title title={"Mypage"} />
         <MypageHeader />
         <div className="w-full h-auto m-auto mt-[1rem] mb-[2rem]">
-          <div className="flex items-center w-[40%] h-[5vh] text-[1vw] font-bold">
+          <div className="flex items-center w-[40%] h-[5vh] text-[1vw] font-bold my-3">
             {OrderMenu?.map((menu, idx) => (
               <div
                 className={
@@ -73,7 +73,7 @@ const MyShop = () => {
               </div>
             ))}
           </div>
-          <div className="grid w-full h-auto m-auto mt-1 mb-2 grid-cols-3 justify-around items-stretch justify-items-stretch gap-2">
+          <div className="grid w-full h-auto m-auto mt-2 mb-4 grid-cols-3 justify-around items-stretch justify-items-stretch gap-2">
             {myOrderList?.map(
               (order) =>
                 isUsedItem === order?.useStatus && (
