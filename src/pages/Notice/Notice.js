@@ -59,8 +59,8 @@ const Notice = () => {
 
   return (
     <>
-      <div className="w-[1080px] h-auto m-auto">
-        <div className="flex items-center w-full h-[10vh] m-auto mt-[2%] rounded-[1rem] bg-[#0090F9] text-white font-bold text-[1.75rem]">
+      <div className="NoticeContainer">
+        <div className="NoticeTitleBox">
           <Title title="공지사항" />
           <CreateButton link={isAdmin ? "/notice/create" : null} />
           {noticeList?.map((notice) => (
