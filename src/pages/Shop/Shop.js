@@ -114,12 +114,12 @@ const Shop = () => {
 
   return (
     <>
-      <div className="w-[1080px] h-auto m-auto mb-[3rem]">
+      <div className="w-[1080px] h-auto m-auto pb-8">
         <Title title="Shop" />
-        <div className="flex items-center justify-center w-full m-auto my-[2rem] font-bold text-[1.5rem]">
+        <div className="flex items-center justify-end w-full h-24 m-auto my-[2rem] font-bold text-[1.5rem]">
           현재 보유 포인트: {myPoint}
         </div>
-        <div className="flex w-full items-stretch justify-items-stretch h-auto m-auto rounded-[0.5rem] bg-white shadow-md shadow-[#c7c9cb] grid-cols-3 justify-around">
+        <div className="grid w-full items-stretch justify-items-stretch m-auto rounded-[0.5rem] bg-white shadow-[1px_1px_3px_1px_#c7c9cb] grid-cols-3 justify-around">
           {itemList?.map((item) => (
             <ShopItem key={item?.itemId} item={item} onModal={onModal} />
           ))}
