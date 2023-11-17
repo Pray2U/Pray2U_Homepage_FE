@@ -9,7 +9,7 @@ const Error = () => {
   };
 
   return (
-    <div className="flex-wrap flex-col items-center justify-center w-[1280px] h-[80vh] mx-0 my-auto">
+    <div className="w-full h-[80vh] flex-col mt-6">
       <img
         className="flex justify-center w-[10rem] h-[10rem] m-auto mt-[2.5rem]"
         src="img/logo.png"
