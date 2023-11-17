@@ -165,7 +165,7 @@ const EventEditor = ({
         <div className="flex mr-[0.25rem] h-[50%] items-center justify-center font-bold">
           Time :{" "}
         </div>
-        <div className="flex w-[85%]">
+        <div className="flex w-[85%] items-center">
           <Form.Select
             className="ml-[2%] mr-[2%] w-[15%] h-[50%] text-[1rem]"
             onChange={onChangeStartHourTime}
@@ -180,7 +180,7 @@ const EventEditor = ({
               );
             })}
           </Form.Select>
-          :
+          <p className="mt-[12px]">:</p>
           <Form.Select
             className="ml-[2%] mr-[2%] w-[15%] h-[50%] text-[1rem]"
             onChange={onChangeStartMinuteTime}
@@ -194,7 +194,7 @@ const EventEditor = ({
               );
             })}
           </Form.Select>
-          ~
+          <p className="mt-[12px]">~</p>
           <Form.Select
             className="ml-[2%] mr-[2%] w-[15%] h-[50%] text-[1rem]"
             onChange={onChangeEndHourTime}
@@ -212,7 +212,7 @@ const EventEditor = ({
               }
             })}
           </Form.Select>
-          :
+          <p className="mt-[12px]">:</p>
           <Form.Select
             className="ml-[2%] mr-[2%] w-[15%] h-[50%] text-[1rem]"
             onChange={onChangeEndMinuteTime}
