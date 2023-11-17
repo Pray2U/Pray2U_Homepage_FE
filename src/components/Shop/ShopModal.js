@@ -13,7 +13,7 @@ const ShopModal = ({ itemInfo, closeModal, myPoint, post_BuyItem }) => {
           <div className="ItemInfoImage">
             <img src={itemInfo?.imgUrl} className="ItemImage" alt="ItemImg" />
             <div className="ItemName">{itemInfo?.itemName}</div>
-            <div className="ItemPoint">{itemInfo?.point}</div>
+            <div className="ItemPoint">{itemInfo?.point} pt</div>
           </div>
           <div className="ItemInfoDetail">
             <div className="ItemContentInfo">
