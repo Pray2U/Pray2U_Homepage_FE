@@ -105,12 +105,9 @@ const NoticeDetail = () => {
   return (
     <div className="w-[1080px] h-auto m-auto">
       <div className="w-full h-auto m-auto mt-[3%] border-b-[0.1rem] border-b-[#D2D4D9] border-b-solid font-bold">
-        <p className="m-[0%] text-lg text-[#757575]">
-          공지사항&nbsp;&nbsp;Notice
-        </p>
         <div className="flex items-center h-[6rem]">
           <h1 className="flex items-center w-[95%] h-full m-[0%]">
-            {noticeInfo?.title}
+            제목 : {noticeInfo?.title}
           </h1>
           {isAdmin ? (
             <SideMenu onToggle={onToggle} onRemove={delete_NoticeItem} />
