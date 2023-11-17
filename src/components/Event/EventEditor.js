@@ -248,16 +248,16 @@ const EventEditor = ({
       </div>
       <div className="flex justify-end mr-6 w-[full] h-[80px]">
         <div
-          className="flex w-[70px] h-[40px] mr-4 items-center justify-center rounded-[0.5rem] bg-[#0090F9] text-white font-bold cursor-pointer hover:bg-[#0B7FD3]"
-          onClick={() => post_Event(eventInfo?.eventId)}
-        >
-          저장
-        </div>
-        <div
-          className="flex w-[70px] h-[40px] items-center justify-center rounded-[0.5rem] bg-[#F34F50] text-white font-bold cursor-pointer hover:bg-[#dc3a3a]"
+          className="flex w-[70px] h-[40px] mr-4 items-center justify-center rounded-[0.5rem] bg-[#F34F50] text-white font-bold cursor-pointer hover:bg-[#dc3a3a]"
           onClick={() => canselAddEvent()}
         >
           취소
+        </div>
+        <div
+          className="flex w-[70px] h-[40px] items-center justify-center rounded-[0.5rem]  bg-[#0090F9] text-white font-bold cursor-pointer hover:bg-[#0B7FD3]"
+          onClick={() => post_Event(eventInfo?.eventId)}
+        >
+          저장
         </div>
       </div>
     </div>
