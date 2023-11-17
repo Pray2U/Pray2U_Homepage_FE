@@ -44,8 +44,8 @@ const TilItem = ({ tilInfo, onRemove, myInfo }) => {
     <div
       className={
         isClosed
-          ? "relative m-auto my-2 w-full h-[25rem] shadow-[1px_1px_3px_1px_#dadce0] rounded-[1rem] pt-2 bg-white"
-          : "relative m-auto my-2 w-full h-auto shadow-[1px_1px_3px_1px_#dadce0] rounded-[1rem] pt-2 bg-white"
+          ? "relative m-auto my-4 w-full h-[25rem] shadow-[1px_1px_3px_1px_#dadce0] rounded-[1rem] pt-2 bg-white"
+          : "relative m-auto my-4 w-full h-auto shadow-[1px_1px_3px_1px_#dadce0] rounded-[1rem] pt-2 bg-white"
       }
     >
       <div className="flex items-center w-[95%] h-[5rem] m-auto border-b-[0.1rem] border-b-solid border-b-[#c7c9ce]">
