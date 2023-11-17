@@ -64,7 +64,7 @@ const TilCreate = () => {
 
   return (
     <>
-      <div className="w-[1024px] h-auto m-auto mt-[2%] mb-[1%]">
+      <div className="w-[1080px] h-auto m-auto mt-[2%] mb-[1%]">
         <Title title={"TIL 작성"} />
         <div className=" mt-[2rem]">
           <p className="mb-[1%]">제목</p>

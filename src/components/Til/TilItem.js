@@ -79,8 +79,8 @@ const TilItem = ({ tilInfo, onRemove, myInfo }) => {
       <div
         className={
           isClosed
-            ? "w-[85%] h-[16rem] overflow-hidden m-auto pt-[1rem] text-[20px]"
-            : "w-[85%] h-auto overflow-hidden m-auto pt-[1rem] pb-[5%] text-[20px]"
+            ? "w-[85%] h-[250px] m-auto pt-[1rem] text-[20px] overflow-hidden"
+            : "w-[85%] h-auto m-auto pt-[1rem] pb-[5%] text-[20px] overflow-hidden"
         }
       >
         {/* <Viewer
@@ -88,10 +88,13 @@ const TilItem = ({ tilInfo, onRemove, myInfo }) => {
                     initialValue={tilInfo?.content}
                 /> */}
         {parse(tilInfo?.content)}
+        {/* <div className="w-full h-[200px] overflow-hidden">
+          {parse(tilInfo?.content)}
+        </div> */}
       </div>
       {isOverContent ? (
         <div
-          className="absolute bottom-0 w-full h-[3rem] m-auto text-center rounded-[1em] cursor-pointer text-gray hover:text-black"
+          className="flex justify-center items-center w-full h-[3rem] m-auto text-center rounded-[1em] cursor-pointer font-semibold text-slate-500 text-[17px] hover:text-black"
           onClick={() => onChangeIsClosed()}
         >
           {isClosed ? "더보기" : "접기"}
