@@ -46,7 +46,7 @@ const AdminUserItem = ({ userInfo }) => {
         <Link
           to={`https://github.com/${userInfo?.githubId}`}
           target="_blank"
-          className="text-[1.2rem] h-[60%] mb-[0.5rem] text-[#0090F9]"
+          className="text-[1.1rem] h-[60%] mb-[0.5rem] text-[#0090F9]"
         >
           {userInfo?.username}
         </Link>

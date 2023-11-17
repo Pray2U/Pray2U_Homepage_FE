@@ -11,17 +11,26 @@ const AdminOrderItem = ({ orderInfo, onToggle }) => {
         {dayjs(orderInfo?.createDate).format("YYYY.MM.DD HH:mm")}
       </div>
       <div className="w-[25%] pl-[0.5rem]">{orderInfo?.item?.itemName}</div>
-      <div className="w-[30%] pl-[0.5rem] text-white">
+      <div className="w-[30%] pl-[0.5rem] text-black">
         {!orderInfo?.useStatus ? (
-          <div
-            className="flex justify-center m-auto w-[50%] pl-[0.5rem] bg-green rounded-[0.5rem] cursor-pointer hover:bg-red"
-            onClick={() => onToggle(orderInfo?.orderId)}
-          >
-            승인 대기
+          <div className="flex justify-center items-center m-auto w-full pl-[0.5rem] rounded-[0.5rem]">
+            <p className="m-0 p-3">승인 대기</p>
+            <button
+              className="w-16 h-8 bg-red-400 hover:bg-red-500 rounded-md"
+              onClick={() => onToggle(orderInfo?.orderId)}
+            >
+              Check
+            </button>
           </div>
         ) : (
-          <div className="flex justify-center m-auto w-[50%] pl-[0.5rem] bg-gray rounded-[0.5rem] text-white">
-            승인 완료
+          <div className="flex justify-center items-center m-auto w-full pl-[0.5rem] rounded-[0.5rem]">
+            <p className="m-0 p-3">승인 완료</p>
+            <button
+              className="w-16 h-8 bg-green-400 hover:bg-green-500 rounded-md"
+              onClick={() => onToggle(orderInfo?.orderId)}
+            >
+              Check
+            </button>
           </div>
         )}
       </div>

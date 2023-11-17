@@ -92,11 +92,11 @@ const AdminShopCreate = () => {
     <>
       <div className="w-[1080px] h-auto m-auto mb-[2rem]">
         <Title title={"아이템 등록"} />
-        <div className="w-full m-auto mt-[1rem] mb-[1rem] font-bold">
+        <div className="w-full m-auto my-4 font-bold">
           <p className="mb-[1%]">상품명</p>
           <input
             placeholder="상품명"
-            className="w-full h-[2.25rem] border-solid border-[0.15rem] rounded-[0.375rem] border-[hsla(220,9%,46%,.3)] pl-[1%] text-[1rem] mb-[1%] focus:border-[#0090F9] focus:outline-none"
+            className="w-full h-[2.25rem] border-solid border-[0.15rem] rounded-[0.375rem] border-[hsla(220,9%,46%,.3)] pl-2 text-[1rem] mb-2 focus:border-[#0090F9] focus:outline-none"
             onChange={onHandleItemName}
           />
         </div>
@@ -104,19 +104,19 @@ const AdminShopCreate = () => {
           <p className="mb-[1%]">상품 포인트</p>
           <input
             placeholder="상품 포인트"
-            className="w-full h-[2.25rem] border-solid border-[0.15rem] rounded-[0.375rem] border-[hsla(220,9%,46%,.3)] pl-[1%] text-[1rem] mb-[1%] focus:border-[#0090F9] focus:outline-none"
+            className="w-full h-[2.25rem] border-solid border-[0.15rem] rounded-[0.375rem] border-[hsla(220,9%,46%,.3)] pl-2 text-[1rem] mb-2 focus:border-[#0090F9] focus:outline-none"
             onChange={onHandleItemPoint}
           />
         </div>
-        <div className="w-full m-auto mt-[1rem] mb-[1rem] font-bold">
+        <div className="w-full m-auto my-2 font-bold">
           <p className="mb-[1%]">상품 설명</p>
           <textarea
             placeholder="상품 설명을 적어주세요."
-            className="w-full h-[7rem] border-solid border-[0.15rem] rounded-[0.375rem] border-[hsla(220,9%,46%,.3)] pl-[1%] text-[1rem] mb-[1%] resize-none focus:border-[#0090F9] focus:outline-none"
+            className="w-full h-[7rem] border-solid border-[0.15rem] rounded-[0.375rem] border-[hsla(220,9%,46%,.3)] pl-2 text-[1rem] mb-2 resize-none focus:border-[#0090F9] focus:outline-none"
             onChange={onHandleItemDescription}
           />
         </div>
-        <div className="mb-[1rem] w-full h-auto">
+        <div className="mb-4 w-full h-auto">
           <input
             type="file"
             id="input-file"
