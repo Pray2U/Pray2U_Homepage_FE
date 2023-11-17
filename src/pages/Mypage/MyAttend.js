@@ -101,7 +101,7 @@ const MyAttend = () => {
         return (
           <BsFillCheckCircleFill
             key={myAttendDayList[i].attendanceId}
-            className="check"
+            className="text-sky-300 mt-1"
           />
         );
       }
@@ -121,7 +121,7 @@ const MyAttend = () => {
         <div className="w-full h-[35rem] m-auto my-4 py-8 rounded-[0.5rem] border-[0.1rem] border-solid border-[#dadce0] shadow-[1px_1px_3px_1px_#dadce0]">
           <Calendar
             locale="en"
-            className="m-auto mt-[2.5%] checked:mt-[6px] checked:bg-red"
+            className="m-auto mt-[2.5%]"
             onChange={(value, event) => onChangeSelectedMonth(value)}
             nextLabel={null}
             next2Label={null}
