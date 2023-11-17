@@ -16,7 +16,7 @@ const AdminOrderItem = ({ orderInfo, onToggle }) => {
           <div className="flex justify-center items-center m-auto w-full pl-[0.5rem] rounded-[0.5rem]">
             <p className="m-0 p-3">승인 대기</p>
             <button
-              className="w-16 h-8 bg-red-400 hover:bg-red-500 rounded-md"
+              className="w-16 h-8 bg-green-400 hover:bg-green-500 rounded-md"
               onClick={() => onToggle(orderInfo?.orderId)}
             >
               Check
@@ -24,13 +24,7 @@ const AdminOrderItem = ({ orderInfo, onToggle }) => {
           </div>
         ) : (
           <div className="flex justify-center items-center m-auto w-full pl-[0.5rem] rounded-[0.5rem]">
-            <p className="m-0 p-3">승인 완료</p>
-            <button
-              className="w-16 h-8 bg-green-400 hover:bg-green-500 rounded-md"
-              onClick={() => onToggle(orderInfo?.orderId)}
-            >
-              Check
-            </button>
+            <p className="m-0 p-3">승인 완료 ✅</p>
           </div>
         )}
       </div>
