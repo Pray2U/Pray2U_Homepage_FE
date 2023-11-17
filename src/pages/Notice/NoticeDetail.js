@@ -138,18 +138,18 @@ const NoticeDetail = () => {
         {parse(`${noticeInfo?.content}`)}
       </div>
       {fileList ? (
-        <div className="flex w-full h-[3rme] m-auto mt-[2rem]">
+        <div className="flex w-full h-[3rem] m-auto mt-[2rem]">
           {fileList?.map((fileUrl) => (
             <div
-              className="flex items-center border-[0.1rem] border-solid border-[rgb(120,117,117)] rounded-[5rem] mr-[1rem] h-[80%]"
+              className="flex items-center border-[0.1rem] border-solid border-[rgb(120,117,117)] rounded-[5rem] mr-[1rem] h-[80%] mt-4"
               key={fileUrl}
             >
-              <div className="flex items-center whitespace-nowrap pl-1rem text-[1.15rem] h-[80%]">
+              <div className="flex items-center whitespace-nowrap pl-1rem text-[1.15rem] h-[80%] pl-5">
                 {decodeURI(fileUrl.split("_")[1])}
               </div>
               <Link
                 to={fileUrl}
-                className="flex items-center w-[1.5rem] h-[1.5rem] mx-[0.75rem] cursor-pointer text-gray"
+                className="flex items-center w-[1.5rem] h-[1.5rem] mx-[0.75rem] cursor-pointer"
               >
                 <AiOutlineDownload className="w-full h-full hover:text-[#0090F9]" />
               </Link>
