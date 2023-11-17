@@ -169,7 +169,7 @@ const Event = () => {
     <>
       <div className="w-[1080px] h-auto m-auto">
         <Title title="이벤트" />
-        <div className="flex w-full h-[35rem] m-auto mt-4 mb-4 bg-white shadow-md rounded-1">
+        <div className="flex w-full h-[35rem] m-auto mt-4 mb-4 bg-white shadow-[1px_1px_3px_1px_#dadce0] rounded-1">
           <div className="flex w-[49%] h-full justify-center">
             <Calendar
               locale="en"
@@ -207,7 +207,7 @@ const Event = () => {
                   onToggle={onToggle}
                 />
                 <div
-                  className="flex items-center ml-auto mr-[5%] w-[30%] h-[8%] text-whtie bg-[#9A58EE] pl-[1%] mt-[3%] rounded-[0.5em] cursor-pointer hover:bg-[#9048ef]"
+                  className="flex items-center justify-center ml-auto mr-4 w-[200px] h-[50px] text-whtie bg-[#9A58EE] text-white font-bold rounded-[0.5em] cursor-pointer hover:bg-[#9048ef]"
                   onClick={addEvent}
                 >
                   + Add a new Event
