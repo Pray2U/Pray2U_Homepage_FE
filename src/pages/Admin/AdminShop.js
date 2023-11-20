@@ -112,15 +112,15 @@ const AdminShop = () => {
             >
               상품 등록
             </div>
-            <div className="flex items-center w-[100%] h-3 bg-[#E5E7EB] font-bold text-[rgb(58, 57, 57)]">
+            <div className="flex items-center w-full h-[3rem] bg-[#E5E7EB] font-bold text-[rgb(58,57,57)]">
               <div className="w-[20%] pl-[1rem] mr-[2%]">상품명</div>
-              <div className="w-[15%] border-l-[0.1rem] border-solid border-[rgb(179, 176, 176)] pl-[0.5rem]">
+              <div className="w-[15%] border-l-[0.1rem] border-l-solid border-l-[rgb(179,176,176)] pl-[0.5rem]">
                 가격
               </div>
-              <div className="w-[20%] border-l-[0.1rem] border-solid border-[rgb(179, 176, 176)] pl-[0.5rem]">
+              <div className="w-[20%] border-l-[0.1rem] border-l-solid border-l-[rgb(179,176,176)] pl-[0.5rem]">
                 등록일
               </div>
-              <div className="w-[25%] border-l-[0.1rem] border-solid border-[rgb(179, 176, 176)] pl-[0.5rem]">
+              <div className="w-[25%] border-l-[0.1rem] border-l-solid border-l-[rgb(179,176,176)] pl-[0.5rem]">
                 수정일
               </div>
               <div className="ml-auto mr-[1rem]">설정</div>

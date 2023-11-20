@@ -84,15 +84,15 @@ const AdminOrder = () => {
         <div className="flex w-full pt-3">
           <AdminSideMenu />
           <div className="w-[80%]">
-            <div className="flex items-center w-[100%] h-3 bg-[#E5E7EB] font-bold text-[rgb(58, 57, 57)]">
+            <div className="flex items-center w-full h-[3rem] bg-[#E5E7EB] font-bold text-[rgb(58,57,57)]">
               <div className="w-[20%] pl-[1rem] mr-[2%]">신청자</div>
-              <div className="w-[25%] border-l-[0.1rem] border-solid border-[rgb(179, 176, 176)] pl-[0.5rem]">
+              <div className="w-[25%] border-l-[0.1rem] border-l-solid border-l-[rgb(179,176,176)] pl-[0.5rem]">
                 주문 날짜
               </div>
-              <div className="w-[25%] border-l-[0.1rem] border-solid border-[rgb(179, 176, 176)] pl-[0.5rem]">
+              <div className="w-[25%] border-l-[0.1rem] border-l-solid border-l-[rgb(179,176,176)] pl-[0.5rem]">
                 주문 상품
               </div>
-              <div className="flex justify-center w-[30%] border-l-[0.1rem] border-solid border-[rgb(179, 176, 176)] pl-[0.5rem]">
+              <div className="flex justify-center w-[30%] border-l-[0.1rem] border-l-solid border-l-[rgb(179,176,176)] pl-[0.5rem]">
                 승인 여부
               </div>
             </div>
