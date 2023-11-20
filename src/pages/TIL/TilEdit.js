@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import TextEditor from "../../components/TextEditor";
 import RegistButton from "../../components/RegistButton";
+import Title from "../../components/Title/Title";
+import Footer from "../../components/Footer";
 
 import { getCookie } from "../../util/auth";
 import axios from "axios";
@@ -91,35 +93,39 @@ const TilEdit = () => {
   }, []);
 
   return (
-    <div className="w-[1024px] h-auto m-auto mt-[2%] mb-[1%]">
-      <h1 className="m-0 mb-[3%]">TIL 작성</h1>
-      <div>
-        <p className="mb-[1%]">제목</p>
-        <input
-          defaultValue={title || ""}
-          placeholder="제목을 입력해주세요."
-          className="w-[98.5%] h-[2.25rem] border-solid border-[0.15rem] border-[hsla(220,9%,46%,.3)] rounded-[0.375rem] pl-[1%] text-[1rem] focus:border-[#0090F9] outline-none"
-          onChange={onHandleTitle}
+    <>
+      <div className="w-[1080px] h-auto m-auto mt-[2%] mb-[1%]">
+        <Title title={"TIL 작성"} />
+        {/* <h1 className="m-0 mb-[3%]">TIL 작성</h1> */}
+        <div className=" mt-[2rem]">
+          <p className="mb-[1%]">제목</p>
+          <input
+            defaultValue={title || ""}
+            placeholder="제목을 입력해주세요."
+            className="w-[98.5%] h-[2.25rem] border-solid border-[0.15rem] border-[hsla(220,9%,46%,.3)] rounded-[0.375rem] pl-[1%] text-[1rem] focus:border-[#0090F9] outline-none"
+            onChange={onHandleTitle}
+          />
+        </div>
+        <div className="mt-[1rem]">
+          <p className="mb-[1%]">태그</p>
+          <input
+            defaultValue={tag || ""}
+            placeholder="태그를 입력해주세요. (예: java, react)"
+            className="w-[98.5%] h-[2.25rem] border-solid border-[0.15rem] rounded-[0.375rem] border-[hsla(220,9%,46%,.3)] pl-[1%] text-[1rem] focus:border-[#0090F9] outline-none"
+            onChange={onHandleTag}
+          />
+        </div>
+        <div className="my-[1rem] w-full h-auto">
+          <p className="mb-[1%]">본문</p>
+          <TextEditor value={content} setValue={setContent} />
+        </div>
+        <RegistButton
+          onHandleCancel={onHandleCancel}
+          onHandleSave={put_TilInfo}
         />
       </div>
-      <div>
-        <p className="mb-[1%]">태그</p>
-        <input
-          defaultValue={tag || ""}
-          placeholder="태그를 입력해주세요. (예: java, react)"
-          className="w-[98.5%] h-[2.25rem] border-solid border-[0.15rem] rounded-[0.375rem] border-[hsla(220,9%,46%,.3)] pl-[1%] text-[1rem] focus:border-[#0090F9] outline-none"
-          onChange={onHandleTag}
-        />
-      </div>
-      <div className="my-[1rem] w-full h-auto">
-        <p className="mb-[1%]">본문</p>
-        <TextEditor value={content} setValue={setContent} />
-      </div>
-      <RegistButton
-        onHandleCancel={onHandleCancel}
-        onHandleSave={put_TilInfo}
-      />
-    </div>
+      <Footer/>
+    </>
   );
 };
 
