@@ -60,7 +60,7 @@ const Notice = () => {
   return (
     <>
       <div className="w-[1080px] h-[500px] m-auto">
-        <div className="flex flex-col items-center w-full h-[10vh] mt-2 rounded-[1rem] bg-[#0090F9] text-white font-bold text-[1.75rem]">
+        <div className="flex flex-col items-center w-full h-[full] mt-2">
           <Title title="공지사항" />
           <CreateButton link={isAdmin ? "/notice/create" : null} />
           {noticeList?.map((notice) => (

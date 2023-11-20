@@ -105,12 +105,9 @@ const NoticeDetail = () => {
   return (
     <div className="w-[1080px] h-auto m-auto">
       <div className="w-full h-auto m-auto mt-[3%] border-b-[0.1rem] border-b-[#D2D4D9] border-b-solid font-bold">
-        <p className="m-[0%] text-lg text-[#757575]">
-          공지사항&nbsp;&nbsp;Notice
-        </p>
         <div className="flex items-center h-[6rem]">
           <h1 className="flex items-center w-[95%] h-full m-[0%]">
-            {noticeInfo?.title}
+            제목 : {noticeInfo?.title}
           </h1>
           {isAdmin ? (
             <SideMenu onToggle={onToggle} onRemove={delete_NoticeItem} />
@@ -138,18 +135,18 @@ const NoticeDetail = () => {
         {parse(`${noticeInfo?.content}`)}
       </div>
       {fileList ? (
-        <div className="flex w-full h-[3rme] m-auto mt-[2rem]">
+        <div className="flex w-full h-[3rem] m-auto mt-[2rem]">
           {fileList?.map((fileUrl) => (
             <div
-              className="flex items-center border-[0.1rem] border-solid border-[rgb(120,117,117)] rounded-[5rem] mr-[1rem] h-[80%]"
+              className="flex items-center border-[0.1rem] border-solid border-[rgb(120,117,117)] rounded-[5rem] mr-[1rem] h-[80%] mt-4"
               key={fileUrl}
             >
-              <div className="flex items-center whitespace-nowrap pl-1rem text-[1.15rem] h-[80%]">
+              <div className="flex items-center whitespace-nowrap pl-1rem text-[1.15rem] h-[80%] pl-5">
                 {decodeURI(fileUrl.split("_")[1])}
               </div>
               <Link
                 to={fileUrl}
-                className="flex items-center w-[1.5rem] h-[1.5rem] mx-[0.75rem] cursor-pointer text-gray"
+                className="flex items-center w-[1.5rem] h-[1.5rem] mx-[0.75rem] cursor-pointer"
               >
                 <AiOutlineDownload className="w-full h-full hover:text-[#0090F9]" />
               </Link>

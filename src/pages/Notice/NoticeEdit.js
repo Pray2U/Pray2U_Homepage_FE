@@ -133,7 +133,7 @@ const NoticeCreate = () => {
 
   return (
     <>
-      <div className="w-[1080px] h-auto m-auto mt-[2%] mb-[1%]">
+      <div className="w-[1080px] h-auto m-auto mt-4 mb-2">
         <Title title={"공지사항 작성"} />
         <div className="mt-[2rem]">
           <p className="mb-[1%]">제목</p>
@@ -169,7 +169,7 @@ const NoticeCreate = () => {
             {fileNameList?.map((file, idx) => (
               <div
                 key={idx}
-                className="flex items-center border-[1rem] border-solid border-[rgb(120,117,117)] rounded-[5rem] mr-[1rem] h-[80%]"
+                className="flex items-center border-1 border-solid border-[rgb(120,117,117)] rounded-[5rem] mr-[1rem] h-[80%]"
               >
                 <div className="flex items-center whitespace-nowrap pl-[1rem] text-[1rem] h-[80%]">
                   {decodeURI(file.split("_")[1]) !== "undefined"

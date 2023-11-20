@@ -4,7 +4,7 @@ import "../styles/Button/CreateButton.scss";
 
 const CreateButton = ({ link }) => {
   return (
-    <div className="flex items-center m-auto mt-4 mb-2 p-2 w-full h-[6vh]">
+    <div className="flex items-center m-auto my-auto p-2 w-full h-[70px]">
       {link ? (
         <Link
           to={link}
