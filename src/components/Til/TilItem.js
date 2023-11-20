@@ -44,8 +44,8 @@ const TilItem = ({ tilInfo, onRemove, myInfo }) => {
     <div
       className={
         isClosed
-          ? "relative m-auto my-4 w-full h-[25rem] shadow-[1px_1px_3px_1px_#dadce0] rounded-[1rem] pt-2 bg-white"
-          : "relative m-auto my-4 w-full h-auto shadow-[1px_1px_3px_1px_#dadce0] rounded-[1rem] pt-2 bg-white"
+          ? "relative m-auto my-[2rem] w-full h-[25rem] shadow-[1px_1px_3px_1px_#dadce0] rounded-[1em] pt-2 my-3 bg-[white] text-black"
+          : "relative m-auto my-[2rem] w-full h-auto shadow-[1px_1px_3px_1px_#dadce0] rounded-[1em] pt-2 my-3 bg-[white] text-black"
       }
     >
       <div className="flex items-center w-[95%] h-[5rem] m-auto border-b-[0.1rem] border-b-solid border-b-[#c7c9ce]">
@@ -54,19 +54,19 @@ const TilItem = ({ tilInfo, onRemove, myInfo }) => {
           alt="프로필"
           className="w-[3rem] h-[3rem] rounded-[50%] bg-black items-center justify-center"
         />
-        <div className="flex items-center justify-center h-full ml-1 font-bold text-[1.5vw]">
+        <div className="flex items-center justify-center h-full ml-[1rem] font-bold text-[20px]">
           {tilInfo?.title}
         </div>
         {tilInfo?.userId === myInfo?.user?.writerId ? (
           <div className="flex items-center ml-auto w-[10%] h-full">
             <div
-              className="flex items-center justify-center w-[2.5rem] h-[60%] bg-[#E2E2E2] rounded-[0.5em] cursor-pointer"
+              className="flex justify-center items-center w-[2.5rem] h-[60%] bg-[#E2E2E2] rounded-[0.5rem] cursor-pointer text-[20px]"
               onClick={() => onEditTIL(tilInfo?.tilId)}
             >
               <AiTwotoneEdit />
             </div>
             <div
-              className="flex items-center justify-center w-[2.5rem] h-[60%] ml-1 bg-[#FFB7B7] rounded-[0.5em] cursor-pointer"
+              className="flex items-center justify-center w-[2.5rem] h-[60%] ml-[0.5rem] bg-[#FFB7B7] rounded-[0.5rem] cursor-pointer text-[20px]"
               onClick={() => setIsModalView(true)}
             >
               <AiFillDelete />
@@ -79,8 +79,8 @@ const TilItem = ({ tilInfo, onRemove, myInfo }) => {
       <div
         className={
           isClosed
-            ? "w-[85%] h-[16rem] overflow-hidden m-auto pt-1"
-            : "w-[85%] h-auto overflow-hidden m-auto pt-1 pb-[5%]"
+            ? "w-[85%] h-[250px] m-auto pt-[1rem] text-[20px] overflow-hidden"
+            : "w-[85%] h-auto m-auto pt-[1rem] pb-[5%] text-[20px] overflow-hidden"
         }
       >
         {/* <Viewer
@@ -88,10 +88,13 @@ const TilItem = ({ tilInfo, onRemove, myInfo }) => {
                     initialValue={tilInfo?.content}
                 /> */}
         {parse(tilInfo?.content)}
+        {/* <div className="w-full h-[200px] overflow-hidden">
+          {parse(tilInfo?.content)}
+        </div> */}
       </div>
       {isOverContent ? (
         <div
-          className="absolute bottom-0 w-full h-[3rem] m-auto text-center rounded-1 text-gray cursor-pointer hover:text-black"
+          className="flex justify-center items-center w-full h-[3rem] m-auto text-center rounded-[1em] cursor-pointer font-semibold text-slate-500 text-[17px] hover:text-black"
           onClick={() => onChangeIsClosed()}
         >
           {isClosed ? "더보기" : "접기"}
