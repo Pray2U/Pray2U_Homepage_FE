@@ -19,15 +19,19 @@ const Main = () => {
   return (
     <>
       <FullPageScroll>
-        <div className="MainSection">
-          <img src="./img/frame.png" className="Illustration" alt="일러스트" />
+        <div className="w-[1280px] h-auto m-auto bg-[#110042]">
+          <img
+            src="./img/frame.png"
+            className="w-full h-full bg-[#F5F7FF] bg-repeat"
+            alt="일러스트"
+          />
         </div>
-        <div className="MainSection">
+        <div className="w-[1280px] h-auto m-auto bg-[#110042]">
           {!isLoggedIn && <Carousels />}
           <Caterogies isLoggedIn={isLoggedIn} />
           {isLoggedIn && <PointRank />}
         </div>
-        <div className="MainSection">
+        <div className="w-[1280px] h-auto m-auto bg-[#110042]">
           <ImageCards />
         </div>
       </FullPageScroll>

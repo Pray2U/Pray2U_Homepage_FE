@@ -99,10 +99,10 @@ const MyTil = () => {
   }, [target]);
 
   return (
-    <div className="MyTilContainer">
+    <div className="w-[1080px] h-auto m-auto">
       <Title title={"Mypage"} />
       <MypageHeader />
-      <div className="MyTilListBox">
+      <div className="w-full mt-[2rem] pb-[3%]">
         {myTilList?.map((til) => (
           <TilItem key={til.tilId} tilInfo={til} myInfo={myInfo} />
         ))}
