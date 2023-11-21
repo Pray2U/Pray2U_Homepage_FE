@@ -1,0 +1,12 @@
+  admin[m
+  develop[m
+  error[m
+  event[m
+* [32mheader[m
+  main[m
+  mainpage[m
+  mypage[m
+  notice[m
+  shop[m
+  signup[m
+  til[m
