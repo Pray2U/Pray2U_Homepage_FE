@@ -135,8 +135,8 @@ const Header = () => {
   }, []);
 
   return (
-    <div className="w-full flex justify-center items-center h-[70px] border-b-[1.75px] border-b-solid border-b-[#a5a7aa]">
-      <div className="w-[90%] flex justify-around h-[80%] px-4">
+    <div className="w-full flex justify-center items-center h-[70px]">
+      <div className="w-[90%] flex justify-between h-[80%] px-4">
         <Link
           to="/"
           className="w-[25%] h-full flex justify-start items-center no-underline"
@@ -154,57 +154,53 @@ const Header = () => {
             </span>
           </p>
         </Link>
-        <div className="flex items-center justify-center w-[50%] h-full font-bold text-[1rem]">
-          {menus.map((menu) => (
-            <Link
-              to={menu.link}
-              key={menu.id}
-              className={
-                menu.link === path
-                  ? "no-underline text-[#0090F9] cursor-pointer mx-6 px-2"
-                  : "no-underline text-black cursor-pointer mx-6 px-2 hover:text-[#0090F9]"
-              }
-            >
-              {menu.title}
-            </Link>
-          ))}
+        <div className="flex justify-end">
+          <div className="flex items-center justify-center w-full h-full font-bold text-[1rem]">
+            {menus.map((menu) => (
+              <Link
+                to={menu.link}
+                key={menu.id}
+                className={
+                  menu.link === path
+                    ? "no-underline text-[#0090F9] cursor-pointer mx-6 px-2"
+                    : "no-underline text-black cursor-pointer mx-6 px-2 hover:text-lg"
+                }
+              >
+                {menu.title}
+              </Link>
+            ))}
+          </div>
+          {isLoggedIn ? (
+            <div className="flex items-center h-full text-black font-bold text-[1.12rem]">
+              <div className="w-[80px] h-[80px] relative box-border border-0 border-solid border-[#e5e7eb] ml-5 flex items-center">
+                <img
+                  src={myInfo?.profileImgUrl}
+                  className="w-[40px] h-[40px] rounded-full"
+                  onClick={() => setView(!view)}
+                  alt="프로필"
+                />
+                {view && (
+                  <Dropdown
+                    onHandleLogout={onHandleLogout}
+                    onSetView={setView}
+                  />
+                )}
+              </div>
+            </div>
+          ) : (
+            <div className="flex w-[150px] items-center h-full text-black font-bold text-[1.12rem]">
+              <div
+                className="flex justify-center ml-2 text-black no-underline cursor-pointer hover:text-[#0090f9]"
+                onClick={() => onHandleLoginModal()}
+              >
+                로그인
+              </div>
+              {/* <Link to='/signup' className='SignUpButton'>회원가입</Link> */}
+            </div>
+          )}
         </div>
-        {/* <div className='SearchBarBox'>
-                    <AiOutlineSearch className="SearchIcon" onClick={()=>search()}/>
-                    <input className='SearchInput' 
-                        placeholder="검색"
-                        value={searchContent || ""}
-                        onChange={onChageSearch}
-                        onKeyDown={handleKeyDown}
-                        />
-                </div> */}
-        {isLoggedIn ? (
-          <div className="flex items-center w-[25%] h-[90%] text-black font-bold text-[1.12rem]">
-            <div className="w-[80px] h-[80px] relative box-border border-0 border-solid border-[#e5e7eb] ml-auto flex items-center">
-              <img
-                src={myInfo?.profileImgUrl}
-                className="w-[40px] h-[40px] rounded-full"
-                onClick={() => setView(!view)}
-                alt="프로필"
-              />
-              {view && (
-                <Dropdown onHandleLogout={onHandleLogout} onSetView={setView} />
-              )}
-            </div>
-          </div>
-        ) : (
-          <div className="flex items-center h-[90%] ml-auto text-black font-bold text-[1.12rem]">
-            <div
-              className="flex justify-center ml-[2rem] text-black no-underline cursor-pointer hover:text-[#0090f9]"
-              onClick={() => onHandleLoginModal()}
-            >
-              로그인
-            </div>
-            {/* <Link to='/signup' className='SignUpButton'>회원가입</Link> */}
-          </div>
-        )}
+        {isLoginModal ? <LoginModal onCancel={onCancelLoginModal} /> : <></>}
       </div>
-      {isLoginModal ? <LoginModal onCancel={onCancelLoginModal} /> : <></>}
     </div>
   );
 };

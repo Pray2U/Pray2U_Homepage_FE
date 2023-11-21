@@ -12,7 +12,7 @@ const Dropdown = ({ onHandleLogout, onSetView }) => {
   }, []);
 
   return (
-    <div className="w-[12rem] absolute z-50 right-0 mt-[330px] mr-8 box-border border-[0.15rem] border-solid border-gray-400 rounded-[0.725rem] bg-white">
+    <div className="w-[12rem] absolute z-50 right-0 mt-[280px] mr-8 box-border border-[0.15rem] border-solid border-gray-400 rounded-[0.725rem] bg-white">
       <div className="block py-[0.75rem] px-[2rem] text-[1rem] leading-[0.25rem]">
         <Link
           to={"/mypage/profile"}
