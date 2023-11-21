@@ -12,34 +12,12 @@ import Paging from "../../components/Paging";
 import "../../styles/Admin/AdminShop.scss";
 
 const AdminShop = () => {
-  const dummy = [
-    {
-      itemId: "4",
-      imgUrl: "https://avatars.githubusercontent.com/u/75660071?v=4",
-      itemName: "아메리카노",
-      itemDetail: "아메리카노를 먹습니다.",
-      point: "3000",
-      createdDate: "2023-10-27",
-      modifiedDate: "2023-10-27",
-    },
-    {
-      itemId: "5",
-      imgUrl: "https://avatars.githubusercontent.com/u/75660071?v=4",
-      itemName: "아메리카노",
-      itemDescription: "아메리카노를 먹습니다.",
-      point: "3000",
-      createdDate: "2023-10-27",
-      modifiedDate: "2023-10-27",
-    },
-  ];
 
   const navigate = useNavigate();
   const pageSize = 10;
   const [pageCnt, setPageCnt] = useState(1);
   const [totalItemCnt, setTotalItemCnt] = useState(2);
-  // const [ shopItemList, setShopItemlist ] = useState(dummy);
   const [shopItemList, setShopItemlist] = useState([]);
-  const [isAdmin, setIsAdmin] = useState(false);
 
   const read_ItemList = async () => {
     try {
@@ -103,7 +81,7 @@ const AdminShop = () => {
     <>
       <div className="w-[1280px] h-auto m-auto mb-2">
         <Title title={"아이템 관리"} />
-        <div className="flex w-full pt-3">
+        <div className="flex w-full pt-[3rem]">
           <AdminSideMenu />
           <div className="w-[80%]">
             <div

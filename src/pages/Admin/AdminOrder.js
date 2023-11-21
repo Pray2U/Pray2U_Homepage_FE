@@ -81,7 +81,7 @@ const AdminOrder = () => {
     <>
       <div className="w-[1280px] h-auto m-auto mb-2">
         <Title title={"주문 관리"} />
-        <div className="flex w-full pt-3">
+        <div className="flex w-full pt-[3rem]">
           <AdminSideMenu />
           <div className="w-[80%]">
             <div className="flex items-center w-full h-[3rem] bg-[#E5E7EB] font-bold text-[rgb(58,57,57)]">

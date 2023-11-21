@@ -3,7 +3,6 @@ import dayjs from "dayjs";
 import "../../styles/Admin/AdminApprovalItem.scss";
 
 const AdminApprovalItem = ({ userInfo, onRemove}) => {
-  console.log(userInfo);
   return (
     <div className="flex items-center w-full py-[0.5rem] border-t-[0.1rem] border-t-solid border-t-[#D2D4D9]">
       <div className="mr-[2%] w-[30%] pl-[1rem]">

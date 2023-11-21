@@ -39,6 +39,30 @@ const AdminUserList = () => {
       navigate("/error");
     }
   };
+
+  const post_userRole = async (userId, role) => {
+    try {
+      const url = `${process.env.REACT_APP_API_SERVER}/api/users/roles/${userId}`;
+      const data = {
+        role: role === "ROLE_ADMIN" ? "ROLE_USER" : "ROLE_ADMIN",
+      };
+      const response = await axios.post(url, data, {
+        headers: {
+          Authorization: `Bearer ${getCookie("accessToken")}`,
+        },
+        withCredentials: true,
+      });
+      if (response.status === 200) {
+        setUserInfoList((userinfoList)=>userinfoList.map((userinfo) => userinfo?.userId === userId ? {...response.data.data} : userinfo));
+        alert("직책이 변경되었습니다.");
+      } else {
+        alert(response.data.message);
+      }
+    } catch (e) {
+      alert(e.response.data.message);
+    }
+  };
+
   useEffect(() => {
     read_userList();
   }, [pageCnt]);
@@ -61,7 +85,7 @@ const AdminUserList = () => {
         <div className="ml-auto mr-[1rem]">설정</div>
       </div>
       {userInfoList?.map((user) => (
-        <AdminUserItem key={user?.userId} userInfo={user} />
+        <AdminUserItem key={user?.userId} userInfo={user} post_userRole={post_userRole} />
       ))}
       <Paging
         pageNum={pageCnt}
