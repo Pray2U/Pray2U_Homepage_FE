@@ -25,10 +25,10 @@ const EventEditor = ({
   const [title, setTitle] = useState(eventInfo?.title);
   const [startDate, setStartDate] = useState(eventInfo?.eventStartDate);
   const [endDate, setEndDate] = useState(eventInfo?.eventEndDate);
-  const [startHourTime, setStartHourTime] = useState("00");
-  const [startMinuteTime, setStartMinuteTime] = useState("00");
-  const [endHourTime, setEndHourTime] = useState("00");
-  const [endMinuteTime, setEndMinuteTime] = useState("00");
+  const [startHourTime, setStartHourTime] = useState(null);
+  const [startMinuteTime, setStartMinuteTime] = useState(null);
+  const [endHourTime, setEndHourTime] = useState(null);
+  const [endMinuteTime, setEndMinuteTime] = useState(null);
   const [contents, setContents] = useState(eventInfo?.contents);
   const [isCalendarOpen, setIsCalendarOpen] = useState(false);
 
@@ -77,52 +77,93 @@ const EventEditor = ({
     setIsCalendarOpen(false);
   };
 
-  const post_Event = async (id) => {
+  const post_Event = async () => {
     try {
-      let start = dayjs(startDate).format("YYYY-MM-DD");
-      let eventStartDate = `${start}T${startHourTime}:${startMinuteTime}:00`;
-      let eventEndDate = `${start}T${endHourTime}:${endMinuteTime}:00`;
-      if (title && eventStartDate && eventEndDate && contents) {
+      const checkStartTime = startHourTime && startMinuteTime
+      const checkEndTime = endHourTime && endMinuteTime
+      if (title && startDate && checkStartTime && checkEndTime && contents) {
+        let start = dayjs(startDate).format("YYYY-MM-DD");
+        let eventStartDate = `${start}T${startHourTime}:${startMinuteTime}:00`;
+        let eventEndDate = `${start}T${endHourTime}:${endMinuteTime}:00`;
         const postData = {
           title: title,
           eventStartDate: eventStartDate,
           eventEndDate: eventEndDate,
           contents: contents,
         };
-        let url = `${process.env.REACT_APP_API_SERVER}/api/events`;
-        if (id) {
-          // 수정
-          postData.eventId = id;
-          const response = await axios.put(url, postData, {
-            headers: {
-              Authorization: `Bearer ${getCookie("accessToken")}`,
-            },
-            withCredentials: true,
-          });
-          if (response.status === 200) {
-            alert("이벤트가 등록되었습니다.");
-            saveEvent(response.data.data);
-            canselAddEvent();
-          }
-        } else {
-          const response = await axios.post(url, postData, {
-            headers: {
-              Authorization: `Bearer ${getCookie("accessToken")}`,
-            },
-            withCredentials: true,
-          });
-          if (response.status === 200) {
-            alert("이벤트가 등록되었습니다.");
-            saveEvent(response.data.data);
-            canselAddEvent();
-          }
+        const url = `${process.env.REACT_APP_API_SERVER}/api/events`;
+        const response = await axios.post(url, postData, {
+          headers: {
+            Authorization: `Bearer ${getCookie("accessToken")}`,
+          },
+          withCredentials: true,
+        });
+        if (response.status === 200) {
+          alert("이벤트가 등록되었습니다.");
+          saveEvent(response.data.data);
+          canselAddEvent();
         }
       } else {
-        console.log("입력칸 채워줘");
-        //모달창 띄우기
+        if(!title){
+          alert("제목을 채워주세요")
+        } else if(!startDate){
+          alert("날짜를 선택해주세요");
+        } else if(!(startHourTime && startMinuteTime)){
+          alert("시작 시간을 선택해주세요");
+        } else if(!(endHourTime && endMinuteTime)){
+          alert("종료 시간을 선택해주세요");
+        } else{
+          alert("내용을 채워주세요");
+        }
       }
     } catch (e) {
-      console.log(e);
+      alert(e.response.data.message);
+    }
+  };
+
+  const put_Event = async (id) => {
+    try {
+      const checkStartTime = startHourTime && startMinuteTime
+      const checkEndTime = endHourTime && endMinuteTime
+      if (title && startDate && checkStartTime && checkEndTime && contents) {
+        let start = dayjs(startDate).format("YYYY-MM-DD");
+        let eventStartDate = `${start}T${startHourTime}:${startMinuteTime}:00`;
+        let eventEndDate = `${start}T${endHourTime}:${endMinuteTime}:00`;
+        const postData = {
+          eventId: id,
+          title: title,
+          eventStartDate: eventStartDate,
+          eventEndDate: eventEndDate,
+          contents: contents,
+        };
+        const url = `${process.env.REACT_APP_API_SERVER}/api/events`;
+        const response = await axios.put(url, postData, {
+          headers: {
+            Authorization: `Bearer ${getCookie("accessToken")}`,
+          },
+          withCredentials: true,
+        });
+        if(response.status === 200) {
+          alert("이벤트가 수정되었습니다.");
+          saveEvent(response.data.data);
+          canselAddEvent();
+        }
+      }else {
+        if(!title){
+          alert("제목을 채워주세요")
+        } else if(!startDate){
+          alert("날짜를 선택해주세요");
+        } else if(!(startHourTime && startMinuteTime)){
+          alert("시작 시간을 선택해주세요");
+        } else if(!(endHourTime && endMinuteTime)){
+          alert("종료 시간을 선택해주세요");
+        } else{
+          alert("내용을 채워주세요");
+        }
+      }
+    } catch (e) {
+      alert(e.response.data.message);
+      console.log(e.response.data.message);
     }
   };
 
@@ -155,11 +196,7 @@ const EventEditor = ({
             setSelectedDay={setStartDate}
             closeCalendarModal={closeCalendarModal}
           />
-        ) : (
-          // : date ?
-          // <div className='Date'>{dayjs(date).format("YYYY-MM-DD")}</div>
-          <></>
-        )}
+        ) : <></>}
       </div>
       <div className="flex w-[90%] h-[20%] justify-center items-center m-auto">
         <div className="flex mr-[0.25rem] h-[50%] items-center justify-center font-bold">
@@ -169,7 +206,7 @@ const EventEditor = ({
           <Form.Select
             className="ml-[2%] mr-[2%] w-[15%] h-[50%] text-[1rem]"
             onChange={onChangeStartHourTime}
-            value={startHourTime}
+            value={startHourTime || "00"}
           >
             {hourTime.map((_, idx) => {
               const value = idx < 10 ? `0${idx}` : idx.toString();
@@ -184,7 +221,7 @@ const EventEditor = ({
           <Form.Select
             className="ml-[2%] mr-[2%] w-[15%] h-[50%] text-[1rem]"
             onChange={onChangeStartMinuteTime}
-            value={startMinuteTime}
+            value={startMinuteTime || "00"}
           >
             {minuteTime.map((minute) => {
               return (
@@ -198,10 +235,10 @@ const EventEditor = ({
           <Form.Select
             className="ml-[2%] mr-[2%] w-[15%] h-[50%] text-[1rem]"
             onChange={onChangeEndHourTime}
-            value={endHourTime}
+            value={endHourTime || "00"}
           >
             {hourTime.map((_, idx) => {
-              if (parseInt(startHourTime) <= idx) {
+              if (startHourTime && parseInt(startHourTime) <= idx) {
                 const value = idx < 10 ? `0${idx}` : idx.toString();
                 return (
                   <option key={idx * 100} value={value}>
@@ -209,6 +246,13 @@ const EventEditor = ({
                   </option>
                 );
                 //idx*100 -> 시작 시간의 시간 리스트 끼리 key값을 다르게 나타내기 위해
+              }else{
+                const value = idx < 10 ? `0${idx}` : idx.toString();
+                return (
+                  <option key={idx * 100} value={value}>
+                    {value}
+                  </option>
+                );
               }
             })}
           </Form.Select>
@@ -216,10 +260,10 @@ const EventEditor = ({
           <Form.Select
             className="ml-[2%] mr-[2%] w-[15%] h-[50%] text-[1rem]"
             onChange={onChangeEndMinuteTime}
-            value={endMinuteTime}
+            value={endMinuteTime || "00"}
           >
             {minuteTime.map((minute) => {
-              if (startHourTime === endHourTime) {
+              if (endHourTime && endMinuteTime && startHourTime === endHourTime) {
                 if (parseInt(startMinuteTime) <= parseInt(minute))
                   return (
                     <option key={minute * 100} value={minute}>
@@ -255,7 +299,7 @@ const EventEditor = ({
         </div>
         <div
           className="flex w-[70px] h-[40px] items-center justify-center rounded-[0.5rem]  bg-[#0090F9] text-white font-bold cursor-pointer hover:bg-[#0B7FD3]"
-          onClick={() => post_Event(eventInfo?.eventId)}
+          onClick={eventInfo?.eventId ? () => put_Event(eventInfo?.eventId) : () => post_Event()}
         >
           저장
         </div>

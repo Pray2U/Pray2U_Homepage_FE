@@ -18,7 +18,7 @@ const CalendarModal = ({setSelectedDay, closeCalendarModal}) => {
                 maxDate={new Date(2025,12,31)}
                 // formatDay={(locale, date) => dayjs(date).format('D')}
                 onClickDay={closeCalendarModal}
-                calendarType='US'/>
+                calendarType="gregory"/>
         </>
     );
 }
