@@ -1,11 +1,6 @@
 import { useRef, useState } from "react";
 
-// 지울 수 도 있음
-import { uploadFile } from "../../util/s3Upload";
-import { getCookie } from "../../util/auth";
-import axios from "axios";
-
-const AdminItemEditModal = ({itemInfo, onCancel}) => {
+const AdminItemEditModal = ({itemInfo, onCancel, put_ItemInfo}) => {
 
     const imgRef = useRef();
     const [ itemName, setItemName ] = useState(itemInfo?.itemName);
@@ -31,7 +26,6 @@ const AdminItemEditModal = ({itemInfo, onCancel}) => {
         const file = imgRef.current.files[0];
         if(file){
             setNewItemImg(file);
-            console.log(file);
             const reader = new FileReader();
             reader.readAsDataURL(file);
             reader.onloadend = () => {
@@ -40,48 +34,54 @@ const AdminItemEditModal = ({itemInfo, onCancel}) => {
         }
     }
 
-    
-    const put_ItemInfo = async () => {
-        try {
-            if (itemName && itemPoint && itemDescription) {
-                let imgUrl = null;
-                if(newItemImg){
-                    imgUrl = await uploadFile(newItemImg);
-                }
-                const postData = {
-                    imgUrl: imgUrl ? imgUrl : itemInfo?.imgUrl,
-                    itemDescription: itemDescription,
-                    itemName: itemName,
-                    point: parseInt(itemPoint),
-                };
-                const url = `${process.env.REACT_APP_API_SERVER}/api/admin/items/${itemInfo?.itemId}`;
-                const response = await axios.put(url, postData, {
-                    headers: {
-                    Authorization: `Bearer ${getCookie("accessToken")}`,
-                    },
-                    withCredentials: true,
-                });
-                if (response.status === 200) {
-                    alert("상품 정보가 수정되었습니다.");
-                    onCancel();
-                } else {
-                    alert("등록 오류입니다.");
-                    onCancel();
-                }
-            } else {
-                if(!itemName){
-                    alert("상품명이 입력되지 않았습니다.");
-                }else if(!itemDescription){
-                    alert("상품 설명칸이 입력되지 않았습니다.");
-                }else if(!itemPoint){
-                    alert("상품 포인트가 설정되지 않았습니다.");
-                }
-                
-            }
-        } catch (e) {
-            alert(e);
+    const onSave = async () => {
+        let result = await put_ItemInfo(itemName, itemPoint, itemDescription, newItemImg, itemInfo?.imgUrl, itemInfo?.itemId);
+        if(result){
+            onCancel();
         }
-    };
+    }
+    
+    // const put_ItemInfo = async (itemName, itemPoint, itemDescription, newItemImg, imgUrl, itemId) => {
+    //     try {
+    //         if (itemName && itemPoint && itemDescription) {
+    //             let newImgUrl = null;
+    //             if(newItemImg){
+    //                 newImgUrl = await uploadFile(newItemImg);
+    //             }
+    //             const postData = {
+    //                 imgUrl: newImgUrl ? newImgUrl : itemInfo?.imgUrl,
+    //                 itemDescription: itemDescription,
+    //                 itemName: itemName,
+    //                 point: parseInt(itemPoint),
+    //             };
+    //             const url = `${process.env.REACT_APP_API_SERVER}/api/admin/items/${itemInfo?.itemId}`;
+    //             const response = await axios.put(url, postData, {
+    //                 headers: {
+    //                 Authorization: `Bearer ${getCookie("accessToken")}`,
+    //                 },
+    //                 withCredentials: true,
+    //             });
+    //             if (response.status === 200) {
+    //                 alert("상품 정보가 수정되었습니다.");
+    //                 onCancel();
+    //             } else {
+    //                 alert("등록 오류입니다.");
+    //                 onCancel();
+    //             }
+    //         } else {
+    //             if(!itemName){
+    //                 alert("상품명이 입력되지 않았습니다.");
+    //             }else if(!itemDescription){
+    //                 alert("상품 설명칸이 입력되지 않았습니다.");
+    //             }else if(!itemPoint){
+    //                 alert("상품 포인트가 설정되지 않았습니다.");
+    //             }
+                
+    //         }
+    //     } catch (e) {
+    //         alert(e);
+    //     }
+    // };
 
     return(
         <div className="flex fixed top-0 right-0 left-0 bottom-0 w-[100vw] h-[100vh] z-99 bg-[rgba(0,0,0,0.6)] items-center">
@@ -141,7 +141,7 @@ const AdminItemEditModal = ({itemInfo, onCancel}) => {
                     </div>
                     <div
                         className="flex justify-center items-center w-[70px] h-[30px] rounded-[0.5em] bg-[#0090F9] text-white font-bold cursor-pointer hover:bg-[#0B7FD3]"
-                        onClick={() => put_ItemInfo()}>저장
+                        onClick={() => onSave()}>저장
                     </div>
                 </div>
             </div>

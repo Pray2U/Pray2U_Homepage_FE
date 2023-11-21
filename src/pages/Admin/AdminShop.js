@@ -10,6 +10,7 @@ import AdminItem from "../../components/Admin/AdminItem";
 import Paging from "../../components/Paging";
 
 import "../../styles/Admin/AdminShop.scss";
+import { uploadFile } from "../../util/s3Upload";
 
 const AdminShop = () => {
 
@@ -42,6 +43,49 @@ const AdminShop = () => {
       navigate("/error");
     }
   };
+
+  const put_ItemInfo = async (itemName, itemPoint, itemDescription, newItemImg, imgUrl, itemId) => {
+    try {
+        if (itemName && itemPoint && itemDescription) {
+            let newImgUrl = null;
+            if(newItemImg){
+                newImgUrl = await uploadFile(newItemImg);
+            }
+            const postData = {
+                imgUrl: newImgUrl ? newImgUrl : imgUrl,
+                itemDescription: itemDescription,
+                itemName: itemName,
+                point: parseInt(itemPoint),
+            };
+            const url = `${process.env.REACT_APP_API_SERVER}/api/admin/items/${itemId}`;
+            const response = await axios.put(url, postData, {
+                headers: {
+                Authorization: `Bearer ${getCookie("accessToken")}`,
+                },
+                withCredentials: true,
+            });
+            if (response.status === 200) {
+                alert("상품 정보가 수정되었습니다.");
+                setShopItemlist((itemList) => itemList.map((itemInfo) => itemInfo.itemId === itemId ? {...response.data.data} : itemInfo));
+            } else {
+                alert("등록 오류입니다.");
+            }
+            return true;
+        } else {
+            if(!itemName){
+                alert("상품명이 입력되지 않았습니다.");
+            }else if(!itemDescription){
+                alert("상품 설명칸이 입력되지 않았습니다.");
+            }else if(!itemPoint){
+                alert("상품 포인트가 설정되지 않았습니다.");
+            }
+            return false
+        }
+    } catch (e) {
+        alert(e);
+    }
+};
+
 
   const onRemove = async (id) => {
     try {
@@ -104,6 +148,7 @@ const AdminShop = () => {
                 key={shopItem?.itemId}
                 itemInfo={shopItem}
                 onRemove={onRemove}
+                put_ItemInfo={put_ItemInfo}
               />
             ))}
             <Paging

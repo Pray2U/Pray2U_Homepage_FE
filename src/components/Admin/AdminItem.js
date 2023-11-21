@@ -1,14 +1,13 @@
 import { useState } from "react";
 import { AiOutlineUnorderedList } from "react-icons/ai";
-import { timeTrans } from "../../util/time";
+import dayjs from "dayjs";
 
 import AdminItemModal from "../Modal/AdminItemModal";
 import AdminItemEditModal from './AdminItemEditModal';
 
 import "../../styles/Admin/AdminItem.scss";
-import dayjs from "dayjs";
 
-const AdminItem = ({ itemInfo, onRemove }) => {
+const AdminItem = ({ itemInfo, onRemove, put_ItemInfo }) => {
   
   const [ isModalView, setIsModalView ] = useState(false);
   const [ isItemEditModal, setIsItemEditModal ] = useState(false);
@@ -16,7 +15,6 @@ const AdminItem = ({ itemInfo, onRemove }) => {
   const onToggle = () => {
     setIsModalView(false);
     setIsItemEditModal(true);
-    console.log('s');
   }
 
   const onCancel = () =>{
@@ -57,6 +55,7 @@ const AdminItem = ({ itemInfo, onRemove }) => {
         <AdminItemEditModal 
           itemInfo={itemInfo}
           onCancel={onCancel}
+          put_ItemInfo={put_ItemInfo}
           /> 
       : <></>
     }

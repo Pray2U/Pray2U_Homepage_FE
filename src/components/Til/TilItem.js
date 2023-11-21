@@ -52,7 +52,7 @@ const TilItem = ({ tilInfo, onRemove, myInfo }) => {
         <img
           src={tilInfo?.user?.writerProfileImg}
           alt="프로필"
-          className="w-[3rem] h-[3rem] rounded-[50%] bg-black items-center justify-center"
+          className="w-[3rem] h-[3rem] rounded-[50%] border-1 border-[#c7c9ce] items-center justify-center"
         />
         <div className="flex items-center justify-center h-full ml-[1rem] font-bold text-[20px]">
           {tilInfo?.title}
