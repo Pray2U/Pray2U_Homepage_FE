@@ -1,12 +1,9 @@
-body {
-  overflow-y: hidden;
-}
-
 .MainSection {
   width: 1280px;
   height: 100%;
   margin: auto;
   background-color: #110042;
+  overflow-y: hidden;
 
   .Illustration {
     width: 100%;

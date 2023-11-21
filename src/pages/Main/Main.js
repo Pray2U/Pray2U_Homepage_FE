@@ -17,7 +17,7 @@ const Main = () => {
   }, [isLoggedIn]);
 
   return (
-    <div className="w-full h-[90%] overflow-y-hidden">
+    <>
       <FullPageScroll>
         <div className="w-full h-[700px] m-auto">
           <img
@@ -48,7 +48,7 @@ const Main = () => {
           <ImageCards />
         </div>
       </FullPageScroll>
-    </div>
+    </>
   );
 };
 
