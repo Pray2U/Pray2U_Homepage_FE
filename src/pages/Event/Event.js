@@ -14,7 +14,7 @@ import Footer from "../../components/Footer";
 
 import "../../styles/Event/Event.scss";
 import "../../styles/Event/Calendar.scss";
-import { getCookie } from "../../util/auth";
+import { getCookie, isCheckAdmin, tokenDecode } from "../../util/auth";
 
 dayjs.extend(isSameOrBefore);
 dayjs.extend(isSameOrAfter);
@@ -31,8 +31,9 @@ const Event = () => {
     6: "Saturday",
     0: "Sunday",
   };
-
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  
+  const [isAdmin, setIsAdmin] = useState(null);
+  const [userId, setUserId] = useState(null);
   const [eventApiData, setEventApiData] = useState([]);
   const [selectedDay, setSelectedDay] = useState(new Date());
   const [isAddEventView, setIsAddEventView] = useState(false);
@@ -62,15 +63,6 @@ const Event = () => {
       alert(e.response.data.message);
       // alert(e.response.data.error);
       navigate("/error");
-    }
-  };
-
-  const onClickDay = () => {
-    const formatDate = dayjs(selectedDay).format("YYYY-MM-DD");
-    // console.log(formatDate);
-    setSelectedDay(formatDate);
-    if (isAddEventView) {
-      setIsAddEventView(false);
     }
   };
 
@@ -160,9 +152,14 @@ const Event = () => {
     // return <div key={key}>{contents}</div>; // 각 날짜마다 해당 요소가 들어감
   };
 
+  useEffect(()=>{
+    const payload = tokenDecode(getCookie('accessToken'));
+    setUserId(Number(payload.sub));
+    setIsAdmin(isCheckAdmin());
+  },[]);
+
   useEffect(() => {
     read_eventData();
-    // onClickDay();
   }, [selectedYear, selectedMonth]);
 
   return (
@@ -201,8 +198,10 @@ const Event = () => {
                   todos={eventApiData?.filter((event) =>
                     dayjs(
                       dayjs(event.eventStartDate).format("YYYY-MM-DD")
-                    ).isSame(selectedDay)
+                    ).isSame(dayjs(selectedDay).format("YYYY-MM-DD"))
                   )}
+                  isAdmin={isAdmin}
+                  userId={userId}
                   onRemove={onRemove}
                   onToggle={onToggle}
                 />
