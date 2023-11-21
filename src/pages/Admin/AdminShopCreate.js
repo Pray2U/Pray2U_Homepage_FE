@@ -49,7 +49,6 @@ const AdminShopCreate = () => {
     try {
       if (itemName && itemImg && itemPoint && itemDescription) {
         const imgUrl = await uploadFile(itemImg);
-        console.log(imgUrl);
         if (imgUrl) {
           const postData = {
             imgUrl: imgUrl,

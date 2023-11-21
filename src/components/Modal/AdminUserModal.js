@@ -7,7 +7,7 @@ const AdminUserModal = ({ onToggle }) => {
         className="flex items-center justify-center w-full h-[20%] text-black no-underline cursor-pointer hover:text-[#0090F9]"
         onClick={onToggle}
       >
-        직책 수정
+        직책 변경
       </div>
       {/* <div className='AdminUserModalDeleteButton'>회원 삭제</div> */}
     </div>
