@@ -15,9 +15,9 @@ const AdminShop = () => {
 
   const navigate = useNavigate();
   const pageSize = 10;
-  const [pageCnt, setPageCnt] = useState(1);
-  const [totalItemCnt, setTotalItemCnt] = useState(2);
-  const [shopItemList, setShopItemlist] = useState([]);
+  const [ pageCnt, setPageCnt ] = useState(1);
+  const [ totalItemCnt, setTotalItemCnt ] = useState(null);
+  const [ shopItemList, setShopItemlist] = useState([]);
 
   const read_ItemList = async () => {
     try {
@@ -66,10 +66,6 @@ const AdminShop = () => {
     }
   };
 
-  const onToggle = () => {
-    navigate("/admin/item/create");
-  };
-
   useEffect(() => {
     read_ItemList();
     if (!isCheckAdmin()) {
@@ -91,7 +87,7 @@ const AdminShop = () => {
               상품 등록
             </div>
             <div className="flex items-center w-full h-[3rem] bg-[#E5E7EB] font-bold text-[rgb(58,57,57)]">
-              <div className="w-[20%] pl-[1rem] mr-[2%]">상품명</div>
+              <div className="w-[25%] pl-[1rem] mr-[2%]">상품명</div>
               <div className="w-[15%] border-l-[0.1rem] border-l-solid border-l-[rgb(179,176,176)] pl-[0.5rem]">
                 가격
               </div>
@@ -108,7 +104,6 @@ const AdminShop = () => {
                 key={shopItem?.itemId}
                 itemInfo={shopItem}
                 onRemove={onRemove}
-                onToggle={onToggle}
               />
             ))}
             <Paging
