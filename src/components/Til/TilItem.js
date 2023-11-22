@@ -9,7 +9,6 @@ import Reconfirm from "../../components/Reconfirm";
 import "../../styles/Til/TilItem.scss";
 
 const TilItem = ({ tilInfo, onRemove, isAdmin, userId }) => {
-  console.log(tilInfo);
   const navigate = useNavigate();
 
   const [isClosed, setIsClosed] = useState(true);

@@ -45,9 +45,8 @@ const TilCreate = () => {
           },
           withCredentials: true,
         });
-        console.log(response);
         if (response.status === 200) {
-          alert("등록되었습니다.");
+          alert(`TIL이 등록되었습니다. ${response.data.data.point}포인트를 얻었습니다.`);
           navigate("/til");
         } else {
           alert("등록 실패하셨습니다.");
