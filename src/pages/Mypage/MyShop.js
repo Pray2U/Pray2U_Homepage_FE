@@ -15,13 +15,13 @@ const MyShop = () => {
 
   const OrderMenu = ["승인 대기", "승인 완료"];
 
-  const [myOrderList, setMyOrderList] = useState([]);
-  const [selectedMenu, setSelectedMenu] = useState(0);
-  const [isUsedItem, setIsUsedItem] = useState(false);
+  const [ myOrderList, setMyOrderList ] = useState([]);
+  const [ selectedMenu, setSelectedMenu] = useState(0);
+  const [ isUsedItem, setIsUsedItem] = useState(false);
 
   const onClickMenu = (idx) => {
     setSelectedMenu(idx);
-    if (idx) {
+    if (idx === 0) {
       setIsUsedItem(false);
     } else {
       setIsUsedItem(true);
@@ -74,12 +74,13 @@ const MyShop = () => {
             ))}
           </div>
           <div className="grid w-full h-auto m-auto mt-2 mb-4 grid-cols-3 justify-around items-stretch justify-items-stretch gap-2">
-            {myOrderList?.map(
+            {
+              myOrderList?.map(
               (order) =>
                 isUsedItem === order?.useStatus && (
                   <MyShopItem key={order?.orderId} item={order?.item} />
-                )
-            )}
+                ))
+            }
           </div>
         </div>
       </div>

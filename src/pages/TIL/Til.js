@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { getCookie } from "../../util/auth";
+import { getCookie, isCheckAdmin, tokenDecode } from "../../util/auth";
 
 import Title from "../../components/Title/Title";
 import CreateButton from "../../components/CreateButton";
@@ -28,6 +28,8 @@ const Til = () => {
   const [apiTilDataList, setApiTilDataList] = useState([]);
   const [myInfo, setMyInfo] = useState(null);
   const [search, setSearch] = useState(null);
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [userId, setUserId] = useState(null);
 
   const onHandleSearch = (e) => {
     setSearch(e.target.value);
@@ -126,7 +128,6 @@ const Til = () => {
 
   const onRemove = async (id) => {
     try {
-      // 모달창 띄우고
       const url = `${process.env.REACT_APP_API_SERVER}/api/tils/${id}`;
       const response = await axios.delete(url, {
         headers: {
@@ -135,6 +136,7 @@ const Til = () => {
         withCredentials: true,
       });
       if (response.status === 200) {
+        alert("TIL를 삭제했습니다.");
         setApiTilDataList((apiTilDataList) =>
           apiTilDataList.filter((til) => til.tilId !== id)
         );
@@ -165,7 +167,11 @@ const Til = () => {
     } else {
       read_tilSearchAPi();
     }
-    read_myInfo();
+    const payload = tokenDecode(getCookie('accessToken'));
+    if(payload){
+      setUserId(Number(payload.sub));
+    }
+    setIsAdmin(isCheckAdmin());
   }, []);
 
   useEffect(() => {
@@ -203,7 +209,8 @@ const Til = () => {
             key={til.tilId}
             tilInfo={til}
             onRemove={onRemove}
-            myInfo={myInfo}
+            isAdmin={isAdmin}
+            userId={userId}
           />
         ))}
         {totalPageNum > pageNumber ? (

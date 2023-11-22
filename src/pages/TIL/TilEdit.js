@@ -41,7 +41,6 @@ const TilEdit = () => {
         },
         withCredentials: true,
       });
-      console.log(response.data);
       if (response.status === 200) {
         setContent(response.data.data.content);
         setTitle(response.data.data.title);

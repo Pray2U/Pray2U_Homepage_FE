@@ -11,7 +11,7 @@ const MyShopItem = ({ item }) => {
       <div className="w-[80%] h-[15%] flex justify-center items-center m-auto">
         {item?.itemName}
       </div>
-      <div className="w-[80%] h-[10%] flex justify-center items-center">
+      <div className="w-[80%] h-[10%] flex justify-center items-center m-auto">
         {item?.point}pt
       </div>
     </div>

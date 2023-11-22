@@ -2,21 +2,18 @@ import { AiTwotoneEdit, AiFillDelete } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import parse from "html-react-parser";
+import dayjs from "dayjs";
 
 import Reconfirm from "../../components/Reconfirm";
 
 import "../../styles/Til/TilItem.scss";
 
-const TilItem = ({ tilInfo, onRemove, myInfo }) => {
+const TilItem = ({ tilInfo, onRemove, isAdmin, userId }) => {
   const navigate = useNavigate();
 
   const [isClosed, setIsClosed] = useState(true);
   const [isOverContent, setIsOverContent] = useState(true);
   const [isModalView, setIsModalView] = useState(false);
-
-  const onDeleteTIL = async (id) => {
-    onRemove(id);
-  };
 
   const onEditTIL = (id) => {
     navigate(`/til/edit/${id}`);
@@ -57,24 +54,34 @@ const TilItem = ({ tilInfo, onRemove, myInfo }) => {
         <div className="flex items-center justify-center h-full ml-[1rem] font-bold text-[20px]">
           {tilInfo?.title}
         </div>
-        {tilInfo?.userId === myInfo?.user?.writerId ? (
-          <div className="flex items-center ml-auto w-[10%] h-full">
-            <div
-              className="flex justify-center items-center w-[2.5rem] h-[60%] bg-[#E2E2E2] rounded-[0.5rem] cursor-pointer text-[20px]"
-              onClick={() => onEditTIL(tilInfo?.tilId)}
-            >
-              <AiTwotoneEdit />
-            </div>
-            <div
-              className="flex items-center justify-center w-[2.5rem] h-[60%] ml-[0.5rem] bg-[#FFB7B7] rounded-[0.5rem] cursor-pointer text-[20px]"
-              onClick={() => setIsModalView(true)}
-            >
-              <AiFillDelete />
-            </div>
-          </div>
-        ) : (
-          <></>
-        )}
+        <div>
+          {dayjs(tilInfo?.modifiedDate).format('YYYY-MM-DD HH:mm')}
+        </div>
+        <div>
+          {tilInfo?.tag.split(', ')}
+        </div>
+        <div>
+          {tilInfo?.user?.writerName}
+        </div>
+        <div className="flex items-center ml-auto w-[10%] h-full">
+        {
+          tilInfo?.user?.writerId === userId ?  
+          <div
+            className="flex justify-center items-center w-[2.5rem] h-[60%] bg-[#E2E2E2] rounded-[0.5rem] cursor-pointer text-[20px]"
+            onClick={()=>onEditTIL(tilInfo?.tilId)}
+          >
+            <AiTwotoneEdit />
+          </div> : <div className="w-[2.5rem] h-[60%]"/>
+        }
+        {
+              tilInfo?.user?.writerId === userId || isAdmin ? 
+              <div
+                className="flex items-center justify-center w-[2.5rem] h-[60%] ml-[0.5rem] bg-[#FFB7B7] rounded-[0.5rem] cursor-pointer text-[20px]"
+                onClick={()=>setIsModalView(true)}>
+                  <AiFillDelete />
+              </div> : <></>
+        }   
+        </div>
       </div>
       <div
         className={
@@ -83,14 +90,7 @@ const TilItem = ({ tilInfo, onRemove, myInfo }) => {
             : "w-[85%] h-auto m-auto pt-[1rem] pb-[5%] text-[20px] overflow-hidden"
         }
       >
-        {/* <Viewer
-                    initialEditType="markdown"
-                    initialValue={tilInfo?.content}
-                /> */}
         {parse(tilInfo?.content)}
-        {/* <div className="w-full h-[200px] overflow-hidden">
-          {parse(tilInfo?.content)}
-        </div> */}
       </div>
       {isOverContent ? (
         <div
@@ -105,10 +105,10 @@ const TilItem = ({ tilInfo, onRemove, myInfo }) => {
       {isModalView ? (
         <Reconfirm
           message="삭제하시겠습니까?"
-          button1="취소"
-          button2="삭제"
-          onCancel={setIsModalView(false)}
-          onCheck={() => onDeleteTIL(tilInfo?.tilId)}
+          cancleButton="취소"
+          OkButton="삭제"
+          onCancel={()=>setIsModalView(false)}
+          onCheck={()=>onRemove(tilInfo?.tilId)}
         />
       ) : (
         <></>
