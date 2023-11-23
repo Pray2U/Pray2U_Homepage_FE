@@ -19,14 +19,14 @@ const Main = () => {
   return (
     <>
       <FullPageScroll>
-        <div className="w-full h-[700px] m-auto">
+        <div className="w-full h-full m-auto">
           <img
             src="./img/frame3.png"
             className="w-full h-full bg-no-repeat"
             alt="일러스트"
           />
         </div>
-        <div className="w-full h-[700px] m-auto bg-amber-300 flex justify-around items-center relative overflow-hidden ">
+        <div className="w-full h-full m-auto bg-amber-300 flex justify-around items-center relative overflow-hidden ">
           <div class="absolute top-0 left-0 w-full h-6 bg-amber-400 transform -skew-y-3"></div>
           <img
             src="./img/frame.png"
@@ -43,8 +43,7 @@ const Main = () => {
           <Caterogies isLoggedIn={isLoggedIn} />
           {isLoggedIn && <PointRank />}
         </div>
-        <div className="w-full h-full m-auto bg-[#110042]">
-          <h2 className="text-center pt-4">Member</h2>
+        <div className="w-full h-full m-auto bg-[#110042] flex justify-center items-center">
           <ImageCards />
         </div>
       </FullPageScroll>

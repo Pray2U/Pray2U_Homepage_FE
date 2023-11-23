@@ -37,6 +37,7 @@ const MyAttend = () => {
         withCredentials: true,
       });
       if (response.status === 200) {
+        alert(`출석 체크가 되었습니다. ${response.data.point}포인트를 얻었습니다.`);
         setMyAttendDayList((myAttendDayList) =>
           myAttendDayList?.concat(response.data)
         );

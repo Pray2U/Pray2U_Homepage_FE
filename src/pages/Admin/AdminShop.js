@@ -10,36 +10,15 @@ import AdminItem from "../../components/Admin/AdminItem";
 import Paging from "../../components/Paging";
 
 import "../../styles/Admin/AdminShop.scss";
+import { uploadFile } from "../../util/s3Upload";
 
 const AdminShop = () => {
-  const dummy = [
-    {
-      itemId: "4",
-      imgUrl: "https://avatars.githubusercontent.com/u/75660071?v=4",
-      itemName: "아메리카노",
-      itemDetail: "아메리카노를 먹습니다.",
-      point: "3000",
-      createdDate: "2023-10-27",
-      modifiedDate: "2023-10-27",
-    },
-    {
-      itemId: "5",
-      imgUrl: "https://avatars.githubusercontent.com/u/75660071?v=4",
-      itemName: "아메리카노",
-      itemDescription: "아메리카노를 먹습니다.",
-      point: "3000",
-      createdDate: "2023-10-27",
-      modifiedDate: "2023-10-27",
-    },
-  ];
 
   const navigate = useNavigate();
   const pageSize = 10;
-  const [pageCnt, setPageCnt] = useState(1);
-  const [totalItemCnt, setTotalItemCnt] = useState(2);
-  // const [ shopItemList, setShopItemlist ] = useState(dummy);
-  const [shopItemList, setShopItemlist] = useState([]);
-  const [isAdmin, setIsAdmin] = useState(false);
+  const [ pageCnt, setPageCnt ] = useState(1);
+  const [ totalItemCnt, setTotalItemCnt ] = useState(null);
+  const [ shopItemList, setShopItemlist] = useState([]);
 
   const read_ItemList = async () => {
     try {
@@ -65,6 +44,49 @@ const AdminShop = () => {
     }
   };
 
+  const put_ItemInfo = async (itemName, itemPoint, itemDescription, newItemImg, imgUrl, itemId) => {
+    try {
+        if (itemName && itemPoint && itemDescription) {
+            let newImgUrl = null;
+            if(newItemImg){
+                newImgUrl = await uploadFile(newItemImg);
+            }
+            const postData = {
+                imgUrl: newImgUrl ? newImgUrl : imgUrl,
+                itemDescription: itemDescription,
+                itemName: itemName,
+                point: parseInt(itemPoint),
+            };
+            const url = `${process.env.REACT_APP_API_SERVER}/api/admin/items/${itemId}`;
+            const response = await axios.put(url, postData, {
+                headers: {
+                Authorization: `Bearer ${getCookie("accessToken")}`,
+                },
+                withCredentials: true,
+            });
+            if (response.status === 200) {
+                alert("상품 정보가 수정되었습니다.");
+                setShopItemlist((itemList) => itemList.map((itemInfo) => itemInfo.itemId === itemId ? {...response.data.data} : itemInfo));
+            } else {
+                alert("등록 오류입니다.");
+            }
+            return true;
+        } else {
+            if(!itemName){
+                alert("상품명이 입력되지 않았습니다.");
+            }else if(!itemDescription){
+                alert("상품 설명칸이 입력되지 않았습니다.");
+            }else if(!itemPoint){
+                alert("상품 포인트가 설정되지 않았습니다.");
+            }
+            return false
+        }
+    } catch (e) {
+        alert(e);
+    }
+};
+
+
   const onRemove = async (id) => {
     try {
       const url = `${process.env.REACT_APP_API_SERVER}/api/admin/items/${id}`;
@@ -88,10 +110,6 @@ const AdminShop = () => {
     }
   };
 
-  const onToggle = () => {
-    navigate("/admin/item/create");
-  };
-
   useEffect(() => {
     read_ItemList();
     if (!isCheckAdmin()) {
@@ -103,7 +121,7 @@ const AdminShop = () => {
     <>
       <div className="w-[1280px] h-auto m-auto mb-2">
         <Title title={"아이템 관리"} />
-        <div className="flex w-full pt-3">
+        <div className="flex w-full pt-[3rem]">
           <AdminSideMenu />
           <div className="w-[80%]">
             <div
@@ -113,7 +131,7 @@ const AdminShop = () => {
               상품 등록
             </div>
             <div className="flex items-center w-full h-[3rem] bg-[#E5E7EB] font-bold text-[rgb(58,57,57)]">
-              <div className="w-[20%] pl-[1rem] mr-[2%]">상품명</div>
+              <div className="w-[25%] pl-[1rem] mr-[2%]">상품명</div>
               <div className="w-[15%] border-l-[0.1rem] border-l-solid border-l-[rgb(179,176,176)] pl-[0.5rem]">
                 가격
               </div>
@@ -130,7 +148,7 @@ const AdminShop = () => {
                 key={shopItem?.itemId}
                 itemInfo={shopItem}
                 onRemove={onRemove}
-                onToggle={onToggle}
+                put_ItemInfo={put_ItemInfo}
               />
             ))}
             <Paging

@@ -47,29 +47,57 @@ const AdminApprovalList = () => {
 
   const post_NewUserInfo = async (userName, githubId) => {
     try {
-      const url = `${process.env.REACT_APP_API_SERVER}/api/admin/member-approvals`;
-
-      const data = {
-        username: userName,
-        githubId: githubId,
-      };
-      const response = await axios.post(url, data, {
-        headers: {
-          Authorization: `Bearer ${getCookie("accessToken")}`,
-        },
-        withCredentials: true,
-      });
-      if (response.status === 200) {
-        setIsApprovalModal(false);
-        let newMember = [{ ...response.data.data }];
-        setMemberInfoList((memberInfoList) => newMember.concat(memberInfoList));
-        alert("유저 승인이 추가 되었습니다.");
-      } else {
-        setIsApprovalModal(false);
-        alert(response.data.data.message);
+      if(userName && githubId){
+        const url = `${process.env.REACT_APP_API_SERVER}/api/admin/member-approvals`;
+        const data = {
+          username: userName,
+          githubId: githubId,
+        };
+        const response = await axios.post(url, data, {
+          headers: {
+            Authorization: `Bearer ${getCookie("accessToken")}`,
+          },
+          withCredentials: true,
+        });
+        if (response.status === 200) {
+          setIsApprovalModal(false);
+          let newMember = [{ ...response.data.data }];
+          setMemberInfoList((memberInfoList) => newMember.concat(memberInfoList));
+          alert("유저 승인이 추가 되었습니다.");
+        } else {
+          setIsApprovalModal(false);
+          alert(response.data.data.message);
+        }
+      }else{
+        if(!userName){
+          alert("이름을 입력해주세요");
+        }else if(!githubId){
+          alert('Github Id를 입력해주세요');
+        }
       }
     } catch (e) {
       setIsApprovalModal(false);
+      alert(e.response.data.message);
+      navigate("/error");
+    }
+  };
+
+  const delete_member = async(githubId) => {
+    try {
+        const url = `${process.env.REACT_APP_API_SERVER}/api/admin/member-approvals/${githubId}`;
+        const response = await axios.delete(url, {
+          headers: {
+            Authorization: `Bearer ${getCookie("accessToken")}`,
+          },
+          withCredentials: true,
+        });
+        if (response.status === 200) {
+          setMemberInfoList((memberInfoList) => memberInfoList.filter((member) => member.githubId !== githubId));
+          alert("추가 멤버가 삭제 되었습니다.");
+        } else {
+          alert(response.data.data.message);
+        }
+    } catch (e) {
       alert(e.response.data.message);
       navigate("/error");
     }
@@ -82,10 +110,10 @@ const AdminApprovalList = () => {
   return (
     <div className="w-full">
       <div
-        className="flex items-center justify-center w-[6rem] h-[2.5rem] text-white font-bold bg-[#0090F9] rounded-[0.5rem] ml-auto mb-[2rem] cursor-pointer hover:bg-[#0B7FD3]"
+        className="flex items-center justify-center w-[8rem] h-[2.5rem] text-white font-bold bg-[#0090F9] rounded-[0.5rem] ml-auto mb-[2rem] cursor-pointer hover:bg-[#0B7FD3]"
         onClick={() => setIsApprovalModal(!isApprovalModal)}
       >
-        승인하기
+        추가 멤버 등록
       </div>
       <div className="flex items-center w-full h-[3rem] bg-[#E5E7EB] font-bold text-[rgb(58,57,57)]">
         <div className="w-[30%] pl-[1rem] mr-[2%]">이름</div>
@@ -97,7 +125,11 @@ const AdminApprovalList = () => {
         </div>
       </div>
       {memberInfoList?.map((user) => (
-        <AdminApprovalItem key={user?.memberApprovalId} userInfo={user} />
+        <AdminApprovalItem 
+          key={user?.memberApprovalId} 
+          userInfo={user}
+          onRemove={delete_member}
+        />
       ))}
       <Paging
         pageNum={approvalPageCnt}

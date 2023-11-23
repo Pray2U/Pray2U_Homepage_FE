@@ -16,28 +16,28 @@ const Dropdown = ({ onHandleLogout, onSetView }) => {
       <div className="block py-[0.75rem] px-[2rem] text-[1rem] leading-[0.25rem]">
         <Link
           to={"/mypage/profile"}
-          className="py-2 flex items-center w-full h-[20%] text-black no-underline cursor-pointer hover:text-[#0090f9]"
+          className="py-2 flex items-center w-full h-[20%] text-slate-950 no-underline cursor-pointer hover:text-[#0090f9]"
           onClick={() => onSetView(false)}
         >
           프로필
         </Link>
         <Link
           to={"/mypage/attendance"}
-          className="py-2 flex items-center mt-[1rem] w-full h-[20%] text-black no-underline cursor-pointer hover:text-[#0090f9]"
+          className="py-2 flex items-center mt-[1rem] w-full h-[20%] text-slate-950 no-underline cursor-pointer hover:text-[#0090f9]"
           onClick={() => onSetView(false)}
         >
           출석
         </Link>
         <Link
           to={"/mypage/mytil"}
-          className="py-2 flex items-center mt-[1rem] w-full h-[20%] text-black no-underline cursor-pointer hover:text-[#0090f9]"
+          className="py-2 flex items-center mt-[1rem] w-full h-[20%] text-slate-950 no-underline cursor-pointer hover:text-[#0090f9]"
           onClick={() => onSetView(false)}
         >
           My TIL
         </Link>
         <Link
           to={"/mypage/myshop"}
-          className="py-2 flex items-center mt-[1rem] w-full h-[20%] text-black no-underline cursor-pointer hover:text-[#0090f9]"
+          className="py-2 flex items-center mt-[1rem] w-full h-[20%] text-slate-950 no-underline cursor-pointer hover:text-[#0090f9]"
           onClick={() => onSetView(false)}
         >
           My Shop
@@ -45,7 +45,7 @@ const Dropdown = ({ onHandleLogout, onSetView }) => {
         {isAdmin ? (
           <Link
             to={"/admin/user"}
-            className="py-2 flex items-center mt-[1rem] w-full h-[20%] text-black no-underline cursor-pointer hover:text-[#0090f9]"
+            className="py-2 flex items-center mt-[1rem] w-full h-[20%] text-slate-950 no-underline cursor-pointer hover:text-[#0090f9]"
             onClick={() => onSetView(false)}
           >
             관리자
@@ -55,7 +55,7 @@ const Dropdown = ({ onHandleLogout, onSetView }) => {
         )}
       </div>
       <div
-        className="flex items-center py-[0.75rem] px-[2rem] border-t-[0.1rem] border-t-solid border-t-black text-[1rem] text-black no-underline cursor-pointer hover:text-[#0090f9]"
+        className="flex items-center py-[0.75rem] px-[2rem] border-t-[0.1rem] border-t-solid border-t-black text-[1rem] text-slate-950 no-underline cursor-pointer hover:text-[#0090f9]"
         onClick={onHandleLogout}
       >
         로그아웃

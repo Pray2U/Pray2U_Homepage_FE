@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { getCookie } from "../../util/auth";
+import { getCookie, tokenDecode } from "../../util/auth";
 import axios from "axios";
 
 import MypageHeader from "../../components/Header/MypageHeader";
@@ -23,8 +23,8 @@ const MyTil = () => {
   const [myTilList, setMyTilList] = useState([]);
   const [pageCnt, setPageCnt] = useState(0);
   const [isLoaded, setIsLoaded] = useState(true);
-  const [myInfo, setMyInfo] = useState(null);
   const [totalPageNum, setTotalPageNum] = useState(null);
+  const [userId, setUserId] = useState(null);
 
   const read_MyTilList = async (userId) => {
     try {
@@ -52,38 +52,23 @@ const MyTil = () => {
     }
   };
 
-  const read_myInfo = async () => {
-    try {
-      const url = `${process.env.REACT_APP_API_SERVER}/api/users/me`;
-      const response = await axios.get(url, {
-        headers: {
-          Authorization: `Bearer ${getCookie("accessToken")}`,
-        },
-        withCredentials: true,
-      });
-      if (response.status === 200) {
-        setMyInfo(response.data.data);
-        read_MyTilList(response.data.data.userId);
-      } else {
-        alert("내 정보를 가져오지 못했습니다.");
-        navigate("/");
-      }
-    } catch (e) {
-      alert("서버 오류");
-      navigate("/error");
-    }
-  };
-
   const onIntersect = async ([entry], observer) => {
     if (entry.isIntersecting && !isLoaded) {
       observer.unobserve(entry.target);
-      await read_MyTilList(myInfo?.userId);
+      await read_MyTilList(userId);
       observer.observe(entry.target);
     }
   };
 
   useEffect(() => {
-    read_myInfo();
+    const payload = tokenDecode(getCookie('accessToken'));
+    if(payload){
+      setUserId(Number(payload.sub));
+      read_MyTilList(Number(payload.sub));
+    }else{
+      alert("토큰이 존재하지 않습니다.");
+      navigate('/');
+    }
   }, []);
 
   useEffect(() => {
@@ -104,7 +89,7 @@ const MyTil = () => {
       <MypageHeader />
       <div className="w-full mt-[2rem] pb-[3%]">
         {myTilList?.map((til) => (
-          <TilItem key={til.tilId} tilInfo={til} myInfo={myInfo} />
+          <TilItem key={til.tilId} tilInfo={til} userId={userId} />
         ))}
         {totalPageNum > pageCnt ? (
           <div ref={setTarget}>{isLoaded && <p>Loading...</p>}</div>

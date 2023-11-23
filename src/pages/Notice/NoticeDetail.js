@@ -119,7 +119,7 @@ const NoticeDetail = () => {
           <img
             src={noticeInfo?.user?.writerProfileImg}
             alt="프로필"
-            className="flex items-center justify-center w-[1.75rem] h-[1.75rem] rounded-[50%] bg-[#0090F9] text-[5%] text-white mr-[1%]"
+            className="flex items-center justify-center w-[1.75rem] h-[1.75rem] border-1 border-[#D2D4D9] rounded-[50%] text-[5%] text-white mr-[1%]"
           />
           <div className="flex items-center text-[#424242] text-lg">
             {noticeInfo?.user?.writerName}

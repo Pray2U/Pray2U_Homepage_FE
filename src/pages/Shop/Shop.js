@@ -94,6 +94,7 @@ const Shop = () => {
           withCredentials: true,
         });
         if (response.status === 200) {
+          setMyPoint(myPoint - selectedItem?.point);
           alert("구매가 완료되었습니다.");
         } else {
           alert(response.data.message);

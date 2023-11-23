@@ -154,8 +154,8 @@ const Header = () => {
             </span>
           </p>
         </Link>
-        <div className="flex justify-end">
-          <div className="flex items-center justify-center w-full h-full font-bold text-[1rem]">
+        <div className="flex justify-end items-center">
+          <div className="flex mt-4 items-center justify-center w-full h-full font-bold text-[1rem]">
             {menus.map((menu) => (
               <Link
                 to={menu.link}
@@ -163,16 +163,16 @@ const Header = () => {
                 className={
                   menu.link === path
                     ? "no-underline text-[#0090F9] cursor-pointer mx-6 px-2"
-                    : "no-underline text-black cursor-pointer mx-6 px-2 hover:text-lg"
+                    : "no-underline text-slate-950 cursor-pointer mx-6 px-2 hover:text-[#0090F9]"
                 }
               >
-                {menu.title}
+                <p>{menu.title}</p>
               </Link>
             ))}
           </div>
           {isLoggedIn ? (
             <div className="flex items-center h-full text-black font-bold text-[1.12rem]">
-              <div className="w-[80px] h-[80px] relative box-border border-0 border-solid border-[#e5e7eb] ml-5 flex items-center">
+              <div className="w-[80px] h-[80px] relative box-border border-0 border-solid border-[#e5e7eb] ml-5 flex items-center mt-2">
                 <img
                   src={myInfo?.profileImgUrl}
                   className="w-[40px] h-[40px] rounded-full"
@@ -190,7 +190,7 @@ const Header = () => {
           ) : (
             <div className="flex w-[150px] items-center h-full text-black font-bold text-[1.12rem]">
               <div
-                className="flex justify-center ml-2 text-black no-underline cursor-pointer hover:text-[#0090f9]"
+                className="flex justify-center ml-2 text-black no-underline cursor-pointer hover:text-[#0090f9] mt-2"
                 onClick={() => onHandleLoginModal()}
               >
                 로그인
