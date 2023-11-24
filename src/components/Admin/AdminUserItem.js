@@ -55,7 +55,14 @@ const AdminUserItem = ({ userInfo, post_userRole }) => {
         {dayjs(userInfo?.createdDate).format("YYYY-MM-DD")}
       </div>
       <div className="w-[15%] text-[1.1rem] pl-[0.5rem]">{userInfo?.role}</div>
-      {isModalView ? <AdminUserModal onToggle={()=>post_userRole(userInfo?.userId, userInfo?.role)} /> : <></>}
+      {isModalView ? (
+        <AdminUserModal
+          onToggle={() => post_userRole(userInfo?.userId, userInfo?.role)}
+          userrole={userInfo?.role}
+        />
+      ) : (
+        <></>
+      )}
       <AiOutlineSetting
         className="ml-auto mr-[1rem] w-[1.5rem] h-[1.5rem] cursor-pointer hover:text-[#0090F9]"
         onClick={() => setIsModalView(!isModalView)}

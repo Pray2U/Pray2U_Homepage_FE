@@ -53,7 +53,11 @@ const AdminUserList = () => {
         withCredentials: true,
       });
       if (response.status === 200) {
-        setUserInfoList((userinfoList)=>userinfoList.map((userinfo) => userinfo?.userId === userId ? {...response.data.data} : userinfo));
+        setUserInfoList((userinfoList) =>
+          userinfoList.map((userinfo) =>
+            userinfo?.userId === userId ? { ...response.data.data } : userinfo
+          )
+        );
         alert("직책이 변경되었습니다.");
       } else {
         alert(response.data.message);
@@ -85,7 +89,11 @@ const AdminUserList = () => {
         <div className="ml-auto mr-[1rem]">설정</div>
       </div>
       {userInfoList?.map((user) => (
-        <AdminUserItem key={user?.userId} userInfo={user} post_userRole={post_userRole} />
+        <AdminUserItem
+          key={user?.userId}
+          userInfo={user}
+          post_userRole={post_userRole}
+        />
       ))}
       <Paging
         pageNum={pageCnt}

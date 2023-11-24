@@ -166,8 +166,8 @@ const Til = () => {
     } else {
       read_tilSearchAPi();
     }
-    const payload = tokenDecode(getCookie('accessToken'));
-    if(payload){
+    const payload = tokenDecode(getCookie("accessToken"));
+    if (payload) {
       setUserId(Number(payload.sub));
     }
     setIsAdmin(isCheckAdmin());
@@ -202,6 +202,7 @@ const Til = () => {
           />
         </div>
       </div>
+
       <div className="flex flex-col items-center w-full h-[10vh] m-auto mt-2 rounded-[1rem]">
         {apiTilDataList?.map((til) => (
           <TilItem
