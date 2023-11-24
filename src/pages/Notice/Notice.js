@@ -59,7 +59,7 @@ const Notice = () => {
 
   return (
     <>
-      <div className="w-[1080px] h-[500px] m-auto">
+      <div className="w-[1080px] m-auto">
         <div className="flex flex-col items-center w-full h-[full] mt-2">
           <Title title="공지사항" />
           <CreateButton link={isAdmin ? "/notice/create" : null} />
