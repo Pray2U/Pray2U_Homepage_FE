@@ -144,8 +144,7 @@ const Til = () => {
         alert("TIL 삭제를 실패했습니다.");
       }
     } catch (e) {
-      alert(e);
-      navigate("/error");
+      alert(e.response.data.message);
     }
   };
 
