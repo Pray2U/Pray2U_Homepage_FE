@@ -27,7 +27,7 @@ const Main = () => {
           />
         </div>
         <div className="w-full h-full m-auto bg-amber-300 flex justify-around items-center relative overflow-hidden ">
-          <div class="absolute top-0 left-0 w-full h-6 bg-amber-400 transform -skew-y-3"></div>
+          <div className="absolute top-0 left-0 w-full h-6 bg-amber-400 transform -skew-y-3"></div>
           <img
             src="./img/frame.png"
             className="w-[700px] h-[400px] bg-no-repeat"
