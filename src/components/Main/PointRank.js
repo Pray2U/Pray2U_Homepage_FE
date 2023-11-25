@@ -6,6 +6,7 @@ import Point from "./Point";
 import "../../styles/Main/PointRank.scss";
 
 const PointRank = () => {
+
   const rankDummyData = [
     {
       rank: 1,
@@ -29,28 +30,26 @@ const PointRank = () => {
     },
   ];
 
-  // 실제 사용할 코드
-  // const [ usersRank, setUsersRank ] = useState(null);
-  // const [ myCurrentPoint, setMyCurrentPoint ] = useState(null);
-  // const [ myLastWeekPoint, setMyLastWeekPoint ] = useState(null);
-
-  // 더미 데이터
-  const [usersRank, setUsersRank] = useState(rankDummyData);
-  const [myCurrentPoint, setMyCurrentPoint] = useState(2000);
-  const [myLastWeekPoint, setMyLastWeekPoint] = useState(2500);
+  const [usersRank, setUsersRank] = useState(null);
+  const [myCurrentPoint, setMyCurrentPoint] = useState(null);
+  const [myLastWeekPoint, setMyLastWeekPoint] = useState(null);
 
   const read_usersRank = async () => {
     try {
-      const url = `${process.env.REACT_APP_API_SERVER}/api/rank`;
+      const url = `${process.env.REACT_APP_API_SERVER}/api/ranks?page=${0}&size=${4}&sort=id,desc`;
       const response = await axios.get(url, {
         headers: {
           Authorization: `Bearer ${getCookie("accessToken")}`,
         },
         withCredentials: true,
       });
-      setUsersRank(response.data.rankList);
+      if(response.status === 200){
+        setUsersRank(response.data.data.content);
+      }else{
+        alert("랭킹 정보를 가져오는데 실패했습니다");
+      }
     } catch (e) {
-      console.log(e);
+      alert(e.response.data.message);
     }
   };
 
@@ -64,7 +63,7 @@ const PointRank = () => {
         withCredentials: true,
       });
       if (response.status === 200) {
-        setMyCurrentPoint(response.data.data);
+        setMyCurrentPoint(response.data.data.currentPoint);
       } else {
         alert("내 포인트를 가져오는데 실패했습니다.");
       }
@@ -83,39 +82,34 @@ const PointRank = () => {
         withCredentials: true,
       });
       if (response.status === 200) {
-        setMyLastWeekPoint(response.data.weekPoint);
+        setMyLastWeekPoint(response.data.data.content);
       } else {
         alert("내 포인트를 가져오는데 실패했습니다.");
       }
     } catch (e) {
-      alert(e.message);
+      alert(e.response.data.message);
     }
   };
 
   useEffect(() => {
-    // read_usersRank();
-    // read_myCurrentPoint();
+    read_usersRank();
+    read_myCurrentPoint();
     // read_myLastWeekPoint();
   }, []);
 
   return (
     <div className="ContainerBox">
       <div className="Icon">
-        <img src="./img/Leader Board Icon.png" alt="Img" />
+        <img className="IconImg" src="./img/Leader Board Icon.png" alt="Img" />
         <p className="IconText">LEADER BOARD</p>
       </div>
-      {usersRank ? (
-        <div className="RankListBox">
-          <Point user={usersRank[0]} />
-          <Point user={usersRank[1]} />
-          <Point user={usersRank[2]} />
-          <div className="MyPointBox">My Point : {myCurrentPoint}</div>
-          <div className="WeeklyScoreBox">Weekly Score : {myLastWeekPoint}</div>
-          <Point user={usersRank[3]} />
-        </div>
-      ) : (
-        <></>
-      )}
+      <div className="RankListBox">
+        {
+          usersRank?.map(user => <Point user={user}/>)
+        }
+        <div className="MyPointBox">My Point : {myCurrentPoint}</div>
+        {/* <div className="WeeklyScoreBox">Weekly Score : {myLastWeekPoint}</div> */}
+      </div>
     </div>
   );
 };
