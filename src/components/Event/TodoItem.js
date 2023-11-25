@@ -13,7 +13,7 @@ const TodoItem = ({ todo, isAdmin, userId, onRemove, onToggle }) => {
         </p>
       </div>
       {
-        userId === todo?.user.writerId ?
+        userId === todo?.user?.writerId ?
           <div
           className="flex items-center justify-center w-[8%] h-[40%] bg-[#E2E2E2] rounded-[0.5em] m-auto mr-[1%] cursor-pointer"
           onClick={() => onToggle(todo.eventId)}>
@@ -22,7 +22,7 @@ const TodoItem = ({ todo, isAdmin, userId, onRemove, onToggle }) => {
         : <div className="flex items-center justify-center w-[8%] h-[40%] m-auto mr-[1%]"></div>
       }
       {
-        userId === todo?.user.writerId || isAdmin ?
+        userId === todo?.user?.writerId || isAdmin ?
           <div
             className="flex items-center justify-center w-[8%] h-[40%] bg-[#FFB7B7] rounded-[0.5em] m-auto cursor-pointer"
             onClick={() => onRemove(todo.eventId)}>

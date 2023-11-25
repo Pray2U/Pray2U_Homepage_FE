@@ -25,10 +25,10 @@ const EventEditor = ({
   const [title, setTitle] = useState(eventInfo?.title);
   const [startDate, setStartDate] = useState(eventInfo?.eventStartDate);
   const [endDate, setEndDate] = useState(eventInfo?.eventEndDate);
-  const [startHourTime, setStartHourTime] = useState(null);
-  const [startMinuteTime, setStartMinuteTime] = useState(null);
-  const [endHourTime, setEndHourTime] = useState(null);
-  const [endMinuteTime, setEndMinuteTime] = useState(null);
+  const [startHourTime, setStartHourTime] = useState("00");
+  const [startMinuteTime, setStartMinuteTime] = useState("00");
+  const [endHourTime, setEndHourTime] = useState("00");
+  const [endMinuteTime, setEndMinuteTime] = useState("00");
   const [contents, setContents] = useState(eventInfo?.contents);
   const [isCalendarOpen, setIsCalendarOpen] = useState(false);
 
@@ -53,7 +53,7 @@ const EventEditor = ({
   };
   const onChangeStartMinuteTime = (e) => {
     setStartMinuteTime(e.target.value);
-    if (e.target.value >= endMinuteTime) {
+    if (startHourTime === endHourTime && e.target.value >= endMinuteTime) {
       setEndMinuteTime(e.target.value);
     }
   };
@@ -163,7 +163,6 @@ const EventEditor = ({
       }
     } catch (e) {
       alert(e.response.data.message);
-      console.log(e.response.data.message);
     }
   };
 
@@ -246,7 +245,7 @@ const EventEditor = ({
                   </option>
                 );
                 //idx*100 -> 시작 시간의 시간 리스트 끼리 key값을 다르게 나타내기 위해
-              }else{
+              }else if(parseInt(startHourTime) <= idx){
                 const value = idx < 10 ? `0${idx}` : idx.toString();
                 return (
                   <option key={idx * 100} value={value}>
@@ -263,14 +262,15 @@ const EventEditor = ({
             value={endMinuteTime || "00"}
           >
             {minuteTime.map((minute) => {
-              if (endHourTime && endMinuteTime && startHourTime === endHourTime) {
-                if (parseInt(startMinuteTime) <= parseInt(minute))
+              if (parseInt(startHourTime) === parseInt(endHourTime)) {
+                if (parseInt(startMinuteTime) <= parseInt(minute)){
                   return (
                     <option key={minute * 100} value={minute}>
                       {minute}
                     </option>
                   );
-              } else {
+                }
+              } else{
                 return (
                   <option key={minute * 100} value={minute}>
                     {minute}

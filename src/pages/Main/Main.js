@@ -43,9 +43,12 @@ const Main = () => {
           <Caterogies isLoggedIn={isLoggedIn} />
           {isLoggedIn && <PointRank />}
         </div>
-        <div className="w-[85vw] h-full m-auto bg-[#110042] flex justify-center items-center">
-          <ImageCards />
-        </div>
+        {
+          isLoggedIn &&  
+          <div className="w-[85vw] h-full m-auto bg-[#110042] flex justify-center items-center">
+            <ImageCards />
+          </div>
+        }
       </FullPageScroll>
     </>
   );

@@ -30,24 +30,23 @@ const Til = () => {
   const [search, setSearch] = useState(null);
   const [isAdmin, setIsAdmin] = useState(false);
   const [userId, setUserId] = useState(null);
+  const [ isSearch, setIsSearch ] = useState(false);
 
   const onHandleSearch = (e) => {
     setSearch(e.target.value);
   };
 
   const searchClick = () => {
-    if (search) {
-      setPageNumber(0);
-      setApiTilDataList([]);
-      read_tilSearchAPi();
-    }
+    setPageNumber(0);
+    setApiTilDataList([]);
+    setIsSearch(!isSearch);
   };
 
   const handleKeyDown = (e) => {
-    if (e.key === "Enter" && search) {
+    if (e.key === "Enter") {
       setPageNumber(0);
       setApiTilDataList([]);
-      read_tilSearchAPi();
+      setIsSearch(!isSearch);
     }
   };
 
@@ -94,7 +93,6 @@ const Til = () => {
         setPageNumber((pageNumber) => pageNumber + 1);
         setIsLoaded(false);
         setTotalPageNum(response.data.totalPages);
-        console.log(response);
       } else {
         // 모달창 데이터 전송 오류
         alert("TIL 데이터를 불러오는데 실패했습니다.");
@@ -102,26 +100,6 @@ const Til = () => {
       }
     } catch (e) {
       alert(e.response.data.message);
-      navigate("/error");
-    }
-  };
-
-  const read_myInfo = async () => {
-    try {
-      const url = `${process.env.REACT_APP_API_SERVER}/api/users/me`;
-      const response = await axios.get(url, {
-        headers: {
-          Authorization: `Bearer ${getCookie("accessToken")}`,
-        },
-        withCredentials: true,
-      });
-      if (response.status === 200) {
-        setMyInfo(response.data.data);
-      } else {
-        alert("내 정보를 가져오지 못했습니다.");
-      }
-    } catch (e) {
-      alert("서버 오류");
       navigate("/error");
     }
   };
@@ -171,7 +149,7 @@ const Til = () => {
       setUserId(Number(payload.sub));
     }
     setIsAdmin(isCheckAdmin());
-  }, []);
+  }, [isSearch]);
 
   useEffect(() => {
     let observer; // (1)observer 변수를 선언해주고

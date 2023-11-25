@@ -52,6 +52,29 @@ const MyTil = () => {
     }
   };
 
+  
+  const onRemove = async (id) => {
+    try {
+      const url = `${process.env.REACT_APP_API_SERVER}/api/tils/${id}`;
+      const response = await axios.delete(url, {
+        headers: {
+          Authorization: `Bearer ${getCookie("accessToken")}`,
+        },
+        withCredentials: true,
+      });
+      if (response.status === 200) {
+        alert("TIL를 삭제했습니다.");
+        setMyTilList((apiTilDataList) =>
+          apiTilDataList.filter((til) => til.tilId !== id)
+        );
+      } else {
+        alert("TIL 삭제를 실패했습니다.");
+      }
+    } catch (e) {
+      alert(e.response.data.message);
+    }
+  };
+
   const onIntersect = async ([entry], observer) => {
     if (entry.isIntersecting && !isLoaded) {
       observer.unobserve(entry.target);
@@ -89,7 +112,7 @@ const MyTil = () => {
       <MypageHeader />
       <div className="w-full mt-[2rem] pb-[3%]">
         {myTilList?.map((til) => (
-          <TilItem key={til.tilId} tilInfo={til} userId={userId} />
+          <TilItem key={til.tilId} onRemove={onRemove} tilInfo={til} isAdmin={false} userId={userId} />
         ))}
         {totalPageNum > pageCnt ? (
           <div ref={setTarget}>{isLoaded && <p>Loading...</p>}</div>

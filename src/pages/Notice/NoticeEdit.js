@@ -72,11 +72,13 @@ const NoticeCreate = () => {
             ? fileUrl + "," + (await uploadFileList(fileList))
             : await uploadFileList(fileList);
         }
+        console.log(fileUrl);
         const postData = {
           title: title,
           content: content,
           fileUrl: fileUrl ? fileUrl : "",
         };
+        console.log(postData);
         const url = `${process.env.REACT_APP_API_SERVER}/api/admin/posts/${postId}`;
         const response = await axios.put(url, postData, {
           headers: {
