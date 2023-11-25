@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
+import axios from "axios";
 import {
   Link,
   useLocation,
   useSearchParams,
   useNavigate,
 } from "react-router-dom";
-import { AiOutlineSearch } from "react-icons/ai";
 import {
   setCookie,
   removeCookie,
@@ -19,7 +19,6 @@ import LoginModal from "../Modal/LoginModal";
 import Dropdown from "./Dropdown";
 
 import "../../styles/Header/Header.scss";
-import axios from "axios";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -27,8 +26,8 @@ const Header = () => {
   const path = location.pathname.split("/")[1];
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isGuest, setIsGuest ] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
-  const [searchContent, setSearchContent] = useState(null);
   const [isLoginModal, setIsLoginModal] = useState(false);
   const [myInfo, setMyInfo] = useState(null);
   const [view, setView] = useState(false);
@@ -55,26 +54,6 @@ const Header = () => {
       link: "shop",
     },
   ];
-
-  const onChageSearch = (e) => {
-    setSearchContent(e.target.value);
-  };
-
-  const search = () => {
-    if (searchContent) {
-      alert("아직 기능이 구현되지 않았습니다.");
-      setSearchContent(null);
-      // navigate(`/search?query=${searchContent}`);
-    }
-  };
-
-  const handleKeyDown = (e) => {
-    if (e.key === "Enter" && searchContent) {
-      alert("아직 기능이 구현되지 않았습니다.");
-      setSearchContent(null);
-      // navigate(`/search?query=${searchContent}`);
-    }
-  };
 
   const onHandleLoginModal = () => {
     setIsLoginModal(true);
@@ -129,8 +108,13 @@ const Header = () => {
   useEffect(() => {
     save_token();
     setIsLoggedIn(checkLogin("accessToken"));
-    if (checkLogin("accessToken") && !isCheckGuest()) {
-      read_myInfomation();
+    
+    if (checkLogin("accessToken")) {
+      let checkGuest = isCheckGuest();
+      setIsGuest(checkGuest);
+      if(!checkGuest){
+        read_myInfomation();
+      }
     }
   }, []);
 
@@ -155,22 +139,26 @@ const Header = () => {
           </p>
         </Link>
         <div className="flex justify-end items-center">
-          <div className="flex mt-4 items-center justify-center w-full h-full font-bold text-[1rem]">
-            {menus.map((menu) => (
-              <Link
-                to={menu.link}
-                key={menu.id}
-                className={
-                  menu.link === path
-                    ? "no-underline text-[#0090F9] cursor-pointer mx-6 px-2"
-                    : "no-underline text-slate-950 cursor-pointer mx-6 px-2 hover:text-[#0090F9]"
-                }
-              >
-                <p>{menu.title}</p>
-              </Link>
-            ))}
-          </div>
-          {isLoggedIn ? (
+          {
+            isLoggedIn && !isGuest? 
+            <div className="flex mt-4 items-center justify-center w-full h-full font-bold text-[1rem]">
+              {menus.map((menu) => (
+                <Link
+                  to={menu.link}
+                  key={menu.id}
+                  className={
+                    menu.link === path
+                      ? "no-underline text-[#0090F9] cursor-pointer mx-6 px-2"
+                      : "no-underline text-slate-950 cursor-pointer mx-6 px-2 hover:text-[#0090F9]"
+                  }
+                >
+                  <p>{menu.title}</p>
+                </Link>
+              ))}
+            </div>
+            :<></>
+          }
+          {isLoggedIn && !isGuest? (
             <div className="flex items-center h-full text-black font-bold text-[1.12rem]">
               <div className="w-[80px] h-[80px] relative box-border border-0 border-solid border-[#e5e7eb] ml-5 flex items-center mt-2">
                 <img

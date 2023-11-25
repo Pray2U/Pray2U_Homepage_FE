@@ -22,13 +22,20 @@ import SignUp from "./pages/SignUp/SignUp";
 
 import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { checkLogin } from "./util/auth";
+import { checkLogin, isCheckGuest } from "./util/auth";
 
 function App() {
+
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isGuest, setIsGuest ] = useState(false);
+
 
   useEffect(() => {
-    setIsLoggedIn(checkLogin("accessToken"));
+    let checkLogined = checkLogin("accessToken");
+    setIsLoggedIn(checkLogined);
+    if(checkLogined){
+      setIsGuest(isCheckGuest());
+    }
   }, []);
 
   return (
@@ -36,7 +43,8 @@ function App() {
       <Router>
         <Header />
         <div className="Container">
-          {isLoggedIn ? (
+          {isLoggedIn ?
+            !isGuest ? 
             <Routes>
               <Route path="/" element={<Main />} />
               <Route path="/notice" element={<Notice />} />
@@ -59,8 +67,13 @@ function App() {
               <Route path="/signup" element={<SignUp />} />
               <Route path="/search" element={<Main />} />
               <Route path="*" element={<Error />} />
+            </Routes>  
+            : <Routes>
+              <Route path="/" element={<Main />} />
+              <Route path="/signup" element={<SignUp />} />
+              <Route path="*" element={<Error />} />
             </Routes>
-          ) : (
+          : (
             <Routes>
               <Route path="/" element={<Main />} />
               <Route path="*" element={<Error />} />

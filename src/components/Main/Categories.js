@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import "../../styles/Main/Categories.scss";
 
 import CategoryImage from "./CategoryImage";
+
+import "../../styles/Main/Categories.scss";
 
 const cate = [
   {
@@ -17,11 +18,6 @@ const cate = [
   {
     id: 3,
     name: "Seminar",
-    checked: false,
-  },
-  {
-    id: 4,
-    name: "Study",
     checked: false,
   },
 ];
@@ -296,96 +292,6 @@ const LoggedInSEMINAR = [
   },
 ];
 
-const STUDY = [
-  {
-    id: 1,
-    category: "TIL",
-    title: "04/23 study",
-    day: "04/24 05:43",
-    author: "최형순1",
-  },
-  {
-    id: 2,
-    category: "TIL",
-    title: "04/24 study",
-    day: "04/24 05:43",
-    author: "최형순2",
-  },
-  {
-    id: 3,
-    category: "TIL",
-    title: "04/25 study",
-    day: "04/24 05:43",
-    author: "최형순3",
-  },
-  {
-    id: 4,
-    category: "TIL",
-    title: "04/26 study",
-    day: "04/24 05:43",
-    author: "최형순4",
-  },
-];
-
-const LoggedInSTUDY = [
-  {
-    id: 1,
-    category: "TIL",
-    title: "04/23 study",
-    day: "04/24 05:43",
-    author: "최형순1",
-  },
-  {
-    id: 2,
-    category: "TIL",
-    title: "04/24 study",
-    day: "04/24 05:43",
-    author: "최형순2",
-  },
-  {
-    id: 3,
-    category: "TIL",
-    title: "04/25 study",
-    day: "04/24 05:43",
-    author: "최형순3",
-  },
-  {
-    id: 4,
-    category: "TIL",
-    title: "04/26 study",
-    day: "04/24 05:43",
-    author: "최형순4",
-  },
-  {
-    id: 5,
-    category: "TIL",
-    title: "04/23 study",
-    day: "04/24 05:43",
-    author: "최형순1",
-  },
-  {
-    id: 6,
-    category: "TIL",
-    title: "04/24 study",
-    day: "04/24 05:43",
-    author: "최형순2",
-  },
-  {
-    id: 7,
-    category: "TIL",
-    title: "04/25 study",
-    day: "04/24 05:43",
-    author: "최형순3",
-  },
-  {
-    id: 8,
-    category: "TIL",
-    title: "04/26 study",
-    day: "04/24 05:43",
-    author: "최형순4",
-  },
-];
-
 const Caterogies = ({ isLoggedIn }) => {
   const [categories, setCategories] = useState([...cate]);
   const [selectedCategory, setSelectedCategory] = useState(null);
@@ -393,20 +299,17 @@ const Caterogies = ({ isLoggedIn }) => {
   const [til, setTil] = useState(null);
   const [project, setProject] = useState(null);
   const [seminar, setSeminar] = useState(null);
-  const [study, setStudy] = useState(null);
 
   const setDatas = () => {
     if (isLoggedIn) {
       setTil([...LoggedInTIL]);
       setProject([...LoggedInPROJECT]);
       setSeminar([...LoggedInSEMINAR]);
-      setStudy([...LoggedInSTUDY]);
       setSelectedCategory([...LoggedInTIL]);
     } else {
       setTil([...TIL]);
       setProject([...PROJECT]);
       setSeminar([...SEMINAR]);
-      setStudy([...STUDY]);
       setSelectedCategory([...TIL]);
     }
   };
@@ -431,9 +334,6 @@ const Caterogies = ({ isLoggedIn }) => {
       case 3:
         setSelectedCategory([...seminar]);
         break;
-      case 4:
-        setSelectedCategory([...study]);
-        break;
       default:
         break;
     }
@@ -447,8 +347,8 @@ const Caterogies = ({ isLoggedIn }) => {
             <div
               className={
                 c.checked
-                  ? "flex text-[1.5rem] cursor-pointer text-white mx-0 my-auto items-center justify-center hover:text-white"
-                  : "flex text-[1.5rem] cursor-pointer text-[#887FA0] mx-0 my-auto items-center justify-center"
+                  ? "flex text-[1.5rem] cursor-pointer text-white mx-3 my-auto items-center justify-center hover:text-white"
+                  : "flex text-[1.5rem] cursor-pointer text-[#887FA0] mx-3 my-auto items-center justify-center"
               }
               key={c.id}
               onClick={() => changeCategory(c.id)}

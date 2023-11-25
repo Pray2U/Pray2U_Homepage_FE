@@ -6,7 +6,7 @@ const CategoryImage = ({ isLoggedIn, category, info }) => {
       className={
         isLoggedIn
           ? "grid grid-rows-2 grid-cols-4 w-[90%] h-[60%] my-[1%] mx-[5%] justify-around items-stretch justify-items-stretch"
-          : "grid grid-rows-2 grid-cols-4 w-[90%] h-[30%] my-[1%] mx-[5%] justify-around"
+          : "grid grid-rows-1 grid-cols-4 w-[90%] h-[30%] my-[1%] mx-[5%] justify-around"
       }
     >
       {info.map((i) => (
