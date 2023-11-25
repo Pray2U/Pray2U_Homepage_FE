@@ -14,6 +14,7 @@ const TilItem = ({ tilInfo, onRemove, isAdmin, userId }) => {
   const [isClosed, setIsClosed] = useState(true);
   const [isOverContent, setIsOverContent] = useState(true);
   const [isModalView, setIsModalView] = useState(false);
+  const [tag, setTag ] = useState(null);
 
   const onEditTIL = (id) => {
     navigate(`/til/edit/${id}`);
@@ -33,11 +34,17 @@ const TilItem = ({ tilInfo, onRemove, isAdmin, userId }) => {
     }
   };
 
+  const setTagOject = () => {
+    if(tilInfo?.tag){
+      let removedDuplicateValue = new Set(tilInfo?.tag.split(", "));
+      setTag([...removedDuplicateValue]);
+    }
+  }
+
   useEffect(() => {
     checkOverContents();
+    setTagOject();
   }, []);
-
-  const tag = tilInfo?.tag.split(", ");
 
   return (
     <div
@@ -67,8 +74,8 @@ const TilItem = ({ tilInfo, onRemove, isAdmin, userId }) => {
           </div>
 
           <div className="flex ml-[5px] text-sm text-gray-400">
-            {tag.map((e) => (
-              <p className="px-2">#{e}</p>
+            {tag?.map((e) => (
+              <p className="px-2" key={e}>#{e}</p>
             ))}
           </div>
         </div>
