@@ -320,10 +320,9 @@ const Caterogies = ({ isLoggedIn }) => {
         withCredentials: true,
       });
       if (response.status === 200) {
-        console.log(response);
         let newTilList = response.data.data.content.map((data) => {
           let newOject = {
-            id : data.id,
+            id : data.tilId,
             category: "TIL",
             title: data.title,
             day: dayjs(data.createdDate).format("MM/DD"),

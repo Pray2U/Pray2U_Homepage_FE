@@ -1,73 +1,42 @@
 import { Swiper, SwiperSlide } from "swiper/react"; // basic
-import { Navigation, Pagination, A11y, Autoplay, EffectCards } from "swiper";
+import { Navigation, A11y, Autoplay, EffectCards } from "swiper";
+import { AiFillGithub } from "react-icons/ai";
 
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
+import { getCookie } from "../../util/auth";
 
 import "swiper/swiper-bundle.min.css";
 import "../../styles/Main/ImageCard.scss";
 
 const ImageCards = () => {
-  // 실제 데이터
-  const userProfile = [
-    {
-      userId: 1,
-      username: "gildong",
-      profileImgUrl: "./img/dummy_card.png",
-    },
-    {
-      userId: 2,
-      username: "gildong",
-      profileImgUrl: "./img/dummy_card.png",
-    },
-    {
-      userId: 3,
-      username: "gildong",
-      profileImgUrl: "./img/dummy_card.png",
-    },
-    {
-      userId: 4,
-      username: "gildong",
-      profileImgUrl: "./img/dummy_card.png",
-    },
-    {
-      userId: 5,
-      username: "gildong",
-      profileImgUrl: "./img/dummy_card.png",
-    },
-    {
-      userId: 6,
-      username: "gildong",
-      profileImgUrl: "./img/dummy_card.png",
-    },
-    ,
-    {
-      userId: 7,
-      username: "gildong",
-      profileImgUrl: "./img/dummy_card.png",
-    },
-    ,
-    {
-      userId: 8,
-      username: "gildong",
-      profileImgUrl: "./img/dummy_card.png",
-    },
-  ];
-  const [allUserInfo, setAllUserInfo] = useState(userProfile);
 
-  // const read_AllUserInfo = async()=>{
-  //     try{
-  //         const url = 'api/user/info/all'
-  //         const response = await axios.get(url, {withCredentials:true});
-  //         setAllUserInfo(response.data.content);
-  //     }catch(e){
-  //         console.log(e);
-  //     }
-  // }
+  const [allUserInfo, setAllUserInfo] = useState(null);
 
-  // useEffect(()=>{
-  //     read_AllUserInfo();
-  // },[allUserInfo,]);
+  const read_AllUserInfo = async()=>{
+      try{
+        const url = `${process.env.REACT_APP_API_SERVER}/api/admin/users?page=0&size=20&sort=id,DESC`;
+        const response = await axios.get(url, {
+          headers: {
+            Authorization: `Bearer ${getCookie("accessToken")}`,
+          },
+          withCredentials: true,
+        });
+        if (response.status === 200) {
+          console.log(response);
+          setAllUserInfo([...response.data.data.content]);
+        } else {
+          alert(response.data.message);
+        }
+      }catch(e){
+        alert(e.response.data.msg);
+      }
+  }
+
+  useEffect(()=>{
+      read_AllUserInfo();
+  },[]);
 
   return (
     <div className="ImageCardBox">
@@ -85,9 +54,18 @@ const ImageCards = () => {
           waitForTransition: true,
         }}
       >
-        {allUserInfo.map((user) => (
+        {allUserInfo?.map((user) => (
           <SwiperSlide className="SwiperSlideBox" key={user.userId}>
-            <img src={user.profileImgUrl} alt="img" />
+            <div className="ImageCardInfoBox">
+              <img className="ImageCardProfile" src={user.profileImgUrl} alt="img" />
+              <p className="ImageCardUserName">{user.username}</p>
+              <p className="ImageCardEmail">{user.email}</p>
+              <Link 
+                to={`https://github.com/${user.githubId}`}
+                target="_blank">
+                <AiFillGithub className="ImageCardGithubIcon"/>
+              </Link>
+            </div>
           </SwiperSlide>
         ))}
       </Swiper>
