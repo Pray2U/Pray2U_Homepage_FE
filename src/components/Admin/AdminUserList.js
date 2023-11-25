@@ -10,10 +10,12 @@ import "../../styles/Admin/AdminUserList.scss";
 
 const AdminUserList = () => {
   const navigate = useNavigate();
+
   const pageSize = 10;
   const [pageCnt, setPageCnt] = useState(1);
   const [totalItemCnt, setTotalItemCnt] = useState(null);
   const [userInfoList, setUserInfoList] = useState([]);
+  const [reRender, setReRender] = useState(false);
 
   const read_userList = async () => {
     try {
@@ -53,11 +55,12 @@ const AdminUserList = () => {
         withCredentials: true,
       });
       if (response.status === 200) {
-        setUserInfoList((userinfoList) =>
-          userinfoList.map((userinfo) =>
-            userinfo?.userId === userId ? { ...response.data.data } : userinfo
-          )
-        );
+        setReRender(!reRender);
+        // setUserInfoList((userinfoList) =>
+        //   userinfoList.map((userinfo) =>
+        //     userinfo?.userId === userId ? { ...response.data.data } : userinfo
+        //   )
+        // );
         alert("직책이 변경되었습니다.");
       } else {
         alert(response.data.message);
@@ -69,7 +72,7 @@ const AdminUserList = () => {
 
   useEffect(() => {
     read_userList();
-  }, [pageCnt]);
+  }, [pageCnt, reRender]);
 
   return (
     <div className="w-full">

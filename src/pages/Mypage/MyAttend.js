@@ -112,7 +112,7 @@ const MyAttend = () => {
 
   useEffect(() => {
     read_MyAttendDay();
-  }, [selectedMonth]);
+  }, [selectedMonth, checkedToday]);
 
   return (
     <>

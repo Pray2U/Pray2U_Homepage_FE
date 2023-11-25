@@ -17,9 +17,8 @@ const MyProfile = () => {
   const [myInfo, setMyInfo] = useState(null);
   const [myPoint, setMyPoint] = useState(null);
   const [phoneNum, setPhoneNum] = useState(null);
-  const [email, setEmail] = useState(null);
-  const [userName, setUserName] = useState(null);
   const [isDeleteModal, setIsDeleteModal] = useState(false);
+  const [reRender, setReRender] = useState(false);
 
   const onDeleteClick = () => {
     setIsDeleteModal(true);
@@ -31,14 +30,6 @@ const MyProfile = () => {
 
   const onHandlePhoneNum = (e) => {
     setPhoneNum(e.target.value);
-  };
-
-  const onHandleEmail = (e) => {
-    setEmail(e.target.value);
-  };
-
-  const onHandleUserName = (e) => {
-    setUserName(e.target.value);
   };
 
   const delete_user = async () => {
@@ -68,14 +59,8 @@ const MyProfile = () => {
       let putData = {
         profileImgUrl: myInfo?.profileImgUrl,
       };
-      if (userName !== myInfo.username) {
-        putData.username = userName;
-      }
       if (phoneNum !== myInfo?.phoneNumber) {
         putData.phoneNumber = phoneNum;
-      }
-      if (email !== myInfo?.email) {
-        putData.email = email;
       }
       if (Object.keys(putData).length > 1) {
         const url = `${process.env.REACT_APP_API_SERVER}/api/users`;
@@ -87,10 +72,7 @@ const MyProfile = () => {
         });
         if (response.status === 200) {
           alert(response.data.msg);
-          setMyInfo(response.data.data);
-          setEmail(response.data.data.email);
-          setPhoneNum(response.data.data.phoneNumber);
-          setUserName(response.data.data.username);
+          setReRender(!reRender);
         } else {
           alert("내 정보 수정하는데 실패했습니다.");
         }
@@ -99,7 +81,6 @@ const MyProfile = () => {
       }
     } catch (e) {
       alert(e.response.data.message);
-      console.log(e.response);
     }
   };
 
@@ -114,9 +95,7 @@ const MyProfile = () => {
       });
       if (response.status === 200) {
         setMyInfo(response.data.data);
-        setEmail(response.data.data.email);
         setPhoneNum(response.data.data.phoneNumber);
-        setUserName(response.data.data.username);
       } else {
         alert("내 정보를 가져오는데 실패했습니다.");
         navigate("/");
@@ -151,7 +130,7 @@ const MyProfile = () => {
   useEffect(() => {
     read_myInfomation();
     read_myPoint();
-  }, []);
+  }, [reRender]);
 
   return (
     <>
@@ -175,11 +154,9 @@ const MyProfile = () => {
                 <div className="flex items-center w-[50%] h-full text-[1.25vw]">
                   이름
                 </div>
-                <input
-                  className="flex items-center w-full h-[50%] border-solid border-[0.15rem] rounded-[0.375rem] border-[hsla(220,9%,46%,.3)] text-gray pl-[1%] text-[1rem] mb-[1%] mb-[1%] font-bold focus:border-[#0090F9] focus:outline-none focus:text-black"
-                  value={userName || ""}
-                  onChange={onHandleUserName}
-                />
+                <div className="flex items-center w-full h-[50%] text-gray text-[1vw] h-[2.25rem]">
+                  {myInfo?.username}
+                </div>
               </div>
               <div className="flex items-center w-[80%] h-[20%] m-auto mt-[2.5%] mb-[2.5%]">
                 <div className="flex items-center w-[50%] h-full text-[1.25vw]">
@@ -195,11 +172,9 @@ const MyProfile = () => {
                 <div className="flex items-center w-[50%] h-full text-[1.25vw]">
                   이메일
                 </div>
-                <input
-                  className="flex items-center w-full h-[50%] border-solid border-[0.15rem] rounded-[0.375rem] border-[hsla(220,9%,46%,.3)] text-gray pl-[1%] text-[1rem] mb-[1%] mb-[1%] font-bold focus:border-[#0090F9] focus:outline-none focus:text-black"
-                  value={email || ""}
-                  onChange={onHandleEmail}
-                />
+                <div className="flex items-center w-full h-[50%] text-gray text-[1vw] h-[2.25rem]">
+                  {myInfo?.email}
+                </div>
               </div>
               <div className="flex items-center w-[80%] h-[20%] m-auto mt-[2.5%] mb-[2.5%]">
                 <div className="flex items-center w-[50%] h-full text-[1.25vw]">

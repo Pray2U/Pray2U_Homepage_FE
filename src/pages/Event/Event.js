@@ -44,6 +44,7 @@ const Event = () => {
   const [selectedMonth, setSelectedMonth] = useState(
     dayjs(new Date()).format("MM")
   );
+  const [reRender, setReRender] = useState(false);
 
   const read_eventData = async () => {
     try {
@@ -61,14 +62,12 @@ const Event = () => {
       }
     } catch (e) {
       alert(e.response.data.message);
-      // alert(e.response.data.error);
       navigate("/error");
     }
   };
 
   const onRemove = async (id) => {
     try {
-      // 모달창 띄우고
       const url = `${process.env.REACT_APP_API_SERVER}/api/events/${id}`;
       const response = await axios.delete(url, {
         headers: {
@@ -77,10 +76,7 @@ const Event = () => {
         withCredentials: true,
       });
       if (response.status === 200) {
-        // setTodos(todos.filter(event => event.eventId !== id));
-        setEventApiData((eventApiData) =>
-          eventApiData.filter((event) => event.eventId !== id)
-        );
+        setReRender(!reRender);
         alert("이벤트가 삭제되었습니다.");
       } else {
         alert(response.data.message);
@@ -109,18 +105,7 @@ const Event = () => {
   };
 
   const saveEvent = (data) => {
-    const isExist = eventApiData.some(
-      (event) => event.eventId === data.eventId
-    );
-    if (isExist) {
-      setEventApiData((eventApiData) =>
-        eventApiData.map((event) =>
-          event.eventId === data.eventId ? { ...data } : event
-        )
-      );
-    } else {
-      setEventApiData((eventApiData) => eventApiData.concat(data));
-    }
+    setReRender(!reRender);
   };
 
   const onChangeYearMonth = (props) => {
@@ -160,7 +145,7 @@ const Event = () => {
 
   useEffect(() => {
     read_eventData();
-  }, [selectedYear, selectedMonth]);
+  }, [selectedYear, selectedMonth, reRender]);
 
   return (
     <>
@@ -206,7 +191,7 @@ const Event = () => {
                   onToggle={onToggle}
                 />
                 <div
-                  className="flex items-center justify-center ml-auto mr-4 w-[170px] h-[50px] text-whtie bg-[#9A58EE] text-white font-bold rounded-[0.5em] cursor-pointer hover:bg-[#9048ef]"
+                  className="flex items-center justify-center ml-auto mr-4 mt-2 w-[170px] h-[50px] text-whtie bg-[#9A58EE] text-white font-bold rounded-[0.5em] cursor-pointer hover:bg-[#9048ef]"
                   onClick={addEvent}
                 >
                   + Add a new Event

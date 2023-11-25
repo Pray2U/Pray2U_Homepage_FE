@@ -17,6 +17,7 @@ const AdminApprovalList = () => {
   const [totalItemCnt, setTotalItemCnt] = useState(null);
   const [memberInfoList, setMemberInfoList] = useState([]);
   const [isApprovalModal, setIsApprovalModal] = useState(false);
+  const [reRender, setReRender] = useState(false);
 
   const read_memberList = async () => {
     try {
@@ -60,9 +61,8 @@ const AdminApprovalList = () => {
           withCredentials: true,
         });
         if (response.status === 200) {
+          setReRender(!reRender);
           setIsApprovalModal(false);
-          let newMember = [{ ...response.data.data }];
-          setMemberInfoList((memberInfoList) => newMember.concat(memberInfoList));
           alert("유저 승인이 추가 되었습니다.");
         } else {
           setIsApprovalModal(false);
@@ -92,7 +92,8 @@ const AdminApprovalList = () => {
           withCredentials: true,
         });
         if (response.status === 200) {
-          setMemberInfoList((memberInfoList) => memberInfoList.filter((member) => member.githubId !== githubId));
+          setReRender(!reRender);
+          // setMemberInfoList((memberInfoList) => memberInfoList.filter((member) => member.githubId !== githubId));
           alert("추가 멤버가 삭제 되었습니다.");
         } else {
           alert(response.data.data.message);
@@ -105,7 +106,7 @@ const AdminApprovalList = () => {
 
   useEffect(() => {
     read_memberList();
-  }, [approvalPageCnt]);
+  }, [approvalPageCnt, reRender]);
 
   return (
     <div className="w-full">

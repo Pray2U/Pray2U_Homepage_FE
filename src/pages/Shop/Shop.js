@@ -17,6 +17,7 @@ const Shop = () => {
   const [selectedItem, setSelectedItem] = useState(null);
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [myPoint, setMyPoint] = useState(null);
+  const [rerender, setRerender] = useState(false);
 
   const read_ItemList = async () => {
     try {
@@ -94,12 +95,12 @@ const Shop = () => {
           withCredentials: true,
         });
         if (response.status === 200) {
-          setMyPoint(myPoint - selectedItem?.point);
+          setRerender(!rerender);
           alert("구매가 완료되었습니다.");
         } else {
           alert(response.data.message);
         }
-        closeModal(); //나중에 지우면 됨
+        closeModal();
       } else {
         alert("포인트가 부족하여 구매할 수 없습니다.");
       }
@@ -111,7 +112,7 @@ const Shop = () => {
   useEffect(() => {
     read_ItemList();
     read_MyPoint();
-  }, []);
+  }, [rerender]);
 
   return (
     <>

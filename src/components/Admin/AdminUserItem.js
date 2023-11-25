@@ -10,29 +10,6 @@ import "../../styles/Admin/AdminUserItem.scss";
 const AdminUserItem = ({ userInfo, post_userRole }) => {
   const [isModalView, setIsModalView] = useState(false);
 
-  // const post_userRole = async () => {
-  //   try {
-  //     const url = `${process.env.REACT_APP_API_SERVER}/api/users/roles/${userInfo?.userId}`;
-  //     const data = {
-  //       role: userInfo?.role === "ROLE_ADMIN" ? "ROLE_USER" : "ROLE_ADMIN",
-  //     };
-  //     const response = await axios.post(url, data, {
-  //       headers: {
-  //         Authorization: `Bearer ${getCookie("accessToken")}`,
-  //       },
-  //       withCredentials: true,
-  //     });
-  //     if (response.status === 200) {
-  //       setUserRole(response.data.data.role);
-  //       alert("직책이 변경되었습니다.");
-  //     } else {
-  //       alert(response.data.message);
-  //     }
-  //   } catch (e) {
-  //     alert(e.response.data.message);
-  //   }
-  // };
-
   return (
     <div className="flex items-center w-full py-[0.5rem] border-t-[0.1rem] border-t-solid border-t-[#D2D4D9]">
       <img

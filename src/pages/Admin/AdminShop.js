@@ -19,6 +19,7 @@ const AdminShop = () => {
   const [ pageCnt, setPageCnt ] = useState(1);
   const [ totalItemCnt, setTotalItemCnt ] = useState(null);
   const [ shopItemList, setShopItemlist] = useState([]);
+  const [ reRender, setReRender] = useState(false);
 
   const read_ItemList = async () => {
     try {
@@ -66,7 +67,7 @@ const AdminShop = () => {
             });
             if (response.status === 200) {
                 alert("상품 정보가 수정되었습니다.");
-                setShopItemlist((itemList) => itemList.map((itemInfo) => itemInfo.itemId === itemId ? {...response.data.data} : itemInfo));
+                setReRender(!reRender);
             } else {
                 alert("등록 오류입니다.");
             }
@@ -98,9 +99,7 @@ const AdminShop = () => {
       });
       if (response.status === 200) {
         alert("상품이 삭제되었습니다.");
-        setShopItemlist((shopItemList) =>
-          shopItemList.filter((item) => item.itemId !== id)
-        );
+        setReRender(!reRender);
       } else {
         alert(response.data.message);
       }
@@ -115,7 +114,7 @@ const AdminShop = () => {
     if (!isCheckAdmin()) {
       navigate("/error");
     }
-  }, [pageCnt]);
+  }, [pageCnt, reRender]);
 
   return (
     <>

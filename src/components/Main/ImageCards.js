@@ -24,7 +24,6 @@ const ImageCards = () => {
           withCredentials: true,
         });
         if (response.status === 200) {
-          console.log(response);
           setAllUserInfo([...response.data.data.content]);
         } else {
           alert(response.data.message);

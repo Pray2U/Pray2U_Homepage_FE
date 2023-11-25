@@ -18,6 +18,7 @@ const AdminOrder = () => {
   const [pageCnt, setPageCnt] = useState(1);
   const [totalItemCnt, setTotalItemCnt] = useState(2);
   const [orderList, setOrderList] = useState([]);
+  const [reRender, setReRender] = useState(false);
 
   const read_OrderList = async () => {
     try {
@@ -56,10 +57,7 @@ const AdminOrder = () => {
       });
       if (response.status === 200) {
         alert("주문 승인이 완료되었습니다.");
-        let newOrder = response.data.data;
-        setOrderList((orderList) =>
-          orderList.map((order) => (order?.orderId === id ? newOrder : order))
-        );
+        setReRender(!reRender);
       } else {
         alert(response.data.message);
       }
@@ -75,7 +73,7 @@ const AdminOrder = () => {
       navigate("/error");
     }
     read_OrderList();
-  }, [pageCnt]);
+  }, [pageCnt, reRender]);
 
   return (
     <>
