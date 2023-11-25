@@ -60,6 +60,7 @@ const NoticeDetail = () => {
         withCredentials: true,
       });
       if (response.status === 200) {
+        console.log(response);
         setMyInfo(response.data.data);
       } else {
         alert("내 정보를 가져오지 못했습니다.");
@@ -110,7 +111,7 @@ const NoticeDetail = () => {
             제목 : {noticeInfo?.title}
           </h1>
           {isAdmin ? (
-            <SideMenu onToggle={onToggle} onRemove={delete_NoticeItem} />
+            <SideMenu onToggle={onToggle} onRemove={delete_NoticeItem} isMyPost={myInfo?.userId === noticeInfo?.user?.writerId}/>
           ) : (
             <></>
           )}

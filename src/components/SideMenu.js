@@ -4,7 +4,7 @@ import { BsThreeDotsVertical } from 'react-icons/bs';
 
 import '../styles/SideMenu/SideMenu.scss';
 
-const SideMenu = ({onToggle, onRemove}) => {
+const SideMenu = ({onToggle, onRemove, isMyPost}) => {
 
     const [ isMenuModal, setIsMenuModal ] = useState(false);
 
@@ -15,7 +15,9 @@ const SideMenu = ({onToggle, onRemove}) => {
             {
                 isMenuModal ? 
                 <div className='SideMenuButtonsBox'>
-                    <div className='SideMenuButton' onClick={onToggle}>수정하기</div>
+                    {
+                        isMyPost && <div className='SideMenuButton' onClick={onToggle}>수정하기</div>
+                    }
                     <div className='SideMenuButton' onClick={onRemove}>삭제하기</div>
                 </div> : <></>
             }
