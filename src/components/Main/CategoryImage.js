@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "../../styles/Main/CategoryImage.scss";
 
 const CategoryImage = ({ isLoggedIn, category, info }) => {
@@ -11,10 +12,17 @@ const CategoryImage = ({ isLoggedIn, category, info }) => {
     >
       {info.map((i) => (
         <div key={i.id} className={category + "Image"}>
-          <p className="CategoryTitleBox">{i.title}</p>
-          <div className="flex w-full h-[70%] font-bold items-end">
-            <p className="w-[50%] h-[20%] text-right text-[110%]">{i.day}</p>
-            <p className="flex justify-center w-[50%] h-[20%] text-[110%]">
+          {
+            i?.link ?
+            <Link to={i?.link} 
+              target="_blank"
+              className="CategoryClickTitleBox">{i.title}</Link>
+            : <p className="CategoryTitleBox">{i.title}</p>
+          }
+          
+          <div className="flex w-full h-[50%] font-bold items-end">
+            <p className="w-[30%] h-[20%] text-left pl-6 text-[110%]">{i.day}</p>
+            <p className="w-[80%] h-[20%] text-right pr-6 text-[110%]">
               {i.author}
             </p>
           </div>
