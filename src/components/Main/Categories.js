@@ -288,7 +288,7 @@ const LoggedInSEMINAR = [
   },
 ];
 
-const Caterogies = ({ isLoggedIn }) => {
+const Caterogies = ({ isLoggedIn, isGuest }) => {
 
   const [categories, setCategories] = useState([...cate]);
   const [selectedCategory, setSelectedCategory] = useState(null);
@@ -298,7 +298,7 @@ const Caterogies = ({ isLoggedIn }) => {
   const [pageSize, setPageSize] = useState(8);
 
   const setDatas = () => {
-    if (isLoggedIn) {
+    if (isLoggedIn && !isGuest) {
       setProject([...LoggedInPROJECT]);
       setSeminar([...LoggedInSEMINAR]);
       setCategories([...LoggedIncate]);

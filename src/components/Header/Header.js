@@ -122,7 +122,7 @@ const Header = () => {
     <div className="w-full flex justify-center items-center h-[70px]">
       <div className="w-[90%] flex justify-between h-[80%] px-4">
         <Link
-          to="/"
+          to={isGuest ? "/signup" : "/"}
           className="w-[25%] h-full flex justify-start items-center no-underline"
         >
           <img

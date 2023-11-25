@@ -7,13 +7,15 @@ import PointRank from "../../components/Main/PointRank";
 import ImageCards from "../../components/Main/ImageCards";
 
 import "../../styles/Main/Main.scss";
-import { checkLogin } from "../../util/auth";
+import { checkLogin, isCheckGuest } from "../../util/auth";
 
 const Main = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isGuest, setIsGuest ] = useState(false);
 
   useEffect(() => {
     setIsLoggedIn(checkLogin("accessToken"));
+    setIsGuest(isCheckGuest());
   }, [isLoggedIn]);
 
   return (
@@ -39,12 +41,12 @@ const Main = () => {
           </span>
         </div> */}
         <div className="w-[85vw] h-full m-auto bg-[#110042]">
-          {!isLoggedIn && <Carousels />}
-          <Caterogies isLoggedIn={isLoggedIn} />
-          {isLoggedIn && <PointRank />}
+          {(!isLoggedIn || isGuest) && <Carousels />}
+          <Caterogies isLoggedIn={isLoggedIn} isGuest={isGuest}/>
+          {isLoggedIn && !isGuest && <PointRank />}
         </div>
         {
-          isLoggedIn &&  
+          isLoggedIn && !isGuest &&  
           <div className="w-[85vw] h-full m-auto bg-[#110042] flex justify-center items-center">
             <ImageCards />
           </div>

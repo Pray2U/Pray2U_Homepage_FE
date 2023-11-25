@@ -166,9 +166,9 @@ const MyProfile = () => {
                 className="flex items-center justify-center m-auto w-[15rem] h-[15rem] rounded-[50%]"
                 alt="Profile"
               />
-              <div className="flex w-[90%] h-[10%] m-auto bt-[5%] items-center justify-center bg-[#2B0086] text-white cursor-pointer hover:bg-[#1e005c]">
+              {/* <div className="flex w-[90%] h-[10%] m-auto bt-[5%] items-center justify-center bg-[#2B0086] text-white cursor-pointer hover:bg-[#1e005c]">
                 이미지 변경
-              </div>
+              </div> */}
             </div>
             <div className="w-[50%] h-full content-between">
               <div className="flex items-center w-[80%] h-[20%] m-auto mt-[2.5%] mb-[2.5%]">

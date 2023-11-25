@@ -27,7 +27,7 @@ const SignUp = () => {
   }
   return (
     <>
-      <div className="flex w-[1280px] h-[100vh] mx-[0] my-auto">
+      <div className="flex w-[1280px] h-[100vh] m-auto mx-[0] my-auto">
         <div className="w-[50%] h-full relative bg-[#F5F7FF]">
           <div className="flex mt-[20%] justify-center w-full h-[10%]">
             <img src="./img/logo.png" alt="imgLogo" />
