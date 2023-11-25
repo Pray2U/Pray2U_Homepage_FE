@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
+import { useRef, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import GitHubCalendar from "react-github-calendar";
 import axios from "axios";
 import { getCookie, removeCookie } from "../../util/auth";
+import { uploadFile } from "../../util/s3Upload";
 
 import MypageHeader from "../../components/Header/MypageHeader";
 import Title from "../../components/Title/Title";
@@ -12,13 +13,17 @@ import Reconfirm from "../../components/Reconfirm";
 import "../../styles/MyPage/MyProfile.scss";
 
 const MyProfile = () => {
+  const imgRef = useRef();
   const navigate = useNavigate();
 
   const [myInfo, setMyInfo] = useState(null);
   const [myPoint, setMyPoint] = useState(null);
   const [phoneNum, setPhoneNum] = useState(null);
   const [isDeleteModal, setIsDeleteModal] = useState(false);
+  const [newProfileImg, setNewProfileImg] = useState(null);
+  const [previewNewProfileImg, setPreviewNewProfileImg] = useState(null);
   const [reRender, setReRender] = useState(false);
+
 
   const onDeleteClick = () => {
     setIsDeleteModal(true);
@@ -30,6 +35,18 @@ const MyProfile = () => {
 
   const onHandlePhoneNum = (e) => {
     setPhoneNum(e.target.value);
+  };
+
+  const previewProfileFile = () => {
+    const file = imgRef.current.files[0];
+    if (file) {
+      setNewProfileImg(file);
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onloadend = () => {
+        setPreviewNewProfileImg(reader.result);
+      };
+    }
   };
 
   const delete_user = async () => {
@@ -57,12 +74,10 @@ const MyProfile = () => {
   const put_myInfo = async () => {
     try {
       let putData = {
-        profileImgUrl: myInfo?.profileImgUrl,
-      };
-      if (phoneNum !== myInfo?.phoneNumber) {
-        putData.phoneNumber = phoneNum;
+        profileImgUrl: newProfileImg ? await uploadFile(newProfileImg) : myInfo?.profileImgUrl,
+        phoneNumber: phoneNum ? phoneNum : myInfo?.phoneNumber
       }
-      if (Object.keys(putData).length > 1) {
+      if (newProfileImg || (phoneNum !== myInfo?.phoneNumber)) {
         const url = `${process.env.REACT_APP_API_SERVER}/api/users`;
         const response = await axios.put(url, putData, {
           headers: {
@@ -141,13 +156,26 @@ const MyProfile = () => {
           <div className="flex w-full h-[25rem] m-auto">
             <div className="w-[30%] h-[80%] m-auto">
               <img
-                src={myInfo?.profileImgUrl}
+                src={previewNewProfileImg ? previewNewProfileImg : myInfo?.profileImgUrl}
                 className="flex items-center justify-center m-auto w-[15rem] h-[15rem] rounded-[50%]"
                 alt="Profile"
               />
-              {/* <div className="flex w-[90%] h-[10%] m-auto bt-[5%] items-center justify-center bg-[#2B0086] text-white cursor-pointer hover:bg-[#1e005c]">
-                이미지 변경
-              </div> */}
+              <form className="flex justify-center">
+                <label
+                  htmlFor="itemImg"
+                  className="flex w-[80%] h-[10%] m-auto mt-3 bt-[5%] items-center justify-center bg-[#0090F9] text-white cursor-pointer hover:bg-[#0B7FD3]"
+                >
+                  이미지 변경
+                </label>
+                <input
+                  type="file"
+                  id="itemImg"
+                  accept="image/*"
+                  style={{ display: "none" }}
+                  className="w-[2rem] h-[2rem] display: none"
+                  onChange={previewProfileFile}
+                  ref={imgRef}/>
+              </form>
             </div>
             <div className="w-[50%] h-full content-between">
               <div className="flex items-center w-[80%] h-[20%] m-auto mt-[2.5%] mb-[2.5%]">
