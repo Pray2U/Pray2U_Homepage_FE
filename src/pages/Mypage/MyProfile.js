@@ -22,8 +22,6 @@ const MyProfile = () => {
   const [isDeleteModal, setIsDeleteModal] = useState(false);
   const [newProfileImg, setNewProfileImg] = useState(null);
   const [previewNewProfileImg, setPreviewNewProfileImg] = useState(null);
-  const [reRender, setReRender] = useState(false);
-
 
   const onDeleteClick = () => {
     setIsDeleteModal(true);
@@ -87,7 +85,7 @@ const MyProfile = () => {
         });
         if (response.status === 200) {
           alert(response.data.msg);
-          setReRender(!reRender);
+          window.location.replace("/mypage/profile");
         } else {
           alert("내 정보 수정하는데 실패했습니다.");
         }
@@ -145,7 +143,7 @@ const MyProfile = () => {
   useEffect(() => {
     read_myInfomation();
     read_myPoint();
-  }, [reRender]);
+  }, []);
 
   return (
     <>
