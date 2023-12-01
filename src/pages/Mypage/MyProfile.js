@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import GitHubCalendar from "react-github-calendar";
 import axios from "axios";
 import { getCookie, removeCookie } from "../../util/auth";
-import { uploadFile } from "../../util/s3Upload";
+import { deleteFileList, extractS3Key, uploadFile } from "../../util/s3Upload";
 
 import MypageHeader from "../../components/Header/MypageHeader";
 import Title from "../../components/Title/Title";
@@ -69,33 +69,47 @@ const MyProfile = () => {
     setIsDeleteModal(false);
   };
 
-  const put_myInfo = async () => {
+  const put_myInfo = async (putData) => {
     try {
-      let putData = {
-        profileImgUrl: newProfileImg ? await uploadFile(newProfileImg) : myInfo?.profileImgUrl,
-        phoneNumber: phoneNum ? phoneNum : myInfo?.phoneNumber
-      }
-      if (newProfileImg || (phoneNum !== myInfo?.phoneNumber)) {
-        const url = `${process.env.REACT_APP_API_SERVER}/api/users`;
-        const response = await axios.put(url, putData, {
-          headers: {
-            Authorization: `Bearer ${getCookie("accessToken")}`,
-          },
-          withCredentials: true,
-        });
-        if (response.status === 200) {
-          alert(response.data.msg);
-          window.location.replace("/mypage/profile");
-        } else {
-          alert("내 정보 수정하는데 실패했습니다.");
-        }
+      const url = `${process.env.REACT_APP_API_SERVER}/api/users`;
+      const response = await axios.put(url, putData, {
+        headers: {
+          Authorization: `Bearer ${getCookie("accessToken")}`,
+        },
+        withCredentials: true,
+      });
+      if (response.status === 200) {
+        alert(response.data.msg);
+        window.location.replace("/mypage/profile");
       } else {
-        alert("바뀐 정보가 없습니다.");
+        alert("내 정보 수정하는데 실패했습니다.");
       }
     } catch (e) {
       alert(e.response.data.message);
     }
   };
+
+  const onSave = async () => {
+    if (newProfileImg || (phoneNum !== myInfo?.phoneNumber)){
+      let putData = {
+        profileImgUrl: myInfo?.profileImgUrl,
+        phoneNumber: phoneNum ? phoneNum : myInfo?.phoneNumber
+      }
+      if(newProfileImg){
+        const fileUrl = await uploadFile(newProfileImg);
+        if(fileUrl){
+          const s3ObjectKey = extractS3Key([myInfo?.profileImgUrl]);
+          if(s3ObjectKey){
+            await deleteFileList(s3ObjectKey);
+          }
+        }
+        putData.profileImgUrl = fileUrl;
+      }
+      await put_myInfo(putData);
+    }else{
+      alert("바뀐 정보가 없습니다.");
+    }
+  }
 
   const read_myInfomation = async () => {
     try {
@@ -225,7 +239,7 @@ const MyProfile = () => {
                 </div>
                 <div
                   className="flex w-[30%] h-full items-center justify-center rounded-[0.5em] bg-[#0090F9] text-white font-bold cursor-pointer hover:bg-[#0B7FD3]"
-                  onClick={() => put_myInfo()}
+                  onClick={() => onSave()}
                 >
                   저장
                 </div>
