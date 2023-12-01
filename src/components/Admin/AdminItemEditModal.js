@@ -1,4 +1,5 @@
 import { useRef, useState } from "react";
+import { deleteFileList, extractS3Key, uploadFile } from "../../util/s3Upload";
 
 const AdminItemEditModal = ({ itemInfo, onCancel, put_ItemInfo }) => {
   const imgRef = useRef();
@@ -35,60 +36,41 @@ const AdminItemEditModal = ({ itemInfo, onCancel, put_ItemInfo }) => {
   };
 
   const onSave = async () => {
-    let result = await put_ItemInfo(
-      itemName,
-      itemPoint,
-      itemDescription,
-      newItemImg,
-      itemInfo?.imgUrl,
-      itemInfo?.itemId
-    );
-    if (result) {
+    if (itemName && itemPoint && itemDescription) {
+      let postData = {
+        imgUrl: itemInfo?.imgUrl,
+        itemDescription: itemDescription,
+        itemName: itemName,
+        point: parseInt(itemPoint),
+      };
+      if(newItemImg){
+        const newImgUrl = await uploadFile(newItemImg);
+        if(newImgUrl){
+          const s3ObjectKey = extractS3Key([itemInfo?.imgUrl]);
+          if(s3ObjectKey){
+            await deleteFileList(s3ObjectKey);
+            postData.imgUrl = newImgUrl;
+            await put_ItemInfo(postData, itemInfo?.itemId);
+          }else{
+            alert("이미지 경로가 잘못되었습니다.");
+          }
+        }else{
+          alert('이미지 업로드 과정에서 오류가 생겼습니다.');
+        }
+      }else{
+        await put_ItemInfo(postData, itemInfo?.itemId);
+      }
       onCancel();
+    }else {
+      if(!itemName){
+          alert("상품명이 입력되지 않았습니다.");
+      }else if(!itemDescription){
+          alert("상품 설명칸이 입력되지 않았습니다.");
+      }else if(!itemPoint){
+          alert("상품 포인트가 설정되지 않았습니다.");
+      }
     }
   };
-
-  // const put_ItemInfo = async (itemName, itemPoint, itemDescription, newItemImg, imgUrl, itemId) => {
-  //     try {
-  //         if (itemName && itemPoint && itemDescription) {
-  //             let newImgUrl = null;
-  //             if(newItemImg){
-  //                 newImgUrl = await uploadFile(newItemImg);
-  //             }
-  //             const postData = {
-  //                 imgUrl: newImgUrl ? newImgUrl : itemInfo?.imgUrl,
-  //                 itemDescription: itemDescription,
-  //                 itemName: itemName,
-  //                 point: parseInt(itemPoint),
-  //             };
-  //             const url = `${process.env.REACT_APP_API_SERVER}/api/admin/items/${itemInfo?.itemId}`;
-  //             const response = await axios.put(url, postData, {
-  //                 headers: {
-  //                 Authorization: `Bearer ${getCookie("accessToken")}`,
-  //                 },
-  //                 withCredentials: true,
-  //             });
-  //             if (response.status === 200) {
-  //                 alert("상품 정보가 수정되었습니다.");
-  //                 onCancel();
-  //             } else {
-  //                 alert("등록 오류입니다.");
-  //                 onCancel();
-  //             }
-  //         } else {
-  //             if(!itemName){
-  //                 alert("상품명이 입력되지 않았습니다.");
-  //             }else if(!itemDescription){
-  //                 alert("상품 설명칸이 입력되지 않았습니다.");
-  //             }else if(!itemPoint){
-  //                 alert("상품 포인트가 설정되지 않았습니다.");
-  //             }
-
-  //         }
-  //     } catch (e) {
-  //         alert(e);
-  //     }
-  // };
 
   return (
     <div className="flex fixed top-0 right-0 left-0 bottom-0 w-[100vw] h-[100vh] z-99 bg-[rgba(0,0,0,0.6)] items-center">
