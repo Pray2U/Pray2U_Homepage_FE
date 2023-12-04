@@ -10,7 +10,6 @@ import AdminItem from "../../components/Admin/AdminItem";
 import Paging from "../../components/Paging";
 
 import "../../styles/Admin/AdminShop.scss";
-import { uploadFile } from "../../util/s3Upload";
 
 const AdminShop = () => {
 

@@ -12,8 +12,9 @@ import TodoList from "../../components/Event/TodoList";
 import EventEditor from "../../components/Event/EventEditor";
 import Footer from "../../components/Footer";
 
-import "../../styles/Event/Event.scss";
+// import "../../styles/Event/Event.scss";
 import "../../styles/Event/Calendar.scss";
+
 import { getCookie, isCheckAdmin, tokenDecode } from "../../util/auth";
 
 dayjs.extend(isSameOrBefore);
@@ -91,6 +92,7 @@ const Event = () => {
       if (event.eventId === id) {
         setEditEventData(event);
       }
+      return null;
     });
     setIsAddEventView(true);
   };
@@ -159,7 +161,7 @@ const Event = () => {
               next2Label={null}
               prev2Label={null}
               value={selectedDay}
-              minDate={new Date(2023, 1, 1)}
+              minDate={new Date(2023, 10, 1)}
               maxDate={new Date(2025, 12, 31)}
               formatDay={(locale, date) => dayjs(date).format("D")}
               onActiveStartDateChange={(action) => onChangeYearMonth(action)}

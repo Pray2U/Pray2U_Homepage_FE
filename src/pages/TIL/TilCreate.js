@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-
+import dayjs from "dayjs";
 import { getCookie } from "../../util/auth";
 
 import TextEditor from "../../components/TextEditor";
@@ -12,11 +12,14 @@ import Title from "../../components/Title/Title";
 import "../../styles/Til/TilCreate.scss";
 
 const TilCreate = () => {
+  
   const navigate = useNavigate();
+  const initContent = `<h3>${dayjs(new Date()).format('YYYY-MM-DD')} TIL</h3><ul><li>학습 내용<ul><li>내용</li></ul></li><li>링크<ul><li>링크</li></ul></li></ul>`
 
   const [title, setTitle] = useState(null);
   const [tag, setTag] = useState(null);
-  const [content, setContent] = useState(null);
+  const [content, setContent] = useState(initContent);
+  
 
   const onHandleTitle = (e) => {
     setTitle(e.target.value);
@@ -53,7 +56,11 @@ const TilCreate = () => {
           navigate("/til");
         }
       } catch (e) {
-        alert(e.response.data.message);
+        if(e.response.data.errors){
+          alert(e.response.data.errors[0].message);
+        }else{
+          alert(e.response.data.message);
+        }
         navigate("/til");
       }
     } else {
@@ -83,7 +90,7 @@ const TilCreate = () => {
         </div>
         <div className="my-[1rem] w-full h-auto">
           <p className="mb-[1%]">본문</p>
-          <TextEditor value={content} setValue={setContent} />
+          <TextEditor value={content} setValue={setContent}/>
         </div>
         <RegistButton
           onHandleCancel={onHandleCancel}

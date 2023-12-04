@@ -41,7 +41,7 @@ const Main = () => {
           </span>
         </div> */}
         <div className="w-[85vw] h-full m-auto bg-[#110042]">
-          {(!isLoggedIn || isGuest) && <Carousels />}
+          {/* {(!isLoggedIn || isGuest) && <Carousels />} */}
           <Caterogies isLoggedIn={isLoggedIn} isGuest={isGuest}/>
           {isLoggedIn && !isGuest && <PointRank />}
         </div>

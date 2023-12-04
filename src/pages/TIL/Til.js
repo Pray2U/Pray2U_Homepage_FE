@@ -26,7 +26,6 @@ const Til = () => {
   const [pageNumber, setPageNumber] = useState(0);
   const [totalPageNum, setTotalPageNum] = useState(null);
   const [apiTilDataList, setApiTilDataList] = useState([]);
-  const [myInfo, setMyInfo] = useState(null);
   const [search, setSearch] = useState(null);
   const [isAdmin, setIsAdmin] = useState(false);
   const [userId, setUserId] = useState(null);

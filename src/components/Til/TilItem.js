@@ -9,6 +9,7 @@ import Reconfirm from "../../components/Reconfirm";
 import "../../styles/Til/TilItem.scss";
 
 const TilItem = ({ tilInfo, onRemove, isAdmin, userId }) => {
+  
   const navigate = useNavigate();
 
   const [isClosed, setIsClosed] = useState(true);
@@ -106,8 +107,8 @@ const TilItem = ({ tilInfo, onRemove, isAdmin, userId }) => {
       <div
         className={
           isClosed
-            ? "w-[85%] h-[250px] m-auto pt-[1rem] text-[20px] overflow-hidden"
-            : "w-[85%] h-auto m-auto pt-[1rem] pb-[5%] text-[20px] overflow-hidden"
+            ? "w-[90%] h-[250px] m-auto pt-[1rem] text-[20px] overflow-hidden"
+            : "w-[90%] h-auto m-auto pt-[1rem] pb-[5%] text-[20px] overflow-hidden"
         }
       >
         {parse(tilInfo?.content)}

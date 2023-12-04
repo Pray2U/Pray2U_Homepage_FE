@@ -23,26 +23,41 @@ const NoticeCreate = () => {
   const [content, setContent] = useState(null);
   const [fileNameList, setFileNameList] = useState([]);
   const [fileList, setFileList] = useState([]);
+  const [deleteFileList, setDeleteFileList ] = useState([]);
 
   const onHandleTitle = (e) => {
     setTitle(e.target.value);
   };
 
   const onHandleAddFile = (e) => {
-    const fileLists = e.target.files;
+    // const fileLists = e.target.files;
+
+    // let fileNameLists = [...fileNameList];
+
+    // for (let i = 0; i < fileLists.length; i++) {
+    //   fileNameLists.push(fileLists[i].name);
+    // }
+
+    // if (fileNameLists.length > 5) {
+    //   fileNameLists = fileNameLists.slice(0, 5);
+    // }
+
+    // setFileNameList(fileNameLists);
+    // setFileList((fileList) => fileList.concat([...fileLists]));
+
+    const fileLists = e.target.files[0];
 
     let fileNameLists = [...fileNameList];
 
-    for (let i = 0; i < fileLists.length; i++) {
-      fileNameLists.push(fileLists[i].name);
-    }
+    fileNameLists.push(fileLists.name);
 
     if (fileNameLists.length > 5) {
       fileNameLists = fileNameLists.slice(0, 5);
     }
 
-    setFileNameList(fileNameLists);
-    setFileList((fileList) => fileList.concat([...fileLists]));
+    setFileNameList([...fileNameLists]);
+    setFileList((fileList) => fileList.concat([fileLists]));
+    e.target.value = '';
   };
 
   const onHandleDeleteFile = (file) => {
@@ -50,6 +65,7 @@ const NoticeCreate = () => {
       fileNameList.filter((fileName, index) => fileName !== file)
     );
     setFileList(fileList.filter((fileName, index) => fileName.name !== file));
+    setDeleteFileList((deleteFileList) => deleteFileList.concat([file]));
     // 인덱스 값으로 진행하였다가 fileNameList와 fileList에서 같은 데이터의 인덱스 값이 달라
     // 지워지지 않는 데이터가 존재하여 filename으로 필터를 진행 해당 부분은 좀 더 수정할 필요가 있어보임
   };

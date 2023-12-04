@@ -6,10 +6,11 @@ import '../styles/TextEditor/TextEditor.scss';
 const config = {
     toolbar: [ 'heading', '|', 'bold', 'italic', 'link', '|', 'bulletedList', 'numberedList', 'blockQuote',],
     // toolbar에 이미지 삽입 & 테이블 만드는 거 자료 찾아보기
-    placeholder: "내용을 입력하세요.",
+    placeholder: "내용을 입력해주세요",
 }
 
 const TextEditor = ({value, setValue}) => {
+
     return (   
         <CKEditor
             editor={ ClassicEditor }

@@ -27,10 +27,10 @@ const Header = () => {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isGuest, setIsGuest ] = useState(false);
-  const [searchParams, setSearchParams] = useSearchParams();
   const [isLoginModal, setIsLoginModal] = useState(false);
   const [myInfo, setMyInfo] = useState(null);
   const [view, setView] = useState(false);
+  const [searchParams,setSearchParams] = useSearchParams();
 
   const menus = [
     {
@@ -101,7 +101,7 @@ const Header = () => {
       }
     } catch (e) {
       alert(e.response.data.message);
-      navigate("/");
+      onHandleLogout();
     }
   };
 
@@ -183,7 +183,6 @@ const Header = () => {
               >
                 로그인
               </div>
-              {/* <Link to='/signup' className='SignUpButton'>회원가입</Link> */}
             </div>
           )}
         </div>

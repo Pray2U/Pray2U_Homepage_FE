@@ -33,7 +33,6 @@ const Footer = () => {
           </p>
           <ul>
             <li>Contact Email : choihs980924@gmail.com </li>
-            <li>Lorem ipsum : ~~ </li>
           </ul>
         </div>
       </div>

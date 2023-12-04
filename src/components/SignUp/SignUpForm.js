@@ -1,19 +1,16 @@
 import { useState } from 'react';
-import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 
-import '../../styles/SignUp/SignUpForm.scss';
 import { getCookie, removeCookie, tokenDecode } from '../../util/auth';
 import { uploadFile } from '../../util/s3Upload';
 
+import '../../styles/SignUp/SignUpForm.scss';
 
 const SignUpForm = () =>{
-
-    const navigate = useNavigate();
 
     const [ isValidName, setIsValidName ] = useState(false);
     const [ isValidPhoneNum, setIsValidPhoneNum ] = useState(false);
@@ -93,7 +90,7 @@ const SignUpForm = () =>{
             if(response.status === 200){
                 alert('회원 정보가 등록되었습니다.');
                 removeCookie('accessToken');
-                window.location.replace('/');
+                window.location.replace(`${process.env.REACT_APP_API_SERVER}/api/login/oauth2/code/github?redirect_uri=${process.env.REACT_APP_REDIRECT_URL}`);
             }else{
                 alert('데이터 형식이 올바르지 않습니다.');
             }

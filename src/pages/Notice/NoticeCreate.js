@@ -26,25 +26,25 @@ const NoticeCreate = () => {
   };
 
   const onHandleAddFile = (e) => {
-    const fileLists = e.target.files;
+    const fileLists = e.target.files[0];
 
     let fileNameLists = [...fileNameList];
 
-    for (let i = 0; i < fileLists.length; i++) {
-      fileNameLists.push(fileLists[i].name);
-    }
+    fileNameLists.push(fileLists.name);
 
     if (fileNameLists.length > 5) {
       fileNameLists = fileNameLists.slice(0, 5);
     }
 
-    setFileNameList(fileNameLists);
-    setFileList((fileList) => fileList.concat([...fileLists]));
+    setFileNameList([...fileNameLists]);
+    setFileList((fileList) => fileList.concat([fileLists]));
+    e.target.value = '';
+    // 같은 파일을 다시 못올리기 때문에 이벤트 값을 리셋
   };
 
-  const onHandleDeleteFile = (id) => {
-    setFileNameList(fileNameList.filter((_, index) => index !== id));
-    setFileList(fileList.filter((_, index) => index !== id));
+  const onHandleDeleteFile = (idx) => {
+    setFileNameList(fileNameList.filter((_,index) => index !== idx));
+    setFileList(fileList.filter((_, index) => index !== idx));
   };
 
   const onHandleCancel = () => {
@@ -102,7 +102,7 @@ const NoticeCreate = () => {
           <p className="mb-2">제목</p>
           <input
             placeholder="제목을 입력해주세요."
-            className="w-full h-[2.25rem] border-solid border-[0.15rem] bordoer-[hsla(220,9%,46%,.3)] pl-1 text-[1rem] mb-1 focus:border-[#0090F9] focus:outline-none"
+            className="w-full h-[2.25rem] border-solid border-[0.15rem] rounded-[0.375rem] bordoer-[hsla(220,9%,46%,.3)] pl-2 text-[1rem] mb-1 focus:border-[#0090F9] focus:outline-none"
             onChange={onHandleTitle}
           />
         </div>
@@ -127,7 +127,7 @@ const NoticeCreate = () => {
               파일 업로드
             </div>
           </label>
-          <div className="flex items-center w-full h-3rem mt-[0.5rem]">
+          <div className="flex items-center w-full h-3rem mt-[1rem]">
             {fileNameList?.map((file, idx) => (
               <div
                 key={idx}

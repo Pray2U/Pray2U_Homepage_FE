@@ -38,96 +38,6 @@ const LoggedIncate = [
   },
 ];
 
-const TIL = [
-  {
-    id: 1,
-    category: "TIL",
-    title: "04/23 TIL",
-    day: "04/24",
-    author: "최형순1",
-  },
-  {
-    id: 2,
-    category: "TIL",
-    title: "04/24 TIL",
-    day: "04/24",
-    author: "최형순2",
-  },
-  {
-    id: 3,
-    category: "TIL",
-    title: "04/25 TIL",
-    day: "04/24",
-    author: "최형순3",
-  },
-  {
-    id: 4,
-    category: "TIL",
-    title: "04/26 TIL",
-    day: "04/24",
-    author: "최형순4",
-  },
-];
-
-const LoggedInTIL = [
-  {
-    id: 1,
-    category: "TIL",
-    title: "04/23 TIL",
-    day: "04/24 05:43",
-    author: "최형순1",
-  },
-  {
-    id: 2,
-    category: "TIL",
-    title: "04/24 TIL",
-    day: "04/24 05:43",
-    author: "최형순2",
-  },
-  {
-    id: 3,
-    category: "TIL",
-    title: "04/25 TIL",
-    day: "04/24 05:43",
-    author: "최형순3",
-  },
-  {
-    id: 4,
-    category: "TIL",
-    title: "04/26 TIL",
-    day: "04/24 05:43",
-    author: "최형순4",
-  },
-  {
-    id: 5,
-    category: "TIL",
-    title: "04/23 TIL",
-    day: "04/24 05:43",
-    author: "최형순1",
-  },
-  {
-    id: 6,
-    category: "TIL",
-    title: "04/24 TIL",
-    day: "04/24 05:43",
-    author: "최형순2",
-  },
-  {
-    id: 7,
-    category: "TIL",
-    title: "04/25 TIL",
-    day: "04/24 05:43",
-    author: "최형순3",
-  },
-  {
-    id: 8,
-    category: "TIL",
-    title: "04/26 TIL",
-    day: "04/24 05:43",
-    author: "최형순4",
-  },
-];
-
 const PROJECT = [
   {
     id: 1,
@@ -206,81 +116,11 @@ const SEMINAR = [
     day: "10/29",
     author: "김채하",
   },
-  {
-    id: 2,
-    category: "Seminar",
-    title: "데이터베이스 기초",
-    day: "10/29",
-    author: "김채하",
-  },
-  {
-    id: 3,
-    category: "Seminar",
-    title: "데이터베이스 기초",
-    day: "10/29",
-    author: "김채하",
-  },
-  {
-    id: 4,
-    category: "Seminar",
-    title: "데이터베이스 기초",
-    day: "10/29",
-    author: "김채하",
-  },
 ];
 
 const LoggedInSEMINAR = [
   {
     id: 1,
-    category: "Seminar",
-    title: "데이터베이스 기초",
-    day: "10/29",
-    author: "김채하",
-  },
-  {
-    id: 2,
-    category: "Seminar",
-    title: "데이터베이스 기초",
-    day: "10/29",
-    author: "김채하",
-  },
-  {
-    id: 3,
-    category: "Seminar",
-    title: "데이터베이스 기초",
-    day: "10/29",
-    author: "김채하",
-  },
-  {
-    id: 4,
-    category: "Seminar",
-    title: "데이터베이스 기초",
-    day: "10/29",
-    author: "김채하",
-  },
-  {
-    id: 5,
-    category: "Seminar",
-    title: "데이터베이스 기초",
-    day: "10/29",
-    author: "김채하",
-  },
-  {
-    id: 6,
-    category: "Seminar",
-    title: "데이터베이스 기초",
-    day: "10/29",
-    author: "김채하",
-  },
-  {
-    id: 7,
-    category: "Seminar",
-    title: "데이터베이스 기초",
-    day: "10/29",
-    author: "김채하",
-  },
-  {
-    id: 8,
     category: "Seminar",
     title: "데이터베이스 기초",
     day: "10/29",
@@ -295,7 +135,7 @@ const Caterogies = ({ isLoggedIn, isGuest }) => {
   const [til, setTil] = useState(null);
   const [project, setProject] = useState(null);
   const [seminar, setSeminar] = useState(null);
-  const [pageSize, setPageSize] = useState(8);
+  const pageSize = 8;
 
   const setDatas = () => {
     if (isLoggedIn && !isGuest) {
