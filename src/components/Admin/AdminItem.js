@@ -41,7 +41,7 @@ const AdminItem = ({ itemInfo, onRemove, put_ItemInfo }) => {
       {isModalView ? (
         <AdminItemModal
           onToggle={()=>onToggle()}
-          onRemove={()=>onRemove(itemInfo?.itemId)}
+          onRemove={()=>onRemove(itemInfo?.itemId, itemInfo?.imgUrl)}
         />
       ) : (
         <></>

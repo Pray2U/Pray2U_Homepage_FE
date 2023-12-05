@@ -10,6 +10,7 @@ import AdminItem from "../../components/Admin/AdminItem";
 import Paging from "../../components/Paging";
 
 import "../../styles/Admin/AdminShop.scss";
+import { deleteFileList, extractS3Key } from "../../util/s3Upload";
 
 const AdminShop = () => {
 
@@ -64,21 +65,24 @@ const AdminShop = () => {
     }
 };
 
-
-  const onRemove = async (id) => {
+  const onRemove = async (id, imgUrl) => {
     try {
-      const url = `${process.env.REACT_APP_API_SERVER}/api/admin/items/${id}`;
-      const response = await axios.delete(url, {
-        headers: {
-          Authorization: `Bearer ${getCookie("accessToken")}`,
-        },
-        withCredentials: true,
-      });
-      if (response.status === 200) {
-        alert("상품이 삭제되었습니다.");
-        setReRender(!reRender);
-      } else {
-        alert(response.data.message);
+      const s3ObjectKey = extractS3Key([imgUrl]);
+      if(s3ObjectKey){
+        await deleteFileList(s3ObjectKey);
+        const url = `${process.env.REACT_APP_API_SERVER}/api/admin/items/${id}`;
+        const response = await axios.delete(url, {
+          headers: {
+            Authorization: `Bearer ${getCookie("accessToken")}`,
+          },
+          withCredentials: true,
+        });
+        if (response.status === 200) {
+          alert("상품이 삭제되었습니다.");
+          setReRender(!reRender);
+        } else {
+          alert(response.data.message);
+        }
       }
     } catch (e) {
       alert(e.response.data.message);
