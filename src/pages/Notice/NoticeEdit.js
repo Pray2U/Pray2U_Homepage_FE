@@ -1,19 +1,20 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { MdOutlineCancel } from "react-icons/md";
+import axios from "axios";
 
 import TextEditor from "../../components/TextEditor";
 import RegistButton from "../../components/RegistButton";
 import Title from "../../components/Title/Title";
 import Footer from "../../components/Footer";
-import { getCookie } from "../../util/auth";
 
-import axios from "axios";
+import { getCookie } from "../../util/auth";
+import { uploadFileList, deleteFileList, extractS3Key } from "../../util/s3Upload";
 
 import "../../styles/Notice/NoticeCreate.scss";
-import { uploadFileList } from "../../util/s3Upload";
 
 const NoticeCreate = () => {
+
   const location = useLocation();
   const navigate = useNavigate();
   const path = location.pathname.split("/");
@@ -21,54 +22,32 @@ const NoticeCreate = () => {
 
   const [title, setTitle] = useState(null);
   const [content, setContent] = useState(null);
-  const [fileNameList, setFileNameList] = useState([]);
   const [fileList, setFileList] = useState([]);
-  const [deleteFileList, setDeleteFileList ] = useState([]);
+  const [deleteFiles, setDeleteFiles ] = useState([]);
+  const [newFileList, setNewFileList] = useState([]);
 
   const onHandleTitle = (e) => {
     setTitle(e.target.value);
   };
 
   const onHandleAddFile = (e) => {
-    // const fileLists = e.target.files;
-
-    // let fileNameLists = [...fileNameList];
-
-    // for (let i = 0; i < fileLists.length; i++) {
-    //   fileNameLists.push(fileLists[i].name);
-    // }
-
-    // if (fileNameLists.length > 5) {
-    //   fileNameLists = fileNameLists.slice(0, 5);
-    // }
-
-    // setFileNameList(fileNameLists);
-    // setFileList((fileList) => fileList.concat([...fileLists]));
-
-    const fileLists = e.target.files[0];
-
-    let fileNameLists = [...fileNameList];
-
-    fileNameLists.push(fileLists.name);
-
-    if (fileNameLists.length > 5) {
-      fileNameLists = fileNameLists.slice(0, 5);
+    if((fileList.length + newFileList.length) < 2){
+      const fileLists = e.target.files[0];
+      setNewFileList((newfileList) => newfileList.concat([fileLists]))
+      e.target.value = '';
+    }else{
+      alert("파일 업로드는 최대 2개까지 밖에 안됩니다.");
     }
-
-    setFileNameList([...fileNameLists]);
-    setFileList((fileList) => fileList.concat([fileLists]));
-    e.target.value = '';
   };
 
   const onHandleDeleteFile = (file) => {
-    setFileNameList(
-      fileNameList.filter((fileName, index) => fileName !== file)
-    );
-    setFileList(fileList.filter((fileName, index) => fileName.name !== file));
-    setDeleteFileList((deleteFileList) => deleteFileList.concat([file]));
-    // 인덱스 값으로 진행하였다가 fileNameList와 fileList에서 같은 데이터의 인덱스 값이 달라
-    // 지워지지 않는 데이터가 존재하여 filename으로 필터를 진행 해당 부분은 좀 더 수정할 필요가 있어보임
+    setFileList(fileList.filter((fileUrl) => fileUrl !== file));
+    setDeleteFiles ((deleteFiles) => deleteFiles.concat([file]));
   };
+
+  const onHandleDeleteNewFile = (idx) => {
+    setNewFileList((newFileList) => newFileList.filter((file, index) => index !== idx));
+  }
 
   const onHandleCancel = () => {
     navigate("/notice");
@@ -77,24 +56,23 @@ const NoticeCreate = () => {
   const put_noticeInfo = async () => {
     if (title && content) {
       try {
-        let fileUrl = null;
-        if (fileNameList.length) {
-          fileUrl = fileNameList
-            .filter((file) => file.includes("https"))
-            .join(",");
+        console.log(fileList);
+        let fileUrl = fileList.join(",");
+        if(newFileList.length){
+          const newFileUrlList = await uploadFileList(newFileList);
+          fileUrl = fileUrl ? fileUrl + "," + newFileUrlList : newFileUrlList;
         }
-        if (fileList.length) {
-          fileUrl = fileUrl
-            ? fileUrl + "," + (await uploadFileList(fileList))
-            : await uploadFileList(fileList);
+        if(deleteFiles.length){
+          const s3ObjectKey = extractS3Key(deleteFiles);
+          if(s3ObjectKey){
+            await deleteFileList(s3ObjectKey);
+          };
         }
-        console.log(fileUrl);
         const postData = {
           title: title,
           content: content,
-          fileUrl: fileUrl ? fileUrl : "",
+          fileUrl: fileUrl
         };
-        console.log(postData);
         const url = `${process.env.REACT_APP_API_SERVER}/api/admin/posts/${postId}`;
         const response = await axios.put(url, postData, {
           headers: {
@@ -131,9 +109,10 @@ const NoticeCreate = () => {
         setContent(response.data.data.content);
         setTitle(response.data.data.title);
         if (response.data.data.fileUrl) {
-          setFileNameList(response.data.data.fileUrl?.split(","));
+          setFileList(response.data.data.fileUrl?.split(","));
+          // setFileNameList(response.data.data.fileUrl?.split(","));
         } else {
-          setFileNameList([]);
+          // setFileNameList([]);
         }
       } else {
         alert("데이터 통신에 실패하였습니다.");
@@ -184,7 +163,7 @@ const NoticeCreate = () => {
             </div>
           </label>
           <div className="flex items-center w-full h-[3rem] mt-[0.5rem]">
-            {fileNameList?.map((file, idx) => (
+            {fileList?.map((file, idx) => (
               <div
                 key={idx}
                 className="flex items-center border-1 border-solid border-[rgb(120,117,117)] rounded-[5rem] mr-[1rem] h-[80%]"
@@ -197,6 +176,20 @@ const NoticeCreate = () => {
                 <MdOutlineCancel
                   className="flex items-center w-[1.5rem] h-[1.5rem] ml-[1rem] mr-[0.5rem] cursor-pointer text-gray"
                   onClick={() => onHandleDeleteFile(file)}
+                />
+              </div>
+            ))}
+            {newFileList?.map((file, idx) => (
+              <div
+                key={idx}
+                className="flex items-center border-1 border-solid border-[rgb(120,117,117)] rounded-[5rem] mr-[1rem] h-[80%]"
+              >
+                <div className="flex items-center whitespace-nowrap pl-[1rem] text-[1rem] h-[80%]">
+                  {file?.name}
+                </div>
+                <MdOutlineCancel
+                  className="flex items-center w-[1.5rem] h-[1.5rem] ml-[1rem] mr-[0.5rem] cursor-pointer text-gray"
+                  onClick={() => onHandleDeleteNewFile(idx)}
                 />
               </div>
             ))}

@@ -63,7 +63,6 @@ const NoticeCreate = () => {
           content: content,
           fileUrl: fileUrl,
         };
-        console.log(postData);
         const url = `${process.env.REACT_APP_API_SERVER}/api/admin/posts`;
         const response = await axios.post(url, postData, {
           headers: {

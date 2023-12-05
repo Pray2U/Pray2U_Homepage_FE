@@ -8,6 +8,7 @@ import axios from "axios";
 import CommentForm from "../../components/Comment/CommentForm";
 import SideMenu from "../../components/SideMenu";
 
+import { deleteFileList, extractS3Key } from "../../util/s3Upload";
 import { getCookie, isCheckAdmin } from "../../util/auth";
 import { noticeTime } from "../../util/time";
 
@@ -72,20 +73,24 @@ const NoticeDetail = () => {
 
   const delete_NoticeItem = async () => {
     try {
-      const url = `${process.env.REACT_APP_API_SERVER}/api/admin/posts/${postId}`;
-      const response = await axios.delete(url, {
-        headers: {
-          Authorization: `Bearer ${getCookie("accessToken")}`,
-        },
-        withCredentials: true,
-      });
-      if (response.status === 200) {
-        alert("공지사항이 삭제되었습니다.");
-        navigate("/notice");
-      } else {
-        alert("데이터 통신에 실패하였습니다.");
-        navigate("/");
+      const s3ObjectKey = extractS3Key(fileList);
+      if(s3ObjectKey){
+        await deleteFileList(s3ObjectKey);
       }
+      const url = `${process.env.REACT_APP_API_SERVER}/api/admin/posts/${postId}`;
+        const response = await axios.delete(url, {
+          headers: {
+            Authorization: `Bearer ${getCookie("accessToken")}`,
+          },
+          withCredentials: true,
+        });
+        if (response.status === 200) {
+          alert("공지사항이 삭제되었습니다.");
+          navigate("/notice");
+        } else {
+          alert("데이터 통신에 실패하였습니다.");
+          navigate("/");
+        }
     } catch (e) {
       alert(e.response.data.message);
       navigate("/error");
