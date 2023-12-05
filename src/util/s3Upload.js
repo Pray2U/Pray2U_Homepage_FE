@@ -54,7 +54,7 @@ export const deleteFileList = async(keyList) => {
                 Quiet: false
             }
         };
-        const result = await s3.deleteObjects(params).promise();
+        await s3.deleteObjects(params).promise();
     }catch(e){
         alert(e);
     }
