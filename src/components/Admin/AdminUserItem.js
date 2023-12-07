@@ -21,7 +21,7 @@ const AdminUserItem = ({ userInfo, post_userRole }) => {
         <Link
           to={`https://github.com/${userInfo?.githubId}`}
           target="_blank"
-          className="text-[1.1rem] h-[60%] mb-[0.5rem] text-[#0090F9]"
+          className="text-[1.1rem] h-[60%] mb-[0.5rem] text-[#6495ED]"
         >
           {userInfo?.username}
         </Link>
@@ -41,7 +41,7 @@ const AdminUserItem = ({ userInfo, post_userRole }) => {
         <></>
       )}
       <AiOutlineSetting
-        className="ml-auto mr-[1rem] w-[1.5rem] h-[1.5rem] cursor-pointer hover:text-[#0090F9]"
+        className="ml-auto mr-[1rem] w-[1.5rem] h-[1.5rem] cursor-pointer hover:text-[#6495ED]"
         onClick={() => setIsModalView(!isModalView)}
       />
     </div>

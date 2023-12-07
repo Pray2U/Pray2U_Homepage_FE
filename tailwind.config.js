@@ -2,7 +2,11 @@
 module.exports = {
   content: ["./src/**/*.{html,js}"],
   theme: {
-    extend: {},
+    fontFamily: {
+      poorstory: ["Poor Story"],
+      jua: ["Jua"],
+      nanumgothic: ["Nanum Gothic Coding"],
+    },
   },
   plugins: [],
 };

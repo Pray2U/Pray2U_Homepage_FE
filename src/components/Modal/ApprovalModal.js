@@ -39,7 +39,7 @@ const ApprovalModal = ({ closeModal, post_NewUserInfo }) => {
         </div>
         <div className="flex w-[90%] h-[30%] m-auto items-center justify-end mt-2">
           <div
-            className="flex justify-center items-center w-[70px] h-[30px] mr-2 rounded-[0.5em] bg-[#0090F9] text-white font-bold cursor-pointer hover:bg-[#0B7FD3]"
+            className="flex justify-center items-center w-[70px] h-[30px] mr-2 rounded-[0.5em] bg-[#6495ED] text-white font-bold cursor-pointer hover:bg-[#557DE1]"
             onClick={() => post_NewUserInfo(userName, githubId)}
           >
             저장

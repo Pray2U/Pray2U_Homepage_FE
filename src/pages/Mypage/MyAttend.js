@@ -37,7 +37,9 @@ const MyAttend = () => {
         withCredentials: true,
       });
       if (response.status === 200) {
-        alert(`출석 체크가 되었습니다. ${response.data.data.point}포인트를 얻었습니다.`);
+        alert(
+          `출석 체크가 되었습니다. ${response.data.data.point}포인트를 얻었습니다.`
+        );
         setMyAttendDayList((myAttendDayList) =>
           myAttendDayList?.concat(response.data)
         );
@@ -119,7 +121,7 @@ const MyAttend = () => {
       <div className="w-[1080px] h-auto m-auto">
         <Title title={"Mypage"} />
         <MypageHeader />
-        <div className="w-full h-[35rem] m-auto my-4 py-8 rounded-[0.5rem] border-[0.1rem] border-solid border-[#dadce0] shadow-[1px_1px_3px_1px_#dadce0]">
+        <div className="w-full h-[37rem] m-auto my-4 py-8 rounded-[0.5rem] border-[0.1rem] border-solid border-[#dadce0] shadow-[1px_1px_3px_1px_#dadce0]">
           <Calendar
             locale="en"
             className="m-auto mt-[2.5%]"
@@ -136,12 +138,12 @@ const MyAttend = () => {
             tileContent={addDot}
           />
           {checkedToday ? (
-            <div className="flex items-center justify-center w-[35%] h-[3rem] m-auto mt-4 bg-[rgb(91,88,88)] text-white rounded-[1rem]">
+            <div className="flex items-center justify-center w-[35%] h-[3rem] m-auto mt-4 bg-gray-600 text-white rounded-[1rem] font-jua">
               출석 완료
             </div>
           ) : (
             <div
-              className="flex w-[35%] h-[3rem] m-auto mt-4 mb-[2.5%] items-center justify-center bg-[#0090F9] rounded-[1rem] text-white cursor-pointer hover:bg-[#0B7FD3]"
+              className="flex w-[35%] h-[3rem] m-auto mt-4 mb-4 items-center justify-center bg-[#6482FF] rounded-[1rem] text-white cursor-pointer hover:bg-[#6478FF] font-jua"
               onClick={() => post_MyAttendDay()}
             >
               출석하기

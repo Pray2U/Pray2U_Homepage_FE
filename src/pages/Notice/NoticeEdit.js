@@ -9,12 +9,15 @@ import Title from "../../components/Title/Title";
 import Footer from "../../components/Footer";
 
 import { getCookie } from "../../util/auth";
-import { uploadFileList, deleteFileList, extractS3Key } from "../../util/s3Upload";
+import {
+  uploadFileList,
+  deleteFileList,
+  extractS3Key,
+} from "../../util/s3Upload";
 
 import "../../styles/Notice/NoticeCreate.scss";
 
 const NoticeCreate = () => {
-
   const location = useLocation();
   const navigate = useNavigate();
   const path = location.pathname.split("/");
@@ -23,7 +26,7 @@ const NoticeCreate = () => {
   const [title, setTitle] = useState(null);
   const [content, setContent] = useState(null);
   const [fileList, setFileList] = useState([]);
-  const [deleteFiles, setDeleteFiles ] = useState([]);
+  const [deleteFiles, setDeleteFiles] = useState([]);
   const [newFileList, setNewFileList] = useState([]);
 
   const onHandleTitle = (e) => {
@@ -31,23 +34,25 @@ const NoticeCreate = () => {
   };
 
   const onHandleAddFile = (e) => {
-    if((fileList.length + newFileList.length) < 2){
+    if (fileList.length + newFileList.length < 2) {
       const fileLists = e.target.files[0];
-      setNewFileList((newfileList) => newfileList.concat([fileLists]))
-      e.target.value = '';
-    }else{
+      setNewFileList((newfileList) => newfileList.concat([fileLists]));
+      e.target.value = "";
+    } else {
       alert("파일 업로드는 최대 2개까지 밖에 안됩니다.");
     }
   };
 
   const onHandleDeleteFile = (file) => {
     setFileList(fileList.filter((fileUrl) => fileUrl !== file));
-    setDeleteFiles ((deleteFiles) => deleteFiles.concat([file]));
+    setDeleteFiles((deleteFiles) => deleteFiles.concat([file]));
   };
 
   const onHandleDeleteNewFile = (idx) => {
-    setNewFileList((newFileList) => newFileList.filter((file, index) => index !== idx));
-  }
+    setNewFileList((newFileList) =>
+      newFileList.filter((file, index) => index !== idx)
+    );
+  };
 
   const onHandleCancel = () => {
     navigate("/notice");
@@ -58,20 +63,20 @@ const NoticeCreate = () => {
       try {
         console.log(fileList);
         let fileUrl = fileList.join(",");
-        if(newFileList.length){
+        if (newFileList.length) {
           const newFileUrlList = await uploadFileList(newFileList);
           fileUrl = fileUrl ? fileUrl + "," + newFileUrlList : newFileUrlList;
         }
-        if(deleteFiles.length){
+        if (deleteFiles.length) {
           const s3ObjectKey = extractS3Key(deleteFiles);
-          if(s3ObjectKey){
+          if (s3ObjectKey) {
             await deleteFileList(s3ObjectKey);
-          };
+          }
         }
         const postData = {
           title: title,
           content: content,
-          fileUrl: fileUrl
+          fileUrl: fileUrl,
         };
         const url = `${process.env.REACT_APP_API_SERVER}/api/admin/posts/${postId}`;
         const response = await axios.put(url, postData, {
@@ -133,7 +138,7 @@ const NoticeCreate = () => {
       <div className="w-[1080px] h-auto m-auto mt-4 mb-2">
         <Title title={"공지사항 작성"} />
         <div className="mt-[2rem]">
-          <p className="mb-[1%]">제목</p>
+          <p className="mb-[1%] font-nanumgothic font-semibold">제목</p>
           <input
             defaultValue={title || ""}
             placeholder="제목을 입력해주세요."
@@ -142,7 +147,7 @@ const NoticeCreate = () => {
           />
         </div>
         <div className="mb-[1rem] w-full h-auto">
-          <p className="mb-[1%]">본문</p>
+          <p className="mb-[1%] font-nanumgothic font-semibold">본문</p>
           <TextEditor value={content} setValue={setContent} />
         </div>
         <div className="mb-[1rem] w-full h-auto">
@@ -150,15 +155,15 @@ const NoticeCreate = () => {
             type="file"
             id="input-file"
             multiple
-            className="flex items-center justify-center p-[0.25rem] w-[7rem] h-[2.5rem] rounded-[0.375rem] bg-[#0090F9] text-white cursor-pointer hover:bg-[#0B7FD3]"
+            className="flex items-center justify-center p-[0.25rem] w-[7rem] h-[2.5rem] rounded-[0.375rem] bg-[#6495ED] text-white cursor-pointer hover:bg-[#557DE1]"
             style={{ display: "none" }}
             onChange={onHandleAddFile}
           />
           <label
             htmlFor="input-file"
-            className="flex items-center justify-center p-[0.25rem] w-[7rem] h-[2.5rem] rounded-[0.375rem] bg-[#0090F9] text-white cursor-pointer hover:bg-[#0B7FD3]"
+            className="flex items-center justify-center p-[0.25rem] w-[7rem] h-[2.5rem] rounded-[0.375rem] bg-[#6495ED] text-white cursor-pointer hover:bg-[#557DE1]"
           >
-            <div className="flex items-center justify-center p-[0.25rem] w-[7rem] h-[2.5rem] rounded-[0.375rem] bg-[#0090F9] text-white cursor-pointer hover:bg-[#0B7FD3]">
+            <div className="flex items-center justify-center p-[0.25rem] w-[7rem] h-[2.5rem] rounded-[0.375rem] bg-[#6495ED] text-white cursor-pointer hover:bg-[#557DE1] font-jua">
               파일 업로드
             </div>
           </label>

@@ -125,6 +125,13 @@ const Shop = () => {
           {itemList?.map((item) => (
             <ShopItem key={item?.itemId} item={item} onModal={onModal} />
           ))}
+          {itemList.length === 0 && (
+            <div className="w-full h-[300px] bg-gray-100 flex justify-center items-center">
+              <div className="font-bold text-2xl">
+                😮상품이 존재하지 않습니다😮
+              </div>
+            </div>
+          )}
         </div>
         {isOpenModal ? (
           <ShopModal

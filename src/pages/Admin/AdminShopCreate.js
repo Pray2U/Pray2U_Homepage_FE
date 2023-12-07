@@ -12,7 +12,6 @@ import { getCookie, isCheckAdmin } from "../../util/auth";
 import { uploadFile } from "../../util/s3Upload";
 
 const AdminShopCreate = () => {
-
   const navigate = useNavigate();
   const imgRef = useRef();
 
@@ -108,9 +107,19 @@ const AdminShopCreate = () => {
         <Title title={"아이템 등록"} />
         <div className="flex w-full">
           <div className="w-[35%] my-4 h-auto">
-            <img className="m-auto w-[180px] y-[180px] 2xl:w-[280px] 2xl:h-[280px] xl:w-[220px] xl:h-[220px] border-3 border-solid border-[hsla(220,9%,46%,.3)] mb-3"
-              src={previewNewItemImg}
-              alt="아이템 이미지"/>
+            {!previewNewItemImg ? (
+              <div
+                className="m-auto w-[180px] y-[180px] 2xl:w-[280px] 2xl:h-[280px] xl:w-[220px] xl:h-[220px] border-3 border-solid border-[hsla(220,9%,46%,.3)] mb-3"
+                alt="아이템 이미지"
+              />
+            ) : (
+              <img
+                className="m-auto w-[180px] y-[180px] 2xl:w-[280px] 2xl:h-[280px] xl:w-[220px] xl:h-[220px] border-3 border-solid border-[hsla(220,9%,46%,.3)] mb-3"
+                src={previewNewItemImg}
+                alt="아이템 이미지"
+              />
+            )}
+
             <input
               type="file"
               id="input-file"
@@ -122,7 +131,7 @@ const AdminShopCreate = () => {
             />
             <label
               htmlFor="input-file"
-              className="flex items-center justify-center m-auto p-[0.25rem] w-[10rem] h-[2.5rem] rounded-[0.375rem] bg-[#0090F9] text-white cursor-pointer hover:bg-[#0B7FD3]"
+              className="flex items-center justify-center m-auto p-[0.25rem] w-[10rem] h-[2.5rem] rounded-[0.375rem] bg-[#6495ED] text-white cursor-pointer hover:bg-[#557DE1]"
             >
               <div>이미지 업로드</div>
             </label>

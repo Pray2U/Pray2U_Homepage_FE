@@ -1,100 +1,100 @@
 * {
-    font-family: 'Raleway', sans-serif;
+  font-family: "Raleway", sans-serif;
 }
-.CommentFormContainer{
-    width: 100%;
-    margin-top: 2.5rem;
-    margin-bottom: 2.5rem;
-    border: 0.1rem solid #D2D4D9;
-    border-radius: 0.5rem;
+.CommentFormContainer {
+  width: 100%;
+  margin-top: 2.5rem;
+  margin-bottom: 2.5rem;
+  border: 0.1rem solid #d2d4d9;
+  border-radius: 0.5rem;
 
-    .CommentMyInfo{
-        display: flex;
-        align-items: center;
-        margin-top: 0.5rem;
-        margin-left: 1rem;
-        width: 95%;
-        height: 2.5rem;
-        
-        .CommentProfile{
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.65rem;
-            color: white;
-            width: 1.6rem;
-            height: 1.6rem;
-            border: 0.1rem solid black;
-            border-radius: 50%;
-        }
-        .CommentWriter{
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-left: 0.5rem;
-        }
-    }
-    .CommentInfoBox{
-        width: 100%;
-        margin: auto;
+  .CommentMyInfo {
+    display: flex;
+    align-items: center;
+    margin-top: 0.5rem;
+    margin-left: 1rem;
+    width: 95%;
+    height: 2.5rem;
 
-        .CommentContents{
-            border: none;
-            resize: none;
-            word-break: break-word;
-            width: 95%;
-            font-size: 1rem;
-            margin: 1rem;
-            margin-top: 0.5rem;
-            height: 5rem;
-            &:focus {
-                outline: none;
-            }
-        }
-        .CommentLengthBox{
-            width: 7%;
-            height: 50%;
-            margin-left: auto;
-            margin-right: 1%;
-            height: 2.5rem;
-            color: #757575;
-        }
+    .CommentProfile {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.65rem;
+      color: white;
+      width: 1.6rem;
+      height: 1.6rem;
+      border: 0.1rem solid black;
+      border-radius: 50%;
     }
-    
-    .CommentFooter{
-        display: flex;
-        align-items: center;
-        width: 100%;
-        height: 3.5rem;
-        border-top:  0.1rem solid #D2D4D9;
-        .CommentWrite{
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 10%;
-            height: 60%;
-            margin-left: auto;
-            margin-right: 1rem;
-            background-color: #0090F9;
-            color: white;
-            border-radius: 0.4rem;
-            cursor: pointer;
-            &:hover{
-                background-color: #0B7FD3;
-            }
-        }
+    .CommentWriter {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-left: 0.5rem;
     }
-}
-.NoticeComment{
+  }
+  .CommentInfoBox {
     width: 100%;
     margin: auto;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
-    
-    .CommentCnt{
-        margin-top: 1rem;
-        margin-bottom: 1rem;
-        font-size: large;
-        font-weight: bold;
+
+    .CommentContents {
+      border: none;
+      resize: none;
+      word-break: break-word;
+      width: 95%;
+      font-size: 1rem;
+      margin: 1rem;
+      margin-top: 0.5rem;
+      height: 5rem;
+      &:focus {
+        outline: none;
+      }
     }
+    .CommentLengthBox {
+      width: 7%;
+      height: 50%;
+      margin-left: auto;
+      margin-right: 1%;
+      height: 2.5rem;
+      color: #757575;
+    }
+  }
+
+  .CommentFooter {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 3.5rem;
+    border-top: 0.1rem solid #d2d4d9;
+    .CommentWrite {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 10%;
+      height: 60%;
+      margin-left: auto;
+      margin-right: 1rem;
+      background-color: #6495ed;
+      color: white;
+      border-radius: 0.4rem;
+      cursor: pointer;
+      &:hover {
+        background-color: #557de1;
+      }
+    }
+  }
+}
+.NoticeComment {
+  width: 100%;
+  margin: auto;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+
+  .CommentCnt {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-size: large;
+    font-weight: bold;
+  }
 }

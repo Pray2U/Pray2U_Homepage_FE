@@ -48,7 +48,7 @@ const AdminApprovalList = () => {
 
   const post_NewUserInfo = async (userName, githubId) => {
     try {
-      if(userName && githubId){
+      if (userName && githubId) {
         const url = `${process.env.REACT_APP_API_SERVER}/api/admin/member-approvals`;
         const data = {
           username: userName,
@@ -68,11 +68,11 @@ const AdminApprovalList = () => {
           setIsApprovalModal(false);
           alert(response.data.data.message);
         }
-      }else{
-        if(!userName){
+      } else {
+        if (!userName) {
           alert("이름을 입력해주세요");
-        }else if(!githubId){
-          alert('Github Id를 입력해주세요');
+        } else if (!githubId) {
+          alert("Github Id를 입력해주세요");
         }
       }
     } catch (e) {
@@ -82,22 +82,22 @@ const AdminApprovalList = () => {
     }
   };
 
-  const delete_member = async(githubId) => {
+  const delete_member = async (githubId) => {
     try {
-        const url = `${process.env.REACT_APP_API_SERVER}/api/admin/member-approvals/${githubId}`;
-        const response = await axios.delete(url, {
-          headers: {
-            Authorization: `Bearer ${getCookie("accessToken")}`,
-          },
-          withCredentials: true,
-        });
-        if (response.status === 200) {
-          setReRender(!reRender);
-          // setMemberInfoList((memberInfoList) => memberInfoList.filter((member) => member.githubId !== githubId));
-          alert("추가 멤버가 삭제 되었습니다.");
-        } else {
-          alert(response.data.data.message);
-        }
+      const url = `${process.env.REACT_APP_API_SERVER}/api/admin/member-approvals/${githubId}`;
+      const response = await axios.delete(url, {
+        headers: {
+          Authorization: `Bearer ${getCookie("accessToken")}`,
+        },
+        withCredentials: true,
+      });
+      if (response.status === 200) {
+        setReRender(!reRender);
+        // setMemberInfoList((memberInfoList) => memberInfoList.filter((member) => member.githubId !== githubId));
+        alert("추가 멤버가 삭제 되었습니다.");
+      } else {
+        alert(response.data.data.message);
+      }
     } catch (e) {
       alert(e.response.data.message);
       navigate("/error");
@@ -111,7 +111,7 @@ const AdminApprovalList = () => {
   return (
     <div className="w-full">
       <div
-        className="flex items-center justify-center w-[8rem] h-[2.5rem] text-white font-bold bg-[#0090F9] rounded-[0.5rem] ml-auto mb-[2rem] cursor-pointer hover:bg-[#0B7FD3]"
+        className="flex items-center justify-center w-[8rem] h-[2.5rem] text-white font-bold bg-[#6495ED] rounded-[0.5rem] ml-auto mb-[2rem] cursor-pointer hover:bg-[#557DE1]"
         onClick={() => setIsApprovalModal(!isApprovalModal)}
       >
         추가 멤버 등록
@@ -126,8 +126,8 @@ const AdminApprovalList = () => {
         </div>
       </div>
       {memberInfoList?.map((user) => (
-        <AdminApprovalItem 
-          key={user?.memberApprovalId} 
+        <AdminApprovalItem
+          key={user?.memberApprovalId}
           userInfo={user}
           onRemove={delete_member}
         />

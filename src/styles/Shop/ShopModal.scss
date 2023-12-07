@@ -21,6 +21,7 @@
     .ItemInfoTitle {
       display: flex;
       align-items: center;
+      justify-content: center;
       width: 90%;
       height: 15%;
       font-weight: bold;
@@ -163,7 +164,6 @@
         // color: white;
         color: black;
         border: 1px solid #c7c9ce;
-        font-weight: bold;
         cursor: pointer;
         &:hover {
           background-color: #f1f3f6;
@@ -176,13 +176,12 @@
         align-items: center;
         justify-content: center;
         border-radius: 0.5em;
-        border: 1px solid #0090f9;
-        background-color: #0090f9;
+        border: 1px solid #6495ed;
+        background-color: #6495ed;
         color: white;
-        font-weight: bold;
         cursor: pointer;
         &:hover {
-          background-color: #0b7fd3;
+          background-color: #557de1;
         }
       }
     }

@@ -20,7 +20,7 @@ const NoticeItem = ({ noticeItem }) => {
           src={noticeItem?.user?.writerProfileImg}
           className="flex items-center justify-center w-[22px] h-[22px] border-1 border-[#D2D4D9] rounded-[50%] cursor-pointer no-underline"
         />
-        <div className="flex items-center justify-center ml-[0.4rem] h-full text-[15px]">
+        <div className="flex items-center justify-center ml-[0.4rem] h-full text-[15px] font-nanumgothic font-semibold">
           {noticeItem?.user?.writerName}
         </div>
       </div>

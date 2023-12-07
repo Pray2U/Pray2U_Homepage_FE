@@ -15,9 +15,9 @@ const MyShop = () => {
 
   const OrderMenu = ["승인 대기", "승인 완료"];
 
-  const [ myOrderList, setMyOrderList ] = useState([]);
-  const [ selectedMenu, setSelectedMenu] = useState(0);
-  const [ isUsedItem, setIsUsedItem] = useState(false);
+  const [myOrderList, setMyOrderList] = useState([]);
+  const [selectedMenu, setSelectedMenu] = useState(0);
+  const [isUsedItem, setIsUsedItem] = useState(false);
 
   const onClickMenu = (idx) => {
     setSelectedMenu(idx);
@@ -58,7 +58,7 @@ const MyShop = () => {
         <Title title={"Mypage"} />
         <MypageHeader />
         <div className="w-full h-auto m-auto mt-[1rem] mb-[2rem]">
-          <div className="flex items-center w-[40%] h-[5vh] text-[1vw] font-bold my-3">
+          <div className="w-full flex items-center w-[40%] h-[5vh] text-[1vw] font-bold my-3">
             {OrderMenu?.map((menu, idx) => (
               <div
                 className={
@@ -74,13 +74,19 @@ const MyShop = () => {
             ))}
           </div>
           <div className="grid w-full h-auto m-auto mt-2 mb-4 grid-cols-3 justify-around items-stretch justify-items-stretch gap-2">
-            {
-              myOrderList?.map(
+            {myOrderList?.map(
               (order) =>
                 isUsedItem === order?.useStatus && (
                   <MyShopItem key={order?.orderId} item={order?.item} />
-                ))
-            }
+                )
+            )}
+            {myOrderList.length === 0 && (
+              <div className="w-[1080px] h-[300px] bg-gray-100 flex justify-center items-center">
+                <div className="font-bold text-2xl">
+                  😮상품이 존재하지 않습니다😮
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>

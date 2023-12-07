@@ -29,7 +29,7 @@ const Til = () => {
   const [search, setSearch] = useState(null);
   const [isAdmin, setIsAdmin] = useState(false);
   const [userId, setUserId] = useState(null);
-  const [ isSearch, setIsSearch ] = useState(false);
+  const [isSearch, setIsSearch] = useState(false);
 
   const onHandleSearch = (e) => {
     setSearch(e.target.value);
@@ -166,7 +166,7 @@ const Til = () => {
     <div className="w-[1080px] h-auto m-auto">
       <Title title="TIL" subTitle="Today I Learned" />
       <CreateButton link={"/til/create"} />
-      <div className="flex items-center w-full h-[5vh] m-auto mt-[1rem] bg-[#0090F9] rounded-[0.5em]">
+      <div className="flex items-center w-full h-[5vh] m-auto mt-[1rem] bg-[#6495ED] rounded-[0.5em]">
         <div className="flex items-center w-[30%] h-[80%] rounded-[4em] ml-[3rem] bg-white">
           <AiOutlineSearch
             className="ml-[1rem] w-[7%] h-[80%] bg-white"
@@ -190,6 +190,13 @@ const Til = () => {
             userId={userId}
           />
         ))}
+        {apiTilDataList.length === 0 && (
+          <div className="w-full h-[300px] bg-gray-100 flex justify-center items-center">
+            <div className="font-bold text-2xl">
+              😮TIL이 존재하지 않습니다😮
+            </div>
+          </div>
+        )}
         {totalPageNum > pageNumber ? (
           <div ref={setTarget}>{isLoaded && <p>Loading...</p>}</div>
         ) : (

@@ -43,31 +43,31 @@ const AdminItemEditModal = ({ itemInfo, onCancel, put_ItemInfo }) => {
         itemName: itemName,
         point: parseInt(itemPoint),
       };
-      if(newItemImg){
+      if (newItemImg) {
         const newImgUrl = await uploadFile(newItemImg);
-        if(newImgUrl){
+        if (newImgUrl) {
           const s3ObjectKey = extractS3Key([itemInfo?.imgUrl]);
-          if(s3ObjectKey){
+          if (s3ObjectKey) {
             await deleteFileList(s3ObjectKey);
             postData.imgUrl = newImgUrl;
             await put_ItemInfo(postData, itemInfo?.itemId);
-          }else{
+          } else {
             alert("이미지 경로가 잘못되었습니다.");
           }
-        }else{
-          alert('이미지 업로드 과정에서 오류가 생겼습니다.');
+        } else {
+          alert("이미지 업로드 과정에서 오류가 생겼습니다.");
         }
-      }else{
+      } else {
         await put_ItemInfo(postData, itemInfo?.itemId);
       }
       onCancel();
-    }else {
-      if(!itemName){
-          alert("상품명이 입력되지 않았습니다.");
-      }else if(!itemDescription){
-          alert("상품 설명칸이 입력되지 않았습니다.");
-      }else if(!itemPoint){
-          alert("상품 포인트가 설정되지 않았습니다.");
+    } else {
+      if (!itemName) {
+        alert("상품명이 입력되지 않았습니다.");
+      } else if (!itemDescription) {
+        alert("상품 설명칸이 입력되지 않았습니다.");
+      } else if (!itemPoint) {
+        alert("상품 포인트가 설정되지 않았습니다.");
       }
     }
   };
@@ -84,7 +84,7 @@ const AdminItemEditModal = ({ itemInfo, onCancel, put_ItemInfo }) => {
           <form className="flex justify-center">
             <label
               htmlFor="itemImg"
-              className="flex items-center justify-center p-[0.25rem] w-[10rem] h-[2.5rem] rounded-[0.375rem] bg-[#0090F9] text-white cursor-pointer hover:bg-[#0B7FD3]"
+              className="flex items-center justify-center p-[0.25rem] w-[10rem] h-[2.5rem] rounded-[0.375rem] bg-[#6495ED] text-white cursor-pointer hover:bg-[#557DE1]"
             >
               이미지 변경
             </label>
@@ -105,7 +105,7 @@ const AdminItemEditModal = ({ itemInfo, onCancel, put_ItemInfo }) => {
               상품명
             </div>
             <input
-              className="flex w-[75%] h-[70%] items-center justify-center pl-2 text-[1rem] border-2 border-solid border-slate-300 rounded-md focus:border-[#0090F9] focus:outline-none"
+              className="flex w-[75%] h-[70%] items-center justify-center pl-2 text-[1rem] border-2 border-solid border-slate-300 rounded-md focus:border-[#6495ED] focus:outline-none"
               onChange={onChangeItemName}
               value={itemName || ""}
             />
@@ -115,7 +115,7 @@ const AdminItemEditModal = ({ itemInfo, onCancel, put_ItemInfo }) => {
               상품 설명
             </div>
             <textarea
-              className="w-[75%] h-[7rem] border-solid border-[0.15rem] rounded-[0.375rem] border-[hsla(220,9%,46%,.3)] pl-2 text-[1rem] mb-2 resize-none focus:border-[#0090F9] focus:outline-none"
+              className="w-[75%] h-[7rem] border-solid border-[0.15rem] rounded-[0.375rem] border-[hsla(220,9%,46%,.3)] pl-2 text-[1rem] mb-2 resize-none focus:border-[#6495ED] focus:outline-none"
               onChange={onChangeItemDescription}
               value={itemDescription || ""}
             />
@@ -125,7 +125,7 @@ const AdminItemEditModal = ({ itemInfo, onCancel, put_ItemInfo }) => {
               상품 포인트
             </div>
             <input
-              className="flex w-[75%] h-[45%] items-center justify-center pl-2 text-[1rem] border-2 border-solid border-slate-300 rounded-md focus:border-[#0090F9] focus:outline-none"
+              className="flex w-[75%] h-[45%] items-center justify-center pl-2 text-[1rem] border-2 border-solid border-slate-300 rounded-md focus:border-[#6495ED] focus:outline-none"
               onChange={onChangeItemPoint}
               value={itemPoint || ""}
             />
@@ -138,7 +138,7 @@ const AdminItemEditModal = ({ itemInfo, onCancel, put_ItemInfo }) => {
               취소
             </div>
             <div
-              className="flex justify-center items-center w-[70px] h-[30px] rounded-[0.5em] bg-[#0090F9] text-white font-bold cursor-pointer hover:bg-[#0B7FD3]"
+              className="flex justify-center items-center w-[70px] h-[30px] rounded-[0.5em] bg-[#6495ED] text-white font-bold cursor-pointer hover:bg-[#557DE1]"
               onClick={() => onSave()}
             >
               저장

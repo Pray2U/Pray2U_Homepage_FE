@@ -52,7 +52,6 @@ const MyTil = () => {
     }
   };
 
-  
   const onRemove = async (id) => {
     try {
       const url = `${process.env.REACT_APP_API_SERVER}/api/tils/${id}`;
@@ -84,13 +83,13 @@ const MyTil = () => {
   };
 
   useEffect(() => {
-    const payload = tokenDecode(getCookie('accessToken'));
-    if(payload){
+    const payload = tokenDecode(getCookie("accessToken"));
+    if (payload) {
       setUserId(Number(payload.sub));
       read_MyTilList(Number(payload.sub));
-    }else{
+    } else {
       alert("토큰이 존재하지 않습니다.");
-      navigate('/');
+      navigate("/");
     }
   }, []);
 
@@ -112,8 +111,21 @@ const MyTil = () => {
       <MypageHeader />
       <div className="w-full mt-[2rem] pb-[3%]">
         {myTilList?.map((til) => (
-          <TilItem key={til.tilId} onRemove={onRemove} tilInfo={til} isAdmin={false} userId={userId} />
+          <TilItem
+            key={til.tilId}
+            onRemove={onRemove}
+            tilInfo={til}
+            isAdmin={false}
+            userId={userId}
+          />
         ))}
+        {myTilList.length === 0 && (
+          <div className="w-full h-[300px] bg-gray-100 flex justify-center items-center">
+            <div className="font-bold text-2xl">
+              😮공지사항이 존재하지 않습니다😮
+            </div>
+          </div>
+        )}
         {totalPageNum > pageCnt ? (
           <div ref={setTarget}>{isLoaded && <p>Loading...</p>}</div>
         ) : (

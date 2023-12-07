@@ -90,26 +90,26 @@ const MyProfile = () => {
   };
 
   const onSave = async () => {
-    if (newProfileImg || (phoneNum !== myInfo?.phoneNumber)){
+    if (newProfileImg || phoneNum !== myInfo?.phoneNumber) {
       let putData = {
         profileImgUrl: myInfo?.profileImgUrl,
-        phoneNumber: phoneNum ? phoneNum : myInfo?.phoneNumber
-      }
-      if(newProfileImg){
+        phoneNumber: phoneNum ? phoneNum : myInfo?.phoneNumber,
+      };
+      if (newProfileImg) {
         const fileUrl = await uploadFile(newProfileImg);
-        if(fileUrl){
+        if (fileUrl) {
           const s3ObjectKey = extractS3Key([myInfo?.profileImgUrl]);
-          if(s3ObjectKey){
+          if (s3ObjectKey) {
             await deleteFileList(s3ObjectKey);
           }
         }
         putData.profileImgUrl = fileUrl;
       }
       await put_myInfo(putData);
-    }else{
+    } else {
       alert("바뀐 정보가 없습니다.");
     }
-  }
+  };
 
   const read_myInfomation = async () => {
     try {
@@ -168,14 +168,18 @@ const MyProfile = () => {
           <div className="flex w-full h-[25rem] m-auto">
             <div className="w-[30%] h-[80%] m-auto">
               <img
-                src={previewNewProfileImg ? previewNewProfileImg : myInfo?.profileImgUrl}
+                src={
+                  previewNewProfileImg
+                    ? previewNewProfileImg
+                    : myInfo?.profileImgUrl
+                }
                 className="flex items-center justify-center m-auto w-[15rem] h-[15rem] rounded-[50%]"
                 alt="Profile"
               />
               <form className="flex justify-center">
                 <label
                   htmlFor="itemImg"
-                  className="flex w-[80%] h-[10%] m-auto mt-3 bt-[5%] items-center justify-center bg-[#0090F9] text-white cursor-pointer hover:bg-[#0B7FD3]"
+                  className="flex w-[80%] h-[35px] rounded-4 mt-[40px] items-center justify-center bg-[#6482FF] font-normal text-white cursor-pointer hover:bg-[#6478FF] font-jua"
                 >
                   이미지 변경
                 </label>
@@ -186,12 +190,13 @@ const MyProfile = () => {
                   style={{ display: "none" }}
                   className="w-[2rem] h-[2rem] display: none"
                   onChange={previewProfileFile}
-                  ref={imgRef}/>
+                  ref={imgRef}
+                />
               </form>
             </div>
             <div className="w-[50%] h-full content-between">
               <div className="flex items-center w-[80%] h-[20%] m-auto mt-[2.5%] mb-[2.5%]">
-                <div className="flex items-center w-[50%] h-full text-[1.25vw]">
+                <div className="flex items-center w-[50%] h-full text-[1.25vw] font-nanumgothic font-bold">
                   이름
                 </div>
                 <div className="flex items-center w-full h-[50%] text-gray text-[1vw] h-[2.25rem]">
@@ -199,7 +204,7 @@ const MyProfile = () => {
                 </div>
               </div>
               <div className="flex items-center w-[80%] h-[20%] m-auto mt-[2.5%] mb-[2.5%]">
-                <div className="flex items-center w-[50%] h-full text-[1.25vw]">
+                <div className="flex items-center w-[50%] h-full text-[1.25vw] font-nanumgothic font-bold">
                   전화번호
                 </div>
                 <input
@@ -209,7 +214,7 @@ const MyProfile = () => {
                 />
               </div>
               <div className="flex items-center w-[80%] h-[20%] m-auto mt-[2.5%] mb-[2.5%]">
-                <div className="flex items-center w-[50%] h-full text-[1.25vw]">
+                <div className="flex items-center w-[50%] h-full text-[1.25vw] font-nanumgothic font-bold">
                   이메일
                 </div>
                 <div className="flex items-center w-full h-[50%] text-gray text-[1vw] h-[2.25rem]">
@@ -217,7 +222,7 @@ const MyProfile = () => {
                 </div>
               </div>
               <div className="flex items-center w-[80%] h-[20%] m-auto mt-[2.5%] mb-[2.5%]">
-                <div className="flex items-center w-[50%] h-full text-[1.25vw]">
+                <div className="flex items-center w-[50%] h-full text-[1.25vw] font-nanumgothic font-bold">
                   Github
                 </div>
                 <div className="flex items-center w-full h-[50%] text-gray text-[1vw] h-[2.25rem]">
@@ -227,18 +232,18 @@ const MyProfile = () => {
             </div>
             <div className="w-[30%] h-[90%] border-l-[0.5em] border-l-solid border-l-[#2B0086] m-auto relative">
               {/* <div className="MyGetPoint">누적 포인트&nbsp;&nbsp;&nbsp;{myPoint?.totalPoint} pt</div> */}
-              <div className="flex items-center justify-center w-[90%] h-[25%] m-auto text-[1.2vw] font-bold">
+              <div className="flex items-center justify-center w-[90%] h-[25%] m-auto text-[1.2vw] font-nanumgothic font-bold">
                 보유 포인트&nbsp;&nbsp;&nbsp;{myPoint?.currentPoint} pt
               </div>
               <div className="flex absolute bottom-[5%] w-full h-[15%]">
                 <div
-                  className="flex w-[30%] h-full items-center justify-center mr-[4%] ml-auto rounded-[0.5em] bg-[#F34F50] text-white font-bold cursor-pointer hover:bg-[#dc3a3a]"
+                  className="flex w-[30%] h-full items-center justify-center mr-[4%] ml-auto rounded-[0.5em] bg-[#F34F50] text-white font-jua font-normal cursor-pointer hover:bg-[#dc3a3a]"
                   onClick={() => onDeleteClick()}
                 >
                   회원탈퇴
                 </div>
                 <div
-                  className="flex w-[30%] h-full items-center justify-center rounded-[0.5em] bg-[#0090F9] text-white font-bold cursor-pointer hover:bg-[#0B7FD3]"
+                  className="flex w-[30%] h-full items-center justify-center rounded-[0.5em] bg-[#6482FF] text-white font-jua font-normal cursor-pointer hover:bg-[#6478FF]"
                   onClick={() => onSave()}
                 >
                   저장

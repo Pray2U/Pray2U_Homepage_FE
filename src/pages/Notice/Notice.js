@@ -59,13 +59,25 @@ const Notice = () => {
 
   return (
     <>
-      <div className="w-[1080px] m-auto">
+      <div className="w-[1080px] min-h-[500px] m-auto">
         <div className="flex flex-col items-center w-full h-[full] mt-2">
           <Title title="공지사항" />
           <CreateButton link={isAdmin ? "/notice/create" : null} />
           {noticeList?.map((notice) => (
             <NoticeItem key={notice.postId} noticeItem={notice} />
           ))}
+          {noticeList.length === 0 && (
+            <div className="w-full h-[300px] bg-gray-100 flex justify-center items-center">
+              <img
+                className="w-[150px] h-[150px]"
+                alt="no notice"
+                src="img/nodata.png"
+              />
+              <div className="font-bold text-2xl ml-8">
+                공지사항이 존재하지 않습니다😮
+              </div>
+            </div>
+          )}
           <Paging
             pageNum={selectedPage}
             countPerPage={pageSize}

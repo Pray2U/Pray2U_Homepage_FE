@@ -26,11 +26,11 @@ const Header = () => {
   const path = location.pathname.split("/")[1];
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [isGuest, setIsGuest ] = useState(false);
+  const [isGuest, setIsGuest] = useState(false);
   const [isLoginModal, setIsLoginModal] = useState(false);
   const [myInfo, setMyInfo] = useState(null);
   const [view, setView] = useState(false);
-  const [searchParams,setSearchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const menus = [
     {
@@ -108,11 +108,11 @@ const Header = () => {
   useEffect(() => {
     save_token();
     setIsLoggedIn(checkLogin("accessToken"));
-    
+
     if (checkLogin("accessToken")) {
       let checkGuest = isCheckGuest();
       setIsGuest(checkGuest);
-      if(!checkGuest){
+      if (!checkGuest) {
         read_myInfomation();
       }
     }
@@ -139,31 +139,31 @@ const Header = () => {
           </p>
         </Link>
         <div className="flex justify-end items-center">
-          {
-            isLoggedIn && !isGuest? 
-            <div className="flex mt-4 items-center justify-center w-full h-full font-bold text-[1rem]">
+          {isLoggedIn && !isGuest ? (
+            <div className="flex mt-4 items-center justify-center w-full h-full font-bold text-[1.2rem]">
               {menus.map((menu) => (
                 <Link
                   to={menu.link}
                   key={menu.id}
                   className={
                     menu.link === path
-                      ? "no-underline text-[#0090F9] cursor-pointer mx-6 px-2"
-                      : "no-underline text-slate-950 cursor-pointer mx-6 px-2 hover:text-[#0090F9]"
+                      ? "no-underline text-[#6495ED] cursor-pointer mx-6 px-2"
+                      : "no-underline text-slate-950 cursor-pointer mx-6 px-2 hover:text-[#557DE1]"
                   }
                 >
-                  <p>{menu.title}</p>
+                  <p className="font-poorstory">{menu.title}</p>
                 </Link>
               ))}
             </div>
-            :<></>
-          }
-          {isLoggedIn && !isGuest? (
+          ) : (
+            <></>
+          )}
+          {isLoggedIn && !isGuest ? (
             <div className="flex items-center h-full text-black font-bold text-[1.12rem]">
-              <div className="w-[80px] h-[80px] relative box-border border-0 border-solid border-[#e5e7eb] ml-5 flex items-center mt-2">
+              <div className="w-[80px] h-[80px] relative box-border border-0 border-solid border-[#e5e7eb] ml-5 flex items-center mt-[20px]">
                 <img
                   src={myInfo?.profileImgUrl}
-                  className="w-[40px] h-[40px] rounded-full"
+                  className="w-[40px] h-[40px] rounded-full border-solid border-1 border-gray-500"
                   onClick={() => setView(!view)}
                   alt="프로필"
                 />
@@ -178,7 +178,7 @@ const Header = () => {
           ) : (
             <div className="flex w-[150px] items-center h-full text-black font-bold text-[1.12rem]">
               <div
-                className="flex justify-center ml-2 text-black no-underline cursor-pointer hover:text-[#0090f9] mt-2"
+                className="flex justify-center ml-2 text-black no-underline cursor-pointer hover:text-[#557DE1] mt-2"
                 onClick={() => onHandleLoginModal()}
               >
                 로그인

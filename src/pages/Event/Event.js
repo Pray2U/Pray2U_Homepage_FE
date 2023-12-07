@@ -32,7 +32,7 @@ const Event = () => {
     6: "Saturday",
     0: "Sunday",
   };
-  
+
   const [isAdmin, setIsAdmin] = useState(null);
   const [userId, setUserId] = useState(null);
   const [eventApiData, setEventApiData] = useState([]);
@@ -130,7 +130,7 @@ const Event = () => {
         return (
           <div
             key={eventApiData[i].eventId}
-            className="h-[7px] w-[7px] bg-[#F34F50] rounded-[50%] flex m-auto mt-[5px]"
+            className="h-[7px] w-[7px] bg-sky-300 rounded-[50%] flex m-auto mt-[5px]"
           />
         );
       }
@@ -139,11 +139,11 @@ const Event = () => {
     // return <div key={key}>{contents}</div>; // 각 날짜마다 해당 요소가 들어감
   };
 
-  useEffect(()=>{
-    const payload = tokenDecode(getCookie('accessToken'));
+  useEffect(() => {
+    const payload = tokenDecode(getCookie("accessToken"));
     setUserId(Number(payload.sub));
     setIsAdmin(isCheckAdmin());
-  },[]);
+  }, []);
 
   useEffect(() => {
     read_eventData();
@@ -169,7 +169,7 @@ const Event = () => {
               tileContent={addDot}
             />
           </div>
-          <div className="w-[2%] h-full bg-[#9A58EE]" />
+          <div className="w-[2%] h-full bg-gradient-to-r from-[rgba(237,191,43,1)] via-[rgba(237,191,43,1)] to-[rgba(240,138,86,1)]/100" />
           <div className="w-[49%] h-[100%] m-auto">
             <div className="flex justify-center items-center w-[90%] h-[20%] border-b-[2px] border-b-solid border-b-[#E2E2E2] pt-[2%] m-auto">
               <p className="flex items-center text-[#F34F50] font-bold text-[2.25rem]">
@@ -193,7 +193,7 @@ const Event = () => {
                   onToggle={onToggle}
                 />
                 <div
-                  className="flex items-center justify-center ml-auto mr-4 mt-2 w-[170px] h-[50px] text-whtie bg-[#9A58EE] text-white font-bold rounded-[0.5em] cursor-pointer hover:bg-[#9048ef]"
+                  className="flex items-center justify-center ml-auto mr-4 mt-2 w-[170px] h-[50px] text-whtie bg-[#9A58EE] text-white font-jua rounded-[0.5em] cursor-pointer hover:bg-[#9048ef]"
                   onClick={addEvent}
                 >
                   + Add a new Event

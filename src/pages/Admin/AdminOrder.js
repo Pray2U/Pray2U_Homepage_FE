@@ -101,6 +101,13 @@ const AdminOrder = () => {
                 onToggle={post_OrderApproval}
               />
             ))}
+            {orderList.length === 0 && (
+              <div className="w-[1080px] h-[300px] bg-gray-100 flex justify-center items-center">
+                <div className="font-bold text-2xl">
+                  😮상품이 존재하지 않습니다😮
+                </div>
+              </div>
+            )}
             <Paging
               pageNum={pageCnt}
               countPerPage={pageSize}

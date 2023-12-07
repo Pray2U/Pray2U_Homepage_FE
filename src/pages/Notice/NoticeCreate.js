@@ -38,12 +38,12 @@ const NoticeCreate = () => {
 
     setFileNameList([...fileNameLists]);
     setFileList((fileList) => fileList.concat([fileLists]));
-    e.target.value = '';
+    e.target.value = "";
     // 같은 파일을 다시 못올리기 때문에 이벤트 값을 리셋
   };
 
   const onHandleDeleteFile = (idx) => {
-    setFileNameList(fileNameList.filter((_,index) => index !== idx));
+    setFileNameList(fileNameList.filter((_, index) => index !== idx));
     setFileList(fileList.filter((_, index) => index !== idx));
   };
 
@@ -114,15 +114,15 @@ const NoticeCreate = () => {
             type="file"
             id="input-file"
             multiple
-            className="flex items-center justify-center p-[0.25rem] w-[7rem] h-[2.5rem] rounded-[0.375rem] bg-[#0090F9] text-white cursor-pointer hover:bg-[#0B7FD3]"
+            className="flex items-center justify-center p-[0.25rem] w-[7rem] h-[2.5rem] rounded-[0.375rem] bg-[#6495ED] text-white cursor-pointer hover:bg-[#557DE1]"
             style={{ display: "none" }}
             onChange={onHandleAddFile}
           />
           <label
             htmlFor="input-file"
-            className="flex items-center justify-center p-[0.25rem] w-[7rem] h-[2.5rem] rounded-[0.375rem] bg-[#0090F9] text-white cursor-pointer hover:bg-[#0B7FD3]"
+            className="flex items-center justify-center p-[0.25rem] w-[7rem] h-[2.5rem] rounded-[0.375rem] bg-[#6495ED] text-white cursor-pointer hover:bg-[#557DE1]"
           >
-            <div className="flex items-center justify-center p-[0.25rem] w-[7rem] h-[2.5rem] rounded-[0.375rem] bg-[#0090F9] text-white cursor-pointer hover:bg-[#0B7FD3]">
+            <div className="flex items-center justify-center p-[0.25rem] w-[7rem] h-[2.5rem] rounded-[0.375rem] bg-[#6495ED] text-white cursor-pointer hover:bg-[#557DE1] font-jua">
               파일 업로드
             </div>
           </label>

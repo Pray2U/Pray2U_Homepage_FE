@@ -5,25 +5,19 @@ import "../styles/Footer/Footer.scss";
 
 const Footer = () => {
   return (
-    <div className="flex border-t-[1.75px] border-t-solid border-t-[#a5a7aa]">
-      <div className="flex w-[1280px] h-full m-auto bottom-0">
-        <div className="w-[15%] h-full m-auto">
-          <img
-            className="flex w-full h-[30%]"
-            alt="Logo_Image"
-            src="img/logo_title.png"
-          />
-          <Link
-            to="https://github.com/Pray2U"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-[15%] h-[90%] no-underline ml-auto text-black"
-          >
-            <AiFillGithub className="flex m-auto w-[20%] h-[20%] cursor-pointer hover:text-[#0090F9]" />
-          </Link>
+    <div className="flex border-t-[1.75px] border-t-solid border-t-[#a5a7aa] h-[200px]">
+      <div className="flex w-[1280px] h-full m-auto">
+        <div className="flex items-center">
+          <p className="font-bold ml-4 my-auto text-3xl drop-shadow-[0_0.8px_0.8px_rgba(0,0,0,0.5)]">
+            <span className="text-[#84a3d4]">Pra</span>
+            <span className="text-[#f27b7d]">y</span>
+            <span className="bg-gradient-to-r from-[rgba(237,191,43,1)] via-[rgba(240,138,86,1)] to-[rgba(244,106,36,1)]/100 inline-block text-transparent bg-clip-text">
+              2U
+            </span>
+          </p>
         </div>
-        <div className="pt-[1%] px-[1%] text-black font-bold w-[85%] h-full">
-          <p>
+        <div className="text-black w-[75%] h-full flex items-center ml-12">
+          <p className="font-nanumgothic font-semibold text-true-gray-400">
             We are "Pray2U". <br></br>
             As a Closed non-profit developer community based at Hannam
             University in Deajeon South Korea,
@@ -31,8 +25,10 @@ const Footer = () => {
             we are working to network with developers and improve personal
             skills
           </p>
-          <ul>
-            <li>Contact Email : choihs980924@gmail.com </li>
+          <ul className="ml-8 ">
+            <li className="font-nanumgothic font-semibold text-true-gray-400">
+              Contact Email : choihs980924@gmail.com{" "}
+            </li>
           </ul>
         </div>
       </div>

@@ -79,8 +79,8 @@ const EventEditor = ({
 
   const post_Event = async () => {
     try {
-      const checkStartTime = startHourTime && startMinuteTime
-      const checkEndTime = endHourTime && endMinuteTime
+      const checkStartTime = startHourTime && startMinuteTime;
+      const checkEndTime = endHourTime && endMinuteTime;
       if (title && startDate && checkStartTime && checkEndTime && contents) {
         let start = dayjs(startDate).format("YYYY-MM-DD");
         let eventStartDate = `${start}T${startHourTime}:${startMinuteTime}:00`;
@@ -104,15 +104,15 @@ const EventEditor = ({
           canselAddEvent();
         }
       } else {
-        if(!title){
-          alert("제목을 채워주세요")
-        } else if(!startDate){
+        if (!title) {
+          alert("제목을 채워주세요");
+        } else if (!startDate) {
           alert("날짜를 선택해주세요");
-        } else if(!(startHourTime && startMinuteTime)){
+        } else if (!(startHourTime && startMinuteTime)) {
           alert("시작 시간을 선택해주세요");
-        } else if(!(endHourTime && endMinuteTime)){
+        } else if (!(endHourTime && endMinuteTime)) {
           alert("종료 시간을 선택해주세요");
-        } else{
+        } else {
           alert("내용을 채워주세요");
         }
       }
@@ -123,8 +123,8 @@ const EventEditor = ({
 
   const put_Event = async (id) => {
     try {
-      const checkStartTime = startHourTime && startMinuteTime
-      const checkEndTime = endHourTime && endMinuteTime
+      const checkStartTime = startHourTime && startMinuteTime;
+      const checkEndTime = endHourTime && endMinuteTime;
       if (title && startDate && checkStartTime && checkEndTime && contents) {
         let start = dayjs(startDate).format("YYYY-MM-DD");
         let eventStartDate = `${start}T${startHourTime}:${startMinuteTime}:00`;
@@ -143,21 +143,21 @@ const EventEditor = ({
           },
           withCredentials: true,
         });
-        if(response.status === 200) {
+        if (response.status === 200) {
           alert("이벤트가 수정되었습니다.");
           saveEvent(response.data.data);
           canselAddEvent();
         }
-      }else {
-        if(!title){
-          alert("제목을 채워주세요")
-        } else if(!startDate){
+      } else {
+        if (!title) {
+          alert("제목을 채워주세요");
+        } else if (!startDate) {
           alert("날짜를 선택해주세요");
-        } else if(!(startHourTime && startMinuteTime)){
+        } else if (!(startHourTime && startMinuteTime)) {
           alert("시작 시간을 선택해주세요");
-        } else if(!(endHourTime && endMinuteTime)){
+        } else if (!(endHourTime && endMinuteTime)) {
           alert("종료 시간을 선택해주세요");
-        } else{
+        } else {
           alert("내용을 채워주세요");
         }
       }
@@ -195,7 +195,9 @@ const EventEditor = ({
             setSelectedDay={setStartDate}
             closeCalendarModal={closeCalendarModal}
           />
-        ) : <></>}
+        ) : (
+          <></>
+        )}
       </div>
       <div className="flex w-[90%] h-[20%] justify-center items-center m-auto">
         <div className="flex mr-[0.25rem] h-[50%] items-center justify-center font-bold">
@@ -245,7 +247,7 @@ const EventEditor = ({
                   </option>
                 );
                 //idx*100 -> 시작 시간의 시간 리스트 끼리 key값을 다르게 나타내기 위해
-              }else if(parseInt(startHourTime) <= idx){
+              } else if (parseInt(startHourTime) <= idx) {
                 const value = idx < 10 ? `0${idx}` : idx.toString();
                 return (
                   <option key={idx * 100} value={value}>
@@ -263,14 +265,14 @@ const EventEditor = ({
           >
             {minuteTime.map((minute) => {
               if (parseInt(startHourTime) === parseInt(endHourTime)) {
-                if (parseInt(startMinuteTime) <= parseInt(minute)){
+                if (parseInt(startMinuteTime) <= parseInt(minute)) {
                   return (
                     <option key={minute * 100} value={minute}>
                       {minute}
                     </option>
                   );
                 }
-              } else{
+              } else {
                 return (
                   <option key={minute * 100} value={minute}>
                     {minute}
@@ -292,14 +294,18 @@ const EventEditor = ({
       </div>
       <div className="flex justify-end mr-6 w-[full] h-[80px]">
         <div
-          className="flex w-[70px] h-[40px] mr-4 items-center justify-center rounded-[0.5rem] bg-[#F34F50] text-white font-bold cursor-pointer hover:bg-[#dc3a3a]"
+          className="flex w-[70px] h-[40px] mr-4 items-center justify-center rounded-[0.5rem] bg-[#F34F50] text-white cursor-pointer hover:bg-[#dc3a3a] font-jua"
           onClick={() => canselAddEvent()}
         >
           취소
         </div>
         <div
-          className="flex w-[70px] h-[40px] items-center justify-center rounded-[0.5rem]  bg-[#0090F9] text-white font-bold cursor-pointer hover:bg-[#0B7FD3]"
-          onClick={eventInfo?.eventId ? () => put_Event(eventInfo?.eventId) : () => post_Event()}
+          className="flex w-[70px] h-[40px] items-center justify-center rounded-[0.5rem]  bg-[#6495ED] text-white cursor-pointer hover:bg-[#557DE1] font-jua"
+          onClick={
+            eventInfo?.eventId
+              ? () => put_Event(eventInfo?.eventId)
+              : () => post_Event()
+          }
         >
           저장
         </div>

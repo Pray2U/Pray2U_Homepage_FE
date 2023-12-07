@@ -47,7 +47,7 @@ const AdminSideMenu = () => {
           key={menu?.link}
           className={
             menu?.link === currentPath
-              ? "flex py-[0.5rem] px-[0.75rem] mt-[0.5rem] rounded-[0.5rem] bg-[#E5E7E8] no-underline cursor-pointer text-[#0090F9] hover:no-underline"
+              ? "flex py-[0.5rem] px-[0.75rem] mt-[0.5rem] rounded-[0.5rem] bg-[#E5E7E8] no-underline cursor-pointer text-[#6495ED] hover:no-underline"
               : "flex py-[0.5rem] px-[0.75rem] mt-[0.5rem] rounded-[0.5rem] bg-white no-underline text-black cursor-pointer text-gray hover:underline bg-[#E5E7E8] text-black"
           }
         >

@@ -9,13 +9,12 @@ import Reconfirm from "../../components/Reconfirm";
 import "../../styles/Til/TilItem.scss";
 
 const TilItem = ({ tilInfo, onRemove, isAdmin, userId }) => {
-  
   const navigate = useNavigate();
 
   const [isClosed, setIsClosed] = useState(true);
   const [isOverContent, setIsOverContent] = useState(true);
   const [isModalView, setIsModalView] = useState(false);
-  const [tag, setTag ] = useState(null);
+  const [tag, setTag] = useState(null);
 
   const onEditTIL = (id) => {
     navigate(`/til/edit/${id}`);
@@ -36,11 +35,11 @@ const TilItem = ({ tilInfo, onRemove, isAdmin, userId }) => {
   };
 
   const setTagOject = () => {
-    if(tilInfo?.tag){
+    if (tilInfo?.tag) {
       let removedDuplicateValue = new Set(tilInfo?.tag.split(", "));
       setTag([...removedDuplicateValue]);
     }
-  }
+  };
 
   useEffect(() => {
     checkOverContents();
@@ -76,7 +75,9 @@ const TilItem = ({ tilInfo, onRemove, isAdmin, userId }) => {
 
           <div className="flex ml-[5px] text-sm text-gray-400">
             {tag?.map((e) => (
-              <p className="px-2" key={e}>#{e}</p>
+              <p className="px-2" key={e}>
+                #{e}
+              </p>
             ))}
           </div>
         </div>
@@ -94,7 +95,7 @@ const TilItem = ({ tilInfo, onRemove, isAdmin, userId }) => {
           )}
           {tilInfo?.user?.writerId === userId || isAdmin ? (
             <div
-              className="flex items-center justify-center w-[40px] h-[40px] ml-[0.5rem] bg-[#FFB7B7] rounded-[0.5rem] cursor-pointer text-[20px]"
+              className="flex items-center justify-center w-[40px] h-[40px] ml-[0.5rem] bg-[#f27b7d] rounded-[0.5rem] cursor-pointer text-[20px]"
               onClick={() => setIsModalView(true)}
             >
               <AiFillDelete />

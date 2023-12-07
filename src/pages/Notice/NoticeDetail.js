@@ -74,23 +74,23 @@ const NoticeDetail = () => {
   const delete_NoticeItem = async () => {
     try {
       const s3ObjectKey = extractS3Key(fileList);
-      if(s3ObjectKey){
+      if (s3ObjectKey) {
         await deleteFileList(s3ObjectKey);
       }
       const url = `${process.env.REACT_APP_API_SERVER}/api/admin/posts/${postId}`;
-        const response = await axios.delete(url, {
-          headers: {
-            Authorization: `Bearer ${getCookie("accessToken")}`,
-          },
-          withCredentials: true,
-        });
-        if (response.status === 200) {
-          alert("공지사항이 삭제되었습니다.");
-          navigate("/notice");
-        } else {
-          alert("데이터 통신에 실패하였습니다.");
-          navigate("/");
-        }
+      const response = await axios.delete(url, {
+        headers: {
+          Authorization: `Bearer ${getCookie("accessToken")}`,
+        },
+        withCredentials: true,
+      });
+      if (response.status === 200) {
+        alert("공지사항이 삭제되었습니다.");
+        navigate("/notice");
+      } else {
+        alert("데이터 통신에 실패하였습니다.");
+        navigate("/");
+      }
     } catch (e) {
       alert(e.response.data.message);
       navigate("/error");
@@ -111,11 +111,15 @@ const NoticeDetail = () => {
     <div className="w-[1080px] h-auto m-auto">
       <div className="w-full h-auto m-auto mt-[3%] border-b-[0.1rem] border-b-[#D2D4D9] border-b-solid font-bold">
         <div className="flex items-center h-[6rem]">
-          <h1 className="flex items-center w-[95%] h-full m-[0%]">
+          <h1 className="flex items-center w-[95%] h-full m-[0%] font-nanumgothic font-semibold">
             제목 : {noticeInfo?.title}
           </h1>
           {isAdmin ? (
-            <SideMenu onToggle={onToggle} onRemove={delete_NoticeItem} isMyPost={myInfo?.userId === noticeInfo?.user?.writerId}/>
+            <SideMenu
+              onToggle={onToggle}
+              onRemove={delete_NoticeItem}
+              isMyPost={myInfo?.userId === noticeInfo?.user?.writerId}
+            />
           ) : (
             <></>
           )}
@@ -126,17 +130,17 @@ const NoticeDetail = () => {
             alt="프로필"
             className="flex items-center justify-center w-[1.75rem] h-[1.75rem] border-1 border-[#D2D4D9] rounded-[50%] text-[5%] text-white mr-[1%]"
           />
-          <div className="flex items-center text-[#424242] text-lg">
+          <div className="flex items-center text-[#424242] text-lg font-nanumgothic font-semibold">
             {noticeInfo?.user?.writerName}
           </div>
           {/* <AiOutlineEye className="NoticeEyeIcon"/>
                     <div className='NoticeWatchCnt'>{noticeInfo?.cnt}</div> */}
-          <div className="flex items-center ml-auto text-[1.125rem]">
+          <div className="flex items-center ml-auto text-[1.125rem] font-nanumgothic font-semibold">
             {noticeTime(noticeInfo?.createDate)}
           </div>
         </div>
       </div>
-      <div className="w-full m-auto pt-[2rem] pb-[2rem] h-auto border-b-[0.1rem] border-b-solid border-b-[#D2D4D9]">
+      <div className="w-full m-auto pt-[2rem] pb-[2rem] h-auto border-b-[0.1rem] border-b-solid border-b-[#D2D4D9] font-nanumgothic">
         {parse(`${noticeInfo?.content}`)}
       </div>
       {fileList ? (
@@ -153,7 +157,7 @@ const NoticeDetail = () => {
                 to={fileUrl}
                 className="flex items-center w-[1.5rem] h-[1.5rem] mx-[0.75rem] cursor-pointer"
               >
-                <AiOutlineDownload className="w-full h-full hover:text-[#0090F9]" />
+                <AiOutlineDownload className="w-full h-full hover:text-[#6495ED]" />
               </Link>
             </div>
           ))}

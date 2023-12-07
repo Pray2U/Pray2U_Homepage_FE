@@ -13,13 +13,12 @@ import "../../styles/Admin/AdminShop.scss";
 import { deleteFileList, extractS3Key } from "../../util/s3Upload";
 
 const AdminShop = () => {
-
   const navigate = useNavigate();
   const pageSize = 10;
-  const [ pageCnt, setPageCnt ] = useState(1);
-  const [ totalItemCnt, setTotalItemCnt ] = useState(null);
-  const [ shopItemList, setShopItemlist] = useState([]);
-  const [ reRender, setReRender] = useState(false);
+  const [pageCnt, setPageCnt] = useState(1);
+  const [totalItemCnt, setTotalItemCnt] = useState(null);
+  const [shopItemList, setShopItemlist] = useState([]);
+  const [reRender, setReRender] = useState(false);
 
   const read_ItemList = async () => {
     try {
@@ -49,26 +48,26 @@ const AdminShop = () => {
     try {
       const url = `${process.env.REACT_APP_API_SERVER}/api/admin/items/${itemId}`;
       const response = await axios.put(url, postData, {
-          headers: {
+        headers: {
           Authorization: `Bearer ${getCookie("accessToken")}`,
-          },
-          withCredentials: true,
+        },
+        withCredentials: true,
       });
       if (response.status === 200) {
-          alert("상품 정보가 수정되었습니다.");
-          setReRender(!reRender);
+        alert("상품 정보가 수정되었습니다.");
+        setReRender(!reRender);
       } else {
-          alert("등록 오류입니다.");
+        alert("등록 오류입니다.");
       }
     } catch (e) {
-        alert(e);
+      alert(e);
     }
-};
+  };
 
   const onRemove = async (id, imgUrl) => {
     try {
       const s3ObjectKey = extractS3Key([imgUrl]);
-      if(s3ObjectKey){
+      if (s3ObjectKey) {
         await deleteFileList(s3ObjectKey);
         const url = `${process.env.REACT_APP_API_SERVER}/api/admin/items/${id}`;
         const response = await axios.delete(url, {
@@ -105,7 +104,7 @@ const AdminShop = () => {
           <AdminSideMenu />
           <div className="w-[80%]">
             <div
-              className="flex items-center justify-center w-[6rem] h-[2.5rem] text-white font-bold bg-[#0090F9] rounded-[0.5rem] ml-auto mb-[2rem] cursor-pointer hover:bg-[#0B7FD3]"
+              className="flex items-center justify-center w-[6rem] h-[2.5rem] text-white font-bold bg-[#6495ED] rounded-[0.5rem] ml-auto mb-[2rem] cursor-pointer hover:bg-[#557DE1]"
               onClick={() => navigate("/admin/shop/create")}
             >
               상품 등록
@@ -131,6 +130,13 @@ const AdminShop = () => {
                 put_ItemInfo={put_ItemInfo}
               />
             ))}
+            {shopItemList.length === 0 && (
+              <div className="w-[1080px] h-[300px] bg-gray-100 flex justify-center items-center">
+                <div className="font-bold text-2xl">
+                  😮상품이 존재하지 않습니다😮
+                </div>
+              </div>
+            )}
             <Paging
               pageNum={pageCnt}
               countPerPage={pageSize}

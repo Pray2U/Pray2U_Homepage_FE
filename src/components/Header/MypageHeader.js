@@ -34,8 +34,8 @@ const MypageHeader = () => {
           key={menu?.link}
           className={
             menu?.link === currentPath
-              ? "flex w-[15%] h-[90%] justify-center items-center text-[1.125vw] text-[#0090F9] cursor-pointer no-underline hover:text-[#0090F9]"
-              : "flex w-[15%] h-[90%] justify-center items-center text-[1.125vw] cursor-pointer no-underline text-inherit hover:text-[#0090F9]"
+              ? "flex w-[15%] h-[90%] justify-center items-center text-[1.125vw] text-[#6482FF] cursor-pointer no-underline hover:text-[#6478FF] font-nanumgothic font-bold"
+              : "flex w-[15%] h-[90%] justify-center items-center text-[1.125vw] cursor-pointer no-underline text-inherit hover:text-[#6478FF] font-nanumgothic font-bold"
           }
         >
           {menu?.title}
