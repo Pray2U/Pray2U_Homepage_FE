@@ -19,7 +19,7 @@ const AdminUserList = () => {
 
   const read_userList = async () => {
     try {
-      const url = `${process.env.REACT_APP_API_SERVER}/api/admin/users?page=${
+      const url = `${process.env.REACT_APP_API_SERVER}/api/users?page=${
         pageCnt - 1
       }&size=${pageSize}&sort=id,desc`;
       const response = await axios.get(url, {

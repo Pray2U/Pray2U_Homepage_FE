@@ -16,7 +16,7 @@ const ImageCards = () => {
 
   const read_AllUserInfo = async()=>{
       try{
-        const url = `${process.env.REACT_APP_API_SERVER}/api/admin/users?page=0&size=20&sort=id,DESC`;
+        const url = `${process.env.REACT_APP_API_SERVER}/api/users?page=0&size=20&sort=id,DESC`;
         const response = await axios.get(url, {
           headers: {
             Authorization: `Bearer ${getCookie("accessToken")}`,
