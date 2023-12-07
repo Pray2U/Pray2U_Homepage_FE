@@ -3,5 +3,5 @@ Dockerfile
 cert
 .git
 .gitignore
-.dockerignore
 .env
+.dockerignore

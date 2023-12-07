@@ -1,4 +1,5 @@
 import { React, useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 
 import FullPageScroll from "../../components/FullPage/FullPageScroll";
 import Carousels from "../../components/Main/Carousels";
@@ -10,10 +11,16 @@ import "../../styles/Main/Main.scss";
 import { checkLogin, isCheckGuest } from "../../util/auth";
 
 const Main = () => {
+
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isGuest, setIsGuest ] = useState(false);
+  const [searchParams,setSearchParams] = useSearchParams();
 
   useEffect(() => {
+    const approved = searchParams.get("approved");
+    if (approved === "false") {
+      alert("승인된 유저가 아닙니다.");
+    }
     setIsLoggedIn(checkLogin("accessToken"));
     setIsGuest(isCheckGuest());
   }, [isLoggedIn]);
