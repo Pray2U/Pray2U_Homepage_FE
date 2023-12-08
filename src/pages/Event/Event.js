@@ -169,10 +169,10 @@ const Event = () => {
               tileContent={addDot}
             />
           </div>
-          <div className="w-[2%] h-full bg-gradient-to-r from-[rgba(237,191,43,1)] via-[rgba(237,191,43,1)] to-[rgba(240,138,86,1)]/100" />
+          <div className="w-[2%] h-full bg-gradient-to-r from-[#f0c947] via-[#f0c947] to-[#e7ab13]/100" />
           <div className="w-[49%] h-[100%] m-auto">
             <div className="flex justify-center items-center w-[90%] h-[20%] border-b-[2px] border-b-solid border-b-[#E2E2E2] pt-[2%] m-auto">
-              <p className="flex items-center text-[#F34F50] font-bold text-[2.25rem]">
+              <p className="flex items-center text-[#ee7274] font-bold text-[2.25rem]">
                 {dayOfWeek[dayjs(selectedDay).day()]}
               </p>
               <p className="ml-[1%] text-gray font-bold text-[1.5rem]">
@@ -193,7 +193,7 @@ const Event = () => {
                   onToggle={onToggle}
                 />
                 <div
-                  className="flex items-center justify-center ml-auto mr-4 mt-2 w-[170px] h-[50px] text-whtie bg-[#9A58EE] text-white font-jua rounded-[0.5em] cursor-pointer hover:bg-[#9048ef]"
+                  className="flex items-center justify-center ml-auto mr-4 mt-2 w-[170px] h-[50px] text-whtie bg-[#f57a3d] text-white font-jua rounded-[0.5em] cursor-pointer hover:bg-[#f46d2a]"
                   onClick={addEvent}
                 >
                   + Add a new Event

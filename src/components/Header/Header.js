@@ -53,6 +53,11 @@ const Header = () => {
       title: "Shop",
       link: "shop",
     },
+    {
+      id: 4,
+      title: "Ranking",
+      link: "ranking",
+    },
   ];
 
   const onHandleLoginModal = () => {
@@ -160,7 +165,7 @@ const Header = () => {
           )}
           {isLoggedIn && !isGuest ? (
             <div className="flex items-center h-full text-black font-bold text-[1.12rem]">
-              <div className="w-[80px] h-[80px] relative box-border border-0 border-solid border-[#e5e7eb] ml-5 flex items-center mt-[20px]">
+              <div className="w-[80px] h-[80px] relative box-border border-0 border-solid border-[#e5e7eb] ml-5 flex items-center mt-[10px]">
                 <img
                   src={myInfo?.profileImgUrl}
                   className="w-[40px] h-[40px] rounded-full border-solid border-1 border-gray-500"
