@@ -73,20 +73,22 @@ const MyShop = () => {
               </div>
             ))}
           </div>
-          <div className="grid w-full h-auto m-auto mt-2 mb-4 grid-cols-3 justify-around items-stretch justify-items-stretch gap-2">
-            {myOrderList?.map(
-              (order) =>
-                isUsedItem === order?.useStatus && (
-                  <MyShopItem key={order?.orderId} item={order?.item} />
-                )
-            )}
-            {myOrderList.length === 0 && (
-              <div className="w-[1080px] h-[300px] bg-gray-100 flex justify-center items-center">
-                <div className="font-bold text-2xl">
-                  😮구매하신 상품이 존재하지 않습니다😮
+          <div className="w-full min-h-300px">
+            <div className="grid w-full h-auto m-auto mt-2 mb-4 grid-cols-3 justify-around items-stretch justify-items-stretch gap-2">
+              {myOrderList?.map(
+                (order) =>
+                  isUsedItem === order?.useStatus && (
+                    <MyShopItem key={order?.orderId} item={order?.item} />
+                  )
+              )}
+              {myOrderList.length === 0 && (
+                <div className="w-[1080px] h-[300px] bg-gray-100 flex justify-center items-center">
+                  <div className="font-bold text-2xl">
+                    😮구매하신 상품이 존재하지 않습니다😮
+                  </div>
                 </div>
-              </div>
-            )}
+              )}
+            </div>
           </div>
         </div>
       </div>
