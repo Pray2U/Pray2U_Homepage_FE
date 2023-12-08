@@ -122,7 +122,7 @@ const MyTil = () => {
         {myTilList.length === 0 && (
           <div className="w-full h-[300px] bg-gray-100 flex justify-center items-center">
             <div className="font-bold text-2xl">
-              😮공지사항이 존재하지 않습니다😮
+              😮TIL이 존재하지 않습니다😮
             </div>
           </div>
         )}

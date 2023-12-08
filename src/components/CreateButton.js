@@ -11,7 +11,7 @@ const CreateButton = ({ link }) => {
           className="flex items-center justify-center p-2 no-underline text-white bg-[#6495ED] rounded-[0.5rem] ml-auto hover:bg-[#557DE1]"
         >
           <BiSolidPencil className="w-[1rem] h-[1rem] mr-[0.25rem]" />
-          <p className="m-0 text-sm font-jua">작성</p>
+          <p className="m-0 text-sm font-jua">작성하기</p>
         </Link>
       ) : (
         <></>

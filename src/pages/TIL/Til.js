@@ -78,7 +78,7 @@ const Til = () => {
 
   const read_tilSearchAPi = async () => {
     try {
-      const url = `${process.env.REACT_APP_API_SERVER}/api/tils?keyword=${search}&${pageNumber}&size=${pageSize}&sort=id,desc`;
+      const url = `${process.env.REACT_APP_API_SERVER}/api/tils?keyword=${search}&page=${pageNumber}&size=${pageSize}&sort=desc`;
       const response = await axios.get(url, {
         headers: {
           Authorization: `Bearer ${getCookie("accessToken")}`,
@@ -99,6 +99,7 @@ const Til = () => {
       }
     } catch (e) {
       alert(e.response.data.message);
+      console.log(e);
       navigate("/error");
     }
   };

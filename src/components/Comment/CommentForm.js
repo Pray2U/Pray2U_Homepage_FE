@@ -45,7 +45,6 @@ const CommentForm = ({ id, myInfo }) => {
           }
         );
         if (response.status === 200) {
-          alert("댓글 등록 성공");
           const result = [response.data.data];
           setComments((comments) => result.concat(comments));
           setTotalCommentCnt(totalCommentCnt + 1);
