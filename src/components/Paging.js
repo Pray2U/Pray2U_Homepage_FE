@@ -7,7 +7,6 @@ const Paging = ({pageNum, countPerPage, totalItems, handlePage}) => {
 
     const handlePageChange = (page) => {
         handlePage(page);
-        console.log(page);
     };
 
     return (
