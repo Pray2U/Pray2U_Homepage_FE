@@ -1,7 +1,8 @@
 .ImageCardBox {
   width: 100%;
   display: flex;
-  height: auto;
+  flex-direction: column;
+  height: 100%;
   align-items: center;
 
   .SwiperBox {
@@ -16,46 +17,43 @@
       justify-content: center;
       width: 30%;
       height: 100%;
-      .ImageCardInfoBox{
-        width: 80%;
-        height: 100%;
+      .ImageCardInfoBox {
+        width: 320px;
+        height: 450px;
         padding-top: 1rem;
         padding-bottom: 1rem;
         border-radius: 2.5rem;
-        background-color: white;
         // box-shadow: -3px -3px 7px #ffffff, 3px 3px 5px #ceced1;
-        .ImageCardProfile{
+        .ImageCardProfile {
           margin: auto;
-          margin-top: 1rem;
-          margin-bottom: 1rem;
+          margin-top: 5px;
+          margin-bottom: 5px;
           width: 15rem;
           height: 15rem;
           border-radius: 50%;
-          border: 2px solid black
+          border: 2px solid black;
         }
-        .ImageCardUserName{
+        .ImageCardUserName {
           display: flex;
           align-items: center;
           justify-content: center;
           font-weight: bold;
           font-size: 130%;
-          height: 15%;
         }
-        .ImageCardEmail{
+        .ImageCardEmail {
           display: flex;
           align-items: center;
           justify-content: center;
           font-weight: bold;
-          height: 15%;
         }
-        .ImageCardGithubIcon{
+        .ImageCardGithubIcon {
           width: 4rem;
           height: 4rem;
           margin: auto;
           text-decoration: none;
-          color:black;
-          &:hover{
-            color: #0090F9;
+          color: black;
+          &:hover {
+            color: #0090f9;
           }
         }
       }
