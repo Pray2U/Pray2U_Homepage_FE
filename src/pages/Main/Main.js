@@ -9,12 +9,12 @@ import ImageCards from "../../components/Main/ImageCards";
 
 import "../../styles/Main/Main.scss";
 import { checkLogin, isCheckGuest } from "../../util/auth";
+import About from "../../components/about";
 
 const Main = () => {
-
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [isGuest, setIsGuest ] = useState(false);
-  const [searchParams,setSearchParams] = useSearchParams();
+  const [isGuest, setIsGuest] = useState(false);
+  const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
     const approved = searchParams.get("approved");
@@ -47,17 +47,17 @@ const Main = () => {
             <p>이 동아리는 이렇게 저렇게 요렇게 해서 만들어졌답니다~</p>
           </span>
         </div> */}
-        <div className="w-[85vw] h-full m-auto bg-[#110042]">
+        <div className="w-[85vw] h-full mx-auto flex items-center">
           {/* {(!isLoggedIn || isGuest) && <Carousels />} */}
-          <Caterogies isLoggedIn={isLoggedIn} isGuest={isGuest}/>
-          {isLoggedIn && !isGuest && <PointRank />}
+          <About />
+          {/* <Caterogies isLoggedIn={isLoggedIn} isGuest={isGuest} />
+          {isLoggedIn && !isGuest && <PointRank />} */}
         </div>
-        {
-          isLoggedIn && !isGuest &&  
-          <div className="w-[85vw] h-full m-auto bg-[#110042] flex justify-center items-center">
+        {isLoggedIn && !isGuest && (
+          <div className="w-[85vw] h-full m-auto flex justify-center items-center">
             <ImageCards />
           </div>
-        }
+        )}
       </FullPageScroll>
     </>
   );
