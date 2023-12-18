@@ -3,15 +3,15 @@ import React from "react";
 export default function About() {
   return (
     <div className="container mx-auto mt-16 text-center flex">
-      <div className="w-1/2 pr-2">
+      <div className="w-1/2 pr-2  mb-24">
         <img
           id="mainImage"
-          src="/testimg/main.jpg"
+          src="/img/main2.png"
           alt="Image Description"
-          className="w-[80%] h-[90%]"
+          className="w-[500px] h-[600px]"
         />
       </div>
-      <div className="w-1/2 pl-2">
+      <div className="w-1/2 pl-2 inline-flex flex-col justify-center mb-24">
         <h1 className="text-4xl font-bold text-gray-800 font-poorstory">
           About PRAY
           <span className="text-[rgba(237,191,43,1)] font-poorstory">2</span>

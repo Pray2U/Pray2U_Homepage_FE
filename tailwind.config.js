@@ -6,6 +6,7 @@ module.exports = {
       poorstory: ["Poor Story"],
       jua: ["Jua"],
       nanumgothic: ["Nanum Gothic Coding"],
+      rubik: ["Rubik"],
     },
   },
   plugins: [],

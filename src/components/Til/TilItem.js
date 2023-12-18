@@ -46,6 +46,8 @@ const TilItem = ({ tilInfo, onRemove, isAdmin, userId }) => {
     setTagOject();
   }, []);
 
+  console.log(parse(tilInfo?.content));
+
   return (
     <div
       className={
@@ -108,7 +110,7 @@ const TilItem = ({ tilInfo, onRemove, isAdmin, userId }) => {
       <div
         className={
           isClosed
-            ? "w-[90%] h-[250px] m-auto pt-[1rem] text-[20px] overflow-hidden"
+            ? "w-[90%] h-[250px] m-auto pt-[1rem] text-[20px] overflow-hidden font-rubik"
             : "w-[90%] h-auto m-auto pt-[1rem] pb-[5%] text-[20px] overflow-hidden"
         }
       >
