@@ -98,6 +98,7 @@ const Ranking = () => {
         withCredentials: true,
       });
       if (response.status === 200) {
+        console.log(response);
         // setRankingList(response.data.data.content);
         // setTotalItemCnt(response.data.data.totalElements);
       } else {
@@ -118,20 +119,21 @@ const Ranking = () => {
     <>
       <div className="w-[1080px] h-auto m-auto mt-10">
         <Title title="🏆 랭킹" />
-        {/* <div className="w-full min-h-[450px] pt-8 shadow-[1px_1px_3px_1px] shadow-gray-300 my-4"> */}
-        <div className="w-full min-h-[450px] pt-8 my-4">
-          <div className="w-full h-[50px] mx-auto flex justify-center items-center font-bold">
+        <div className="w-full min-h-[450px] pt-8">
+          <div className="w-[85%] h-[50px] m-auto flex justify-center items-center font-bold mb-5">
             <div className="flex justify-center items-center w-[15%]">No.</div>
-            <div className="flex justify-center items-center w-[40%]">Name</div>
-            <div className="flex justify-center items-center w-[20%]">githubID</div>
+            <div className="flex justify-center items-center w-[30%]">
+              <div className="w-[50px]">Profile</div>
+              <div className="flex justify-center items-center w-[300px]">Name</div>
+            </div>
+            <div className="flex justify-center items-center w-[30%]">githubID</div>
             <div className="flex justify-center items-center w-[25%]">Point</div>
           </div>
           {
             rankingList?.map((d) => (
-              // <div className="w-[750px] h-[50px] mx-auto flex text-center justify-center border-b-[1.75px] border-b-solid border-b-black mt-4">
-              <div className="w-full mx-auto flex text-center justify-center my-10 font-bold text-xl">
+              <div key={d.githubId} className="w-[85%] h-[60px] mx-auto flex justify-center items-center font-bold text-xl my-7">
                 <div className="flex justify-center items-center w-[15%]">{d.number}</div>
-                <div className="flex justify-center items-center w-[40%]">
+                <div className="flex justify-center items-center w-[30%]">
                   <img
                     src={`${d.profileimgUrl}`}
                     className="w-[50px] h-[50px]"
@@ -139,19 +141,21 @@ const Ranking = () => {
                   />
                   <div className="flex justify-center items-center w-[300px]">{d.username}</div>
                 </div>
-                <div className="flex justify-center items-center w-[20%]">{d.githubId}</div>
+                <div className="flex justify-center items-center w-[30%]">{d.githubId}</div>
                 <div className="flex justify-center items-center w-[25%]">{d.point}pt</div>
               </div>
             ))
           }
           {
             totalItemCnt ? 
-            <Paging
-              pageNum={selectedPage}
-              countPerPage={pageSize}
-              totalItems={totalItemCnt ? totalItemCnt : 0}
-              handlePage={setSelectedPage}
-            /> : <></>
+            <div className="w-[85%] mx-auto">
+              <Paging
+                pageNum={selectedPage}
+                countPerPage={pageSize}
+                totalItems={totalItemCnt ? totalItemCnt : 0}
+                handlePage={setSelectedPage}
+              />
+            </div> : <></>
           }
         </div>
       </div>
