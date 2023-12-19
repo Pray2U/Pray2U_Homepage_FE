@@ -1,4 +1,4 @@
-FROM node:18.12.1
+FROM node:18.12.1 AS build
 WORKDIR /pray2u_fe
 COPY package.json .
 RUN npm install
@@ -25,5 +25,7 @@ ENV REACT_APP_S3_BUCKET=${REACT_APP_S3_BUCKET}
 ARG GENERATE_SOURCEMAP
 ENV GENERATE_SOURCEMAP=${GENERATE_SOURCEMAP}
 
-EXPOSE 3000
-CMD ["npm", "start"]
+RUN npm run build
+
+FROM nginx
+COPY --from=build /app/build /usr/share/nginx/html
